@@ -1,0 +1,3212 @@
+// qwallet 域 — 383 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qwallet;
+
+// ==== source: ccom/tencent/mobileqq/p064pb/qwallet/HbExpandReportPB$ReportReq.java ====
+message ReportReq {
+  int32 report_type = 1;
+  string report_info = 2;
+  string token = 3;
+}
+
+// ==== source: ccom/tencent/mobileqq/p064pb/qwallet/HbExpandReportPB$ReportRsp.java ====
+message ReportRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p107hb/UnclaimedHbPB$GetUpForGrabsReq.java ====
+message GetUpForGrabsReq {
+  string group_id = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p107hb/UnclaimedHbPB$GetUpForGrabsRsp.java ====
+message GetUpForGrabsRsp {
+  repeated HbAioInfo hb_aio_infos = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p107hb/UnclaimedHbPB$HbAioInfo.java ====
+message HbAioInfo {
+  int64 uin = 1;
+  string title = 2;
+  string bill_no = 3;
+  string auth_key = 4;
+  int32 red_channel = 5;
+  repeated int64 grab_uin = 6;
+  int64 create_time = 7;
+  bytes aio_body_reserve = 8;
+  bytes aio_elem_reserve = 9;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/GetEncryptedAccountPB$GetEnAccountReq.java ====
+message GetEnAccountReq {
+  string appid = 1;
+  string open_id = 2;
+  string access_token = 3;
+  string domain = 4;
+  string bz_info = 5;
+  string sign = 6;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/GetEncryptedAccountPB$GetEnAccountRsp.java ====
+message GetEnAccountRsp {
+  string en_acc_id = 1;
+  string pass_sdk_flag = 2;
+  string sign = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$ABTest.java ====
+message ABTest {
+  string exp_name = 1;
+  string exp_version_key = 2;
+  string params_json = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$AppGroup.java ====
+message AppGroup {
+  string title = 1;
+  repeated AppInfo apps = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$AppInfo.java ====
+message AppInfo {
+  repeated uint64 id = 1;
+  int32 type = 2;
+  string name = 3;
+  string url = 4;
+  repeated bytes pv = 5;
+  string icon = 6;
+  string small_icon = 7;
+  Market market = 8;
+  RedPoint red_point = 9;
+  string company_name = 10;
+  int64 bit_flag = 11;
+  int64 app_id = 12;
+  bool has_statement = 13;
+  string background = 14;
+  string night_background = 15;
+  string desc = 16;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$Belt.java ====
+message Belt {
+  repeated uint64 id = 1;
+  string name = 2;
+  string url = 3;
+  repeated bytes pv = 4;
+  string icon = 5;
+  int32 close_btn_type = 6;
+  string close_btn_title = 7;
+  int32 show_count = 8;
+  int32 type = 9;
+  int32 icon_red_point_type = 10;
+  string icon_red_point_url = 11;
+  DateRange range = 12;
+  string text = 13;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$DateRange.java ====
+message DateRange {
+  int64 begin = 1;
+  int64 end = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$Declaim.java ====
+message Declaim {
+  string statement_title = 1;
+  string statement_content = 2;
+  string statement_btn_text = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$Entry.java ====
+message Entry {
+  repeated uint64 id = 1;
+  string name = 2;
+  string sub_name = 3;
+  string icon = 4;
+  repeated bytes pv = 5;
+  string url = 6;
+  RedPoint red_point = 7;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetAccountReq.java ====
+message GetAccountReq {
+  Head head = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetAccountRsp.java ====
+message GetAccountRsp {
+  repeated Entry top_entry = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetHomepageReq.java ====
+message GetHomepageReq {
+  Head head = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetHomepageRsp.java ====
+message GetHomepageRsp_Control {
+  bool has_top_app_sep = 1;
+}
+
+message GetHomepageRsp {
+  repeated AppInfo top_apps = 1;
+  repeated AppInfo apps = 2;
+  repeated Belt belts = 3;
+  repeated VirtualAsset assets = 4;
+  Declaim declaim = 5;
+  repeated bytes h5 = 7;
+  repeated VirtualEntity virtual_entities = 8;
+  bytes control = 9;  // was: Control
+  repeated AppInfo operation_apps = 10;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetHomepageV2Req.java ====
+message GetHomepageV2Req {
+  Head head = 1;
+  bool support_app_list = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetHomepageV2Rsp.java ====
+message GetHomepageV2Rsp {
+  AppInfo pay_code_app = 1;
+  repeated AppInfo top_apps = 2;
+  repeated VirtualAsset assets = 3;
+  AppGroup finance_app_group = 4;
+  AppGroup life_app_group = 5;
+  repeated Belt belts = 6;
+  Declaim declaim = 7;
+  repeated bytes h5 = 8;
+  repeated VirtualEntity virtual_entities = 9;
+  repeated RedDot red_dots = 10;
+  repeated AppGroup app_list = 11;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetPaySettingReq.java ====
+message GetPaySettingReq {
+  Head head = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetPaySettingRsp.java ====
+message GetPaySettingRsp {
+  repeated SettingGroup groups = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetPopWindowReq.java ====
+message GetPopWindowReq {
+  int32 scene = 1;
+  string biz_request = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetPopWindowRsp.java ====
+message GetPopWindowRsp {
+  int32 type = 1;
+  string biz_response = 2;
+  KuiklyAction kuikly_action = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetWalletSettingReq.java ====
+message GetWalletSettingReq {
+  Head head = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$GetWalletSettingRsp.java ====
+message GetWalletSettingRsp {
+  repeated SettingGroup groups = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$H5.java ====
+message H5 {
+  bool is_open = 1;
+  string url = 2;
+  string skeleton = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$Head.java ====
+message Head {
+  bool qyy_switch = 1;
+  bool is_youth_mode = 2;
+  string phone_model = 3;
+  int32 memory_size = 4;
+  string cpu_type = 5;
+  int32 cpu_max_freq = 6;
+  int32 cpu_core_num = 7;
+  repeated ABTest abtest = 8;
+  bool care_model = 9;
+  int32 qq_mode = 10;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$KuiklyAction.java ====
+message KuiklyAction {
+  string page_name = 2;
+  string bundle_name = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$Market.java ====
+message Market {
+  repeated uint64 id = 1;
+  int32 type = 2;
+  string icon = 3;
+  DateRange range = 4;
+  int32 action = 5;
+  string name = 6;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$RedDot.java ====
+message RedDot {
+  repeated uint64 id = 1;
+  int32 app_id = 2;
+  int32 type = 3;
+  string content = 4;
+  DateRange date_range = 5;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$RedPoint.java ====
+message RedPoint {
+  repeated uint64 id = 1;
+  DateRange range = 2;
+  int32 type = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$SettingGroup.java ====
+message SettingGroup {
+  repeated uint64 id = 1;
+  string name = 2;
+  repeated SettingItem items = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$SettingItem.java ====
+message SettingItem {
+  repeated uint64 id = 1;
+  string name = 2;
+  string sub_name = 3;
+  string icon = 4;
+  repeated bytes pv = 5;
+  string url = 6;
+  int32 setting_type = 7;
+  RedPoint red_point = 8;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$VirtualAsset.java ====
+message VirtualAsset {
+  string title = 1;
+  string sub_title = 2;
+  string icon = 3;
+  string url = 4;
+  int32 type = 5;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePage$VirtualEntity.java ====
+message VirtualEntity {
+  repeated uint64 id = 1;
+  int32 type = 2;
+  Market market = 3;
+  RedPoint red_point = 4;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePrivilege$GetPrivilegeReq.java ====
+message GetPrivilegeReq {
+  string src = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePrivilege$GetPrivilegeRsp.java ====
+message GetPrivilegeRsp {
+  repeated Privilege privileges = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/QWalletHomePrivilege$Privilege.java ====
+message Privilege {
+  string name = 1;
+  int32 level = 2;
+  bool is_open = 3;
+  string icon = 4;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/UserSwitchSrv$OpItem.java ====
+message OpItem {
+  repeated uint64 sw = 1;
+  repeated uint64 op = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/UserSwitchSrv$SsoSetSwitchReq.java ====
+message SsoSetSwitchReq {
+  repeated OpItem items = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/UserSwitchSrv$SsoSetSwitchRsp.java ====
+message SsoSetSwitchRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$Clothing.java ====
+message Clothing {
+  repeated bytes id = 1;
+  bool equipped = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$DeviceInfo.java ====
+message DeviceInfo {
+  string phone_model = 1;
+  int32 memory_size = 2;
+  string cpu_type = 3;
+  int32 cpu_max_freq = 4;
+  int32 cpu_core_num = 5;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$DeviceSupport.java ====
+message DeviceSupport {
+  bool is_support = 1;
+  string fail_url = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$Dress.java ====
+message Dress {
+  repeated Clothing clothing = 1;
+  repeated Ornament ornament = 2;
+  repeated Scene scene = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$Ornament.java ====
+message Ornament {
+  repeated bytes id = 1;
+  bool equipped = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetCommon$Scene.java ====
+message Scene {
+  repeated bytes id = 1;
+  bool equipped = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$Cloth.java ====
+message Cloth {
+  repeated bytes id = 1;
+  string name = 2;
+  string icon = 3;
+  string node_name = 4;
+  string position = 5;
+  repeated string pets = 6;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$Default.java ====
+message Default {
+  string pet_type = 1;
+  string scene_id = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$GetReq.java ====
+message GetReq {
+  string version = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$GetRsp.java ====
+message GetRsp {
+  string version = 1;
+  repeated Pet pets = 2;
+  repeated Cloth clothing = 3;
+  repeated Ornament ornament = 4;
+  repeated Scene scenes = 5;
+  repeated Task tasks = 6;
+  Default defaults = 7;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$Pet.java ====
+message Pet {
+  string pet_type = 1;
+  string base_action_type = 2;
+  string icon = 3;
+  string default_name = 4;
+  string icon_active = 5;
+  repeated PetActionResource pet_action_resources = 6;
+  repeated string random_names = 7;
+  string entrance_pic_small = 8;
+  string entrance_pic_big = 9;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$PetActionResource.java ====
+message PetActionResource {
+  string action_type = 1;
+  string pet_resource = 2;
+  string decoration_resource = 3;
+  repeated SubActionResources sub_action_resources = 4;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$Resource.java ====
+message Resource {
+  string pet_type = 1;
+  string url = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$SubActionResources.java ====
+message SubActionResources {
+  string sub_action_type = 1;
+  int32 begin_time = 2;
+  string sub_action_resource = 3;
+  repeated string next_sub_action_types = 4;
+  int32 end_time = 5;
+  int32 elapse_animation_time = 6;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetGlobalConfig$Task.java ====
+message Task {
+  repeated bytes id = 1;
+  string type = 2;
+  string icon = 3;
+  string title = 4;
+  string description = 5;
+  string button_text = 6;
+  int32 action = 7;
+  string url = 8;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetRank$FriendInfo.java ====
+message FriendInfo {
+  string icon = 1;
+  string nick = 2;
+  bool is_opened = 3;
+  string pet_icon = 4;
+  string pet_level = 5;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetRank$GenArkTokenRsp.java ====
+message GenArkTokenRsp {
+  string sign = 1;
+  string title = 2;
+  string cover_image = 3;
+  string url = 4;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetRank$MyFriendsReq.java ====
+message MyFriendsReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetRank$MyFriendsRsp.java ====
+message MyFriendsRsp {
+  repeated FriendInfo friend_info = 1;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetSsoGateway$SsoLcPetReq.java ====
+message SsoLcPetReq {
+  string service = 1;
+  string method = 2;
+  bytes data = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetSsoGateway$SsoLcPetRsp.java ====
+message SsoLcPetRsp {
+  uint64 retcode = 1;
+  string retmsg = 2;
+  bytes data = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetSsoGateway$WebLcPetReq.java ====
+message WebLcPetReq {
+  string service = 1;
+  string method = 2;
+  string data = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetSsoGateway$WebLcPetRsp.java ====
+message WebLcPetRsp {
+  uint64 retcode = 1;
+  string retmsg = 2;
+  string data = 3;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetUserState$HomepageReq.java ====
+message HomepageReq {
+  DeviceInfo device_info = 1;
+  int32 qry_flag = 2;
+}
+
+// ==== source: com/qwallet/protocol/Wallet/p108pb/pet/PetUserState$HomepageRsp.java ====
+message HomepageRsp {
+  int32 user_type = 1;
+  string pet_type = 2;
+  string pet_name = 3;
+  string adopt_time = 4;
+  int64 level = 5;
+  Dress dress = 6;
+  uint64 foods = 7;
+  uint64 exp = 8;
+  string profit_date = 9;
+  uint64 trial_fund = 10;
+  uint64 total_trial_profit = 11;
+  uint64 ytd_trial_profit = 12;
+  uint64 fund = 13;
+  uint64 profit = 14;
+  uint64 ytd_profit = 15;
+  DeviceSupport device_support = 16;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$ButtonInfo.java ====
+message ButtonInfo {
+  string text = 1;
+  string url = 2;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$ErrDetail.java ====
+message ErrDetail {
+  string retmsg = 1;
+  int32 err_style = 2;
+  int32 button_style = 3;
+  repeated ButtonInfo buttons = 4;
+  string title = 5;
+  int32 err_suggest_flag = 6;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$OriginCgiReq.java ====
+message OriginCgiReq {
+  bytes data = 1;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$OriginCgiRsp.java ====
+message OriginCgiRsp {
+  bytes data = 1;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$ProxyReq.java ====
+message ProxyReq {
+  string service = 1;
+  string method = 2;
+  bytes payload = 3;
+  repeated TransInfo trans = 4;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$ProxyRsp.java ====
+message ProxyRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  bytes payload = 3;
+  repeated uint64 ts = 4;
+  repeated TransInfo trans = 5;
+  bytes err = 6;
+}
+
+// ==== source: com/tencent/mobileqq/p1239pb/qwallet/PayGatewayProto$TransInfo.java ====
+message TransInfo {
+  string key = 1;
+  bytes value = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$Bank.java ====
+message Bank {
+  string bank_id = 1;
+  string name = 2;
+  string promotion = 3;
+  string image_id = 4;
+  repeated ProtoFile proto_file = 5;
+  repeated CardType card_type = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$CardType.java ====
+message CardType {
+  string name = 1;
+  string bank_type = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetBankInfoReq.java ====
+message GetBankInfoReq {
+  string scene = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetBankInfoRsp.java ====
+message GetBankInfoRsp {
+  string title = 1;
+  string sub_title = 2;
+  string image_format = 3;
+  repeated ProtoFile proto_file = 4;
+  repeated Bank bank = 5;
+  int32 min_bank_count = 6;
+  string channel_id = 7;
+  string busi_info = 8;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetBindURLReq.java ====
+message GetBindURLReq {
+  string bank_id = 1;
+  string bank_type = 2;
+  string token_id = 3;
+  repeated ProtoFile agreement = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetBindURLRsp.java ====
+message GetBindURLRsp {
+  string url = 1;
+  string method = 2;
+  string body = 3;
+  string header = 4;
+  string req_key = 5;
+  string session_id = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetVerifyFaceKeyReq.java ====
+message GetVerifyFaceKeyReq {
+  string channel_id = 1;
+  string busi_info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$GetVerifyFaceKeyRsp.java ====
+message GetVerifyFaceKeyRsp {
+  string token_id = 1;
+  string channel_info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$ProtoFile.java ====
+message ProtoFile {
+  string name = 1;
+  string url = 2;
+  string version = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$QueryBindReq.java ====
+message QueryBindReq {
+  string session_id = 1;
+  string req_key = 2;
+  string bank_type = 3;
+  repeated ProtoFile agreement = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/BindBank$QueryBindRsp.java ====
+message QueryBindRsp {
+  int32 bind_status = 1;
+  string res_info = 2;
+  string card_tail = 3;
+  string bind_serial = 4;
+  int64 bind_time = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/Hongbao$GetRedPacketConfigReq.java ====
+message GetRedPacketConfigReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/Hongbao$GetRedPacketConfigRsp.java ====
+message GetRedPacketConfigRsp_Token {
+  repeated string tokens = 1;
+  bool allow_custom_token = 2;
+  int32 allow_custom_token_flag = 3;
+}
+
+message GetRedPacketConfigRsp {
+  Quota quota = 1;
+  bytes token = 2;  // was: Token
+  repeated HbEntry hb_entrys = 3;
+  repeated HbTab hb_tabs = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/Hongbao$HbEntry.java ====
+message HbEntry {
+  repeated bytes id = 1;
+  string title = 2;
+  uint64 aio_scene = 3;
+  int32 hb_entry_type = 4;
+  string icon_url = 5;
+  string params = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/Hongbao$HbTab.java ====
+message HbTab {
+  repeated bytes id = 1;
+  int32 hb_tab_type = 2;
+  string title = 3;
+  string url = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/Hongbao$Quota.java ====
+message Quota {
+  int64 min_price_for_one = 1;
+  int64 max_price_for_one = 2;
+  int64 max_amount = 3;
+  int64 max_total_price = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/MidasOrder$SsoMakeOrderReq.java ====
+message SsoMakeOrderReq {
+  string product_id = 1;
+  string provide_offer_id = 2;
+  int32 quantity = 3;
+  string pay_channel = 4;
+  int32 selling_price = 5;
+  string offer_id = 6;
+  string pf_key = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/MidasOrder$SsoMakeOrderRsp.java ====
+message SsoMakeOrderRsp {
+  int32 ret = 1;
+  string token = 2;
+  string url_params = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/PublicOfficeConfig$GetMenuReq.java ====
+message GetMenuReq {
+  bool qyy_switch = 1;
+  bool is_youth_mode = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/PublicOfficeConfig$GetMenuRsp.java ====
+message GetMenuRsp {
+  repeated MenuItem menu = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/PublicOfficeConfig$MenuItem.java ====
+message MenuItem {
+  repeated uint64 id = 1;
+  string name = 2;
+  string icon = 3;
+  string url = 4;
+  repeated bytes pv = 5;
+  repeated MenuItem sub_menu = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$AddReq.java ====
+message AddReq {
+  uint64 appid = 1;
+  int32 action = 2;
+  string phone_no = 3;
+  string verify_code = 4;
+  string openid = 5;
+  string access_token = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$AddRsp.java ====
+message AddRsp {
+  PhoneNo phone = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$AuthConfirmReq.java ====
+message AuthConfirmReq {
+  uint64 appid = 1;
+  PhoneNo phone = 2;
+  string msg_no = 3;
+  UserClient info = 4;
+  string openid = 5;
+  string access_token = 6;
+  bool save_gw_phone = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$AuthConfirmRsp.java ====
+message AuthConfirmRsp {
+  string data = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$ChannelInfo.java ====
+message ChannelInfo {
+  uint64 appid = 1;
+  string logo = 2;
+  string title = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$Contract.java ====
+message Contract {
+  string name = 1;
+  string url = 2;
+  Filter filter = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$DelReq.java ====
+message DelReq {
+  uint64 appid = 1;
+  string token = 2;
+  string openid = 3;
+  string access_token = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$DelRsp.java ====
+message DelRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$Filter.java ====
+message Filter {
+  bool is_global = 1;
+  int32 carrier_type = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GatewayToken.java ====
+message GatewayToken {
+  int32 channel = 1;
+  string data = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetAuthPhonePanelReq.java ====
+message GetAuthPhonePanelReq {
+  uint64 appid = 1;
+  repeated GatewayToken mobile_gateway_tokens = 2;
+  UserClient info = 3;
+  string msg_no = 4;
+  string sign = 5;
+  int32 status = 6;
+  string openid = 7;
+  string access_token = 8;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetAuthPhonePanelRsp.java ====
+message GetAuthPhonePanelRsp {
+  ChannelInfo channel_info = 1;
+  string title = 2;
+  string content = 3;
+  repeated PhoneNo phones = 4;
+  repeated Contract contracts = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetMobileGatewayURLReq.java ====
+message GetMobileGatewayURLReq {
+  uint64 appid = 1;
+  string sign = 2;
+  UserClient info = 3;
+  string openid = 4;
+  string access_token = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetMobileGatewayURLRsp.java ====
+message GetMobileGatewayURLRsp {
+  repeated UrlData urls = 1;
+  string msg_no = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetPhonesReq.java ====
+message GetPhonesReq {
+  uint64 appid = 1;
+  repeated GatewayToken mobile_gateway_tokens = 2;
+  UserClient info = 3;
+  string msg_no = 4;
+  string sign = 5;
+  string openid = 6;
+  string access_token = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$GetPhonesRsp.java ====
+message GetPhonesRsp {
+  repeated PhoneNo phones = 1;
+  int32 maximum = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$PhoneNo.java ====
+message PhoneNo {
+  string mask_no = 1;
+  string token = 2;
+  int32 source = 3;
+  string source_tag = 4;
+  repeated bytes no = 5;
+  int32 carrier_type = 6;
+  int32 state = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$RenewPhoneReq.java ====
+message RenewPhoneReq {
+  uint64 appid = 1;
+  string phone_no = 2;
+  string verify_code = 3;
+  string mobile_gateway_tokens = 4;
+  string msg_no = 5;
+  string qpay_token = 6;
+  int32 check_type = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$RenewPhoneRsp.java ====
+message RenewPhoneRsp {
+  PhoneNo phone = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$SendSMSReq.java ====
+message SendSMSReq {
+  uint64 appid = 1;
+  string phone_no = 2;
+  string openid = 3;
+  string access_token = 4;
+  int32 check_type = 5;
+  string qpay_token = 6;
+  string mask_phone_no = 7;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$SendSMSRsp.java ====
+message SendSMSRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$UrlData.java ====
+message UrlData {
+  int32 channel = 1;
+  string url = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletAuthorize$UserClient.java ====
+message UserClient {
+  int32 device_type = 1;
+  string device_id = 2;
+  int32 client_type = 3;
+  string cellular_network_ip = 4;
+  string user_ip = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$GetMobileGWPhoneReq.java ====
+message GetMobileGWPhoneReq {
+  uint64 appid = 1;
+  string session_id = 2;
+  string phone_token = 3;
+  string sign = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$GetMobileGWPhoneRsp.java ====
+message GetMobileGWPhoneRsp {
+  string session_id = 1;
+  string phone_token = 2;
+  MaskPhoneData mask_phone = 3;
+  PlainPhoneData plain_phone = 4;
+  int32 carrier_type = 5;
+  string ext_info = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$GetSessionIDReq.java ====
+message GetSessionIDReq {
+  uint64 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$GetSessionIDRsp.java ====
+message GetSessionIDRsp {
+  string session_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$MaskPhoneData.java ====
+message MaskPhoneData {
+  string mask = 1;
+  repeated SimpleContract contract = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$PlainPhoneData.java ====
+message PlainPhoneData {
+  string plain = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/QWalletLocalPhone$SimpleContract.java ====
+message SimpleContract {
+  string name = 1;
+  string url = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Activity.java ====
+message Activity {
+  string name = 1;
+  string url = 2;
+  string icon = 3;
+  string a_icon = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$AddSkinReq.java ====
+message AddSkinReq {
+  int32 channel = 1;
+  int64 uin = 2;
+  int32 skin_id = 3;
+  int64 timestamp = 4;
+  string token = 5;
+  string sign = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$AddSkinRsp.java ====
+message AddSkinRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$CheckPermissionReq.java ====
+message CheckPermissionReq {
+  int64 uin = 1;
+  int32 skin_id = 2;
+  int32 skin_from = 3;
+  string outer_skin_id = 4;
+  int64 money = 5;
+  int32 hb_from = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$CheckPermissionRsp.java ====
+message CheckPermissionRsp {
+  int64 selected_time = 1;
+  int32 special_pop_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Disclosure.java ====
+message Disclosure {
+  string logo = 1;
+  string title = 2;
+  string sub_title = 3;
+  string button_text = 4;
+  string button_href = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GenShareArkMsgReq.java ====
+message GenShareArkMsgReq {
+  int32 skin_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GenShareArkMsgRsp.java ====
+message GenShareArkMsgRsp {
+  bytes ark_msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetActivityRsp.java ====
+message GetActivityRsp {
+  repeated uint64 id = 1;
+  string tag = 2;
+  string content = 3;
+  string reddot_pic = 4;
+  int32 action = 5;
+  string jump_url = 6;
+  repeated RecommendSkin skins = 7;
+  int32 select_recommend_id = 8;
+  string tag2 = 9;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetRecommendSkinsReq.java ====
+message GetRecommendSkinsReq {
+  int32 skin_id = 1;
+  int32 scene = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetRecommendSkinsRsp.java ====
+message GetRecommendSkinsRsp {
+  repeated RecommendSkin skins = 1;
+  int32 display_type = 2;
+  int32 jump_type = 3;
+  RedDot skins_page_reddot = 4;
+  repeated Promotion promotions = 5;
+  string err_msg = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetSkinInfoReq.java ====
+message GetSkinInfoReq {
+  string version = 1;
+  repeated int32 skin_ids = 3;
+  repeated string outer_skin_ids = 5;
+  int32 skin_from = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetSkinInfoRsp.java ====
+message GetSkinInfoRsp {
+  string version = 1;
+  repeated SkinInfo skins = 4;
+  int64 next_period = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetUserSkinReq.java ====
+message GetUserSkinReq {
+  int32 aio_type = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$GetUserSkinRsp.java ====
+message GetUserSkinRsp {
+  repeated SkinInfo skins = 1;
+  int32 selected_skin_from = 2;
+  int32 selected_skin_id = 3;
+  string selected_outer_skin_id = 4;
+  repeated Activity activities = 5;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$HasSkinReq.java ====
+message HasSkinReq {
+  int64 uin = 1;
+  int32 skin_id = 2;
+  int32 skin_from = 3;
+  string outer_skin_id = 4;
+  int64 money = 5;
+  int32 hb_from = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$HasSkinRsp.java ====
+message HasSkinRsp {
+  bool has_skin = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Merchant.java ====
+message Merchant {
+  string name = 1;
+  string logo = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Promotion.java ====
+message Promotion {
+  repeated uint64 id = 1;
+  string title = 2;
+  string recommendation = 3;
+  string v_img = 4;
+  string h_img = 5;
+  string url = 6;
+  string tip = 7;
+  int32 source = 8;
+  string adid = 9;
+  string trace_info = 10;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$RecommendActivity.java ====
+message RecommendActivity {
+  string text = 1;
+  string img = 2;
+  string url = 3;
+  string url_desc = 4;
+  string logo = 5;
+  Disclosure disclosure = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$RecommendSkin.java ====
+message RecommendSkin {
+  SkinInfo skin = 1;
+  string recommendation = 2;
+  string img = 3;
+  repeated string labels = 4;
+  RecommendActivity activity = 5;
+  string btn_text = 6;
+  string btn_url = 7;
+  bool has_got = 8;
+  int32 total_count = 9;
+  int32 got_count = 10;
+  string token = 11;
+  int32 receive_way = 12;
+  string public_account_uin = 13;
+  string tip = 14;
+  int32 recommend_id = 15;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$ReportActivityClickReq.java ====
+message ReportActivityClickReq {
+  repeated uint64 id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$ReportActivityClickRsp.java ====
+message ReportActivityClickRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SetSelectedSkinReq.java ====
+message SetSelectedSkinReq {
+  int32 skin_id = 1;
+  int32 skin_from = 2;
+  string outer_skin_id = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SetSelectedSkinRsp.java ====
+message SetSelectedSkinRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SkinInfo.java ====
+message SkinInfo {
+  int32 skin_id = 1;
+  int32 type = 2;
+  string title = 3;
+  Merchant merchant = 4;
+  Activity activity = 5;
+  string default_skin_url = 8;
+  string aio_res_url = 9;
+  string pop_res_url = 10;
+  repeated Story stories = 11;
+  Tail tail = 12;
+  int32 price = 13;
+  int32 iap_price = 14;
+  string outer_skin_id = 15;
+  int32 skin_from = 16;
+  string pop_open_url = 17;
+  string pop_broken_url = 18;
+  string badge_url = 19;
+  string expire_date_prompt = 20;
+  repeated string labels = 21;
+  bool allow_share = 22;
+  bool disabled = 23;
+  string disabled_tip = 24;
+  string make_res_url = 25;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SsoAddSkinReq.java ====
+message SsoAddSkinReq {
+  int32 skin_id = 1;
+  int64 timestamp = 2;
+  string token = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SsoAddSkinRsp.java ====
+message SsoAddSkinRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SsoDelSkinReq.java ====
+message SsoDelSkinReq {
+  int32 skin_from = 1;
+  int32 skin_id = 2;
+  string outer_skin_id = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$SsoDelSkinRsp.java ====
+message SsoDelSkinRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Story.java ====
+message Story {
+  int32 type = 1;
+  string img_url = 2;
+  string video_url = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/RedPackSkin$Tail.java ====
+message Tail {
+  string color = 1;
+  string url = 2;
+  string word = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$Classify.java ====
+message Classify {
+  string name = 1;
+  repeated ClassifyItem items = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$ClassifyItem.java ====
+message ClassifyItem {
+  string item = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$CopyWriter.java ====
+message CopyWriter {
+  string info = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetClassifyReq.java ====
+message GetClassifyReq {
+  int32 subchannel = 1;
+  int32 ver = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetClassifyRsp.java ====
+message GetClassifyRsp {
+  int32 code = 1;
+  string message = 2;
+  int32 ver = 3;
+  repeated Classify classify = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetDefaultCopywriterReq.java ====
+message GetDefaultCopywriterReq {
+  int32 subchannel = 1;
+  int32 fromtype = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetDefaultCopywriterRsp.java ====
+message GetDefaultCopywriterRsp {
+  int32 code = 1;
+  string message = 2;
+  repeated CopyWriter copywriter = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetPronReq.java ====
+message GetPronReq {
+  string word = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetPronRsp.java ====
+message GetPronRsp {
+  int32 retcode = 1;
+  string message = 2;
+  string show_pron = 3;
+  string real_pron = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetWordDetailReq.java ====
+message GetWordDetailReq {
+  string word = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$GetWordDetailRsp.java ====
+message GetWordDetailRsp {
+  int32 retcode = 1;
+  string message = 2;
+  string pronunciation = 3;
+  string radical = 4;
+  int32 stroke_count = 5;
+  string traditional_character = 6;
+  string comment = 7;
+  string tone_pronunciation = 8;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$WordIsExistReq.java ====
+message WordIsExistReq {
+  int32 subchannel = 1;
+  string word = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/SendHbDetail$WordIsExistRsp.java ====
+message WordIsExistRsp {
+  int32 status = 1;
+  string paperwork = 2;
+  int32 retcode = 3;
+  string message = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$Button.java ====
+message Button {
+  string label = 1;
+  string link = 2;
+  int32 style = 3;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$ConfirmAuthReq.java ====
+message ConfirmAuthReq {
+  string appid = 1;
+  string sign = 5;
+  string channel = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$ConfirmAuthRsp.java ====
+message ConfirmAuthRsp {
+  string result = 1;
+  StateModal state_modal = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$GetAuthPanelReq.java ====
+message GetAuthPanelReq {
+  string appid = 1;
+  string sign = 5;
+  string channel = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$GetAuthPanelRsp.java ====
+message GetAuthPanelRsp {
+  string app_name = 1;
+  string app_icon = 2;
+  string title = 3;
+  string content = 4;
+  bool is_student = 5;
+  string refuse_result = 6;
+  repeated bytes protocol = 7;
+}
+
+message Protocol {
+  string head = 1;
+  repeated Item items = 2;
+  string tail = 3;
+}
+
+message Item {
+  string name = 1;
+  string link = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$GetStateModalReq.java ====
+message GetStateModalReq {
+  string appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$GetStateModalRsp.java ====
+message GetStateModalRsp {
+  StateModal auth_panel = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$StateModal.java ====
+message StateModal {
+  int32 state = 1;
+  string title = 2;
+  string subtitle = 3;
+  string icon_link = 4;
+  Button left_button = 5;
+  Button right_button = 6;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$VerifyCHSIWebPageReq.java ====
+message VerifyCHSIWebPageReq {
+  string token = 1;
+  string source_code = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$VerifyCHSIWebPageRsp.java ====
+message VerifyCHSIWebPageRsp {
+  int32 state = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$VerifyCHSIWebPageV2Req.java ====
+message VerifyCHSIWebPageV2Req {
+  string token = 1;
+  string source_code = 2;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/StudentPB$VerifyCHSIWebPageV2Rsp.java ====
+message VerifyCHSIWebPageV2Rsp {
+  int32 state = 1;
+  repeated bytes msg = 2;
+  string token_id = 3;
+  string channel_info = 4;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/WxQrcodePayEncrypt$EncryptReq.java ====
+message EncryptReq {
+  int32 channel = 1;
+}
+
+// ==== source: com/tencent/mobileqq/qwallet/p1264pb/WxQrcodePayEncrypt$EncryptRsp.java ====
+message EncryptRsp {
+  int32 ret_code = 1;
+  string err_msg = 2;
+  string token = 3;
+}
+
+// ==== source: com/tencent/qwallet/CodeGenerate$CodeGenerateReq.java ====
+message CodeGenerateReq {
+  string uin = 1;
+  repeated bytes cn = 2;
+  string guid = 3;
+  string device_id = 4;
+  string device_type = 5;
+  string device_name = 6;
+  string token_md5 = 7;
+  int64 timestamp = 8;
+  string random = 9;
+  string sign = 10;
+  string h_location = 11;
+  string h_model = 12;
+  string h_edition = 13;
+  string h_qq_appid = 14;
+  string h_qq_guid = 15;
+}
+
+// ==== source: com/tencent/qwallet/CodeGenerate$CodeGenerateRes.java ====
+message CodeGenerateRes {
+  string retcode = 1;
+  string retmsg = 2;
+  string uin = 3;
+  repeated bytes cn = 4;
+  string token = 5;
+  string token_md5 = 6;
+  string pay_type = 7;
+  string valid_end = 8;
+  string random = 9;
+  string pay_desc = 10;
+  string code_prefix = 11;
+  string forbid_watch = 12;
+}
+
+// ==== source: com/tencent/trpcprotocol/qpayment/access/wxpay/QWalletWxMiniAppPayPB$CallbackReq.java ====
+message CallbackReq {
+  string token_id = 1;
+  string wx_pay_attach = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qpayment/access/wxpay/QWalletWxMiniAppPayPB$CallbackRsp.java ====
+message CallbackRsp {
+  bool pay_suc = 1;
+  FaceHb face_hb = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qpayment/access/wxpay/QWalletWxMiniAppPayPB$FaceHb.java ====
+message FaceHb {
+  int32 bus_type = 1;
+  int32 state = 2;
+  int32 total_num = 3;
+  int32 recv_num = 4;
+  string send_listid = 5;
+  string wishing = 6;
+  string qr_token = 7;
+  string qr_data = 8;
+  int32 valid_seconds = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$CancelAccountByFaceReq.java ====
+message CancelAccountByFaceReq {
+  string token_id = 1;
+  string channel_info = 2;
+  UIN uin = 3;
+  string channel = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$CancelAccountByFaceRsp.java ====
+message CancelAccountByFaceRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$CheckCreIDForIdentifiedUserReq.java ====
+message CheckCreIDForIdentifiedUserReq {
+  string token_id = 1;
+  string cre_id = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$CheckCreIDForIdentifiedUserRsp.java ====
+message CheckCreIDForIdentifiedUserRsp {
+  string busi_info = 1;
+  int64 nav_type = 2;
+  int32 userid_type = 3;
+  string userid = 4;
+  int64 time_stamp = 5;
+  int64 token_scene = 6;
+  int64 token_type = 7;
+  string mch_id = 8;
+  string sign = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetCancelURLWithFaceParamsReq.java ====
+message GetCancelURLWithFaceParamsReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetCancelURLWithFaceParamsRsp.java ====
+message GetCancelURLWithFaceParamsRsp {
+  string token_id = 1;
+  string channel_info = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetInitializationInfoReq.java ====
+message GetInitializationInfoReq {
+  string token_id = 1;
+  string channel_info = 2;
+  string channel = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetInitializationInfoRsp.java ====
+message GetInitializationInfoRsp {
+  bool is_identified = 1;
+  string name = 2;
+  string channel = 3;
+  bool face_verified = 4;
+  bool has_provided_namecreid = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetMyAccountsReq.java ====
+message GetMyAccountsReq {
+  string token_id = 1;
+  string channel_info = 2;
+  string cre_id = 3;
+  string name = 4;
+  int32 cre_type = 5;
+  string pwd_token = 6;
+  string channel = 7;
+  string regbind_param = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$GetMyAccountsRsp.java ====
+message GetMyAccountsRsp {
+  repeated UIN uins = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/cancel/account/AccountPB$UIN.java ====
+message UIN {
+  string uin = 1;
+  string salt = 2;
+  string version = 3;
+  string signature = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$ChargeAuthenReq.java ====
+message ChargeAuthenReq {
+  int32 flag = 1;
+  int64 amount = 2;
+  string bind_serial = 3;
+  string pay_passwd = 4;
+  int32 pay_method = 5;
+  string soter_data = 6;
+  string user_info_extend = 7;
+  string bank_type = 8;
+  string charge_fee = 9;
+  string ssid = 10;
+  string verify_flag = 11;
+  string is_reentry = 12;
+  string new_mobile = 13;
+  string touchid_info = 14;
+  string timestamp = 15;
+  repeated bytes cn = 16;
+  string cert_sign = 17;
+  string reset_flag = 18;
+  string busi_type = 19;
+  string soter_appid = 20;
+  string soter_auth_json = 21;
+  string soter_auth_signature = 22;
+  string h_qq_appid = 23;
+  string h_location = 24;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$ChargeAuthenRsp.java ====
+message ChargeAuthenRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  int32 send_flag = 3;
+  string ssid = 4;
+  int64 balance = 5;
+  int32 save_flag = 6;
+  string session_id = 7;
+  string transaction_id = 8;
+  string pay_time = 9;
+  string mobile = 10;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$ChargeBankInfo.java ====
+message ChargeBankInfo {
+  string name = 1;
+  string code = 2;
+  string bind_serialno = 3;
+  string card_tail = 4;
+  string image_id = 5;
+  string type = 6;
+  string sname = 7;
+  string disable = 8;
+  string disabled = 9;
+  string disable_comment = 10;
+  string disable_url = 11;
+  string disable_title = 12;
+  string needcvv = 13;
+  string needthru = 14;
+  string pay_oncelimit = 15;
+  string pay_daylimit = 16;
+  string charge_oncelimit = 17;
+  string charge_daylimit = 18;
+  string once_quota_value = 19;
+  string day_quota_value = 20;
+  string single_quota_virtual = 21;
+  string single_quota_real = 22;
+  string day_quota_virtual = 23;
+  string day_quota_real = 24;
+  string bank_protocol = 25;
+  string real_name = 26;
+  string needcertid = 27;
+  string pwd_verify = 28;
+  string tel_number = 29;
+  string must_bind = 30;
+  string quickmode = 31;
+  string cardtype = 32;
+  string expired_flag = 33;
+  string bindmobile = 34;
+  string modify_time = 36;
+  string show_cent_tips = 37;
+  string once_quota_value_finance = 38;
+  string day_quota_value_finance = 39;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$ChargeVerifyReq.java ====
+message ChargeVerifyReq {
+  int32 flag = 1;
+  string ssid = 2;
+  string verify_code = 3;
+  int32 pay_method = 4;
+  string soter_data = 5;
+  string session_id = 6;
+  string bank_type = 7;
+  string pay_passwd = 8;
+  string touchid_info = 9;
+  string timestamp = 10;
+  repeated bytes cn = 11;
+  string cert_sign = 12;
+  string busi_type = 13;
+  string soter_appid = 14;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$ChargeVerifyRsp.java ====
+message ChargeVerifyRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  string transaction_id = 3;
+  int64 balance = 4;
+  string pay_time = 5;
+  string save_flag = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$CreditCardDescPb.java ====
+message CreditCardDescPb {
+  string cre_type = 1;
+  string cre_desc = 2;
+  string cre_len = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$GetChargeBankListReq.java ====
+message GetChargeBankListReq {
+  string unbind_flag = 1;
+  string query_type = 2;
+  string card_type = 3;
+  string pay_type = 4;
+  string sale_plat = 5;
+  string token_id = 6;
+  string bargainor_id = 7;
+  string limit_pay = 8;
+  string limit_bank = 9;
+  string user_info = 10;
+  string h_edition = 11;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/charge/charge/ChargePB$GetChargeBankListRsp.java ====
+message GetChargeBankListRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  repeated ChargeBankInfo bank_list = 3;
+  repeated CreditCardDescPb creditcards_desc = 4;
+  string user_type = 5;
+  string user_attr = 6;
+  string purchaser_true_name = 7;
+  string creditcard_id = 8;
+  string creditcard_type = 9;
+  string user_info_extend = 10;
+  string pwd_encrypt_type = 11;
+  string params_encrypt_type = 12;
+  string password_hash_ver = 13;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$AuthenReq.java ====
+message AuthenReq {
+  string token_id = 1;
+  string channel_info = 2;
+  string name = 3;
+  int32 cre_type = 4;
+  string cre_id = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$AuthenRsp.java ====
+message AuthenRsp {
+  string openid = 1;
+  string appid = 2;
+  string tmpkey = 3;
+  string token_id = 4;
+  string mask_name = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CheckReq.java ====
+message CheckReq {
+  string token_id = 1;
+  Fields fields = 2;
+  int32 media_opt = 3;
+}
+
+message Fields {
+  string channel_info = 1;
+  string name = 2;
+  string cre_id = 3;
+  int32 cre_type = 4;
+  string uin = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CheckRsp.java ====
+message CheckRsp_FaceAuth {
+  string seq_no = 1;
+  string token = 2;
+}
+
+message CheckRsp {
+  bool is_correct_fileds = 1;
+  int32 verification_result = 2;
+  MediaDetail media = 3;
+  bytes face_auth = 4;  // was: FaceAuth
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CheckTokenReq.java ====
+message CheckTokenReq {
+  string token_id = 1;
+  string uin = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CheckTokenRsp.java ====
+message CheckTokenRsp {
+  int32 status = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CreateReq.java ====
+message CreateReq_IDCard {
+  int32 cre_type = 1;
+  string name = 2;
+  string cre_id = 3;
+}
+
+message CreateReq {
+  string channel_id = 1;
+  string busi_info = 2;
+  string signature = 3;
+  bytes id_card = 4;  // was: IDCard
+  string uin = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$CreateRsp.java ====
+message CreateRsp {
+  string token_id = 1;
+  string channel_info = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$DetectAuthReq.java ====
+message DetectAuthReq {
+  string rule_id = 1;
+  string name = 2;
+  string cre_id = 3;
+  string redirect_url = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$DetectAuthRsp.java ====
+message DetectAuthRsp {
+  string biz_token = 1;
+  string url = 2;
+  string request_id = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$GetDetectInfoReq.java ====
+message GetDetectInfoReq {
+  string rule_id = 1;
+  string biz_token = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$GetDetectInfoRsp.java ====
+message GetDetectInfoRsp {
+  int32 result = 1;
+  MediaDetail media = 3;
+  float sim = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$MediaDetail.java ====
+message MediaDetail {
+  string mime = 1;
+  string data = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$VerifyFaceInfoReq.java ====
+message VerifyFaceInfoReq {
+  int64 appid = 1;
+  int64 encrypt_method = 2;
+  string tmpkey = 3;
+  uint64 seq_no = 4;
+  string name = 5;
+  string id_card_number = 6;
+  string image = 7;
+  string session = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$VerifyFaceInfoRsp.java ====
+message VerifyFaceInfoRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  int32 score = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$VerifyReq.java ====
+message VerifyReq {
+  string id_key = 1;
+  string token_id = 2;
+  string channel_info = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/face/recognition/RecognitionPB$VerifyRsp.java ====
+message VerifyRsp {
+  int32 result = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/homepage/mqq/QWalletHomeMqq$AccountReq.java ====
+message AccountReq {
+  string source_id = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/homepage/mqq/QWalletHomeMqq$AccountRsp.java ====
+message AccountRsp_CftAccount {
+  int32 authen_account_type = 1;
+  repeated bytes go_realname = 2;
+  int64 balance = 3;
+  string go_realname_bubble_text = 4;
+  string name = 5;
+}
+
+message AccountRsp {
+  bytes cft_account = 1;  // was: CftAccount
+  Tip tip = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/homepage/mqq/QWalletHomeMqq$Href.java ====
+message Href {
+  string url = 1;
+  int32 h_type = 2;
+  string text = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/homepage/mqq/QWalletHomeMqq$Tip.java ====
+message Tip {
+  string title = 1;
+  Href url = 2;
+  int32 t_type = 3;
+  string trace_info = 4;
+  string ad_id = 5;
+  int32 t_source = 6;
+  string icon = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegSubmitAuthenReq.java ====
+message BindRegSubmitAuthenReq {
+  string sign = 1;
+  string bank_type = 2;
+  EnData bank_card_id = 3;
+  string mobile = 4;
+  string cvc = 5;
+  string valid_thru = 6;
+  UserInfoExtend user_info_extend = 7;
+  int32 source_id = 8;
+  string true_name = 9;
+  int32 cre_type = 10;
+  EnData cre_id = 11;
+  string face_guide_ext = 12;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegSubmitAuthenRsp.java ====
+message BindRegSubmitAuthenRsp {
+  int32 sms_sent = 1;
+  string mobile_mask = 2;
+  string ssid = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegSubmitFinishReq.java ====
+message BindRegSubmitFinishReq {
+  string ssid = 1;
+  string pay_passwd = 2;
+  string face_token_id = 3;
+  string face_channel_info = 4;
+  repeated ConfigOption funds_source = 5;
+  repeated ConfigOption funds_usage = 6;
+  UserInfoExtend user_info_extend = 7;
+  repeated Agreement agreement = 8;
+  int32 source_id = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegSubmitFinishRsp.java ====
+message BindRegSubmitFinishRsp {
+  int32 auth_result = 1;
+  int32 ocr_required = 2;
+  string ocr_url_fallback = 3;
+  repeated int32 poll_intervals = 4;
+  string auth_result_tips = 5;
+  Tips ocr_submitted_tips = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegVerifyCodeReq.java ====
+message BindRegVerifyCodeReq {
+  string ssid = 1;
+  string verify_code = 2;
+  string mobile = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$BindRegVerifyCodeRsp.java ====
+message BindRegVerifyCodeRsp {
+  int32 funds_collect_required = 1;
+  int32 face_required = 2;
+  string face_token = 3;
+  string face_channel_info = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$CheckFaceFieldsReq.java ====
+message CheckFaceFieldsReq {
+  CheckReq face_req = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$CheckFaceFieldsRsp.java ====
+message CheckFaceFieldsRsp {
+  CheckRsp face_rsp = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$QQSecInFaceReq.java ====
+message QQSecInFaceReq_Mobile {
+  string code = 1;
+  string number = 2;
+}
+
+message QQSecInFaceReq {
+  int32 cre_type = 1;
+  string name = 2;
+  string cre_id = 3;
+  bytes mobile = 4;  // was: Mobile
+  int32 h_edition = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$QQSecInFaceRsp.java ====
+message QQSecInFaceRsp {
+  bool face_flag = 1;
+  string token_id = 2;
+  string channel_info = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$QueryFaceVerifyGuideReq.java ====
+message QueryFaceVerifyGuideReq {
+  string ssid = 1;
+  string face_token_id = 2;
+  string face_channel_info = 3;
+  int32 code = 4;
+  repeated bytes msg = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/bindreg/BindregPB$QueryFaceVerifyGuideRsp.java ====
+message QueryFaceVerifyGuideRsp {
+  int32 guide_action = 1;
+  string tip_msg = 2;
+  string face_guide_ext = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$Check9ElementsReq.java ====
+message Check9ElementsReq {
+  string uin = 1;
+  string name = 2;
+  string creid = 3;
+  string address = 4;
+  string area = 5;
+  string city = 6;
+  string cre_begin_date = 7;
+  string cre_end_date = 8;
+  string cre_type = 9;
+  string occupation = 10;
+  string sex = 11;
+  string nationality = 12;
+  string province = 13;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$Check9ElementsRsp.java ====
+message Check9ElementsRsp {
+  int32 code = 1;
+  string message = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregSubmitAuthenReq.java ====
+message CreditregSubmitAuthenReq {
+  string sign = 1;
+  string true_name = 2;
+  int32 cre_type = 3;
+  EnData cre_id = 4;
+  string mobile = 5;
+  UserInfoExtend user_info_extend = 6;
+  int32 source_id = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregSubmitAuthenRsp.java ====
+message CreditregSubmitAuthenRsp {
+  int32 sms_sent = 1;
+  string mobile_mask = 2;
+  string ssid = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregSubmitFinishReq.java ====
+message CreditregSubmitFinishReq {
+  string ssid = 1;
+  string pay_passwd = 2;
+  string face_token_id = 3;
+  string face_channel_info = 4;
+  UserInfoExtend user_info_extend = 5;
+  repeated Agreement agreement = 6;
+  repeated ConfigOption funds_source = 7;
+  repeated ConfigOption funds_usage = 8;
+  int32 source_id = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregSubmitFinishRsp.java ====
+message CreditregSubmitFinishRsp {
+  int32 auth_result = 1;
+  int32 ocr_required = 2;
+  string ocr_url_fallback = 3;
+  repeated int32 poll_intervals = 4;
+  string auth_result_tips = 5;
+  Tips ocr_submitted_tips = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregVerifyCodeReq.java ====
+message CreditregVerifyCodeReq {
+  string ssid = 1;
+  string verify_code = 2;
+  string mobile = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$CreditregVerifyCodeRsp.java ====
+message CreditregVerifyCodeRsp {
+  int32 funds_collect_required = 1;
+  int32 face_required = 2;
+  string face_token = 3;
+  string face_channel_info = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$GetAccountListWithTmpTokenReq.java ====
+message GetAccountListWithTmpTokenReq {
+  string tmp_token = 1;
+  string uin = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$GetAccountListWithTmpTokenRsp.java ====
+message GetAccountListWithTmpTokenRsp {
+  repeated UIN uins = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$GetFaceTokenReq.java ====
+message GetFaceTokenReq {
+  string reserved = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$GetFaceTokenRsp.java ====
+message GetFaceTokenRsp {
+  string token_id = 1;
+  string channel_info = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$SetCacheIDCardReq.java ====
+message SetCacheIDCardReq {
+  string uin = 1;
+  int64 cre_type = 2;
+  string creid = 3;
+  string name = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/creditreg/CreditregPB$SetCacheIDCardRsp.java ====
+message SetCacheIDCardRsp {
+  string tmp_token = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$CheckAddressReq.java ====
+message CheckAddressReq {
+  Addr addr = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$CheckAddressRsp.java ====
+message CheckAddressRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$CheckRegElementReq.java ====
+message CheckRegElementReq {
+  RegElement element = 1;
+  bool ignore_address_empty = 2;
+  bool mobile_1v1 = 3;
+  bool ignore_empty_for_realname = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$CheckRegElementRsp.java ====
+message CheckRegElementRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$PreCheckRegElementReq.java ====
+message PreCheckRegElementReq {
+  RegElement element = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/element/ElementPB$PreCheckRegElementRsp.java ====
+message PreCheckRegElementRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$ApplyReq.java ====
+message ApplyReq_QpgRealNameAuthReq {
+  string flag = 1;
+  string user_info_extend = 2;
+  string true_name_charset = 3;
+  string true_name = 4;
+  string identify_card = 5;
+  string uin = 6;
+  string cre_type = 7;
+  string scene_id = 8;
+}
+
+message ApplyReq {
+  string uin = 1;
+  string guard_uin = 2;
+  int32 reg_type = 3;
+  bytes detail = 4;  // was: QpgRealNameAuthReq
+  string pskey = 5;
+  string token = 6;
+  ClientInfo client_info = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$ApplyRsp.java ====
+message ApplyRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  ProcessInfo list = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$CloseReq.java ====
+message CloseReq {
+  string uin = 1;
+  string list_id = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$CloseRsp.java ====
+message CloseRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  ProcessInfo list = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$FinishRegReq.java ====
+message FinishRegReq {
+  string uin = 1;
+  ClientInfo client_info = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$FinishRegRsp.java ====
+message FinishRegRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  ProcessInfo list = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$GuardConfirmReq.java ====
+message GuardConfirmReq {
+  UserInfo guard = 2;
+  int32 relation = 3;
+  string list_id = 4;
+  string ext_info = 5;
+  ClientInfo client_info = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$GuardConfirmRsp.java ====
+message GuardConfirmRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  ProcessInfo list = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegApplyReq.java ====
+message MinorRegApplyReq {
+  string sign = 1;
+  string true_name = 2;
+  int32 cre_type = 3;
+  EnData cre_id = 4;
+  string mobile = 5;
+  UserInfoExtend user_info_extend = 6;
+  int32 source_id = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegApplyRsp.java ====
+message MinorRegApplyRsp {
+  string ssid = 1;
+  int32 state = 2;
+  string state_title = 3;
+  string state_tip = 4;
+  int32 sms_sent = 5;
+  string mobile_mask = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegFinishRegReq.java ====
+message MinorRegFinishRegReq {
+  string ssid = 1;
+  string pay_passwd = 2;
+  int32 source_id = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegFinishRegRsp.java ====
+message MinorRegFinishRegRsp {
+  int32 auth_result = 1;
+  int32 ocr_required = 2;
+  string ocr_url_fallback = 3;
+  repeated int32 poll_intervals = 4;
+  string auth_result_tips = 5;
+  Tips ocr_submitted_tips = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegGuardConfirmReq.java ====
+message MinorRegGuardConfirmReq {
+  string ssid = 1;
+  string guard_uin = 2;
+  string guard_name = 3;
+  int32 guard_cre_type = 4;
+  EnData guard_cre_id = 5;
+  int32 guard_relation = 6;
+  string ext_info = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegGuardConfirmRsp.java ====
+message MinorRegGuardConfirmRsp {
+  int32 state = 1;
+  string state_title = 2;
+  string state_tip = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegInviteGuardReq.java ====
+message MinorRegInviteGuardReq {
+  string ssid = 1;
+  string guard_uin = 2;
+  string face_token_id = 3;
+  string face_channel_info = 4;
+  repeated ConfigOption funds_source = 5;
+  repeated ConfigOption funds_usage = 6;
+  UserInfoExtend user_info_extend = 7;
+  repeated Agreement agreement = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegInviteGuardRsp.java ====
+message MinorRegInviteGuardRsp {
+  int32 state = 1;
+  string state_title = 2;
+  string state_tip = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegVerifyCodeReq.java ====
+message MinorRegVerifyCodeReq {
+  string ssid = 1;
+  string verify_code = 2;
+  string mobile = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$MinorRegVerifyCodeRsp.java ====
+message MinorRegVerifyCodeRsp {
+  int32 funds_collect_required = 1;
+  int32 face_required = 2;
+  string face_token = 3;
+  string face_channel_info = 4;
+  int32 state = 5;
+  string state_title = 6;
+  string state_tip = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$ProcessInfo.java ====
+message ProcessInfo {
+  string list_id = 1;
+  int32 state = 2;
+  string state_title = 3;
+  string state_tip = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$QueryReq.java ====
+message QueryReq {
+  string uin = 1;
+  string list_id = 2;
+  string ext_info = 3;
+  ClientInfo client_info = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/minorreg/Minorreg$QueryRsp.java ====
+message QueryRsp {
+  int32 retcode = 1;
+  string retmsg = 2;
+  ProcessInfo list = 3;
+  int32 identify = 7;
+  UserInfo registrant = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$CloseApplyReq.java ====
+message CloseApplyReq {
+  string ssid = 1;
+  string close_reason = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$CloseApplyRsp.java ====
+message CloseApplyRsp {
+  int32 state = 1;
+  string state_title = 2;
+  string state_tip = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$GetRegConfigReq.java ====
+message GetRegConfigReq {
+  string ssid = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$GetRegConfigRsp.java ====
+message GetRegConfigRsp {
+  repeated ConfigOption funds_source_options = 1;
+  repeated ConfigOption funds_usage_options = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$PrecheckReq.java ====
+message PrecheckReq {
+  int32 reg_type = 1;
+  string true_name = 2;
+  int32 cre_type = 3;
+  EnData cre_id = 4;
+  string cre_begin_date = 5;
+  string cre_end_date = 6;
+  Addr addr = 7;
+  string job = 8;
+  int32 sex = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$PrecheckRsp.java ====
+message PrecheckRsp {
+  string sign = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$QueryStatusReq.java ====
+message QueryStatusReq {
+  string ssid = 1;
+  string ext_info = 2;
+  int32 trigger_notify = 3;
+  int32 scene = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/realname/RealnamePB$QueryStatusRsp.java ====
+message QueryStatusRsp {
+  int32 is_realname = 1;
+  int32 has_in_progress = 2;
+  string ssid = 3;
+  int32 reg_type = 4;
+  int32 stage = 5;
+  string stage_title = 6;
+  string stage_tip = 7;
+  int32 identify = 8;
+  UserInfo registrant = 9;
+  int32 ocr_required = 10;
+  int32 ocr_status = 11;
+  string ocr_url = 12;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$Addr.java ====
+message Addr {
+  string nationality = 1;
+  string province = 2;
+  string city = 3;
+  string region = 4;
+  string address = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$Agreement.java ====
+message Agreement {
+  string name = 1;
+  string url = 2;
+  string version = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$ClientInfo.java ====
+message ClientInfo_UserEnv {
+  string client_ip = 1;
+  string h_model = 2;
+  string h_edition = 3;
+  string h_location = 4;
+  string h_exten = 5;
+  string h_idfa = 6;
+  string h_net_type = 7;
+}
+
+message ClientInfo_Session {
+  string skey = 1;
+  int32 skey_type = 2;
+}
+
+message ClientInfo {
+  string uin = 1;
+  string guid = 2;
+  bytes user_env = 3;  // was: UserEnv
+  bytes session = 4;  // was: Session
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$ConfigOption.java ====
+message ConfigOption {
+  string value = 1;
+  string label = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$CreDate.java ====
+message CreDate {
+  string begin = 1;
+  string expire = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$EnData.java ====
+message EnData {
+  string cre_id = 1;
+  repeated TransInfo trans = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$QpgGuardRealNameAuthReq.java ====
+message QpgGuardRealNameAuthReq {
+  string token = 1;
+  string uin = 2;
+  string guard_uin = 3;
+  string guard_name = 4;
+  string guard_cre_id = 5;
+  int32 guard_cre_type = 6;
+  int32 guard_relation = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$RegElement.java ====
+message RegElement {
+  string name = 1;
+  string cre_id = 2;
+  CreDate cre_date = 3;
+  int32 cre_type = 4;
+  string mobile = 5;
+  string job = 6;
+  int32 sex = 7;
+  Addr addr = 8;
+  repeated TransInfo trans = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$Tips.java ====
+message Tips {
+  string title = 1;
+  string subtitle = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$UserInfo.java ====
+message UserInfo {
+  string uin = 1;
+  string name = 2;
+  string cre_id = 3;
+  int32 cre_type = 4;
+  string cre_begin_date = 5;
+  string cre_end_date = 6;
+  string address = 7;
+  string occupation = 8;
+  int32 sex = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/regbind/reg_entity/RegEntity$UserInfoExtend.java ====
+message UserInfoExtend {
+  string province = 1;
+  string city = 2;
+  string region = 3;
+  string address = 4;
+  string job = 5;
+  int32 sex = 6;
+  string mobile = 7;
+  string creditcard_begin_date = 8;
+  string creditcard_exp_date = 9;
+  string nationality = 10;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/withdraw/withdraw/WithdrawPB$ConfirmDrawingReq.java ====
+message ConfirmDrawingReq {
+  int64 amount = 1;
+  int64 charge_fee = 2;
+  string draw_id = 3;
+  string bind_serial = 4;
+  string channel = 5;
+  int64 timestamp = 6;
+  repeated bytes p = 7;
+  string qq_risk_info = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/withdraw/withdraw/WithdrawPB$ConfirmDrawingRsp.java ====
+message ConfirmDrawingRsp {
+  int64 amount = 1;
+  int64 balance = 2;
+  int64 charge_fee = 3;
+  string draw_id = 4;
+  string transaction_id = 5;
+  DrawSuccInfo draw_succ_desc = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/qwallet/withdraw/withdraw/WithdrawPB$DrawSuccInfo.java ====
+message DrawSuccInfo {
+  string end_text = 1;
+  string end_time = 2;
+  string process_text = 3;
+  string process_time = 4;
+  string start_text = 5;
+  string start_time = 6;
+}
+
+// ==== source: fudai/FudaiActiveReport$ActiveReportReq.java ====
+message ActiveReportReq {
+  uint32 act_id = 1;
+  uint64 optime = 2;
+  uint64 touin = 3;
+  uint64 group_uin = 4;
+  string banner_id = 5;
+  string pendant_id = 6;
+  string vid = 7;
+  string game_id = 8;
+  string brand_id = 9;
+  string card_id = 10;
+  string fudai_id = 11;
+  int32 award_type = 12;
+  uint32 cash_value = 13;
+  bool entrance_remind = 14;
+  int32 fd_status_type = 15;
+  int32 share_source = 16;
+  int32 share_type = 17;
+  bool follow_brand = 18;
+}
+
+// ==== source: fudai/FudaiActiveReport$ExceptionHandle.java ====
+message ExceptionHandle {
+  uint32 task_id = 1;
+  int32 errcode = 2;
+  repeated bytes msg = 3;
+  uint32 version = 4;
+}
+
+// ==== source: fudai/FudaiActiveReport$FdConfig.java ====
+message FdConfig {
+  uint32 result = 1;
+  uint32 type = 2;
+  uint32 version = 3;
+  uint32 task_id = 4;
+  repeated bytes msg = 5;
+}
+
+// ==== source: fudai/FudaiActiveReport$PkgReq.java ====
+message PkgReq_UserCommReport {
+  string imei = 1;
+  double longitude = 2;
+  double latitude = 3;
+  string city_code = 4;
+  int32 net_type = 5;
+  uint32 from_id = 6;
+  string mobile_type = 7;
+  string qua = 8;
+}
+
+message PkgReq {
+  bytes user_comm_report = 1;  // was: UserCommReport
+  repeated FdConfig fd_config = 2;
+  repeated ResourceDownload resource_download = 3;
+  repeated ExceptionHandle exception_handle = 4;
+  repeated ActiveReportReq active_report = 5;
+}
+
+// ==== source: fudai/FudaiActiveReport$PkgRsp.java ====
+message PkgRsp {
+  uint32 ret = 1;
+  string err_msg = 2;
+  uint32 batch_size = 3;
+}
+
+// ==== source: fudai/FudaiActiveReport$ResourceDownload.java ====
+message ResourceDownload {
+  int32 result = 1;
+  string url = 2;
+  uint32 version = 3;
+  uint32 task_id = 4;
+}
+
+// ==== source: fudai/fd_aio_msgs$GrabFDGrayMsg.java ====
+message GrabFDGrayMsg_TxtAndUrl {
+  string txt_des = 1;
+  string jmp_url = 2;
+}
+
+message GrabFDGrayMsg {
+  repeated bytes host_uin = 1;
+  repeated bytes grab_uin = 2;
+  string fdid = 3;
+  repeated uint64 high_light_des = 4;
+}
+
+// ==== source: fudai/fd_aio_msgs$ShareFDAioMsg.java ====
+message ShareFDAioMsg {
+  uint64 host_uin = 1;
+  string fdid = 2;
+  repeated bytes share_meta = 3;
+  string fd_txt = 4;
+  uint32 busi_id = 11;
+  uint32 theme_id = 12;
+  string aio_tails = 13;
+  string high_light_msg = 21;
+}
+
+// ==== source: fudai/fd_comm$AuthInfo.java ====
+message AuthInfo {
+  uint64 uin = 1;
+  uint32 ctime = 2;
+  bytes skey = 3;
+  repeated bytes a8 = 4;
+  uint32 appid = 5;
+  uint32 net_type = 11;
+  string imei = 12;
+  string longitude = 21;
+  string latitude = 22;
+  uint32 city_code = 23;
+}
+
+// ==== source: fudai/fd_comm$BusiElement.java ====
+message BusiElement_VideoInfo {
+  repeated bytes cover_info = 1;
+  string video_url = 2;
+}
+
+message BusiElement_AudioInfo {
+  repeated bytes cover_info = 1;
+  string audio_url = 2;
+}
+
+message BusiElement_OfficialAccountInfo {
+  uint64 official_uin = 1;
+  string official_nick = 2;
+}
+
+message BusiElement {
+  uint32 busi_id = 1;
+  string biz_desc = 2;
+  string biz_logo = 3;
+  int32 ad_type = 4;
+  repeated bytes pic_info = 5;
+  repeated bytes video_info = 6;
+  repeated bytes audio_info = 7;
+  repeated bytes official_account_info = 8;
+}
+
+// ==== source: fudai/fd_comm$FDShareMeta.java ====
+message FDShareMeta {
+  int32 type = 1;
+  uint64 target_id = 2;
+}
+
+// ==== source: fudai/fd_comm$GrabPack.java ====
+message GrabPack_MoneyPackInfo {
+  uint32 money = 1;
+  string des = 2;
+  uint32 money_id = 3;
+}
+
+message GrabPack_CardPackInfo {
+  uint32 card_id = 1;
+  string card_des = 2;
+  string jmp_url = 3;
+  string url_suffix = 4;
+}
+
+message GrabPack_BlessPackInfo {
+  string bless_des = 1;
+  string jmp_url = 2;
+  uint32 bless_id = 3;
+}
+
+message GrabPack {
+  int32 pack_type = 1;
+  string none_pack_desc = 2;
+  repeated bytes monay_pack_info = 3;
+  repeated bytes card_pack_info = 4;
+  repeated bytes bless_pack_info = 5;
+}
+
+// ==== source: fudai/fd_comm$PicInfo.java ====
+message PicInfo {
+  string pic_url = 1;
+}
+
+// ==== source: fudai/fd_comm$UinProf.java ====
+message UinProf {
+  uint64 uin = 1;
+  string nick = 2;
+}
+
+// ==== source: fudai/fd_interactive_pack$ReqFDPkg.java ====
+message ReqFDPkg_ShareFDReq {
+  repeated bytes host_prof = 1;
+  repeated bytes share_meta = 2;
+}
+
+message ReqFDPkg_GrabeRedEnvelopeReq {
+  repeated bytes op_prof = 1;
+  uint64 host_uin = 2;
+  repeated bytes share_meta = 3;
+  uint32 src_version = 11;
+}
+
+message ReqFDPkg_FDRecvDetailsReq {
+  uint64 op_uin = 1;
+  uint64 host_uin = 2;
+}
+
+message ReqFDPkg {
+  string fdid = 2;
+  uint32 cmd_type = 11;
+  repeated bytes share_fd = 12;
+  repeated bytes grabe_re = 13;
+  repeated bytes recv_details = 14;
+  string device_info = 15;
+}
+
+// ==== source: fudai/fd_interactive_pack$RspFDPkg.java ====
+message RspFDPkg_ShareFDRsp {
+  repeated bytes share_meta = 1;
+}
+
+message RspFDPkg_GrabeRedEnvelopeRsp {
+  repeated bytes host_prof = 1;
+  int32 grab_state = 2;
+  repeated bytes pack_info = 3;
+  string top_des = 4;
+  repeated bytes busi_elem = 5;
+  uint32 switch_jmp_main_page = 6;
+  repeated bytes luck_card_info = 7;
+}
+
+message RspFDPkg_LuckCard {
+  int32 luck_card_type = 1;
+  bool show_icon_tab = 2;
+  string icon_url = 3;
+  int32 des_type = 4;
+  string des = 5;
+}
+
+message RspFDPkg_FDRecvDetailsRsp {
+  uint64 host_uin = 1;
+  repeated bytes busi_elem = 2;
+  string fd_desc = 3;
+  bool is_over = 4;
+  repeated bytes recv_info = 5;
+  string fd_recv_msg = 6;
+  bool ctnue_share = 7;
+  repeated SingleRecvDetail re_recv_list = 21;
+}
+
+message RspFDPkg {
+  uint64 op_uin = 1;
+  uint32 result_code = 2;
+  string result_msg = 3;
+  string fdid = 4;
+  uint32 cmd_type = 11;
+  repeated bytes share_fd = 12;
+  repeated bytes grabe_re = 13;
+  repeated bytes recv_details = 14;
+}
+
+// ==== source: fudai/fd_interactive_pack$SingleRecvDetail.java ====
+message SingleRecvDetail {
+  uint64 uin = 1;
+  string nick = 2;
+  uint32 ctime = 3;
+  repeated bytes re_info = 4;
+}
+
+// ==== source: tencent/p2156im/msg/im_msg_body$QQWalletAioBody.java ====
+message QQWalletAioBody {
+  uint64 uint64_senduin = 1;
+  repeated bytes sender = 2;
+  repeated bytes receiver = 3;
+  bytes sint32_channelid = 4;  // was: PBSInt32Field
+  bytes sint32_templateid = 5;  // was: PBSInt32Field
+  uint32 uint32_resend = 6;
+  uint32 uint32_msg_priority = 7;
+  bytes sint32_redtype = 8;  // was: PBSInt32Field
+  bytes bytes_billno = 9;
+  bytes bytes_authkey = 10;
+  bytes sint32_sessiontype = 11;  // was: PBSInt32Field
+  bytes sint32_msgtype = 12;  // was: PBSInt32Field
+  bytes sint32_envelopeid = 13;  // was: PBSInt32Field
+  bytes bytes_name = 14;
+  bytes sint32_conftype = 15;  // was: PBSInt32Field
+  bytes sint32_msg_from = 16;  // was: PBSInt32Field
+  bytes bytes_pc_body = 17;
+  bytes string_index = 18;
+  uint32 uint32_redchannel = 19;
+  repeated uint64 uint64_grap_uin = 20;
+  bytes bytes_pb_reserve = 21;
+}
+
+// ==== source: tencent/p2156im/msg/im_msg_body$QQWalletAioElem.java ====
+message QQWalletAioElem {
+  uint32 uint32_background = 1;
+  uint32 uint32_icon = 2;
+  bytes bytes_title = 3;
+  bytes bytes_subtitle = 4;
+  bytes bytes_content = 5;
+  bytes bytes_linkurl = 6;
+  bytes bytes_blackstripe = 7;
+  bytes bytes_notice = 8;
+  uint32 uint32_title_color = 9;
+  uint32 uint32_subtitle_color = 10;
+  bytes bytes_actions_priority = 11;
+  bytes bytes_jump_url = 12;
+  bytes bytes_native_ios = 13;
+  bytes bytes_native_android = 14;
+  bytes bytes_iconurl = 15;
+  uint32 uint32_content_color = 16;
+  uint32 uint32_content_bgcolor = 17;
+  bytes bytes_aio_image_left = 18;
+  bytes bytes_aio_image_right = 19;
+  bytes bytes_cft_image = 20;
+  bytes bytes_pb_reserve = 21;
+}
+
+// ==== source: tencent/p2156im/msg/im_msg_body$QQWalletMsg.java ====
+message QQWalletMsg {
+  repeated bytes aio_body = 1;
+}
+
+// ==== source: tencent/p2156im/qqwallet/HbPlayRule$HbIdiomCheckReq.java ====
+message HbIdiomCheckReq {
+  int64 uin = 1;
+  string inputIdiom = 2;
+  int32 subchannel = 3;
+}
+
+// ==== source: tencent/p2156im/qqwallet/HbPlayRule$HbIdiomCheckRsp.java ====
+message HbIdiomCheckRsp {
+  int64 uin = 1;
+  int32 status = 2;
+  repeated IdiomInfo suggestIdioms = 3;
+  string hbIdiomLastPY = 4;
+  string hbPoemRule = 5;
+  int32 remainVerse = 6;
+  string paperwork = 7;
+}
+
+// ==== source: tencent/p2156im/qqwallet/HbPlayRule$IdiomInfo.java ====
+message IdiomInfo {
+  repeated bytes hz = 1;
+  repeated bytes py = 2;
+  string py_last = 3;
+  int32 seq = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/Mall$CardInfo.java ====
+message CardInfo {
+  int32 field = 1;
+  int32 app_id = 2;
+  string card_id = 3;
+  string title = 4;
+  string subtitle = 5;
+  string from = 6;
+  string icon = 7;
+  int32 quantity = 8;
+  int32 priority = 9;
+  int32 percent = 10;
+  int32 tasks = 11;
+  string tag = 12;
+  int32 status = 13;
+  string code = 14;
+  string button_text = 15;
+  string obtained_button_text = 16;
+  string style = 17;
+  string price = 18;
+  string origin_price = 19;
+  string main_image = 20;
+  bool is_direct = 21;
+  string apply_url = 22;
+  string category = 23;
+}
+
+// ==== source: tencent/p2156im/qqwallet/Mall$CollectV2Req.java ====
+message CollectV2Req {
+  int32 field = 1;
+  int32 app_id = 2;
+  string card_id = 3;
+  int32 channel_id = 4;
+  string source = 5;
+}
+
+// ==== source: tencent/p2156im/qqwallet/Mall$CollectV2Rsp.java ====
+message CollectV2Rsp {
+  string code = 1;
+  string err_msg = 2;
+  string apply_url = 3;
+}
+
+// ==== source: tencent/p2156im/qqwallet/PaySuccessAd$GetAdReq.java ====
+message GetAdReq {
+  int32 busi_type = 1;
+  bytes qq_ad_get = 2;  // was: QQAdGet
+  string merchant_id = 3;
+  string offer_id = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/PaySuccessAd$GetAdRsp.java ====
+message GetAdRsp {
+  int32 code = 1;
+  string message = 2;
+  bytes qq_ad_get_rsp = 3;  // was: QQAdGetRsp
+  int32 ad_type = 4;
+  QpayAd qpay_ad = 5;
+  RecommendAds qpay_ads = 6;
+}
+
+// ==== source: tencent/p2156im/qqwallet/PaySuccessAd$QpayAd.java ====
+message QpayAd {
+  repeated bytes id = 1;
+  string title = 2;
+  string sub_title = 3;
+  string banner = 4;
+  string icon = 5;
+  string brand = 6;
+  string button_text = 7;
+  string button_url = 8;
+  string trace_info = 9;
+  string ext_info = 10;
+}
+
+// ==== source: tencent/p2156im/qqwallet/PaySuccessAd$RecommendAds.java ====
+message RecommendAds {
+  string title1 = 1;
+  repeated QpayAd qpay_ads = 2;
+  string title2 = 3;
+  repeated CardInfo qcards = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/QWalletHbPreGrab$QQHBReply.java ====
+message QQHBReply {
+  string retCode = 1;
+  string retMsg = 2;
+  string rspText = 3;
+  bytes rspBody = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/QWalletHbPreGrab$QQHBRequest.java ====
+message QQHBRequest {
+  string cgiName = 1;
+  string reqText = 2;
+  string random = 3;
+  int32 enType = 4;
+  bytes reqBody = 5;
+}
+
+// ==== source: tencent/p2156im/qqwallet/QWalletPubAdReport$TerminalInfor.java ====
+message TerminalInfor {
+  string model = 1;
+  string appid = 2;
+  string edition = 3;
+  string qq_version = 4;
+  string device_name = 5;
+  string client_os = 6;
+  int32 root_flag = 7;
+  string device_id = 8;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$Friends.java ====
+message Friends {
+  string uin = 1;
+  string birthdate = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$HbList.java ====
+message HbList {
+  string listid = 1;
+  int32 state = 2;
+  int32 amount = 3;
+  string uin = 4;
+  string name = 5;
+  string birthdate = 6;
+  string arrival_time = 7;
+  string create_time = 8;
+  string modify_time = 9;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$ListQueryReply.java ====
+message ListQueryReply {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  int32 pack_count = 3;
+  repeated HbList hb_list = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$ListQueryRequest.java ====
+message ListQueryRequest {
+  string uin = 1;
+  repeated Friends friends = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$OpenNotifyReply.java ====
+message OpenNotifyReply {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$OpenNotifyRequest.java ====
+message OpenNotifyRequest {
+  string listid = 1;
+  string send_uin = 2;
+  string recv_uin = 3;
+  repeated bytes ts = 4;
+  string sign = 5;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$OrderCreateReply.java ====
+message OrderCreateReply {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$OrderCreateRequest.java ====
+message OrderCreateRequest {
+  string listid = 1;
+  int64 amount = 2;
+  string send_uin = 3;
+  string send_name = 4;
+  string recv_uin = 5;
+  string recv_name = 6;
+  string birthdate = 7;
+  string arrival_time = 8;
+  repeated bytes ts = 9;
+  string sign = 10;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$PackNotifyReply.java ====
+message PackNotifyReply {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/birthday_hb_reminder_srv$PackNotifyRequest.java ====
+message PackNotifyRequest {
+  string listid = 1;
+  string send_uin = 2;
+  string recv_uin = 3;
+  string invalid_time = 4;
+  repeated bytes ts = 5;
+  string sign = 6;
+}
+
+// ==== source: tencent/p2156im/qqwallet/kua_kua_hb_srv$TopicAttr.java ====
+message TopicAttr {
+  repeated bytes id = 1;
+  string text = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/kua_kua_hb_srv$TopicListReply.java ====
+message TopicListReply {
+  int64 retCode = 1;
+  string retMsg = 2;
+  repeated TopicAttr topicList = 3;
+}
+
+// ==== source: tencent/p2156im/qqwallet/kua_kua_hb_srv$TopicListRequest.java ====
+message TopicListRequest {
+  string limit = 1;
+  string offset = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/kua_kua_hb_srv$TopicMatchReply.java ====
+message TopicMatchReply {
+  int64 retCode = 1;
+  string retMsg = 2;
+  int64 refuseInterval = 3;
+  string matchToken = 4;
+}
+
+// ==== source: tencent/p2156im/qqwallet/kua_kua_hb_srv$TopicMatchRequest.java ====
+message TopicMatchRequest_ClientAttr {
+  int64 osType = 1;
+  int64 skeyType = 2;
+  string skey = 3;
+}
+
+message TopicMatchRequest {
+  repeated bytes clientAttr = 1;
+  string hbTopic = 2;
+  string userAnswer = 3;
+  string hbListId = 4;
+  string grapUin = 5;
+  string sendUin = 6;
+  int64 fromType = 7;
+  string groupId = 8;
+}
+
+// ==== source: tencent/p2156im/qqwallet/qqwalletaio_resv$Payer.java ====
+message Payer {
+  uint64 uint64_uin = 1;
+  uint32 uint32_amount = 2;
+}
+
+// ==== source: tencent/p2156im/qqwallet/qqwalletaio_resv$qqwalletaio_body_resv.java ====
+message qqwalletaio_body_resv {
+  uint32 uint32_pfa_type = 1;
+  bytes bytes_feeds_id = 2;
+  uint32 uint32_subchannel = 3;
+  bytes bytes_poem_rule = 4;
+  bytes bytes_client_extend = 5;
+  bytes bytes_rareword_rule = 6;
+  uint32 uint32_pay_flag = 7;
+  uint32 uint32_hb_flag = 8;
+  uint32 uint32_avatar_id = 9;
+  uint32 uint32_cover_id = 10;
+  bytes bytes_zplan_uin = 11;
+}
+
+// ==== source: tencent/p2156im/qqwallet/qqwalletaio_resv$qqwalletaio_elem_resv.java ====
+message qqwalletaio_elem_resv {
+  bytes bytes_subject_image = 1;
+  bytes transaction_id = 2;
+  uint32 sound_record_duration = 3;
+  uint32 uint32_resource_type = 4;
+  uint32 uint32_skin_id = 5;
+  uint32 uint32_effects_id = 6;
+  int32 int32_special_pop_id = 7;
+  repeated Payer rpt_payer = 8;
+  uint32 uint32_subjectid = 9;
+  uint32 uint32_hb_from = 10;
+  uint32 uint32_song_id = 11;
+  uint32 uint32_song_flag = 12;
+  bytes bytes_idiom_alpha = 13;
+  bytes bytes_outer_skin_id = 14;
+  uint32 uint32_skin_from = 15;
+}

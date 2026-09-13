@@ -1,0 +1,481 @@
+// emosm 域 — 54 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.emosm;
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Book.java ====
+message Book {
+  string cover = 1;
+  string desc = 2;
+  repeated bytes id = 3;
+  string jumpUrl = 4;
+  string name = 5;
+  string recommDesc = 6;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Comic.java ====
+message Comic {
+  int32 comicType = 1;
+  string cover = 2;
+  string desc = 3;
+  repeated bytes id = 4;
+  string jumpUrl = 5;
+  string name = 6;
+  string recommDesc = 7;
+  string typeName = 8;
+  repeated ComicRich rich = 9;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$ComicRich.java ====
+message ComicRich {
+  string extCover = 1;
+  string extName = 2;
+  string extTitle = 3;
+  string extUrl = 4;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Game.java ====
+message Game {
+  string cover = 1;
+  string desc = 2;
+  repeated bytes id = 3;
+  string jumpUrl = 4;
+  string name = 5;
+  string recommDesc = 6;
+  repeated GameRich rich = 7;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$GameRich.java ====
+message GameRich {
+  string anchorFaceUrl = 1;
+  string anchorId = 2;
+  string anchorName = 3;
+  string coverUrl = 4;
+  string online = 5;
+  string title = 6;
+  string richJumpUrl = 7;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Goods.java ====
+message Goods {
+  string cover = 1;
+  string goodsTags = 2;
+  repeated bytes id = 3;
+  string name = 4;
+  string price = 5;
+  string saleTags = 6;
+  string svipPrice = 7;
+  string url = 8;
+  string moreUrl = 9;
+  string saleNum = 10;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Gxzb.java ====
+message Gxzb {
+  int32 appId = 1;
+  string appName = 2;
+  string cover = 3;
+  int32 feeType = 4;
+  repeated bytes id = 5;
+  string name = 6;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$ModuleInfo.java ====
+message ModuleInfo {
+  int32 appId = 1;
+  string itemId = 2;
+  bool isRetSummary = 3;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$ModuleReq.java ====
+message ModuleReq {
+  int64 platform = 1;
+  string mqqver = 2;
+  int64 uin = 3;
+  ModuleInfo moduleInfo = 4;
+  int32 sub_cmd = 5;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$ModuleRsp.java ====
+message ModuleRsp {
+  int32 ipId = 1;
+  string ipName = 2;
+  string ipDesc = 3;
+  string ipUrl = 4;
+  int32 itemSize = 5;
+  string strType = 6;
+  int32 extId = 7;
+  string extStr = 8;
+  repeated Gxzb gxzbList = 9;
+  repeated Game gameList = 10;
+  repeated Goods goodsList = 11;
+  repeated Book bookList = 12;
+  repeated Video videoList = 13;
+  repeated Comic comicList = 14;
+  int32 result = 15;
+  int32 sub_cmd = 16;
+  string ipLogo = 17;
+  string ipContent = 18;
+  int32 requestInterval = 19;
+  int32 goodSize = 20;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/ComicIPSite$Video.java ====
+message Video {
+  repeated bytes id = 1;
+  string buttonDesc = 2;
+  string content = 3;
+  string cover = 4;
+  string desc = 5;
+  string name = 6;
+  string endTime = 7;
+  int32 isShow = 8;
+  int64 newStartTime = 9;
+  int64 newEndTime = 10;
+  string redirectUrl = 11;
+  string videoSource = 12;
+  string showDate = 13;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$BqAssocInfo.java ====
+message BqAssocInfo {
+  uint32 u32_tab_id = 1;
+  string str_tab_name = 2;
+  uint32 u32_tab_feetype = 3;
+  int32 i32_tab_type = 4;
+  int32 i32_tab_ringtype = 5;
+  string str_item_id = 6;
+  string str_item_name = 7;
+  string str_item_key = 8;
+  repeated string rpt_str_item_keyword = 9;
+  repeated SupportSize rpt_support_size = 10;
+  uint32 uint32_emoji_type = 11;
+  repeated SupportSize rpt_apng_support_size = 12;
+  string str_ipsite_url = 13;
+  string str_ipsite_name = 14;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$ReqBody.java ====
+message ReqBody_SubCmd0x9BqAssocReq {
+  string str_key_word = 1;
+  repeated uint64 rpt_str_bq_item_id = 2;
+  repeated uint64 rpt_str_dead_bq_item_id = 3;
+}
+
+message ReqBody_SubCmd0x11Req {
+  // (no fields resolved)
+}
+
+message ReqBody_SubCmd0x12Req {
+  repeated SmallYellowItem itemlist = 1;
+}
+
+message ReqBody_SubCmd0x14ReqFetchTabMac {
+  bytes fixed32_timestamp_ios = 1;  // was: PBFixed32Field
+  int32 int32_segment_flag_ios = 2;
+  bytes fixed32_timestamp_android = 3;  // was: PBFixed32Field
+  int32 int32_segment_flag_android = 4;
+}
+
+message ReqBody_SubCmd0x19Req {
+  uint32 uint32_package_id = 1;
+}
+
+message ReqBody {
+  uint32 uint32_sub_cmd = 1;
+  uint64 uint64_uin = 2;
+  SubCmd0x1ReqDelTab msg_subcmd0x1_req_deltab = 3;
+  SubCmd0x2ReqFetchTab msg_subcmd0x2_req_fetchtab = 4;
+  SubCmd0x3ReqFetchBq msg_subcmd0x3_req_fetchbq = 5;
+  int32 int32_plat_id = 6;
+  string str_app_version = 7;
+  SubCmd0x6Req msg_subcmd0x6_req = 8;
+  SubCmd0x7Req msg_subcmd0x7_req = 9;
+  SubCmd0x8ReqAddTab msg_subcmd0x8_req_addtab = 10;
+  bytes msg_subcmd0x9_req = 11;  // was: SubCmd0x9BqAssocReq
+  SubCmd0x10MoveOrderReq msg_subcmd0x10_req = 12;
+  SubCmd0x5ReqBQRecommend msg_subcmd0x5_req = 13;
+  bytes msg_subcmd0x11_req = 14;  // was: SubCmd0x11Req
+  bytes msg_subcmd0x12_req = 15;  // was: SubCmd0x12Req
+  SubCmd0x13Req msg_subcmd0x13_req = 16;
+  bytes msg_subcmd0x14_req_fetchtab_mac = 17;  // was: SubCmd0x14ReqFetchTabMac
+  SubCmd0x18Req msg_subcmd0x18_req = 18;
+  bytes msg_subcmd0x19_req = 19;  // was: SubCmd0x19Req
+  uint32 uint32_business_id = 20;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$RspBody.java ====
+message RspBody_SubCmd0x8RspAddTab {
+  // (no fields resolved)
+}
+
+message RspBody_SubCmd0x10MoveOrderRsp {
+  int32 int32_move_detail = 1;
+}
+
+message RspBody_SubCmd0x11Rsp {
+  repeated SmallYellowItem itemlist = 1;
+}
+
+message RspBody_SubCmd0x12Rsp {
+  int32 ret = 1;
+}
+
+message RspBody_SubCmd0x14RspFetchTabMac {
+  bytes fixed32_timestamp_ios = 1;  // was: PBFixed32Field
+  int32 int32_segment_flag_ios = 2;
+  bytes fixed32_timestamp_android = 3;  // was: PBFixed32Field
+  int32 int32_segment_flag_android = 4;
+  repeated TabInfo rpt_msg_tabinfo = 5;
+  repeated TabInfo rpt_magic_tabinfo = 6;
+  repeated TabInfo rpt_smallbq_tabinfo = 7;
+  uint32 uint32_tab_id = 8;
+}
+
+message RspBody {
+  uint32 uint32_sub_cmd = 1;
+  int32 int32_result = 2;
+  SubCmd0x1RspDelTab msg_subcmd0x1_rsp_deltab = 3;
+  SubCmd0x2RspFetchTab msg_subcmd0x2_rsp_fetchtab = 4;
+  SubCmd0x3RspFetchBq msg_subcmd0x3_rsp_fetchbq = 5;
+  SubCmd0x5RspBQRecommend msg_subcmd0x5_recommend = 6;
+  SubCmd0x6Rsp msg_subcmd0x6_collect_auth = 7;
+  SubCmd0x7Rsp msg_subcmd0x7_rsp = 8;
+  bytes msg_subcmd0x8_rsp_addtab = 9;  // was: SubCmd0x8RspAddTab
+  SubCmd0x9BqAssocRsp msg_subcmd0x9_rsp = 10;
+  bytes msg_subcmd0x10_rsp = 11;  // was: SubCmd0x10MoveOrderRsp
+  bytes msg_subcmd0x11_rsp = 12;  // was: SubCmd0x11Rsp
+  bytes msg_subcmd0x12_rsp = 13;  // was: SubCmd0x12Rsp
+  SubCmd0x13Rsp msg_subcmd0x13_rsp = 14;
+  bytes msg_subcmd0x14_rsp_fetchtab_mac = 17;  // was: SubCmd0x14RspFetchTabMac
+  SubCmd0x18Rsp msg_subcmd0x18_rsp = 18;
+  SubCmd0x19Rsp msg_subcmd0x19_rsp = 19;
+  uint32 uint32_business_id = 20;
+}
+
+message TabInfo {
+  uint32 uint32_tab_id = 1;
+  bytes fixed32_expire_time = 2;  // was: PBFixed32Field
+  uint32 uint32_flags = 3;
+  int32 int32_wording_id = 4;
+  int32 int32_tab_type = 5;
+  string str_tab_name = 6;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$STAIOFixRecommend.java ====
+message STAIOFixRecommend {
+  uint32 u32_pos = 1;
+  repeated STRecommendTabInfo rpt_list = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$STRecommendTabInfo.java ====
+message STRecommendTabInfo {
+  uint32 u32_tab_id = 1;
+  string str_tab_name = 2;
+  int32 i32_tab_type = 3;
+  int32 i32_feetype = 4;
+  int32 i32_price = 5;
+  string str_button_url = 6;
+  string str_thumb_nail_url = 7;
+  string str_bg_color = 8;
+  string str_title_color = 9;
+  int32 i32_recommend_mode = 10;
+  int32 int32_red_point_flag = 11;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SmallYellowItem.java ====
+message SmallYellowItem {
+  repeated uint64 id = 1;
+  uint32 type = 2;
+  uint32 count = 3;
+  repeated uint64 ts = 4;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x10MoveOrderReq.java ====
+message SubCmd0x10MoveOrderReq {
+  repeated int32 uint32_tab_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x13Req.java ====
+message SubCmd0x13Req {
+  repeated SmallYellowItem itemlist = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x13Rsp.java ====
+message SubCmd0x13Rsp {
+  repeated SmallYellowItem itemlist = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x18Req.java ====
+message SubCmd0x18Req {
+  uint32 uint32_tab_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x18Rsp.java ====
+message SubCmd0x18Rsp {
+  bool bool_jump_flag = 1;
+  uint32 uint32_author_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x19Rsp.java ====
+message SubCmd0x19Rsp {
+  uint32 uint32_package_id = 1;
+  string str_ip_url = 2;
+  string str_ip_name = 3;
+  string str_ip_detail = 4;
+  string str_op_name = 5;
+  string str_jump_url = 6;
+  bytes fixed32_time = 7;  // was: PBFixed32Field
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x1ReqDelTab.java ====
+message SubCmd0x1ReqDelTab {
+  uint32 uint32_tab_id = 1;
+  repeated uint32 rpt_tab_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x1RspDelTab.java ====
+message SubCmd0x1RspDelTab {
+  uint32 uint32_tab_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x2ReqFetchTab.java ====
+message SubCmd0x2ReqFetchTab {
+  bytes fixed32_timestamp = 1;  // was: PBFixed32Field
+  int32 int32_segment_flag = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x2RspFetchTab.java ====
+message SubCmd0x2RspFetchTab {
+  bytes fixed32_timestamp = 1;  // was: PBFixed32Field
+  int32 int32_segment_flag = 2;
+  repeated TabInfo rpt_msg_tabinfo = 3;
+  repeated TabInfo rpt_magic_tabinfo = 4;
+  repeated TabInfo rpt_smallbq_tabinfo = 5;
+  uint32 uint32_tab_id = 6;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x3ReqFetchBq.java ====
+message SubCmd0x3ReqFetchBq {
+  uint32 uint32_tab_id = 1;
+  repeated uint64 rpt_bytes_bqid = 2;
+  repeated uint64 rpt_new_itemid = 3;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x3RspFetchBq.java ====
+message SubCmd0x3RspFetchBq {
+  repeated bytes rpt_bytes_key = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x5ReqBQRecommend.java ====
+message SubCmd0x5ReqBQRecommend {
+  int32 int32_last_recommend_version = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x5RspBQRecommend.java ====
+message SubCmd0x5RspBQRecommend {
+  repeated STRecommendTabInfo st_tab_info = 1;
+  string str_morebq_img_url = 2;
+  bool bool_update_flag = 3;
+  int32 int32_last_recommend_version = 4;
+  bool bool_recommend_show_flag = 5;
+  int32 int32_show_num = 6;
+  int32 int32_exposure_num = 7;
+  repeated STRecommendTabInfo st_new_tab_info = 8;
+  int32 int32_red_point_flag = 9;
+  int32 int32_light_out_interval = 10;
+  int32 int32_req_frequency = 11;
+  repeated STAIOFixRecommend st_fixinfo = 12;
+  int32 int32_ruleid = 13;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x6Req.java ====
+message SubCmd0x6Req {
+  uint32 u32_tab_id = 1;
+  string str_item_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x6Rsp.java ====
+message SubCmd0x6Rsp {
+  int32 int32_auth_detail = 1;
+  string str_auth_msg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x7Req.java ====
+message SubCmd0x7Req {
+  uint32 u32_tab_id = 1;
+  string str_item_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x7Rsp.java ====
+message SubCmd0x7Rsp {
+  int32 int32_auth_detail = 1;
+  string str_auth_msg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x8ReqAddTab.java ====
+message SubCmd0x8ReqAddTab {
+  uint32 uint32_tab_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SubCmd0x9BqAssocRsp.java ====
+message SubCmd0x9BqAssocRsp {
+  repeated BqAssocInfo rpt_assoc_bqs = 1;
+  int32 i32_reset_exposure_flag = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/EmosmPb$SupportSize.java ====
+message SupportSize {
+  uint32 u32_Width = 1;
+  uint32 u32_height = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/PicSearchSvr$EmotionInfo.java ====
+message EmotionInfo {
+  bytes bytes_url = 1;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/PicSearchSvr$ImgInfo.java ====
+message ImgInfo {
+  bytes bytes_resource_id = 1;
+  bytes bytes_img_md5 = 2;
+  uint32 uint32_img_width = 3;
+  uint32 uint32_img_height = 4;
+  bytes bytes_img_down_url = 5;
+  uint64 uint64_img_size = 6;
+  bytes bytes_thumb_img_md5 = 7;
+  uint32 uint32_thumb_img_width = 8;
+  uint32 uint32_thumb_img_height = 9;
+  bytes bytes_thumb_down_url = 10;
+  uint64 uint64_thumb_size = 11;
+  bytes bytes_img_other = 12;
+  uint32 uint32_src_type = 13;
+  bytes bytes_src_desc = 14;
+  bytes bytes_web_url = 15;
+  bytes bytes_icon_url = 16;
+  bytes bytes_pack_name = 17;
+  uint32 uint32_pack_id = 18;
+  EmotionInfo msg_emotion_info = 19;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/PicSearchWordsSvr$WordsMsg.java ====
+message WordsMsg {
+  bytes bytes_words_version = 1;
+  bytes bytes_words_url = 2;
+  bytes bytes_words_md5 = 3;
+  uint32 uint32_words_type = 4;
+  bytes bytes_words_other = 5;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/QBoxEmoticonAuth$GetExpressAuthReq.java ====
+message GetExpressAuthReq {
+  uint64 package_id = 1;
+  string expression_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/emosm/QBoxEmoticonAuth$GetExpressAuthRsp.java ====
+message GetExpressAuthRsp {
+  uint32 result_code = 1;
+  string schema = 2;
+}

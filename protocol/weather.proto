@@ -1,0 +1,766 @@
+// weather 域 — 89 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.weather;
+
+// ==== source: com/tencent/biz/qqstory/network/p227pb/qqstory_service$ReqGetWeather.java ====
+message ReqGetWeather {
+  int32 longitude = 1;
+  int32 latitude = 2;
+  uint32 coordinate = 3;
+}
+
+// ==== source: com/tencent/biz/qqstory/network/p227pb/qqstory_service$RspGetWeather.java ====
+message RspGetWeather {
+  repeated bytes result = 1;
+  int32 temperature = 2;
+  string wea_desc = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$AirInfo.java ====
+message AirInfo {
+  repeated bytes pm = 1;
+  string air_quality = 2;
+  string pubtime = 3;
+  uint64 updatetime = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$Alarm.java ====
+message Alarm {
+  string icon = 1;
+  string name = 2;
+  string color = 3;
+  int32 level = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$GetWeatherByLbsReq.java ====
+message GetWeatherByLbsReq {
+  PbReqMsgHead pbReqMsgHead = 1;
+  uint64 uin = 2;
+  uint32 lat = 3;
+  uint32 lng = 4;
+  uint32 adcode_from_mapsdk = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$GetWeatherByLbsRsp.java ====
+message GetWeatherByLbsRsp_Area {
+  uint32 area_id = 1;
+  string area_name = 2;
+  string en_name = 3;
+  string city = 4;
+  string province = 5;
+  string country = 6;
+}
+
+message GetWeatherByLbsRsp_WeatherDisplay {
+  repeated bytes down = 1;
+}
+
+message GetWeatherByLbsRsp_WeatherDisplayDown {
+  string content = 1;
+}
+
+message GetWeatherByLbsRsp {
+  PbRspMsgHead pbRspMsgHead = 1;
+  Area area = 2;
+  string o_wea_code = 3;
+  string t_wea_code = 4;
+  string wea_desc = 5;
+  string temper = 6;
+  uint32 show_flag = 7;
+  WeatherDisplay weather_display = 8;
+  repeated Alarm alarms = 9;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$GetWeatherMessageReq.java ====
+message GetWeatherMessageReq {
+  PbReqMsgHead pbReqMsgHead = 1;
+  uint64 uin = 2;
+  uint32 lat = 3;
+  uint32 lng = 4;
+  repeated uint64 ip = 5;
+  uint32 area_id = 6;
+  uint32 source = 7;
+  uint32 fore_flag = 8;
+  string extra = 9;
+  string adcode = 10;
+  uint32 adcode_from_mapsdk = 11;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$GetWeatherMessageRsp.java ====
+message GetWeatherMessageRsp {
+  PbRspMsgHead pbRspMsgHead = 1;
+  uint32 cmd = 2;
+  string string_msg = 3;
+  string extra = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$PbReqMsgHead.java ====
+message PbReqMsgHead {
+  uint32 uint32_platform_type = 1;
+  uint32 uint32_version = 2;
+  uint32 uint32_ext_mask = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$PbRspMsgHead.java ====
+message PbRspMsgHead {
+  uint32 uint32_result = 1;
+  string string_err_msg = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$WeatherDisplayUp.java ====
+message WeatherDisplayUp {
+  int32 up_type = 1;
+  int32 theme = 2;
+  string content = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$WeatherForecast.java ====
+message WeatherForecast {
+  string day_weather = 1;
+  string night_weather = 2;
+  string day_temper = 3;
+  string night_temper = 4;
+  string day_wind_direct = 5;
+  string night_wind_direct = 6;
+  string day_wind_power = 7;
+  string night_wind_power = 8;
+  string sunrise_time = 9;
+  string sunset_time = 10;
+  string pubtime = 11;
+  uint32 day = 12;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$WeatherForecastList.java ====
+message WeatherForecastList {
+  repeated WeatherForecast weatherForecast = 1;
+  uint64 updatetime = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$WeatherHourInfo.java ====
+message WeatherHourInfo {
+  string temper = 1;
+  string air_humidity = 2;
+  string wind_power = 3;
+  string wind_direct = 4;
+  string weather = 5;
+  string d_hour = 6;
+}
+
+// ==== source: com/tencent/jungle/weather/WeatherReportInfo$WeatherHourInfoList.java ====
+message WeatherHourInfoList {
+  repeated WeatherHourInfo weatherHourInfo = 1;
+  uint64 updatetime = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/DayCard$DailyCard.java ====
+message DailyCard {
+  repeated uint64 id = 1;
+  uint64 source = 2;
+  string sourceName = 3;
+  string originID = 4;
+  string tag = 5;
+  string reference = 6;
+  string content = 7;
+  string pic = 8;
+  uint64 likeNum = 9;
+  bool hasLike = 10;
+  string jumpSchema = 11;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/DayCard$DailyCards.java ====
+message DailyCards {
+  repeated DailyCard content = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/Festival$FestivalDate.java ====
+message FestivalDate {
+  int32 type = 1;
+  string name = 2;
+  uint64 date = 3;
+  string summary = 4;
+  int32 pic = 5;
+  string icon = 6;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/MedicalArticle$MedicalArticleDate.java ====
+message MedicalArticleDate {
+  string title = 1;
+  string author = 2;
+  string author_title = 3;
+  string link = 4;
+  string docid = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherInfo$GetWeatherReq.java ====
+message GetWeatherReq {
+  repeated uint32 adcodes = 1;
+  repeated bytes types = 2;  // was: enum
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherInfo$GetWeatherRsp.java ====
+message GetWeatherRsp {
+  Weather weathers = 1;
+  string almanac = 2;
+  DailyAstroFortune astro = 3;
+  repeated DailyAstroFortune all_astro = 4;
+  uint32 current_time = 5;
+  WeeklyAstroFortune user_weekly_astro = 6;
+  repeated WeeklyAstroFortune weekly_astro = 7;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherInfo$LifeIndex.java ====
+message LifeIndex {
+  string name = 1;
+  string content = 2;
+  string icon = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherInfo$NightCare.java ====
+message NightCare {
+  string prompt = 1;
+  string background = 2;
+  repeated LifeIndex tomorrowLifeIndexs = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherInfo$Weather.java ====
+message Weather {
+  WeatherInfo weather_info = 1;
+  AirInfo air_info = 2;
+  WeatherForecastList forecast_list = 3;
+  WeatherForecast forecast = 4;
+  WeatherHourInfoList hourinfo_list = 5;
+  WeatherWarningList warning_list = 6;
+  string city = 7;
+  string area = 8;
+  uint32 adcode = 9;
+  uint32 area_id = 10;
+  string en_name = 11;
+  uint32 update_time = 12;
+  TipsList tips_list = 13;
+  LifeIndexList lifeindex_list = 14;
+  repeated LifeIndexList lifeindex_forecast_list = 15;
+  WeeklySummary weekly_summary = 16;
+  string moon = 17;
+  NightCare night_care = 18;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportInfo$Area.java ====
+message Area {
+  uint32 area_id = 1;
+  string area_name = 2;
+  string en_name = 3;
+  string city = 4;
+  string province = 5;
+  string country = 6;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportInfo$WeatherDisplay.java ====
+message WeatherDisplay {
+  WeatherDisplayDown down = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportInfo$WeatherDisplayDown.java ====
+message WeatherDisplayDown {
+  string content = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$AreaWeatherKey.java ====
+message AreaWeatherKey {
+  uint32 area_id = 1;
+  uint32 type = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$AstroKey.java ====
+message AstroKey {
+  string astro = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$CombineWeather.java ====
+message CombineWeather {
+  WeatherInfo weather_info = 1;
+  AirInfo air_info = 2;
+  WeatherForecastList forecast_list = 3;
+  WeatherHourInfoList hourinfo_list = 4;
+  WeatherWarningList warning_list = 5;
+  TipsList tips_list = 6;
+  uint32 update_time = 7;
+  LifeIndexList lifeindex_list = 8;
+  repeated LifeIndexList lifeindex_forecast_list = 9;
+  WeeklySummary weekly_summary = 10;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$DailyAstroFortune.java ====
+message DailyAstroFortune_AstroRecommend {
+  string signId = 1;
+  string daily = 2;
+  string commentary = 3;
+  string image = 4;
+  string path = 5;
+}
+
+message DailyAstroFortune {
+  string astro = 1;
+  string date = 2;
+  repeated Fortune fortunes = 3;
+  uint32 astro_id = 4;
+  string astro_pic = 5;
+  string astro_title = 6;
+  bytes recommend = 7;  // was: AstroRecommend
+  uint32 score = 8;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$Fortune.java ====
+message Fortune {
+  string type = 1;
+  string content = 2;
+  string title = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$LifeIndexItem.java ====
+message LifeIndexItem {
+  string summary = 1;
+  string link = 2;
+  uint32 highlight = 3;
+  string name = 4;
+  string tips = 5;
+  uint32 display_order = 6;
+  uint32 rank = 7;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$LifeIndexList.java ====
+message LifeIndexList {
+  LifeIndexItem allergy = 1;
+  LifeIndexItem clothing = 2;
+  LifeIndexItem morning_workout = 3;
+  LifeIndexItem common_cold = 4;
+  LifeIndexItem sundry_cloth = 5;
+  LifeIndexItem uv_light = 6;
+  LifeIndexItem sport = 7;
+  uint64 updatetime = 8;
+  string date = 9;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$ShortTermForcastItem.java ====
+message ShortTermForcastItem {
+  uint64 timestamp = 1;
+  int32 type = 2;
+  float rainfull = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$ShortTermForcasts.java ====
+message ShortTermForcasts {
+  repeated ShortTermForcastItem items = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$TipsItem.java ====
+message TipsItem {
+  string content = 1;
+  string date = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$TipsList.java ====
+message TipsList {
+  repeated TipsItem tips = 1;
+  uint64 updatetime = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$UinInfoKey.java ====
+message UinInfoKey {
+  uint64 uin = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$UinWeatherInfo.java ====
+message UinWeatherInfo {
+  uint32 last_push_time = 1;
+  uint32 area_id = 2;
+  repeated uint64 ip = 3;
+  uint32 last_query_id = 4;
+  bool no_lbs = 5;
+  uint32 extra = 6;
+  uint32 last_query_time = 8;
+  uint32 last_query_adcode = 9;
+  bool auth_loc_cache = 10;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeatherInfo.java ====
+message WeatherInfo {
+  string temper = 1;
+  string air_humidity = 2;
+  string wind_power = 3;
+  string wind_direct = 4;
+  string weather = 5;
+  string pubtime = 6;
+  uint64 updatetime = 7;
+  string weather_type = 8;
+  string weather_type_id = 9;
+  int32 type_id_new = 10;
+  int32 concrete_type = 11;
+  string sunrise = 12;
+  string sunset = 13;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeatherInfoList.java ====
+message WeatherInfoList {
+  repeated WeatherInfo weatherInfo = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeatherRecord.java ====
+message WeatherRecord_WeatherWeekRecord {
+  repeated int32 exposedWeekChangeTypes = 1;
+  int32 weekChangeType = 2;
+  uint64 timestamp = 3;
+}
+
+message WeatherRecord {
+  bytes week = 1;  // was: WeatherWeekRecord
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeatherWarningDetail.java ====
+message WeatherWarningDetail {
+  repeated bytes id = 1;
+  uint32 area_id = 2;
+  int32 type = 3;
+  int32 level = 4;
+  int32 status = 5;
+  string content = 6;
+  int32 pub_time = 7;
+  int32 op_time = 8;
+  string pub_org = 9;
+  string affect = 10;
+  string defend = 11;
+  string cancle_desc = 12;
+  string province = 13;
+  string city = 14;
+  string type_name = 15;
+  string level_name = 16;
+  string title = 17;
+  int32 update_type = 18;
+  string area = 19;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeatherWarningList.java ====
+message WeatherWarningList {
+  repeated WeatherWarningDetail lst_warning = 1;
+  int32 last_proc_time = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeeklyAstroFortune.java ====
+message WeeklyAstroFortune {
+  string astro = 1;
+  uint32 score = 2;
+  repeated Fortune fortunes = 3;
+  string keyword = 4;
+  string summary = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/WeatherReportStore$WeeklySummary.java ====
+message WeeklySummary_UmbrellaReminder {
+  repeated uint64 timestamps = 1;
+  string text = 2;
+}
+
+message WeeklySummary {
+  string title = 1;
+  string sub_title = 2;
+  int32 pic = 3;
+  LifeIndexList lifeindex_list = 4;
+  bytes umbrella_reminder = 5;  // was: UmbrellaReminder
+  string tag_value = 6;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$AdministrativeRegion.java ====
+message AdministrativeRegion {
+  uint32 adcode = 1;
+  string province = 2;
+  string city = 3;
+  string district = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$Book.java ====
+message Book {
+  repeated bytes id = 1;
+  string name = 2;
+  string cover_url = 3;
+  int32 status = 4;
+  string intro = 5;
+  int64 all_word_count = 6;
+  uint32 fake_rating = 7;
+  string jump_url = 8;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$BookReportInfo.java ====
+message BookReportInfo {
+  string request_id = 1;
+  string scene_id = 2;
+  string alg_id = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$CitiesGroupByInitial.java ====
+message CitiesGroupByInitial {
+  string initial = 1;
+  repeated AdministrativeRegion cities = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$ConcernAreaInfo.java ====
+message ConcernAreaInfo {
+  uint32 adcode = 1;
+  bool hasWarning = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$Config.java ====
+message Config {
+  string headBackgroundPicPath = 1;
+  string navigationPicPath = 2;
+  string pulldownRefreshPicPath = 3;
+  int32 jumpWeatherWebStyle = 4;
+  string url_weather_hour = 5;
+  string url_weather_day = 6;
+  string url_constellation = 7;
+  string url_almanac = 8;
+  string url_weather_top = 9;
+  string url_weather_share = 10;
+  string url_weather_set = 11;
+  string url_weather_city = 12;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetConcernWeatherReply.java ====
+message GetConcernWeatherReply {
+  Weather weather = 1;
+  uint32 current_time = 2;
+  string almanac = 3;
+  DailyAstroFortune astro = 4;
+  repeated DailyAstroFortune all_astro = 5;
+  WeeklyAstroFortune user_weekly_astro = 6;
+  repeated WeeklyAstroFortune weekly_astro = 7;
+  DailyCards dailyCards = 8;
+  bool isActiveUser = 9;
+  MedicalArticleDate medicalArticle = 10;
+  repeated Weather concernWeathers = 11;
+  repeated ConcernAreaInfo allConcernAreas = 12;
+  string nowcasting = 13;
+  int32 nowcastWeather = 14;
+  repeated FestivalDate festivals = 15;
+  repeated bytes rec_books = 16;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetConcernWeatherRequest.java ====
+message GetConcernWeatherRequest {
+  uint32 adcode = 1;
+  bool isRealAdcode = 2;
+  repeated bytes types = 3;  // was: enum
+  uint32 offset = 4;
+  uint32 count = 5;
+  uint32 landingAdcode = 6;
+  float latitude = 7;
+  float longitude = 8;
+  string client_ip = 9;
+  int32 source = 10;
+  bool need_book = 11;
+  repeated bytes rec_books_req = 12;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetFollowStatusReply.java ====
+message GetFollowStatusReply {
+  bool followed = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetFollowStatusRequest.java ====
+message GetFollowStatusRequest {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetHotSearchRequest.java ====
+message GetHotSearchRequest {
+  repeated bytes types = 1;  // was: enum
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetNewsReply.java ====
+message GetNewsReply_CovidInfo {
+  bool is_city = 1;
+  uint32 confirmed_add = 2;
+  uint32 wzz_add = 3;
+  uint32 continue_day_zero_confirm_add = 4;
+  string risk_area_url = 5;
+  string nucleic_acid_test_url = 6;
+  string travel_policy_url = 7;
+  string local_epidemic_url = 8;
+}
+
+message GetNewsReply {
+  string news = 1;
+  repeated bytes covid_info = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetNewsRequest.java ====
+message GetNewsRequest {
+  uint32 adcode = 1;
+  bool is_need_covid_info = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetRecBooksReply.java ====
+message GetRecBooksReply {
+  string jump_url = 1;
+  repeated Book books = 2;
+  string session_key = 3;
+  uint32 next_page_no = 4;
+  repeated bytes report_info = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetRecBooksRequest.java ====
+message GetRecBooksRequest {
+  string session_key = 1;
+  uint32 page_no = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetSearchPageReply.java ====
+message GetSearchPageReply {
+  repeated AdministrativeRegion hot_cities = 1;
+  repeated CitiesGroupByInitial cities_by_initial = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetSearchPageRequest.java ====
+message GetSearchPageRequest {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWeatherReply.java ====
+message GetWeatherReply {
+  bytes weather = 1;  // was: RspBody
+  DailyCards dailyCards = 2;
+  bool locCacheAuth = 3;
+  bool isActiveUser = 4;
+  MedicalArticleDate medicalArticle = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWeatherRequest.java ====
+message GetWeatherRequest {
+  uint32 adcode = 1;
+  uint32 area_id = 2;
+  string city = 3;
+  int32 from = 4;
+  repeated bytes types = 5;  // was: enum
+  bool allAstro = 6;
+  bool isRealAdcode = 7;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWeeklySummaryReply.java ====
+message GetWeeklySummaryReply {
+  uint64 week_begin = 1;
+  uint64 week_end = 2;
+  bytes weather = 3;  // was: RspBody
+  repeated FestivalDate festivals = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWeeklySummaryRequest.java ====
+message GetWeeklySummaryRequest {
+  uint32 adcode = 1;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWidgetWeatherReply.java ====
+message GetWidgetWeatherReply_WidgetWeather {
+  string area = 1;
+  string city = 2;
+  string temper = 3;
+  int32 concrete_weather_type = 4;
+  string day_temper = 5;
+  string night_temper = 6;
+  string weather_icon_schema = 7;
+}
+
+message GetWidgetWeatherReply {
+  repeated bytes weather = 1;
+  repeated WidgetAlarm alarms = 2;
+  repeated WidgetDayForcast day_forcasts = 3;
+  uint64 current_time = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$GetWidgetWeatherRequest.java ====
+message GetWidgetWeatherRequest {
+  uint32 adcode = 1;
+  string city = 2;
+  string area = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$HotSearchItem.java ====
+message HotSearchItem {
+  string word = 1;
+  int32 flag = 2;
+  string appURL = 3;
+  string h5URL = 4;
+  string miniAppURL = 5;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$NowcastingNode.java ====
+message NowcastingNode {
+  uint32 timestamp = 1;
+  float value = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$SearchRegionsReply.java ====
+message SearchRegionsReply {
+  repeated AdministrativeRegion regions = 1;
+  uint32 totalCount = 2;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$SearchRegionsRequest.java ====
+message SearchRegionsRequest {
+  string key = 1;
+  uint32 offset = 2;
+  uint32 count = 3;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$WidgetAlarm.java ====
+message WidgetAlarm {
+  string icon = 1;
+  string name = 2;
+  uint32 level = 3;
+  uint64 pubtime = 4;
+}
+
+// ==== source: com/tencent/jungle/weather/proto/weather$WidgetDayForcast.java ====
+message WidgetDayForcast {
+  string day_temper = 1;
+  string night_temper = 2;
+  string day_weather_icon = 3;
+}
+
+// ==== source: com/tencent/mobileqq/weather/proto/WeatherPush$PushReply.java ====
+message PushReply_PbRspMsgHead {
+  uint32 uint32_result = 1;
+  string string_err_msg = 2;
+}
+
+message PushReply {
+  PbRspMsgHead pbRspMsgHead = 1;
+}
+
+// ==== source: com/tencent/mobileqq/weather/proto/WeatherPush$PushRequest.java ====
+message PushRequest_PbReqMsgHead {
+  uint32 uint32_platform_type = 1;
+  uint32 uint32_version = 2;
+  uint32 uint32_ext_mask = 3;
+}
+
+message PushRequest {
+  PbReqMsgHead pbReqMsgHead = 1;
+  uint64 uin = 2;
+  uint32 adcode = 3;
+  bool hideRedPoint = 4;
+}
+
+// ==== source: com/tencent/qqnt/ntrelation/protocol/onLineStatus/OnlineStatusExtInfo$WeatherBizInfo.java ====
+message WeatherBizInfo {
+  string string_weather_type = 1;
+  string string_weather_type_id = 2;
+  uint32 uint32_adcode = 3;
+  uint64 uint64_update_time = 4;
+  string string_city = 5;
+  string string_area = 6;
+  string string_temper = 7;
+  uint32 uint32_flag = 8;
+  string string_weather_desc = 9;
+  string icon_key = 10;
+  string prompt = 11;
+}

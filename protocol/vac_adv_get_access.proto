@@ -1,0 +1,349 @@
+// vac_adv_get_access 域 — 39 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.vac_adv_get_access;
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$CpsProductInfo.java ====
+message CpsProductInfo {
+  uint64 product_id = 1;
+  uint64 catelog_id = 2;
+  string product_token = 3;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$MediaOrderInfo.java ====
+message MediaOrderInfo_MiniProgramInfo {
+  string username = 1;
+  string path = 2;
+  string type = 3;
+  string app_id = 4;
+}
+
+message MediaOrderInfo {
+  string order_id = 1;
+  string saas_type = 2;
+  string saas_type_str = 3;
+  string buyer_id = 4;
+  string seller_id = 5;
+  string ext_info = 6;
+  int64 order_price = 10;
+  int64 freight = 11;
+  int64 discount = 12;
+  string h5_url = 13;
+  string wx_mini_program_url = 14;
+  string qq_mini_program_url = 15;
+  int32 state = 16;
+  string create_time = 17;
+  string product_pic = 18;
+  string product_title = 19;
+  int64 product_price = 20;
+  int64 product_num = 21;
+  string specification1 = 22;
+  string specification2 = 23;
+  bytes wx_mini_program = 24;  // was: MiniProgramInfo
+  bytes qq_mini_program = 25;  // was: MiniProgramInfo
+  int64 product_id = 27;
+  string content_id = 28;
+  int32 content_type = 29;
+  int32 scene = 30;
+  int32 share_media_id = 31;
+  int64 root_id = 32;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$OrderStateInfo.java ====
+message OrderStateInfo {
+  int32 state = 1;
+  int32 total_num = 2;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacAdvMetaMsg.java ====
+message VacAdvMetaMsg {
+  bytes adv_rsp = 1;  // was: AdInfo
+  int32 insert_pos = 2;
+  string recomm_cookie = 3;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacAdvReq.java ====
+message VacAdvReq_VacCpsReqInfo {
+  repeated CpsProductInfo product_info = 3;
+}
+
+message VacAdvReq {
+  repeated uint64 qq = 1;
+  bytes device_info = 2;  // was: DeviceInfo
+  int32 adv_pos = 3;
+  bytes vac_cps_req_info = 6;  // was: VacCpsReqInfo
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacAdvRsp.java ====
+message VacAdvRsp {
+  string err_msg = 1;
+  repeated VacAdvMetaMsg vac_adv_msgs = 2;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacBindWindowReq.java ====
+message VacBindWindowReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  string content_name = 5;
+  int64 invitation_code = 6;
+  string group_owner_name = 7;
+  string group_owner_avatar_url = 8;
+  string invitation_code_str = 9;
+  string group_owner_openid = 10;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacBindWindowRsp.java ====
+message VacBindWindowRsp {
+  string err_msg = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacCpsGoodsDetailReq.java ====
+message VacCpsGoodsDetailReq {
+  string uid = 1;
+  string goods_id = 2;
+  int32 ware_house_id = 3;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacCpsGoodsDetailRsp.java ====
+message VacCpsGoodsDetailRsp_GoodsInfo {
+  string goods_id = 1;
+  int32 ware_house_id = 2;
+  int32 source = 3;
+  string source_str = 4;
+  string source_product_id = 5;
+  string main_img_url = 6;
+  string goods_name = 7;
+  string goods_desc = 8;
+  int32 cur_price = 9;
+  int32 org_price = 10;
+  int32 inventory = 11;
+  string sale_tip = 12;
+  repeated uint64 sell_points = 13;
+  int32 category_id = 14;
+  string category_name = 15;
+  repeated uint64 ext_img_urls = 16;
+  string shop_name = 17;
+  string qq_mini_program_url = 18;
+  int32 state = 19;
+  int32 audit_state = 20;
+  double share = 21;
+  int32 commission = 22;
+  uint64 update_time = 23;
+  bool is_bind = 24;
+  string production_token = 25;
+  int32 living_stream_state = 26;
+  string wx_mini_program_url = 27;
+  string h5_url = 28;
+  string mini_program_username = 29;
+}
+
+message VacCpsGoodsDetailRsp {
+  string err_msg = 1;
+  bytes goods_info = 2;  // was: GoodsInfo
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacCpsGoodsListReq.java ====
+message VacCpsGoodsListReq {
+  string uid = 1;
+  string keyword = 2;
+  repeated int32 category_list = 3;
+  int32 page_nu = 4;
+  int32 page_size = 5;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacCpsGoodsListRsp.java ====
+message VacCpsGoodsListRsp {
+  string err_msg = 1;
+  int32 total_num = 2;
+  repeated bytes good_infos = 3;  // was: GoodsInfo
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGetOptionalGoodsReq.java ====
+message VacGetOptionalGoodsReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  int32 page_number = 5;
+  int32 page_size = 6;
+  string group_owner_openid = 7;
+  uint64 seller_id = 8;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGetShopInfoReq.java ====
+message VacGetShopInfoReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int64 invitation_code = 3;
+  string invitation_code_str = 4;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGetShopInfoRsp.java ====
+message VacGetShopInfoRsp {
+  string err_msg = 1;
+  ShopInfo shop_info = 2;
+}
+
+message ShopInfo {
+  string media_name = 1;
+  string image_url = 2;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGetWindowStateReq.java ====
+message VacGetWindowStateReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGetWindowStateRsp.java ====
+message VacGetWindowStateRsp {
+  string err_msg = 1;
+  StateInfo state_info = 2;
+}
+
+message StateInfo {
+  int32 state = 1;
+  string content_name = 2;
+  string media_name = 3;
+  string image_url = 4;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupBindGoodsReq.java ====
+message VacGroupBindGoodsReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  repeated Product product_list = 5;
+  uint64 seller_id = 6;
+}
+
+message Product {
+  int64 product_id = 1;
+  int64 index = 2;
+  string production_token = 3;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupBindGoodsRsp.java ====
+message VacGroupBindGoodsRsp {
+  string err_msg = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupCoverGoodsReq.java ====
+message VacGroupCoverGoodsReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  string content_id = 3;
+  int32 content_type = 4;
+  repeated int64 product_id_list = 5;
+  repeated Product product_list = 6;
+  uint64 seller_id = 7;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupCoverGoodsRsp.java ====
+message VacGroupCoverGoodsRsp {
+  string err_msg = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupDeleteGoodsReq.java ====
+message VacGroupDeleteGoodsReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  repeated uint64 product_list = 5;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacGroupDeleteGoodsRsp.java ====
+message VacGroupDeleteGoodsRsp {
+  string err_msg = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacManagerGetGoodsListReq.java ====
+message VacManagerGetGoodsListReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  int32 page_number = 5;
+  int32 page_size = 6;
+  string group_owner_openid = 7;
+  bytes device_info = 8;  // was: DeviceInfo
+  uint64 seller_id = 9;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacMemberGetGoodsListReq.java ====
+message VacMemberGetGoodsListReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  string trace_id = 5;
+  string buyer_id = 6;
+  string seller_id = 7;
+  int32 page_number = 8;
+  int32 page_size = 9;
+  string group_member_openid = 10;
+  bytes device_info = 11;  // was: DeviceInfo
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacMemberGetOrderCntReq.java ====
+message VacMemberGetOrderCntReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  string buyer_id = 3;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacMemberGetOrderCntRsp.java ====
+message VacMemberGetOrderCntRsp {
+  repeated OrderStateInfo order_states = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacMemberGetOrderListReq.java ====
+message VacMemberGetOrderListReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  string buyer_id = 3;
+  bool state_flag = 4;
+  int32 state = 5;
+  bool only_num = 6;
+  int32 limit = 100;
+  int32 offset = 101;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacMemberGetOrderListRsp.java ====
+message VacMemberGetOrderListRsp {
+  repeated OrderStateInfo order_states = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacModifyWindowNameReq.java ====
+message VacModifyWindowNameReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+  string content_name = 5;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacModifyWindowNameRsp.java ====
+message VacModifyWindowNameRsp {
+  string err_msg = 1;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacShopUnbindWindowReq.java ====
+message VacShopUnbindWindowReq {
+  int32 ware_house_id = 1;
+  int32 media_type = 2;
+  int32 content_type = 3;
+  string content_id = 4;
+}
+
+// ==== source: VAC_ADV_GET_ACCESS/VacAdvGetAccess$VacShopUnbindWindowRsp.java ====
+message VacShopUnbindWindowRsp {
+  string err_msg = 1;
+}

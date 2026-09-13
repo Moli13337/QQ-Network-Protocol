@@ -1,0 +1,73 @@
+// p000 域 — 5 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.p000;
+
+// ==== source: p000/RecommendPool$ItemMeta.java ====
+message ItemMeta {
+  int64 ContentId = 1;
+  string SourceItemId = 2;
+  int32 DataType = 3;
+  int32 Status = 4;
+  uint64 CreateTime = 5;
+  uint64 ModifyTime = 6;
+  uint64 InTime = 7;
+  uint64 ReviewTime = 8;
+  repeated bytes com_huawei_android_hms_account_getUID = 9;
+  string UserInfo = 10;
+  string Title = 11;
+  string Content = 12;
+  string VideoList = 13;
+  string PhotoList = 14;
+  string AudioList = 15;
+  int32 IsRecommend = 16;
+  string BlockRecReason = 17;
+  int32 Grade = 18;
+  int32 OperationFlag = 19;
+  string CateName = 20;
+  string SubCateName = 21;
+  string Tag = 22;
+  string MachineTag = 23;
+  int32 SourceAppId = 24;
+  string TopicId = 25;
+  string TopicName = 26;
+  string Reserve1 = 27;
+}
+
+// ==== source: p000/RecommendPool$PenetrateData.java ====
+message PenetrateData {
+  int32 BizType = 1;
+  string BizId = 2;
+  double Duration = 3;
+  double Width = 4;
+  double Height = 5;
+  string CateName = 6;
+  string SubCateName = 7;
+  repeated string Tags = 8;
+  string Title = 9;
+  string MusicId = 10;
+  string MusicName = 11;
+}
+
+// ==== source: p000/RecommendPool$PersonMeta.java ====
+message PersonMeta {
+  string ItemId = 1;
+}
+
+// ==== source: p000/ScBypassCb$StScBypassCbReq.java ====
+message StScBypassCbReq {
+  string msgid = 1;
+  uint64 puin = 2;
+  uint32 cmd = 3;
+  uint32 hitReason = 4;
+  uint32 beat_common = 5;
+  uint32 appid = 6;
+  uint32 src = 7;
+}
+
+// ==== source: p000/ScBypassCb$StScBypassCbRsp.java ====
+message StScBypassCbRsp {
+  uint32 ret = 1;
+  string errmsg = 2;
+}

@@ -1,0 +1,173 @@
+// localpb_richmsg 域 — 9 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.localpb_richmsg;
+
+// ==== source: localpb/richMsg/MixedMsg$Elem.java ====
+message Elem_MarketFaceRec {
+  bytes bytes_face_name = 1;
+  uint32 uint32_item_type = 2;
+  uint32 uint32_face_info = 3;
+  bytes bytes_face_id = 4;
+  uint32 uint32_tab_id = 5;
+  uint32 uint32_sub_type = 6;
+  bytes bytes_key = 7;
+  bytes bytes_param = 8;
+  uint32 uint32_media_type = 9;
+  uint32 uint32_image_width = 10;
+  uint32 uint32_image_height = 11;
+}
+
+message Elem {
+  string textMsg = 1;
+  PicRec picMsg = 2;
+  bytes markfaceMsg = 3;  // was: MarketFaceRec
+  string sourceMsgInfo = 4;
+  VideoFile videoMsg = 5;
+}
+
+// ==== source: localpb/richMsg/MixedMsg$Msg.java ====
+message Msg {
+  repeated Elem elems = 1;
+}
+
+// ==== source: localpb/richMsg/RichMsg$FoldMsg.java ====
+message FoldMsg {
+  uint32 fold_flags = 1;
+  uint64 redbag_sender_uin = 2;
+  bytes redbag_id = 3;
+  bytes msg_content = 4;
+  bytes redbag_index = 5;
+}
+
+// ==== source: localpb/richMsg/RichMsg$ForwardExtra.java ====
+message ForwardExtra {
+  uint64 foward_orgId = 1;
+  string foward_orgUin = 2;
+  int32 foward_orgUinType = 3;
+  string foward_orgUrl = 4;
+  string foward_thumbPath = 5;
+  int32 foward_orgFileSizeType = 6;
+}
+
+// ==== source: localpb/richMsg/RichMsg$PicRec.java ====
+message PicRec {
+  string localPath = 1;
+  uint64 size = 2;
+  uint32 type = 3;
+  bool isRead = 4;
+  string uuid = 5;
+  string md5 = 6;
+  string serverStorageSource = 7;
+  string thumbMsgUrl = 8;
+  string bigMsgUrl = 9;
+  string rawMsgUrl = 10;
+  int32 fileSizeFlag = 11;
+  int32 uiOperatorFlag = 12;
+  ForwardExtra fowardInfo = 13;
+  int32 version = 15;
+  int32 isReport = 16;
+  uint64 groupFileID = 17;
+  string localUUID = 18;
+  int32 preDownState = 19;
+  int32 preDownNetwork = 20;
+  int32 previewed = 21;
+  uint32 uint32_thumb_width = 22;
+  uint32 uint32_thumb_height = 23;
+  uint32 uint32_width = 24;
+  uint32 uint32_height = 25;
+  uint32 uint32_image_type = 26;
+  uint32 uint32_show_len = 27;
+  uint32 uint32_download_len = 28;
+  uint32 uint32_current_len = 29;
+  uint32 notPredownloadReason = 30;
+  bool enableEnc = 31;
+  string bigthumbMsgUrl = 32;
+  bytes bytes_pb_reserved = 33;
+  bool bool_story_pic_send_to_recent = 34;
+}
+
+// ==== source: localpb/richMsg/RichMsg$PttRec.java ====
+message PttRec {
+  string localPath = 1;
+  uint64 size = 2;
+  uint32 type = 3;
+  bool isRead = 4;
+  string uuid = 5;
+  string md5 = 6;
+  string serverStorageSource = 7;
+  int32 version = 8;
+  int32 isReport = 9;
+  int32 pttFlag = 10;
+  uint64 groupFileID = 11;
+  string sttText = 12;
+  int32 longPttVipFlag = 13;
+  bool expandStt = 14;
+  string group_file_key = 15;
+  uint64 msgRecTime = 16;
+  uint64 msgTime = 17;
+  uint32 voiceType = 18;
+  uint32 voiceLength = 19;
+  uint32 voiceChangeFlag = 20;
+  string directUrl = 21;
+  uint32 busiType = 22;
+  string fullLocalPath = 23;
+  uint64 extFlag = 24;
+  uint32 redpack_type = 25;
+  uint32 autototext_voice = 26;
+}
+
+// ==== source: localpb/richMsg/RichMsg$VideoFile.java ====
+message VideoFile {
+  bytes bytes_file_uuid = 1;
+  bytes bytes_file_md5 = 2;
+  bytes bytes_file_name = 3;
+  uint32 uint32_file_format = 4;
+  uint32 uint32_file_time = 5;
+  uint32 uint32_file_size = 6;
+  uint32 uint32_thumb_width = 7;
+  uint32 uint32_thumb_height = 8;
+  uint32 uint32_file_status = 9;
+  uint32 uint32_file_progress = 10;
+  uint32 uint32_file_type = 11;
+  bytes bytes_thumb_file_md5 = 12;
+  bytes bytes_source = 13;
+  uint64 file_lastmodified = 14;
+  uint32 uint32_thumb_file_size = 15;
+  uint32 uint32_busi_type = 16;
+  uint32 uin32_from_chat_type = 17;
+  uint32 uin32_to_chat_type = 18;
+  uint32 uin32_uiOperatorFlag = 19;
+  bytes bytes_video_file_source_dir = 20;
+  bool bool_support_progressive = 21;
+  uint32 uint32_file_width = 22;
+  uint32 uint32_file_height = 23;
+  bytes bytes_local_file_md5 = 24;
+  uint32 uint32_is_local_video = 25;
+  uint32 uint32_transfered_size = 26;
+  uint32 uint32_sub_busi_type = 27;
+  uint32 uint32_video_attr = 28;
+  uint32 uint32_video_binary_set = 29;
+  bool bool_is_mediacodec_encode = 30;
+  bytes bytes_hotvideo_icon = 31;
+  bytes bytes_hotvideo_title = 32;
+  bytes bytes_hotvideo_url = 33;
+  bytes bytes_hotvideo_icon_sub = 34;
+  uint32 uint32_special_video_type = 36;
+  uint32 uint32_msg_tail_type = 37;
+  uint32 uint32_red_envelope_type = 38;
+  bytes bytes_shortVideoId = 39;
+  uint32 red_envelope_pay_stat = 40;
+  uint32 uint32_long_video_kandian_type = 42;
+  bool bool_story_video_send_to_recent = 43;
+  bytes bytes_camera_video_templateid = 6869;
+  bytes bytes_camera_video_templatename = 45;
+}
+
+// ==== source: localpb/richMsg/SafeMsg$SafeMoreInfo.java ====
+message SafeMoreInfo {
+  string strMsgTxt = 1;
+  string strFromMobile = 2;
+  string strFromName = 3;
+}

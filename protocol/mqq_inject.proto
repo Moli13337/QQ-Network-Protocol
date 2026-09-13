@@ -1,0 +1,21 @@
+// mqq_inject 域 — 2 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.mqq_inject;
+
+// ==== source: MQQ/inject/DefaultMqqInjectorImpl.java ====
+message MetaData {
+  string key = 1;
+  string value = 2;
+}
+
+message OIDBSSOPkg {
+  uint32 uint32_command = 1;
+  uint32 uint32_service_type = 2;
+  uint32 uint32_result = 3;
+  bytes bytes_bodybuffer = 4;
+  string str_error_msg = 5;
+  string str_client_version = 6;
+  repeated MetaData trpc_trans_info = 11;
+}

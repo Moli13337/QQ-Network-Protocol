@@ -1,0 +1,479 @@
+// profilecard 域 — 55 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.profilecard;
+
+// ==== source: com/tencent/mobileqq/profilecard/protocol/PersonalDataPB.java ====
+message MedalHallCard {
+  string title = 1;
+  uint32 number = 2;
+  repeated string picUrl = 3;
+  string jumpUrl = 4;
+}
+
+message MusicGeneCard {
+  string title = 1;
+  string jumpUrl = 2;
+  string leftTile = 3;
+  string leftValue = 4;
+  string rightTile = 5;
+  string rightValue = 6;
+}
+
+message PersonalData {
+  MedalHallCard medalHall = 1;
+  MusicGeneCard musicGene = 2;
+  string recentListening = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/EditExtendFriendInfo$ReqBody.java ====
+message ReqBody_SchoolInfo {
+  uint32 uint32_category = 1;
+  string str_school_id = 2;
+  string str_school_name = 3;
+  string str_department_id = 4;
+  string str_department_name = 5;
+  uint32 uint32_degree = 6;
+  uint32 uint32_enrollment_year = 7;
+  uint32 uint32_graduation_year = 8;
+  uint32 uint32_allow_recommend = 9;
+  uint32 uint32_create_source = 10;
+  uint32 uint32_create_time = 11;
+  uint32 uint32_update_source = 12;
+  uint32 uint32_update_time = 13;
+  uint32 uint32_hidden_flag = 14;
+  uint32 uint32_verified = 15;
+  uint32 uint32_idx = 100;
+}
+
+message ReqBody {
+  uint64 uint64_uin = 1;
+  bytes bytes_declaration = 2;
+  bytes bytes_voice_url = 3;
+  uint32 uint32_is_show_card = 4;
+  uint32 uint32_voice_duration = 5;
+  uint32 uint32_voice_attr = 6;
+  bytes bytes_personalization = 7;
+  bytes msg_school_info = 8;  // was: SchoolInfo
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/ProfileCardSecurityInfo$SecurityInfo.java ====
+message SecurityInfo {
+  string prompt = 1;
+  string detail = 2;
+  int64 code = 3;
+  int64 action = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$Color.java ====
+message Color {
+  uint32 uint32_r = 1;
+  uint32 uint32_g = 2;
+  uint32 uint32_b = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$CommonReq.java ====
+message CommonReq_VisitorCountReq {
+  uint32 requireuin = 1;
+  uint32 operuin = 2;
+  int32 mod = 3;
+  int32 reportFlag = 4;
+}
+
+message CommonReq_HideRecordsReq {
+  uint32 huin = 1;
+  uint32 fuin = 2;
+  repeated DetailRecord records = 3;
+}
+
+message CommonReq {
+  bytes vcReq = 1;  // was: VisitorCountReq
+  bytes hrReq = 2;  // was: HideRecordsReq
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$DetailRecord.java ====
+message DetailRecord {
+  uint32 fuin = 1;
+  uint32 source = 2;
+  uint32 vtime = 3;
+  int32 mod = 4;
+  int32 hideFlag = 5;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$Label.java ====
+message Label {
+  bytes bytes_name = 1;
+  int32 enum_type = 2;
+  Color text_color = 3;
+  Color edging_color = 4;
+  uint32 uint32_label_attr = 5;
+  uint32 uint32_label_type = 6;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$LoginSig.java ====
+message LoginSig {
+  uint32 uint32_type = 1;
+  bytes bytes_sig = 2;
+  uint32 uint32_appid = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$VisitorCountRsp.java ====
+message VisitorCountRsp {
+  uint32 requireuin = 1;
+  uint32 totalLike = 2;
+  uint32 totalView = 3;
+  uint32 hotValue = 4;
+  uint32 redValue = 5;
+  uint32 hotDiff = 6;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$comm.java ====
+message comm_uin_info {
+  int64 int64_longitude = 1;
+  int64 int64_latitude = 2;
+}
+
+message comm {
+  uint32 ver = 1;
+  uint32 seq = 2;
+  uint64 fromuin = 3;
+  uint64 touin = 4;
+  uint32 service = 5;
+  uint32 session_type = 6;
+  bytes session_key = 7;
+  uint32 client_ip = 8;
+  ui display = 9;
+  int32 result = 10;
+  string err_msg = 11;
+  uint32 platform = 12;
+  string qqver = 13;
+  int32 build = 14;
+  LoginSig msg_login_sig = 15;
+  uint32 uint32_version = 17;
+  bytes msg_uin_info = 18;  // was: uin_info
+  rich_ui msg_rich_display = 19;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$rich_ui.java ====
+message rich_ui {
+  string strName = 1;
+  string strServiceUrl = 2;
+  repeated ui_info rptUiList = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$ui.java ====
+message ui {
+  string url = 1;
+  string title = 2;
+  string content = 3;
+  string jump_url = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardBusiEntry$ui_info.java ====
+message ui_info {
+  string strTitle = 1;
+  string strCoverUrl = 2;
+  string strJmpUrl = 3;
+  string strSubInfo = 4;
+  string strDesc = 5;
+  string strTitleIconUrl = 6;
+  repeated Label rptGroupTagList = 7;
+  uint64 uint64_group_code = 8;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardUpdate$SUpdateReq.java ====
+message SUpdateReq {
+  int32 cmd = 1;
+  uint64 uin = 2;
+  string version = 3;
+  string client_version = 4;
+  uint32 platform = 5;
+  string appname = 6;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardUpdate$SUpdateReqBatch.java ====
+message SUpdateReqBatch {
+  repeated SUpdateReq reqs = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardUpdate$SUpdateRsp.java ====
+message SUpdateRsp {
+  int32 cmd = 1;
+  uint32 code = 2;
+  string version = 3;
+  string url = 4;
+  uint32 interv = 5;
+  string buff = 6;
+  string appname = 7;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/SummaryCardUpdate$SUpdateRspBatch.java ====
+message SUpdateRspBatch {
+  repeated SUpdateRsp rsps = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$BigVipBadgeItem.java ====
+message BigVipBadgeItem {
+  uint32 item_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$CardItem.java ====
+message CardItem {
+  string url = 1;
+  string card_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$CommTaskInfo.java ====
+message CommTaskInfo {
+  uint32 uint32_appid = 1;
+  bytes bytes_task_data = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetCardRsp.java ====
+message GetCardRsp {
+  repeated CardItem item_list = 1;
+  string jump_url = 2;
+  bool is_on = 3;
+  uint32 nameplate_id = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetClmTipReq.java ====
+message GetClmTipReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetGiftListReq.java ====
+message GetGiftListReq {
+  uint32 uin = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetGiftListRsp.java ====
+message GetGiftListRsp {
+  repeated string gift_url = 1;
+  string custom_url = 2;
+  string desc = 3;
+  bool is_on = 4;
+  uint32 gift_num = 5;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetGxhUsingRsp.java ====
+message GetGxhUsingRsp {
+  repeated GxhUsingItem item_list = 1;
+  string jump_url = 2;
+  bool is_on = 3;
+  repeated GxhSuit suit_list = 4;
+  string suit_jump_url = 5;
+  string title = 6;
+  int32 type = 7;
+  repeated GxhIPCollection ip_list = 8;
+  string ip_jump_url = 9;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GetSplendidRsp.java ====
+message GetSplendidRsp {
+  bool is_gray = 1;
+  bool is_on = 2;
+  repeated SplendidItem splendid_list = 3;
+  uint32 num = 4;
+  uint32 value_n = 5;
+  string jump_url = 6;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GxhIPCollection.java ====
+message GxhIPCollection {
+  string url = 1;
+  int32 number = 2;
+  bool is_long_series = 3;
+  repeated uint64 id = 4;
+  string level = 5;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GxhSuit.java ====
+message GxhSuit {
+  string url = 1;
+  int32 number = 2;
+  bool is_long_series = 3;
+  repeated uint64 id = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$GxhUsingItem.java ====
+message GxhUsingItem {
+  string url = 1;
+  string app_name = 2;
+  uint32 report_appid = 3;
+  string item_bg_color = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$LoverSvipExtInfo.java ====
+message LoverSvipExtInfo {
+  int32 iIconType = 1;
+  string sMaterialId = 2;
+  repeated string sDiyContents = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$PrivilegeBaseInfoReq.java ====
+message PrivilegeBaseInfoReq {
+  uint64 uReqUin = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$PrivilegeBaseInfoRsp.java ====
+message PrivilegeBaseInfoRsp {
+  bytes strMsg = 1;
+  bytes strJumpUrl = 2;
+  repeated PrivilegeInfo vOpenPriv = 3;
+  repeated PrivilegeInfo vClosePriv = 4;
+  uint32 uIsGrayUsr = 5;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$PrivilegeInfo.java ====
+message PrivilegeInfo {
+  int32 iType = 1;
+  int32 iSort = 2;
+  int32 iFeeType = 3;
+  int32 iLevel = 4;
+  int32 iFlag = 5;
+  bytes strIconUrl = 6;
+  bytes strDeluxeIconUrl = 7;
+  bytes strJumpUrl = 8;
+  int32 iIsBig = 9;
+  int32 iIsRemind = 10;
+  uint32 iRemindTime = 11;
+  string strTipsIconUrl = 12;
+  uint32 iTipsTimes = 13;
+  bytes strExtInfo = 14;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$PrivilegeShowItem.java ====
+message PrivilegeShowItem {
+  int32 appid = 1;
+  bool is_recommend = 2;
+  int32 item_id = 3;
+  string text = 4;
+  string icon = 5;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$PrivilegeShowRsp.java ====
+message PrivilegeShowRsp {
+  bool is_show = 1;
+  repeated PrivilegeShowItem privilege_show_list = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$QQValueExtInfo.java ====
+message QQValueExtInfo {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$QQValueInfoItem.java ====
+message QQValueInfoItem {
+  int32 score = 1;
+  int32 level = 2;
+  int32 trend = 3;
+  string url = 5;
+  int32 on_off = 6;
+  string material_id = 7;
+  repeated QQValueExtInfo qqvalue_ext_info = 8;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$QidInfoItem.java ====
+message QidInfoItem {
+  string qid = 1;
+  string url = 2;
+  string color = 3;
+  string logo_url = 4;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$SplendidItem.java ====
+message SplendidItem {
+  string name = 1;
+  string display_url = 2;
+  string jump_url = 3;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$VaProfileGateReq.java ====
+message VaProfileGateReq_GetVipCareReq {
+  uint64 uint64_uin = 1;
+}
+
+message VaProfileGateReq {
+  uint32 uCmd = 1;
+  PrivilegeBaseInfoReq stPrivilegeReq = 2;
+  GetGiftListReq stGiftReq = 3;
+  repeated CommTaskInfo rpt_task_item = 4;
+  repeated bytes rpt_oidb_flag = 5;  // was: OidbFlagInfo
+  bytes st_vip_care = 6;  // was: GetVipCareReq
+  repeated QQValueExtInfo qqvalue_ext_info = 7;
+  GetClmTipReq get_clm_tip_req = 8;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$VaProfileGateRsp.java ====
+message VaProfileGateRsp_GetVipCareRsp {
+  uint32 uint32_buss = 1;
+  uint32 uint32_notice = 2;
+}
+
+message VaProfileGateRsp_GetClmTipRsp {
+  string pic_icon = 1;
+  string content_text = 2;
+  string content_text_color = 3;
+  string button_text = 4;
+  string button_text_color = 5;
+  string button_bg = 6;
+  string pic_bg = 7;
+  string url = 8;
+  string clm_param = 9;
+  string pic_bg_diy = 10;
+}
+
+message VaProfileGateRsp {
+  int32 iRetCode = 1;
+  bytes sRetMsg = 2;
+  PrivilegeBaseInfoRsp stPrivilegeRsp = 3;
+  GetGiftListRsp stGiftRsp = 4;
+  repeated CommTaskInfo rpt_task_item = 5;
+  repeated bytes rpt_oidb_flag = 6;  // was: OidbFlagInfo
+  bytes st_vip_care = 7;  // was: GetVipCareRsp
+  int32 lhLogoLv = 8;
+  QidInfoItem qid_info = 9;
+  QQValueInfoItem qq_value = 10;
+  GetSplendidRsp splendid_info = 11;
+  GetGxhUsingRsp gxh_using = 12;
+  GetCardRsp card_info = 13;
+  bytes get_clm_tip_rsp = 14;  // was: GetClmTipRsp
+  PrivilegeShowRsp privilege_show_rsp = 15;
+  BigVipBadgeItem big_vip_badge_item = 16;
+  VipMedalItem vip_medal_item = 17;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VaProfileGate$VipMedalItem.java ====
+message VipMedalItem {
+  uint32 item_id = 1;
+  string jump_url = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VipMusicBox$GetProfileMusicBoxInfoReq.java ====
+message GetProfileMusicBoxInfoReq {
+  uint64 uin = 1;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VipMusicBox$GetProfileMusicBoxInfoRsp.java ====
+message GetProfileMusicBoxInfoRsp {
+  ProfileMusicInfo music = 1;
+  bool is_visible = 2;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VipMusicBox$ProfileMusicInfo.java ====
+message ProfileMusicInfo {
+  string song_id = 1;
+  string song_name = 2;
+  string album_name = 3;
+  repeated ProfileSingerInfo singer_list = 4;
+  string pic = 5;
+  uint32 duration = 6;
+}
+
+// ==== source: com/tencent/p1446pb/profilecard/VipMusicBox$ProfileSingerInfo.java ====
+message ProfileSingerInfo {
+  string singer_name = 1;
+}

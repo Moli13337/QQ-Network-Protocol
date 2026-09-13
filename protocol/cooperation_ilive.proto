@@ -1,0 +1,24 @@
+// cooperation_ilive 域 — 2 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.cooperation_ilive;
+
+// ==== source: cooperation/ilive/p1667pb/LiveGroupTips$GetLiveGroupTipsReq.java ====
+message GetLiveGroupTipsReq {
+  string anchor_uid = 1;
+  uint64 group_id = 2;
+}
+
+// ==== source: cooperation/ilive/p1667pb/LiveGroupTips$GetLiveGroupTipsRsp.java ====
+message GetLiveGroupTipsRsp {
+  uint64 room_id = 1;
+  string room_title = 2;
+  string room_icon = 3;
+  uint64 room_viewer = 4;
+  string room_schema = 5;
+  uint32 is_living = 6;
+  uint32 interval = 7;
+  string viewer_text = 8;
+  uint64 puin = 9;
+}

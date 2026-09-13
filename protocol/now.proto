@@ -1,0 +1,1904 @@
+// now 域 — 218 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.now;
+
+// ==== source: com/tencent/mobileqq/now/enter/p1231pb/NowPushMsgList$MsgBody.java ====
+message MsgBody {
+  repeated NowPushMsg rpt_now_push_msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/enter/p1231pb/NowPushMsgList$NowPushMsg.java ====
+message NowPushMsg {
+  uint32 uint32_type = 1;
+  uint32 uint32_switch = 2;
+  uint32 uint32_task_id = 3;
+  uint64 uint64_start_time = 4;
+  uint64 uint64_end_time = 5;
+  uint64 uint32_version = 6;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$BannerItem.java ====
+message BannerItem {
+  string string_image_desc = 1;
+  string string_image_title = 2;
+  string string_image_url = 3;
+  string string_jump_url = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$LiveAnchorItem.java ====
+message LiveAnchorItem {
+  string string_name = 1;
+  string string_id = 2;
+  string string_head_img_url = 3;
+  string string_room_img_url = 4;
+  string string_location = 5;
+  string string_description = 6;
+  uint32 uint32_watch_count = 7;
+  string string_jump_url = 8;
+  RoomRichTitle rich_title = 9;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$LiveAnchorList.java ====
+message LiveAnchorList {
+  repeated LiveAnchorItem rpt_live_anchor = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$MedalInfo.java ====
+message MedalInfo {
+  uint32 medal_id = 1;
+  bytes medal_name = 2;
+  bytes medal_face_small = 3;
+  uint32 medal_type = 4;
+  uint64 medal_start_time = 5;
+  uint64 medal_end_time = 6;
+  uint32 medal_priority_level = 7;
+  bytes medal_desc = 8;
+  bytes medal_url = 9;
+  bytes medal_face_bigger = 10;
+  uint32 medal_version = 11;
+  uint32 medal_index = 12;
+  uint32 medal_level = 13;
+  uint32 medal_point = 14;
+  uint64 create_time = 15;
+  uint64 update_time = 16;
+  uint32 medal_bg = 17;
+  uint32 medal_frame = 18;
+  bytes medal_bg_img = 19;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RcmdFollowItem.java ====
+message RcmdFollowItem {
+  string string_name = 1;
+  string string_id = 2;
+  string string_head_img_url = 3;
+  string string_description = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RcmdFollowList.java ====
+message RcmdFollowList {
+  repeated RcmdFollowItem rpt_rcmd_follow = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RcmdTopicOrVideo.java ====
+message RcmdTopicOrVideo {
+  string topic_word = 2;
+  uint32 topic_word_color = 3;
+  string pic = 4;
+  string url = 5;
+  uint32 type = 6;
+  string native_url = 7;
+  string pic_samll = 8;
+  uint64 color_a = 9;
+  uint64 color_b = 10;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RcmdTopicOrVideoReq.java ====
+message RcmdTopicOrVideoReq {
+  uint32 no_use = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RecommendItem.java ====
+message RecommendItem_RcmdAnchor {
+  string string_name = 1;
+  string string_id = 2;
+  string string_head_img_url = 3;
+  string string_room_img_url = 4;
+  string string_location = 5;
+  uint32 uint32_watch_count = 6;
+  string string_description = 7;
+  string string_jump_url = 8;
+  string string_authentication_tag = 9;
+  repeated bytes rich_title = 10;
+  repeated bytes extra_info = 11;
+  repeated bytes propInfo = 12;
+  uint32 hall_room_id = 13;
+  string award_pendant_url = 14;
+  uint32 microphone_flag = 15;
+  repeated bytes user_tag = 16;
+  string rtmp_url = 17;
+  uint32 allow_play = 18;
+  uint64 imsdk_tiny_id = 19;
+  string icon_url = 20;
+  uint32 room_game_type = 21;
+  string advertising_sign = 22;
+  string union_channel_sign = 23;
+  uint32 video_preview = 24;
+}
+
+message RecommendItem_UserExtraInfo {
+  uint64 uin = 1;
+  repeated MedalInfo medal_info_list = 2;
+  uint32 uint32_level = 3;
+  uint32 uint32_point = 4;
+  uint32 uint32_next_point = 5;
+  uint32 uint32_pre_point = 6;
+  uint32 version = 7;
+}
+
+message RecommendItem_PropInfo {
+  repeated string prop_type = 1;
+}
+
+message RecommendItem_UserTag {
+  string pic_url = 1;
+  string wording = 2;
+  uint32 color = 3;
+  string change_color = 4;
+  uint32 type = 5;
+  string background_pic_url = 6;
+}
+
+message RecommendItem_RcmdTag {
+  string string_tag = 1;
+}
+
+message RecommendItem_RcmdHotTopic {
+  repeated bytes offical_topic = 1;
+  repeated bytes hot_topics = 2;  // was: TopicItem
+  string string_url_more = 3;
+}
+
+message RecommendItem_TopicItem {
+  string string_topic = 1;
+  uint32 uint32_member_count = 2;
+  string string_bg_url = 3;
+  string string_url = 4;
+}
+
+message RecommendItem_Banner {
+  repeated BannerItem rpt_banner_item = 1;
+}
+
+message RecommendItem_RcmdTopicOrVideoList {
+  repeated RcmdTopicOrVideo topic_list = 1;
+  string more_url = 2;
+}
+
+message RecommendItem {
+  uint32 uint32_type = 1;
+  bytes msg_anchor = 2;  // was: RcmdAnchor
+  bytes msg_tag = 3;  // was: RcmdTag
+  bytes msg_hot_topic = 4;  // was: RcmdHotTopic
+  bytes msg_banner = 5;  // was: Banner
+  bytes msg_topicorvideo = 6;  // was: RcmdTopicOrVideoList
+  string string_key = 7;
+  bool need_row_insert = 9;
+  uint32 row_insert_position = 10;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RecommendPageReq.java ====
+message RecommendPageReq {
+  uint32 uint32_last_update = 1;
+  uint32 uint32_index = 2;
+  uint32 uint32_count = 3;
+  uint32 is_need_banner_topic = 4;
+  repeated UserMsgInfo user_msg_info = 5;
+  uint32 rcmd_col_mode = 6;
+  string channel = 7;
+  string union_channel = 8;
+  uint32 is_no_public_room = 9;
+  string device_id = 10;
+  repeated bytes qimei36 = 11;
+  uint64 uin = 12;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RecommendPageRsp.java ====
+message RecommendPageRsp_RetInfo {
+  string err_info = 1;
+}
+
+message RecommendPageRsp {
+  uint32 uint32_new_timestamp = 1;
+  repeated RecommendItem rpt_msg_rcmd = 2;
+  RetInfo retInfo = 3;
+  uint32 uint32_endFlag = 4;
+  uint32 uint32_next_index = 5;
+  uint32 uint32_total_num = 6;
+  uint32 rcmd_col_mode = 7;
+  string union_channel = 8;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RecommendSpecialItem.java ====
+message RecommendSpecialItem {
+  uint64 uid = 1;
+  uint64 tiny_id = 2;
+  string string_room_img_url = 3;
+  uint32 hall_room_id = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RichTitleElement.java ====
+message RichTitleElement {
+  uint32 uint32_type = 1;
+  string string_text = 2;
+  string string_url = 3;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RoomRichTitle.java ====
+message RoomRichTitle {
+  repeated RichTitleElement elements = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$StartLiveTopicRcmdReq.java ====
+message StartLiveTopicRcmdReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$StartLiveTopicRcmdRsp.java ====
+message StartLiveTopicRcmdRsp {
+  uint32 uint32_ret = 1;
+  string string_errmsg = 2;
+  string string_topic = 3;
+  uint32 uint32_member_count = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$TopicRcmdReq.java ====
+message TopicRcmdReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$TopicRcmdRsp.java ====
+message TopicRcmdRsp {
+  uint32 uint32_ret = 1;
+  string string_errmsg = 2;
+  repeated uint64 string_offical_topics = 3;
+  repeated uint64 string_hot_topics = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$UserMsgInfo.java ====
+message UserMsgInfo {
+  uint32 type = 1;
+  string desc = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/loginmerge/LoginMergedProto$LoginReq.java ====
+message LoginReq_LoginTicketInfo {
+  uint32 client_version = 1;
+  uint32 login_type = 2;
+  uint32 client_type = 3;
+  string account_id = 4;
+  repeated bytes ticket_info = 5;
+  string auth_appid = 6;
+}
+
+message LoginReq {
+  bytes login_ticket_info = 1;  // was: LoginTicketInfo
+}
+
+// ==== source: com/tencent/mobileqq/now/loginmerge/LoginMergedProto$LoginRsp.java ====
+message LoginRsp_AccountBaseInfo {
+  uint32 login_type = 1;
+  uint64 uid = 2;
+  uint64 tinyid = 3;
+}
+
+message LoginRsp {
+  int32 result = 1;
+  string errMsg = 2;
+  bytes account_base_info = 3;  // was: AccountBaseInfo
+  TicketInfo tickets = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/loginmerge/LoginMergedProto$LogoutReq.java ====
+message LogoutReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/now/loginmerge/LoginMergedProto$LogoutRsp.java ====
+message LogoutRsp {
+  int32 result = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/loginmerge/LoginMergedProto$TicketInfo.java ====
+message TicketInfo {
+  string auth_key = 1;
+  string access_token = 2;
+  repeated bytes st = 3;
+  string stkey = 4;
+  string skey = 5;
+  string stweb = 6;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$AnchorInfo.java ====
+message AnchorInfo {
+  uint64 uin = 1;
+  uint32 room_id = 2;
+  uint32 start_time = 3;
+  string cover_url = 4;
+  uint32 audience_sum = 5;
+  string jump_url = 6;
+  string nick_name = 7;
+  uint32 user_type = 8;
+  string room_city = 9;
+  string anchor_logo_url = 10;
+  string room_name = 11;
+  repeated MedalInfo medal_info_list = 12;
+  uint32 cover_ts = 13;
+  uint32 type = 14;
+  uint32 content_type = 15;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorListReq.java ====
+message GetAnchorListReq {
+  uint64 uin = 1;
+  uint32 source = 2;
+  uint32 roomid = 3;
+  uint32 num = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorListRsp.java ====
+message GetAnchorListRsp {
+  repeated AnchorInfo anchor_info = 1;
+  RetInfo ret_info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorOnline1Req.java ====
+message GetAnchorOnline1Req {
+  uint64 uin = 1;
+  uint32 is_uid = 2;
+  uint32 source = 3;
+  uint32 need_kroom = 4;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorOnline1Rsp.java ====
+message GetAnchorOnline1Rsp {
+  repeated AnchorInfo anchor_info = 1;
+  RetInfo ret_info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorOnlineReq.java ====
+message GetAnchorOnlineReq {
+  uint64 uin = 1;
+  uint32 is_uid = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetAnchorOnlineRsp.java ====
+message GetAnchorOnlineRsp {
+  repeated AnchorInfo anchor_info = 1;
+  RetInfo ret_info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetRcmdReq.java ====
+message GetRcmdReq {
+  uint64 uin = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$GetRcmdRsp.java ====
+message GetRcmdRsp {
+  uint32 total_num = 1;
+  repeated RcmdAnchorInfo info = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$RcmdAnchorInfo.java ====
+message RcmdAnchorInfo {
+  string logo_url = 1;
+  uint64 uin = 2;
+}
+
+// ==== source: com/tencent/mobileqq/now/nowqqlivefocus/NowQQLiveFocusProto$RetInfo.java ====
+message RetInfo {
+  string err_msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/now/wnsilivehead/WnsHeadProto$ForwardReq.java ====
+message ForwardReq {
+  uint64 uid = 1;
+  uint64 tinyid = 2;
+  repeated bytes a2 = 3;
+  uint32 platform = 4;
+  string version = 5;
+  bytes busi_buf = 6;
+  uint32 version_code = 7;
+  uint32 stream_type = 8;
+  string original_id = 9;
+  string original_key = 10;
+  uint32 original_id_type = 11;
+  uint32 codec = 12;
+  string token = 13;
+  uint32 target_env = 14;
+  bytes client_id = 16;
+  uint32 orginal_key_type = 17;
+}
+
+// ==== source: com/tencent/mobileqq/now/wnsilivehead/WnsHeadProto$ForwardRsp.java ====
+message ForwardRsp {
+  uint32 proxy_code = 1;
+  string err_msg = 2;
+  bytes busi_buf = 3;
+  uint32 report = 4;
+  uint32 stream_type = 5;
+  uint32 busi_error_code = 6;
+  string busi_error_msg = 7;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$ClearAnchorRedPointReq.java ====
+message ClearAnchorRedPointReq {
+  uint64 anchor_uid = 1;
+  string feed_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$ClearAnchorRedPointRsp.java ====
+message ClearAnchorRedPointRsp {
+  uint32 result = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$DelFeedReq.java ====
+message DelFeedReq {
+  repeated bytes feed_ids = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$DelFeedRsp.java ====
+message DelFeedRsp {
+  uint32 result = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailByIdReq.java ====
+message FeedDetailByIdReq {
+  bytes feed_id = 1;
+  uint32 type = 2;
+  uint32 follow_type = 3;
+  uint64 follow_uid = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailByIdRsp.java ====
+message FeedDetailByIdRsp {
+  int32 result = 1;
+  MediaInfo media_infos = 2;
+  uint32 is_end = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailByIdsReq.java ====
+message FeedDetailByIdsReq {
+  repeated FeedIds feed_ids = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailByIdsRsp.java ====
+message FeedDetailByIdsRsp {
+  int32 result = 1;
+  repeated MediaInfo media_infos = 2;
+  uint32 is_end = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailReq.java ====
+message FeedDetailReq {
+  uint64 uid = 1;
+  string feed_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedDetailRsp.java ====
+message FeedDetailRsp {
+  int32 result = 1;
+  repeated MediaInfo media_infos = 2;
+  uint32 is_end = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedIds.java ====
+message FeedIds {
+  bytes feed_id = 1;
+  uint32 type = 2;
+  uint32 follow_type = 3;
+  uint64 follow_uid = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedViewOverReq.java ====
+message FeedViewOverReq {
+  uint64 anchor_uid = 1;
+  uint64 update_time = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedViewOverRsp.java ====
+message FeedViewOverRsp {
+  uint32 result = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FeedsInfo.java ====
+message FeedsInfo_FeedPreLoadInfo {
+  bytes pic_url = 1;
+  bytes video_url = 2;
+  bytes doodle_pic_url = 3;
+  bytes file_id = 4;
+}
+
+message FeedsInfo {
+  repeated bytes id = 1;
+  uint32 type = 2;
+  UserInfo user_info = 3;
+  uint32 view_times = 4;
+  bytes room_img_url = 5;
+  uint64 update_time = 6;
+  bytes content = 7;
+  uint32 short_video_num = 8;
+  bytes jump_url = 9;
+  uint32 is_new = 10;
+  bytes feed_id = 11;
+  UserInfo publish_info = 12;
+  UserInfo anchor_info = 13;
+  bytes feed_preload = 14;  // was: FeedPreLoadInfo
+  bytes native_jump_url = 15;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FollowFeedReq.java ====
+message FollowFeedReq {
+  uint32 start = 1;
+  uint32 num = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$FollowFeedRsp.java ====
+message FollowFeedRsp {
+  int32 result = 1;
+  bytes errmsg = 2;
+  uint32 total = 3;
+  uint32 end_flag = 4;
+  repeated FeedsInfo msg_feeds = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$GetLivingAnchorListReq.java ====
+message GetLivingAnchorListReq {
+  uint32 start = 1;
+  uint32 num = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$GetLivingAnchorListRsp.java ====
+message GetLivingAnchorListRsp {
+  repeated LivingAnchorInfo living_list = 1;
+  int32 result = 2;
+  bytes errmsg = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$GetMediaDetailReq.java ====
+message GetMediaDetailReq {
+  bytes querystring = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$GetMediaDetailRsp.java ====
+message GetMediaDetailRsp {
+  repeated MediaInfo media_list = 1;
+  bytes err_msg = 2;
+  uint32 is_end = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$LbsInfo.java ====
+message LbsInfo {
+  bytes lng = 1;
+  bytes lat = 2;
+  bytes city = 3;
+  bytes name = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$LiveAggregateInfo.java ====
+message LiveAggregateInfo {
+  VideoItem video = 1;
+  repeated ShortVideoInfo short_video = 2;
+  uint32 total_short_size = 3;
+  repeated bytes id = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$LivingAnchorInfo.java ====
+message LivingAnchorInfo {
+  uint64 anchor_id = 1;
+  uint32 room_id = 2;
+  uint32 subroom_id = 3;
+  uint64 start_time = 4;
+  uint32 logo_key = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$MediaInfo.java ====
+message MediaInfo_LiveAnchorItem {
+  repeated bytes id = 1;
+  repeated bytes user_info = 2;
+  bytes room_name = 3;
+  repeated RichTitleElement rpt_msg_rich_title = 4;
+  bytes room_img_url = 5;
+  bytes location = 6;
+  uint32 watch_count = 7;
+  bytes jump_url = 8;
+  uint32 anchor_type = 9;
+  uint32 room_id = 10;
+  uint32 sub_room_id = 11;
+  uint64 begin_time = 12;
+}
+
+message MediaInfo {
+  uint32 type = 1;
+  LiveAnchorItem msg_live_anchor = 2;
+  VideoItem video = 3;
+  ShortVideoInfo short_video = 4;
+  LiveAggregateInfo live_aggregate = 5;
+  PicFeedsInfo pic_info = 6;
+  repeated TopicCfg topic_cfg = 101;
+  uint32 is_my_feeds = 102;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$PersonFeedReq.java ====
+message PersonFeedReq {
+  uint32 start = 1;
+  uint32 num = 2;
+  uint64 uid = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$PersonFeedRsp.java ====
+message PersonFeedRsp {
+  int32 result = 1;
+  bytes errmsg = 2;
+  uint32 total = 3;
+  uint32 end_flag = 4;
+  repeated FeedsInfo msg_feeds = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$PicFeedsInfo.java ====
+message PicFeedsInfo {
+  UserInfo user_info = 1;
+  repeated PicInfo pic_infos = 2;
+  uint64 create_time = 3;
+  uint32 feed_type = 4;
+  uint32 feed_source = 5;
+  bytes feeds_id = 6;
+  repeated RichTitleElement rpt_msg_rich_title = 7;
+  uint32 is_listen = 10;
+  uint32 view_times = 11;
+  uint32 is_like = 12;
+  uint32 like_num = 13;
+  bytes share_url = 14;
+  LbsInfo lbs_info = 15;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$PicInfo.java ====
+message PicInfo {
+  bytes url = 1;
+  uint32 hight = 2;
+  uint32 width = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$ShortVideoInfo.java ====
+message ShortVideoInfo {
+  UserInfo user_info = 1;
+  bytes pic_url = 2;
+  bytes video_url = 3;
+  UserInfo anchor_info = 4;
+  uint64 create_time = 5;
+  int32 feed_type = 6;
+  int32 feed_source = 7;
+  bytes feeds_id = 8;
+  bytes file_id = 9;
+  uint32 video_time = 10;
+  repeated RichTitleElement rpt_msg_rich_title = 11;
+  uint32 view_times = 12;
+  uint32 video_width = 13;
+  uint32 video_hight = 14;
+  bytes doodle_pic_url = 15;
+  uint32 is_listen = 16;
+  uint32 is_like = 17;
+  uint32 like_num = 18;
+  bytes share_url = 19;
+  uint64 follow_uid = 20;
+  bytes jump_url = 21;
+  uint32 up_status = 22;
+  LbsInfo lbs_info = 23;
+  bytes vid = 24;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$TabRedPointReq.java ====
+message TabRedPointReq {
+  bool is_get = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$TabRedPointRsp.java ====
+message TabRedPointRsp {
+  bool is_red = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$TextFeed.java ====
+message TextFeed {
+  UserInfo user_info = 1;
+  uint32 create_time = 2;
+  uint32 feed_type = 3;
+  uint32 feed_source = 4;
+  string feeds_id = 5;
+  repeated RichTitleElement rpt_msg_rich_title = 6;
+  uint32 is_listen = 7;
+  uint32 view_times = 8;
+  uint32 is_like = 9;
+  uint32 like_num = 10;
+  string share_url = 11;
+  LbsInfo lbs_info = 12;
+  string share_main_title = 13;
+  string share_subheading = 14;
+  uint32 comment_num = 15;
+  string text = 16;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$TopicCfg.java ====
+message TopicCfg {
+  uint32 topic_tag = 1;
+  string topic_desc = 2;
+  string topic_name = 3;
+  uint32 topic_parti_num = 4;
+  uint32 topic_type = 5;
+  string topic_pic_url = 6;
+  string jump_url = 101;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$UserInfo.java ====
+message UserInfo {
+  uint64 uid = 1;
+  bytes head_img_url = 2;
+  bytes anchor_name = 3;
+  repeated bytes userExtraInfo = 4;
+  uint32 friend_type = 5;
+  bytes user_logo_url = 6;
+  uint32 is_qq_user = 7;
+  uint64 uin = 8;
+  uint32 user_gender = 9;
+  uint32 age = 10;
+  uint64 tinyid = 11;
+  uint64 explicit_uid = 12;
+  uint32 id_type = 13;
+}
+
+// ==== source: com/tencent/p1446pb/now/FeedsProtocol$VideoItem.java ====
+message VideoItem {
+  repeated bytes id = 1;
+  UserInfo user_info = 2;
+  bytes vid = 3;
+  bytes room_name = 4;
+  repeated RichTitleElement rpt_msg_rich_title = 5;
+  bytes video_cover_url = 6;
+  bytes room_cover_url = 7;
+  uint32 total_view = 8;
+  uint32 total_money = 9;
+  uint32 video_end_time = 10;
+  bytes jump_url = 11;
+  uint32 anchor_type = 12;
+  uint64 video_start_time = 13;
+  uint32 live_duration_time = 14;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$DPBiz.java ====
+message DPBiz {
+  repeated bytes id = 1;
+  string name = 2;
+  string logo = 3;
+  string url = 4;
+  string biz_zone = 5;
+  string category = 6;
+  uint32 rate = 7;
+  string avg_price = 8;
+  uint32 has_tuan = 9;
+  uint32 has_quan = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$GetShopsByIdsReq.java ====
+message GetShopsByIdsReq {
+  repeated string ids = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$GetShopsByIdsResp.java ====
+message GetShopsByIdsResp {
+  repeated uint64 ec = 1;
+  repeated DPBiz shops = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$LocationReq.java ====
+message LocationReq {
+  int32 lat = 1;
+  int32 lng = 2;
+  uint32 coordinate = 3;
+  string keyword = 4;
+  string category = 5;
+  uint32 page = 6;
+  uint32 count = 7;
+  uint32 requireMyLbs = 8;
+  string imei = 9;
+  string city = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$LocationResp.java ====
+message LocationResp_POI {
+  string name = 1;
+  string addr = 2;
+  string shop_url = 3;
+  int32 lat = 4;
+  int32 lng = 5;
+  uint32 coordinate = 6;
+  repeated bytes id = 7;
+  string shop_url_quan = 8;
+  string dpid = 9;
+  uint32 shop_count = 10;
+  string shangquan_url = 11;
+  string shangquan_wording = 12;
+  string POI_preview_url = 13;
+  string city = 14;
+}
+
+message LocationResp {
+  repeated uint64 ec = 1;
+  repeated bytes poilist = 2;  // was: POI
+  bytes mylbs = 3;  // was: POI
+  uint32 next = 4;
+  uint32 is_foreign = 5;
+  string search_id = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$NearByShopsReq.java ====
+message NearByShopsReq {
+  int32 lat = 1;
+  int32 lng = 2;
+  uint32 coordinate = 3;
+  uint32 begin = 4;
+  uint32 limit = 5;
+  uint32 version = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$NearByShopsResp.java ====
+message NearByShopsResp {
+  repeated uint64 ec = 1;
+  repeated Shop poilist = 2;
+  uint32 next_begin = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/LbsShare$Shop.java ====
+message Shop {
+  repeated bytes id = 1;
+  string name = 2;
+  string logo = 3;
+  string url = 4;
+  string detail = 5;
+  string discount = 6;
+  string price = 7;
+  string soldnum = 8;
+  uint32 has_tuan = 9;
+  uint32 has_quan = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$AddCommentNoFilterReq.java ====
+message AddCommentNoFilterReq {
+  uint64 feed_type = 1;
+  string feed_id = 2;
+  UserInfo video_recorder = 3;
+  UserInfo video_owner = 4;
+  UserInfo video_anchor = 5;
+  UserInfo reply_user = 6;
+  CommentMsgBody content = 7;
+  uint32 is_aggregate_short_video = 8;
+  uint64 reply_comment_id = 9;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$AddCommentNoFilterResp.java ====
+message AddCommentNoFilterResp {
+  uint64 result = 1;
+  uint64 comment_id = 2;
+  bytes wording = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$AddCommentResp.java ====
+message AddCommentResp {
+  uint64 result = 1;
+  uint64 comment_id = 2;
+  bytes wording = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$Comment.java ====
+message Comment {
+  uint64 comment_id = 1;
+  UserInfo publish_info = 2;
+  UserInfo reply_info = 3;
+  CommentMsgBody content = 4;
+  uint64 create_time = 5;
+  uint64 update_time = 6;
+  uint32 type = 7;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$CommentMsg.java ====
+message CommentMsg {
+  uint32 type = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$CommentMsgBody.java ====
+message CommentMsgBody {
+  repeated CommentMsg msgs = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$DelCommentReq.java ====
+message DelCommentReq {
+  uint64 comment_id = 1;
+  bytes feed_id = 2;
+  uint32 from_type = 3;
+  bytes biz_date = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$DelCommentResp.java ====
+message DelCommentResp {
+  uint64 result = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentListNoFilterReq.java ====
+message GetCommentListNoFilterReq {
+  uint64 feed_type = 1;
+  string feed_id = 2;
+  uint64 page = 3;
+  uint64 count = 4;
+  uint64 filter = 5;
+  uint64 need_usrinfo = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentListNoFilterResp.java ====
+message GetCommentListNoFilterResp {
+  uint64 result = 1;
+  repeated Comment lists = 2;
+  uint64 total_num = 3;
+  uint64 end_flag = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentListReq.java ====
+message GetCommentListReq {
+  uint64 feed_type = 1;
+  string feed_id = 2;
+  uint64 page = 3;
+  uint64 count = 4;
+  uint64 filter = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentListResp.java ====
+message GetCommentListResp {
+  uint64 result = 1;
+  repeated Comment lists = 2;
+  uint64 total_num = 3;
+  uint64 end_flag = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentsReq.java ====
+message GetCommentsReq {
+  repeated uint64 comment_id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetCommentsResp.java ====
+message GetCommentsResp {
+  uint64 result = 1;
+  repeated Comment value = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetStickReq.java ====
+message GetStickReq {
+  bytes feeds_id = 1;
+  uint64 feed_type = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$GetStickRsp.java ====
+message GetStickRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  repeated Comment value = 3;
+  uint64 total_num = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/NowNearbyVideoCommentProto$HippoMsg.java ====
+message HippoMsg_AddCommentReq {
+  uint64 feed_type = 1;
+  string feed_id = 2;
+  uint64 record_uid = 3;
+  uint64 reply_uid = 4;
+  uint64 feed_owner = 5;
+  repeated bytes content = 6;
+  uint32 is_aggregate_short_video = 7;
+  uint64 anchor_uid = 8;
+}
+
+message HippoMsg {
+  uint64 uid = 1;
+  bytes comm = 2;  // was: AddCommentReq
+  uint32 action = 3;
+  bytes feeds_id = 4;
+  uint64 comm_id = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/WordsSecurity$SecurityReq.java ====
+message SecurityReq {
+  bytes check_word = 1;
+  uint32 check_mask = 2;
+  uint32 svr_type = 3;
+  int32 from_user_type = 4;
+  int32 to_user_type = 5;
+  uint64 to_uin = 6;
+  bytes from_nick_name = 7;
+  uint32 client_ip = 8;
+  uint32 use_white_list = 9;
+  uint64 room_id = 10;
+  bytes biz_id = 11;
+  bytes imei = 12;
+}
+
+// ==== source: com/tencent/p1446pb/now/WordsSecurity$SecurityRsp.java ====
+message SecurityRsp {
+  int32 ret_code = 1;
+  uint32 sys_beat_level = 2;
+  uint32 dirty_word_beat = 3;
+  bytes ret_text = 4;
+  repeated bytes dirty_word_tips = 5;
+  uint32 credit_beat = 6;
+  uint32 user_score = 7;
+  uint32 required_score = 8;
+  uint32 real_auth = 9;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive$iLiveRequest.java ====
+message iLiveRequest {
+  uint32 version = 1;
+  uint32 cmd = 2;
+  uint64 seq = 3;
+  uint64 uid = 4;
+  bytes binary_body = 5;
+  repeated bytes ex = 6;
+  uint32 client_type = 7;
+  uint32 client_ip = 8;
+  uint32 service_ip = 9;
+  repeated uint64 business = 10;
+  bytes auth_key = 11;
+  uint32 auth_type = 12;
+  uint32 auth_ip = 13;
+  uint64 auth_appid = 14;
+  uint64 tinyid = 15;
+  uint32 client_port = 16;
+  uint32 flag = 17;
+  bytes original_id = 18;
+  bytes original_key = 19;
+  uint32 original_key_type = 20;
+  uint32 original_id_type = 21;
+  uint64 original_auth_appid = 22;
+  uint64 buss_id = 23;
+  uint32 codec = 24;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive$iLiveResponse.java ====
+message iLiveResponse {
+  uint32 version = 1;
+  uint32 cmd = 2;
+  uint64 seq = 3;
+  uint64 uid = 4;
+  string err_msg = 5;
+  bytes binary_body = 6;
+  repeated bytes ex = 7;
+  uint32 client_type = 8;
+  uint32 flag = 9;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_like$FeedsLikeReq.java ====
+message FeedsLikeReq {
+  repeated bytes id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_like$FeedsLikeRsp.java ====
+message FeedsLikeRsp {
+  uint32 total = 1;
+  uint32 ret = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_like$FeedsUnLikeReq.java ====
+message FeedsUnLikeReq {
+  repeated bytes id = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_like$FeedsUnLikeRsp.java ====
+message FeedsUnLikeRsp {
+  uint32 total = 1;
+  uint32 ret = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearAnchorListReq.java ====
+message GetNearAnchorListReq {
+  float longitude = 1;
+  float latitude = 2;
+  uint32 start = 3;
+  uint32 num = 4;
+  uint32 source = 5;
+  uint32 gender = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearAnchorListRsp.java ====
+message GetNearAnchorListRsp {
+  uint32 ret = 1;
+  uint32 anchor_num = 2;
+  repeated NearAnchorInfo anchor_infos = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearAnchorReq.java ====
+message GetNearAnchorReq {
+  float longitude = 1;
+  float latitude = 2;
+  uint32 start = 3;
+  uint32 num = 4;
+  uint32 source = 5;
+  uint32 gender = 6;
+  int32 gender_filter = 7;
+  string qq_version = 9;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearAnchorRsp.java ====
+message GetNearAnchorRsp {
+  uint32 ret = 1;
+  uint32 anchor_num = 2;
+  repeated NearAnchorInfo anchor_infos = 3;
+  uint32 allow_repeated = 4;
+  int32 gender_filter = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearListByRoomIDReq.java ====
+message GetNearListByRoomIDReq {
+  float longitude = 1;
+  float latitude = 2;
+  uint32 roomid = 3;
+  uint32 num = 4;
+  uint32 source = 5;
+  uint32 gender = 6;
+  int32 gender_filter = 7;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearListByRoomIDRsp.java ====
+message GetNearListByRoomIDRsp {
+  uint32 ret = 1;
+  uint32 anchor_num = 2;
+  repeated NearAnchorInfo anchor_infos = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearMicroAnchorReq.java ====
+message GetNearMicroAnchorReq {
+  float longitude = 1;
+  float latitude = 2;
+  uint32 start = 3;
+  uint32 num = 4;
+  uint32 source = 5;
+  uint32 gender = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearMicroAnchorRsp.java ====
+message GetNearMicroAnchorRsp {
+  uint32 ret = 1;
+  repeated NearMicroAnchor micro_infos = 2;
+  uint32 micro_anchor_num = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearPgcAnchorReq.java ====
+message GetNearPgcAnchorReq_PgcAnchorFilter {
+  uint32 uin2gender = 1;
+  uint32 interest_bit = 2;
+  uint32 constellation = 3;
+  uint32 home_town = 4;
+  uint32 profession = 5;
+}
+
+message GetNearPgcAnchorReq {
+  float longitude = 1;
+  float latitude = 2;
+  double distance_range = 3;
+  uint32 start = 4;
+  uint32 num = 5;
+  repeated bytes filter = 6;
+  uint32 gender = 7;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$GetNearPgcAnchorRsp.java ====
+message GetNearPgcAnchorRsp {
+  uint32 ret = 1;
+  uint32 anchor_num = 2;
+  repeated NearAnchorInfo anchor_infos = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$NearAnchorInfo.java ====
+message NearAnchorInfo {
+  uint64 uid = 1;
+  uint32 root_roomid = 2;
+  uint32 sub_roomid = 3;
+  double distance = 4;
+  bytes room_name = 5;
+  bytes cover_url = 6;
+  uint32 create_time = 7;
+  bytes city = 8;
+  uint32 start_time = 9;
+  bytes medal_face = 10;
+  uint32 pic_time = 11;
+  uint32 anchor_type = 12;
+  bytes lable_url = 13;
+  uint32 jump_type = 14;
+  string jump_qqlive_url = 100;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_near_anchor$NearMicroAnchor.java ====
+message NearMicroAnchor {
+  float longitude = 1;
+  float latitude = 2;
+  uint64 uid = 3;
+  uint32 roomid = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$FollowTabRedPointReq.java ====
+message FollowTabRedPointReq {
+  repeated uint64 op = 1;
+  int64 time = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$FollowTabRedPointRsp.java ====
+message FollowTabRedPointRsp {
+  bytes err_msg = 1;
+  int32 red = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadFeedsByIdReq.java ====
+message ReadFeedsByIdReq {
+  repeated bytes feeds_ids = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadFeedsByIdRsp.java ====
+message ReadFeedsByIdRsp {
+  repeated FeedsInfo infos = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadFollowFeedsReq.java ====
+message ReadFollowFeedsReq {
+  uint64 start_time = 1;
+  uint32 num = 2;
+  uint32 load_num = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadFollowFeedsRsp.java ====
+message ReadFollowFeedsRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  uint32 end_flag = 3;
+  repeated FeedsInfo infos = 4;
+  uint32 total = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadMediaDetailReq.java ====
+message ReadMediaDetailReq {
+  string feedid = 1;
+  uint32 start = 2;
+  uint32 num = 3;
+  uint32 type = 4;
+  uint64 follow_uid = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadMediaDetailRsp.java ====
+message ReadMediaDetailRsp {
+  repeated MediaInfo media_list = 1;
+  bytes err_msg = 2;
+  uint32 is_end = 3;
+  uint32 total = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadNearUserFeedsReq.java ====
+message ReadNearUserFeedsReq {
+  uint32 num = 1;
+  bytes lng = 2;
+  bytes lat = 4;
+  uint32 id_type = 5;
+  uint64 bus_id = 6;
+  uint64 tinyid = 7;
+  string version = 8;
+  uint32 version_code = 9;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadNearUserFeedsRsp.java ====
+message ReadNearUserFeedsRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  uint32 end_flag = 3;
+  repeated FeedsInfo infos = 4;
+  uint32 total = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadNewUserFeedsReq.java ====
+message ReadNewUserFeedsReq {
+  uint32 num = 1;
+  uint64 uin = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadNewUserFeedsRsp.java ====
+message ReadNewUserFeedsRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  uint32 end_flag = 3;
+  repeated FeedsInfo infos = 4;
+  uint32 total = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadOriginalFeedsReq.java ====
+message ReadOriginalFeedsReq {
+  uint64 uid = 1;
+  int32 type = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadOriginalFeedsRsp.java ====
+message ReadOriginalFeedsRsp_FeedsInfo {
+  uint64 uin = 1;
+  string nick = 2;
+  bytes url = 3;
+  repeated MedalInfo medal_infos = 4;
+  uint32 user_gender = 5;
+  uint32 age = 6;
+}
+
+message ReadOriginalFeedsRsp_FeedUserInfo {
+  uint64 uin = 1;
+  string nick = 2;
+  bytes url = 3;
+  repeated MedalInfo medal_infos = 4;
+  uint32 user_gender = 5;
+  uint32 age = 6;
+}
+
+message ReadOriginalFeedsRsp_TextFeed {
+  string text = 1;
+  repeated string topic = 2;
+}
+
+message ReadOriginalFeedsRsp_FeedsTmemLike {
+  uint32 like_number = 1;
+  repeated uint32 like_list = 2;
+}
+
+message ReadOriginalFeedsRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  repeated bytes info = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadUserFeedsNumReq.java ====
+message ReadUserFeedsNumReq {
+  uint64 uid = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadUserFeedsNumRsp.java ====
+message ReadUserFeedsNumRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+  uint32 total = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadUserFeedsReq.java ====
+message ReadUserFeedsReq {
+  uint32 start = 1;
+  uint32 num = 2;
+  uint64 uin = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_read$ReadUserFeedsRsp.java ====
+message ReadUserFeedsRsp {
+  repeated FeedsInfo infos = 1;
+  uint32 total = 2;
+  repeated bytes user_infos = 3;  // was: FeedUserInfo
+  string h5_url = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_source$CollectFeedsDataReq.java ====
+message CollectFeedsDataReq {
+  bytes feeds_id = 1;
+  int32 feeds_source = 2;
+  repeated bytes feeds_topic = 3;
+  int32 client_type = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_source$CollectFeedsDataRsp.java ====
+message CollectFeedsDataRsp {
+  int32 error_code = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$ChangFeed.java ====
+message ChangFeed_Chang {
+  repeated bytes id = 1;
+  uint32 change_type = 2;
+  uint32 create_time = 3;
+}
+
+message ChangFeed {
+  repeated bytes chang = 1;  // was: Chang
+  bytes pic_url = 2;
+  bytes vid = 3;
+  uint32 width = 4;
+  uint32 hight = 5;
+  repeated bytes replay = 6;
+  bytes desc = 7;
+  uint32 short_video_num = 8;
+  uint32 roomid = 9;
+  uint32 view_num = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$Exposure.java ====
+message Exposure {
+  uint32 count = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$FeedLikeStatus.java ====
+message FeedLikeStatus {
+  uint32 like_status = 1;
+  uint32 last_time = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$FeedsList.java ====
+message FeedsList {
+  repeated FeedsListItem feedlist = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$FeedsListItem.java ====
+message FeedsListItem {
+  bytes feed_id = 1;
+  uint32 create_time = 2;
+  uint32 feed_status = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$FeedsTmem.java ====
+message FeedsTmem_LbsInfoOld {
+  bytes lng = 1;
+  bytes lat = 2;
+  bytes location = 3;
+}
+
+message FeedsTmem {
+  uint64 publish_uin = 1;
+  uint32 create_time = 2;
+  int32 feed_type = 3;
+  int32 feed_source = 4;
+  int32 feed_status = 5;
+  bytes feeds_id = 6;
+  repeated bytes feed_info = 7;
+  uint32 view_times = 8;
+  int32 up_status = 9;
+  repeated bytes pic_info = 10;
+  repeated bytes live_info = 11;
+  repeated bytes chang_info = 12;
+  uint64 nowid = 13;
+  repeated uint64 lbs_info = 14;
+  uint32 local_video_flag = 15;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$LiveFeed.java ====
+message LiveFeed_KInfo {
+  bytes song_name = 1;
+}
+
+message LiveFeed {
+  repeated bytes topic = 1;
+  bytes desc = 2;
+  uint32 roomid = 3;
+  bytes pic_url = 4;
+  bytes vid = 5;
+  uint32 room_type = 6;
+  repeated bytes k_info = 7;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$NoInterest.java ====
+message NoInterest {
+  string feedid = 1;
+  int32 type = 2;
+  int32 count = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$PicFeed.java ====
+message PicFeed {
+  repeated bytes topic = 1;
+  bytes desc = 2;
+  repeated PicInfo infos = 3;
+  bytes feed_md5 = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$RankBlackFeeds.java ====
+message RankBlackFeeds {
+  uint32 insert_time = 1;
+  bytes feeds_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$RecommondItem.java ====
+message RecommondItem {
+  repeated bytes id = 1;
+  uint32 start_time = 2;
+  uint32 end_time = 3;
+  uint32 recom_pos = 4;
+  string uin_lists_key = 5;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$RecommondNumPerDay.java ====
+message RecommondNumPerDay {
+  uint32 num_per_day = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$RedInfo.java ====
+message RedInfo {
+  uint64 uid = 1;
+  uint64 time = 2;
+  uint64 last_feed_time = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$TimeLineItem.java ====
+message TimeLineItem {
+  uint64 create_time = 1;
+  repeated bytes id = 2;
+  int32 feed_type = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$UserActList.java ====
+message UserActList {
+  uint64 act_uin = 1;
+  repeated bytes feeds_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$UserBlackList.java ====
+message UserBlackList {
+  uint64 act_uin = 1;
+  repeated RankBlackFeeds black_feeds = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_tmem$VideoFeed.java ====
+message VideoFeed {
+  bytes pic_url = 1;
+  bytes video_url = 2;
+  uint64 anchor_uin = 3;
+  repeated bytes topic = 4;
+  bytes desc = 5;
+  bytes file_id = 6;
+  uint32 video_width = 7;
+  uint32 video_hight = 8;
+  uint32 video_time = 9;
+  bytes video_md5 = 10;
+  bytes vid = 11;
+  uint32 start_time = 12;
+  uint32 end_time = 13;
+  bytes doodle_pic_url = 14;
+  bytes lng = 15;
+  bytes lat = 16;
+  bytes city = 17;
+  bytes feed_id = 18;
+  uint32 has_face = 19;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$AddFeedReq.java ====
+message AddFeedReq_LbsInfo {
+  bytes lng = 1;
+  bytes lat = 2;
+  bytes city = 3;
+  bytes name = 4;
+}
+
+message AddFeedReq {
+  int32 feed_type = 1;
+  int32 feed_source = 2;
+  repeated bytes feed_video = 3;
+  int32 feed_upload_status = 4;
+  repeated bytes pic_info = 5;
+  repeated bytes live_info = 6;
+  repeated bytes chang_info = 7;
+  uint64 nowid = 8;
+  uint32 local_video_flag = 9;
+  repeated bytes lbs_info = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$AddFeedRsp.java ====
+message AddFeedRsp {
+  bytes feed_id = 1;
+  uint32 ret = 2;
+  bytes err_msg = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$DelFeedStuct.java ====
+message DelFeedStuct {
+  bytes file_id = 1;
+  bytes feed_id = 2;
+  int32 feed_type = 3;
+  uint64 timestamp = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$FeedNoInterestReq.java ====
+message FeedNoInterestReq {
+  string feedid = 1;
+  int32 is_nointerest = 2;
+  int32 type = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$FeedNoInterestRsp.java ====
+message FeedNoInterestRsp {
+  int32 ret = 1;
+  bytes errmsg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$GetChangVideoAndResetReq.java ====
+message GetChangVideoAndResetReq {
+  bytes chang_feedsid = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$GetChangVideoAndResetRsp.java ====
+message GetChangVideoAndResetRsp {
+  int32 ret = 1;
+  bytes errmsg = 2;
+  repeated bytes chang = 3;  // was: Chang
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$ModFeedReq.java ====
+message ModFeedReq {
+  int32 feed_type = 1;
+  int32 feed_source = 2;
+  repeated bytes feed_video = 3;
+  repeated bytes pic_info = 4;
+  repeated bytes live_info = 5;
+  repeated bytes chang_info = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_feeds_write$ModFeedRsp.java ====
+message ModFeedRsp {
+  bytes feed_id = 1;
+  uint32 ret = 2;
+  bytes err_msg = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_get_record_info_svr$GetRecordInfoReq.java ====
+message GetRecordInfoReq {
+  string vid = 1;
+  uint32 platform = 2;
+  uint32 filetype = 3;
+  uint32 is_ipv6 = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_get_record_info_svr$GetRecordInfoRsp.java ====
+message GetRecordInfoRsp_RecordInfo {
+  string record_video_url = 1;
+  string cmd5 = 2;
+  uint32 record_duration = 3;
+  uint32 file_format = 4;
+  uint32 vid_state = 5;
+}
+
+message GetRecordInfoRsp {
+  uint32 result = 1;
+  repeated bytes record_info = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_get_record_info_svr$GetRoomStateReq.java ====
+message GetRoomStateReq {
+  uint32 roomid = 1;
+  string source = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_get_record_info_svr$GetRoomStateRsp.java ====
+message GetRoomStateRsp {
+  uint32 result = 1;
+  uint32 is_on_live = 2;
+  string vid = 3;
+  string recorded_share_url = 4;
+  uint64 another_live_room_id = 5;
+  string another_live_mqq = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_grey_interface$GreyInterfaceReq.java ====
+message GreyInterfaceReq {
+  uint64 uin = 1;
+  uint32 version = 2;
+  string deviceType = 3;
+  uint32 clientType = 4;
+  string strVersion = 5;
+  uint32 key = 6;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_grey_interface$GreyInterfaceRsp.java ====
+message GreyInterfaceRsp {
+  uint32 ret_code = 1;
+  string err_msg = 2;
+  string result = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_nearby_user_control$EnterNearbyUserContrlReq.java ====
+message EnterNearbyUserContrlReq {
+  uint64 user_id = 1;
+  uint32 user_type = 2;
+  string source = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_nearby_user_control$EnterNearbyUserContrlRsp.java ====
+message EnterNearbyUserContrlRsp {
+  uint32 check_ret = 1;
+  string check_msg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_nearby_user_control$GetGconfReq.java ====
+message GetGconfReq {
+  uint64 uid = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_nearby_user_control$GetGconfRsp.java ====
+message GetGconfRsp {
+  uint32 ret_code = 1;
+  string err_msg = 2;
+  string config_info = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_new_anchor_follow_interface$FollowActionReq.java ====
+message FollowActionReq {
+  uint64 anchor_uin = 1;
+  uint32 client_type = 2;
+  uint32 source = 3;
+  uint32 action = 4;
+  uint64 root_roomid = 5;
+  uint64 subroom_id = 6;
+  uint64 anchor_nowid = 7;
+  uint32 id_type = 8;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_new_anchor_follow_interface$FollowActionRsp.java ====
+message FollowActionRsp {
+  uint32 ret = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_report$ReportMsg.java ====
+message ReportMsg_CommentInfo {
+  uint64 time = 1;
+  string content = 2;
+}
+
+message ReportMsg {
+  uint64 informer = 1;
+  uint32 type = 2;
+  string source_key = 3;
+  string report_reason = 4;
+  uint32 platform = 5;
+  string version = 6;
+  uint64 reportee = 7;
+  uint32 from = 8;
+  string sub_source_key = 9;
+  repeated bytes comment_info = 10;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_report$ReportReq.java ====
+message ReportReq {
+  repeated ReportMsg report_msg = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_report$ReportRsp.java ====
+message ReportRsp {
+  uint32 result = 1;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$FeedInfo.java ====
+message FeedInfo {
+  bytes feed_id = 1;
+  string topic = 2;
+  string url = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$GetShortVideoVideoLabelReq.java ====
+message GetShortVideoVideoLabelReq {
+  uint64 uid = 1;
+  bytes feed_id = 2;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$GetShortVideoVideoLabelRsp.java ====
+message GetShortVideoVideoLabelRsp {
+  uint32 type = 1;
+  repeated bytes video_status = 2;
+  repeated bytes feed_info = 3;
+  repeated bytes video_info = 4;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$OpensdkCB.java ====
+message OpensdkCB {
+  uint32 uint32_start_time = 1;
+  uint32 uint32_end_time = 2;
+  bytes bytes_streamid = 3;
+  bytes bytes_fileid = 4;
+  bytes bytes_videoid = 5;
+  bytes bytes_videourl = 6;
+  bytes bytes_format = 7;
+  bytes bytes_json = 12;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$RoomInfo.java ====
+message RoomInfo {
+  uint32 room_id = 1;
+  uint32 subroom_id = 2;
+  uint64 anchor_uin = 3;
+  string vid = 4;
+  string room_name = 5;
+  repeated RichTitleElement title_info = 6;
+  uint32 total_people = 7;
+  uint32 total_money = 8;
+  string room_cover_url_90 = 9;
+  string video_cover_url = 10;
+  uint32 video_end_time = 11;
+  string room_cover_url_640 = 12;
+  string nick_name = 13;
+  uint32 video_start_time = 14;
+  string anchor_logo_80 = 15;
+  string anchor_logo_640 = 16;
+  uint32 total_record_people = 17;
+  bytes city = 18;
+  uint32 video_end_action_svr_is_seted = 50;
+  uint32 get_from_room_info_svr_is_seted = 51;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$RoomState.java ====
+message RoomState {
+  uint64 uint64_anchor = 1;
+  uint32 uint32_state = 2;
+  uint32 uint32_roomid = 3;
+  uint32 uint32_subroomid = 4;
+  bytes bytes_vid = 5;
+  uint32 uint32_starttime = 6;
+  uint32 uint32_stoptime = 7;
+  uint32 uint32_callbacktime = 8;
+  uint32 uint32_is_hls = 9;
+  bytes bytes_m3u8_path = 10;
+  int32 int32_transcode_result = 11;
+  uint32 uint32_mp4State = 12;
+  uint32 uint32_hlsState = 13;
+  uint32 uint32_inuinwhitelist = 14;
+  uint32 uint32_indeletewhitelist = 15;
+  uint32 uint32_viddeletedbyuser = 16;
+  bytes bytes_sdk_fileid = 17;
+  bytes bytes_sdk_videourl = 18;
+  uint32 uint32_sdk_starttime = 19;
+  uint32 uint32_sdk_stoptime = 20;
+  bytes bytes_sdk_json = 22;
+  repeated OpensdkCB rpt_extra_cb = 23;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$VideoInfo.java ====
+message VideoInfo {
+  bytes vid = 1;
+  string url = 2;
+  string cover_url = 3;
+}
+
+// ==== source: com/tencent/p1446pb/now/ilive_short_video_label$VideoStatus.java ====
+message VideoStatus {
+  uint32 room_id = 1;
+  uint32 root_room_id = 2;
+  uint32 stat = 3;
+  uint32 live_type = 4;
+  uint32 timestamp = 5;
+  uint32 client_type = 6;
+  uint64 uin = 7;
+  bytes video_begin_timestamp = 8;  // was: PBFixed32Field
+  uint32 sdk_type = 9;
+  uint64 master_uin = 10;
+  repeated uint64 co_play_uin = 11;
+}
+
+// ==== source: tencent/nearby/now/nearby_now_anchor$AnchorStatus.java ====
+message AnchorStatus {
+  uint64 uint64_uin = 1;
+  int32 enum_stat = 2;
+}
+
+// ==== source: tencent/nearby/now/nearby_now_anchor$ReqBatchGetAnchorStatus.java ====
+message ReqBatchGetAnchorStatus {
+  repeated uint64 uint64_uin = 1;
+}
+
+// ==== source: tencent/nearby/now/nearby_now_anchor$RspBatchGetAnchorStatus.java ====
+message RspBatchGetAnchorStatus {
+  uint32 uint32_result = 1;
+  repeated AnchorStatus msg_anchor_stats = 2;
+}

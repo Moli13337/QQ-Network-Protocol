@@ -1,0 +1,87 @@
+// ns_store_app_search 域 — 10 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_store_app_search;
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$CouponInfo.java ====
+message CouponInfo {
+  string title = 1;
+  string leastPrice = 2;
+  string amt = 3;
+  string iconUrl = 4;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$RankInfo.java ====
+message RankInfo {
+  string rank_type = 1;
+  string category = 2;
+  string name = 3;
+  string jump_url = 4;
+  repeated bytes apps = 5;  // was: StoreAppInfo
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$SearchExtInfo.java ====
+message SearchExtInfo {
+  string appid = 1;
+  repeated bytes pkRank = 2;  // was: StRankingList
+  repeated CouponInfo coupon = 3;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StGetHotSearchAppsReq.java ====
+message StGetHotSearchAppsReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 from = 2;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StGetHotSearchAppsRsp.java ====
+message StGetHotSearchAppsRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string title = 2;
+  repeated bytes appList = 4;  // was: StoreAppInfo
+  string watchTitle = 5;
+  repeated StHotWatching watchingList = 6;
+  int32 sort = 7;
+  repeated bytes guessYouList = 8;  // was: StoreAppInfo
+  string guessTitle = 9;
+  repeated bytes sortList = 10;  // was: enum
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StGetHotSearchAppsV2Req.java ====
+message StGetHotSearchAppsV2Req {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StGetHotSearchAppsV2Rsp.java ====
+message StGetHotSearchAppsV2Rsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string title = 2;
+  repeated RankInfo ranks = 3;
+  uint32 defaultRankIndex = 4;
+  uint32 style = 5;
+  string jumpUrl = 6;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StHotWatching.java ====
+message StHotWatching {
+  string hotWords = 1;
+  string url = 2;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StSearchAppReq.java ====
+message StSearchAppReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string query = 2;
+  int32 appType = 3;
+  int32 from = 4;
+}
+
+// ==== source: NS_STORE_APP_SEARCH/MiniAppSearch$StSearchAppRsp.java ====
+message StSearchAppRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes appList = 2;  // was: StoreAppInfo
+  int32 isFinished = 3;
+  repeated string highlightWords = 4;
+  repeated SearchExtInfo searchExtInfo = 5;
+  repeated bytes rcmdList = 6;  // was: StoreAppInfo
+}

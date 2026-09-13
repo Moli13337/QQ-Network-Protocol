@@ -1,0 +1,31 @@
+// ns_comm 域 — 5 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_comm;
+
+// ==== source: NS_COMM/COMM.java ====
+message BytesEntry {
+  string key = 1;
+  bytes value = 2;
+}
+
+message Entry {
+  string key = 1;
+  string value = 2;
+}
+
+message Result {
+  int32 retCode = 1;
+  repeated bytes msg = 2;
+}
+
+message StCommonExt {
+  string attachInfo = 1;
+}
+
+message User {
+  uint32 uin = 1;
+  string appid = 2;
+  string openid = 3;
+}

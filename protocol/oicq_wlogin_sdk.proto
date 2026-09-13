@@ -1,0 +1,433 @@
+// oicq_wlogin_sdk 域 — 66 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.oicq_wlogin_sdk;
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$A1Sig.java ====
+message A1Sig {
+  bytes bytes_encrypt_uin = 1;
+  bytes bytes_a1_sig = 2;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RandSalt.java ====
+message RandSalt {
+  bytes bytes_encrypt_uin = 1;
+  uint64 uint64_salt = 2;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqBody.java ====
+message ReqBody_ReqClientInfo {
+  string str_client_qua = 1;
+  uint32 uint32_client_platform = 2;
+  string str_qimei36 = 3;
+}
+
+message ReqBody_ReqBodySelfPhone {
+  repeated bytes msg_req_check_phone = 10;
+  repeated bytes msg_req_get_url = 11;
+  repeated bytes msg_req_check_phone_v4 = 12;
+  repeated bytes msg_req_get_url_v4 = 13;
+  repeated bytes msg_req_phone_login = 14;
+}
+
+message ReqBody_ReqBodySelfPhoneCheck {
+  string str_upurl = 10;
+  string str_token = 11;
+  string str_msg_id = 12;
+  int32 int32_channel_id = 13;
+  string str_cell_ip = 14;
+}
+
+message ReqBody_ReqBodySelfPhoneGetUrl {
+  uint32 uint32_get_upload_url = 10;
+  string str_mobile_phone = 11;
+  string str_cell_ip = 12;
+  uint32 uint32_isp_type = 13;
+}
+
+message ReqBody_ReqBodySelfPhoneCheckV4 {
+  string str_msg_id = 10;
+  string str_cell_ip = 11;
+  repeated SelfPhoneToken rpt_self_phone_token = 12;
+}
+
+message ReqBody_ReqBodySelfPhoneGetUrlV4 {
+  uint32 uint32_get_upload_url = 10;
+  string str_mobile_phone = 11;
+  string str_cell_ip = 12;
+  uint32 uint32_isp_type = 13;
+}
+
+message ReqBody_ReqBodySelfPhoneLogin {
+  bytes bytes_phone_token = 10;
+  bool bool_support_auxinfo_check = 11;
+  bool bool_support_unbind_phone = 12;
+}
+
+message ReqBody_ReqConnectLogin {
+  string str_connect_data = 1;
+}
+
+message ReqBody_ReqBindPhoneLogin {
+  repeated bytes msg_pic_verify_info = 10;
+}
+
+message ReqBody_PicVerifyInfo {
+  uint64 uint64_appid = 1;
+  bytes bytes_verify_sig = 2;
+  bytes bytes_rand_key = 3;
+}
+
+message ReqBody_ReqCmd4 {
+  uint32 uint32_country_code = 1;
+  string str_new_device_check_sig = 2;
+  string str_new_device_check_uin_token = 3;
+}
+
+message ReqBody_ReqCmd9 {
+  // (no fields resolved)
+}
+
+message ReqBody_ReqCmd17 {
+  uint32 uint32_country_code = 1;
+  string str_mobile_phone = 2;
+  bool bool_support_abolish_switch_of_phone_login = 3;
+  repeated bytes msg_req_phone_sms_extend_login = 10;
+  repeated bytes msg_req_phone_sms_aux_verify_login = 11;
+}
+
+message ReqBody_ReqPhoneSmsExtendLogin {
+  uint32 uint32_support_flag = 1;
+}
+
+message ReqBody_ReqPhoneSmsAuxVerifyLogin {
+  bool bool_req_support_aux_verify = 11;
+}
+
+message ReqBody_ReqCmd18 {
+  string str_sms_token = 11;
+}
+
+message ReqBody_ReqCmd23 {
+  bool bool_support_abolish_switch_of_phone_login = 1;
+  repeated bytes msg_req_tim_wechat = 10;
+}
+
+message ReqBody_ReqTimWeChat {
+  uint32 uint32_support_mobile_register = 10;
+}
+
+message ReqBody_ReqCmd24 {
+  uint32 uint32_country_code = 1;
+  string str_mobile_phone = 2;
+  repeated bytes waterprof_wall_info = 3;
+}
+
+message ReqBody_WaterprofWallInfo {
+  string str_waterprof_wall_sig = 1;
+  string iframe_randstr = 2;
+  string iframe_sid = 3;
+}
+
+message ReqBody {
+  uint64 uint64_seq = 1;
+  bytes msg_req_client_info = 5;  // was: ReqClientInfo
+  ReqCommonInfo msg_req_common_info = 9;
+  ReqBodyThirdLogin msg_req_third_login = 10;
+  bytes msg_req_self_phone = 20;  // was: ReqBodySelfPhone
+  bytes msg_req_connect_login = 30;  // was: ReqConnectLogin
+  bytes msg_req_bind_phone_login = 40;  // was: ReqBindPhoneLogin
+  ReqMaskQQLogin msg_req_mask_qq_login = 50;
+  bytes msg_req_cmd_4 = 51;  // was: ReqCmd4
+  bytes msg_req_cmd_9 = 60;  // was: ReqCmd9
+  bytes msg_req_cmd_17 = 76;  // was: ReqCmd17
+  bytes msg_req_cmd_18 = 77;  // was: ReqCmd18
+  bytes msg_req_cmd_23 = 78;  // was: ReqCmd23
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqBodyThirdLogin.java ====
+message ReqBodyThirdLogin_ReqBodyGoogle {
+  string str_appid = 11;
+  string str_id_token = 12;
+}
+
+message ReqBodyThirdLogin_ReqBodyFaceBook {
+  string str_appid = 11;
+  string str_access_token = 12;
+}
+
+message ReqBodyThirdLogin_ReqPhoneLogin {
+  string str_country_code = 11;
+  string str_phone_num = 12;
+}
+
+message ReqBodyThirdLogin_ReqBodyApple {
+  string str_appid = 11;
+  string str_user_id = 12;
+  string str_identity_token = 13;
+  string str_authorization_code = 14;
+  string str_nick_name = 30;
+  string str_gender = 31;
+}
+
+message ReqBodyThirdLogin {
+  uint32 uint32_service_type = 10;
+  uint32 uin_account_type = 11;
+  bytes msg_req_google = 20;  // was: ReqBodyGoogle
+  bytes msg_req_facebook = 21;  // was: ReqBodyFaceBook
+  bytes msg_req_phone = 22;  // was: ReqPhoneLogin
+  bytes msg_req_apple = 23;  // was: ReqBodyApple
+  ReqWechat msg_req_wechat = 24;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqCmd25.java ====
+message ReqCmd25 {
+  repeated A1Sig rpt_a1_list = 1;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqCommonInfo.java ====
+message ReqCommonInfo {
+  bool bool_req_need_uid_flag = 9;
+  uint32 uint32_req_need_verify_scenes = 10;
+  uint32 uint32_req_support_self_phone_check = 11;
+  bool bool_req_support_diff_passwd_can_verify = 12;
+  string str_verify_sig = 13;
+  bool bool_req_support_connect_pskey = 14;
+  bool bool_req_passwd_err_support_identity_verify = 15;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqMaskQQLogin.java ====
+message ReqMaskQQLogin {
+  bytes bytes_encrypt_uin_info = 1;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$ReqWechat.java ====
+message ReqWechat {
+  string str_appid = 10;
+  string str_code = 11;
+  string str_profile_sig = 12;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspBody.java ====
+message RspBody_RspBodySelfPhone {
+  repeated bytes msg_rsp_check_phone = 10;
+  repeated bytes msg_rsp_get_url = 11;
+  repeated bytes msg_rsp_get_url_v4 = 12;
+  repeated bytes msg_rsp_phone_login = 13;
+}
+
+message RspBody_RspBodySelfPhoneCheck {
+  string str_upload_redirect_url = 10;
+  string str_msg_id = 11;
+  int32 int32_channel_id = 12;
+  int32 int32_channel_carrier_type = 13;
+}
+
+message RspBody_RspBodySelfPhoneGetUrl {
+  string str_upload_url = 10;
+  string str_msg_id = 11;
+  int32 int32_channel_id = 12;
+}
+
+message RspBody_RspBodySelfPhoneGetUrlV4 {
+  string str_msg_id = 10;
+  repeated SelfPhoneUrl rpt_self_phone_url = 11;
+}
+
+message RspBody_RspBodySelfPhoneLogin {
+  repeated UinInfo rpt_bind_uin_info = 10;
+  int32 int32_phone_bind_result = 11;
+  string str_phone_bind_msg_title = 12;
+  string str_phone_bind_msg_content = 13;
+  string str_unbind_wording = 14;
+}
+
+message RspBody_RspConnectLogin {
+  // (no fields resolved)
+}
+
+message RspBody_RspBindPhoneLogin {
+  // (no fields resolved)
+}
+
+message RspBody_RspLftInfo {
+  uint32 uint32_lft_forbid_area = 10;
+  uint32 uint32_lft_forbid_reason = 11;
+}
+
+message RspBody_RspTipsInfo {
+  uint32 uint32_scene_id = 1;
+  string str_review_protect_url = 2;
+  uint32 uint32_guid_to_main_login_flag = 3;
+  string str_guid_to_main_login_wording = 4;
+  repeated bytes msg_left_button = 5;
+  repeated bytes msg_right_button = 6;
+  string str_title = 7;
+  string str_content = 8;
+  repeated bytes msg_buttons = 9;  // was: Button
+}
+
+message RspBody_Button {
+  string str_text = 1;
+  uint32 uint32_action = 2;
+  string str_jump_url = 3;
+}
+
+message RspBody_RspCmd4 {
+  // (no fields resolved)
+}
+
+message RspBody_RspCmd9 {
+  repeated bytes msg_rsp_phone_sms_extend_login = 10;
+}
+
+message RspBody_RspCmd17 {
+  // (no fields resolved)
+}
+
+message RspBody_RspCmd18 {
+  repeated bytes msg_rsp_phone_sms_extend_login = 10;
+  string str_sms_token = 11;
+  repeated bytes msg_rsp_phone_sms_aux_verify_login = 12;
+}
+
+message RspBody_RspPhoneSmsAuxVerifyLogin {
+  repeated bytes bind_login_uin_info = 10;
+  string str_aux_verify_url = 11;
+}
+
+message RspBody_RspCmd23 {
+  repeated bytes msg_rsp_time_wechat = 10;
+}
+
+message RspBody_RspTimWeChat {
+  string str_wechat_register_token = 10;
+}
+
+message RspBody {
+  uint64 uint64_seq = 1;
+  RspCommonInfo msg_rsp_common_info = 9;
+  RspBodyThirdLogin msg_rsp_third_login = 10;
+  bytes msg_rsp_self_phone = 20;  // was: RspBodySelfPhone
+  bytes msg_rsp_connect_login = 30;  // was: RspConnectLogin
+  bytes msg_rsp_bind_phone_login = 40;  // was: RspBindPhoneLogin
+  bytes msg_rsp_lft_info = 50;  // was: RspLftInfo
+  bytes msg_rsp_tips_info = 60;  // was: RspTipsInfo
+  bytes msg_rsp_cmd_9 = 80;  // was: RspCmd9
+  bytes msg_rsp_cmd_17 = 81;  // was: RspCmd17
+  bytes msg_rsp_cmd_18 = 86;  // was: RspCmd18
+  bytes msg_rsp_cmd_23 = 87;  // was: RspCmd23
+  RspCmd24 msg_rsp_cmd_24 = 88;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspBodyThirdLogin.java ====
+message RspBodyThirdLogin_RspBodyGoogle {
+  string str_user_profile = 11;
+}
+
+message RspBodyThirdLogin_RspBodyFaceBook {
+  string str_user_profile = 11;
+}
+
+message RspBodyThirdLogin_RspPhoneLogin {
+  string str_user_profile = 11;
+}
+
+message RspBodyThirdLogin_RspBodyApple {
+  // (no fields resolved)
+}
+
+message RspBodyThirdLogin_RspWechat {
+  string str_profile = 10;
+}
+
+message RspBodyThirdLogin {
+  uint32 uint32_service_type = 10;
+  uint64 uint64_qq_uin = 11;
+  uint32 uint32_register_flag = 12;
+  string str_register_token = 13;
+  bytes msg_rsp_google = 20;  // was: RspBodyGoogle
+  bytes msg_rsp_facebook = 21;  // was: RspBodyFaceBook
+  bytes msg_rsp_phone = 22;  // was: RspPhoneLogin
+  bytes msg_rsp_apple = 23;  // was: RspBodyApple
+  bytes msg_rsp_wechat = 24;  // was: RspWechat
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspCmd24.java ====
+message RspCmd24 {
+  repeated RandSalt rpt_salt_list = 1;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspCmd25.java ====
+message RspCmd25 {
+  repeated UinInfo rpt_bind_uin_info = 1;
+  string str_unbind_wording = 2;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspCommonInfo.java ====
+message RspCommonInfo_RspNT {
+  string str_uid = 1;
+  bytes bytes_ua2 = 2;
+}
+
+message RspCommonInfo {
+  uint32 uint32_need_verify_scenes = 10;
+  bytes msg_rsp_nt = 11;  // was: RspNT
+  uint32 uint32_a1_seq = 12;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$RspPhoneSmsExtendLogin.java ====
+message RspPhoneSmsExtendLogin {
+  repeated UinInfo rpt_bind_uin_info = 10;
+  int32 int32_phone_bind_result = 11;
+  string str_phone_bind_msg_title = 12;
+  string str_phone_bind_msg_content = 13;
+  string str_unbind_wording = 14;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$SelfPhoneToken.java ====
+message SelfPhoneToken {
+  string str_token = 10;
+  int32 int32_channel_id = 11;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$SelfPhoneUrl.java ====
+message SelfPhoneUrl {
+  string str_upload_url = 10;
+  int32 int32_channel_id = 11;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/ThirdPartLogin$UinInfo.java ====
+message UinInfo {
+  string str_mask_uin = 1;
+  string str_nick = 2;
+  string str_image_url = 3;
+  bytes bytes_encrypt_uin = 4;
+  string str_key_uin = 5;
+  bytes bytes_a1_sig = 6;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/device_report.java ====
+message DeviceReport {
+  bytes bytes_bootloader = 1;
+  bytes bytes_version = 2;
+  bytes bytes_codename = 3;
+  bytes bytes_incremental = 4;
+  bytes bytes_fingerprint = 5;
+  bytes bytes_boot_id = 6;
+  bytes bytes_android_id = 7;
+  bytes bytes_baseband = 8;
+  bytes bytes_inner_ver = 9;
+}
+
+// ==== source: oicq/wlogin_sdk/p1997pb/sec_trans$SecTransInfo.java ====
+message SecTransInfo {
+  string str_phone_brand = 1;
+  string str_model_type = 2;
+  string str_wifi_mac = 3;
+  string str_bssid = 4;
+  string str_os_language = 5;
+  uint32 uint32_qq_language = 6;
+  string str_gps_location = 7;
+}

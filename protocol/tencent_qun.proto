@@ -1,0 +1,191 @@
+// tencent_qun 域 — 27 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_qun;
+
+// ==== source: tencent/qun/group_activity/group_activity$GroupAct.java ====
+message GroupAct {
+  uint32 uint32_act_id = 1;
+  string string_title = 2;
+  string string_des = 3;
+  string string_url = 4;
+  uint32 uint32_jumptype = 5;
+  string string_jumpparam = 6;
+  string string_iconurl = 7;
+  string string_btntext = 8;
+  uint32 uint32_start_time = 9;
+  uint32 uint32_end_time = 10;
+}
+
+// ==== source: tencent/qun/group_activity/group_activity$ReqBody.java ====
+message ReqBody {
+  repeated uint32 uint32_act_id = 1;
+}
+
+// ==== source: tencent/qun/group_activity/group_activity$RspBody.java ====
+message RspBody {
+  uint32 uint32_error_code = 1;
+  repeated GroupAct act_list = 2;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$Banner.java ====
+message Banner {
+  uint32 effect_id = 1;
+  string bottom_url = 2;
+  string top_url = 3;
+  string goto_url = 4;
+  uint32 time_begin = 5;
+  uint32 time_end = 6;
+  repeated bytes effect_info = 101;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$Category.java ====
+message Category {
+  string name = 1;
+  string wording = 2;
+  repeated uint32 rpt_effect_id = 3;
+  repeated EffectInfo rpt_effect_info = 101;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$EffectConfig.java ====
+message EffectConfig {
+  repeated Banner rpt_banner = 1;
+  repeated Category rpt_category = 2;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$EffectIndex.java ====
+message EffectIndex {
+  repeated uint32 rpt_effect_id = 1;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$EffectInfo.java ====
+message EffectInfo {
+  uint32 effect_id = 1;
+  string name = 2;
+  string wording = 3;
+  uint32 get_mode = 4;
+  uint32 svip_level = 5;
+  uint32 group_level = 6;
+  uint32 price = 7;
+  string gif_url = 8;
+  string pic_url = 9;
+  string mp4_url = 10;
+  uint32 duration = 11;
+  uint32 status = 12;
+  uint32 sort_num = 13;
+  string attr_id = 14;
+  string small_pic_url = 15;
+  string bg_pic_url = 16;
+  string spirit_url = 17;
+  string spirit_config = 18;
+  int32 ttl = 101;
+  bool user_config_status = 102;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect$UserConfig.java ====
+message UserConfig {
+  uint64 group_code = 1;
+  uint32 effect_id = 2;
+  uint64 status = 3;
+  uint64 set_mode = 4;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$ReqBody.java ====
+message ReqBody_TGetEffectDetailReq0x1 {
+  repeated uint64 effect_id = 1;
+}
+
+message ReqBody_TSetMyEffectReq0x4 {
+  repeated UserConfig user_config = 1;
+}
+
+message ReqBody_TGetSwitchOthersReq0x8 {
+  uint64 group_id = 1;
+}
+
+message ReqBody_TSetSwitchReq0x10 {
+  uint64 group_id = 1;
+  uint64 forbid_self = 2;
+}
+
+message ReqBody_TSetGlobalEffectReq0x20 {
+  uint32 global_effect_id = 1;
+}
+
+message ReqBody_TSetSwitchOthersReq0x40 {
+  uint64 group_id = 1;
+  int32 forbid_others = 2;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$RspBody.java ====
+message RspBody_TGetEffectDetailRsp0x1 {
+  int32 ret = 1;
+  repeated EffectInfo rpt_effectinfo = 2;
+}
+
+message RspBody_TSetMyEffectRsp0x4 {
+  int32 ret = 1;
+}
+
+message RspBody_TGetSwitchOthersRsp0x8 {
+  int32 ret = 1;
+  int32 forbid_others = 2;
+}
+
+message RspBody_TSetSwitchRsp0x10 {
+  int32 ret = 1;
+}
+
+message RspBody_TSetGlobalEffectRsp0x20 {
+  int32 ret = 1;
+}
+
+message RspBody_TSetSwitchOthersRsp0x40 {
+  int32 ret = 1;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$TEffectDetail.java ====
+message TEffectDetail {
+  repeated bytes st_userconfig = 1;
+  repeated bytes st_effectinfo = 2;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$TEntryNotifyReq0x2000.java ====
+message TEntryNotifyReq0x2000 {
+  uint64 group_id = 1;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$TEntryNotifyRsp0x2000.java ====
+message TEntryNotifyRsp0x2000 {
+  int32 ret = 1;
+  repeated bytes st_userconfig = 2;
+  uint32 notify_interval = 3;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$TGetMyEffectReq0x2.java ====
+message TGetMyEffectReq0x2 {
+  repeated uint64 group_id = 1;
+}
+
+// ==== source: tencent/qun/group_effect/group_effect_commu$TGetMyEffectRsp0x2.java ====
+message TGetMyEffectRsp0x2 {
+  int32 ret = 1;
+  uint32 global_effect_id = 2;
+  repeated bytes st_global_effectinfo = 3;
+  repeated TEffectDetail rpt_userconfig = 4;
+  uint32 query_interval = 5;
+}
+
+// ==== source: tencent/qun/group_effect/push_msg$PushMsg.java ====
+message PushMsg {
+  repeated uint64 rc = 1;
+  repeated bytes msg = 2;
+  uint64 uin = 3;
+  uint64 group_code = 4;
+  uint32 svip_level = 5;
+  uint32 svip_type = 6;
+  uint32 group_level = 7;
+  repeated bytes effect_info = 20;
+  uint64 set_mode = 21;
+}

@@ -1,0 +1,271 @@
+// p2035pb_unify 域 — 32 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.p2035pb_unify;
+
+// ==== source: p2035pb/unify/search/UnifySearchAssociationWord$AssociationItem.java ====
+message AssociationItem {
+  bytes word = 1;
+  bytes jmp_url = 2;
+  bytes pic_url = 3;
+  bytes sub_word = 4;
+  uint32 type = 5;
+  uint32 group_mask = 6;
+  uint32 gbar_id = 7;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchAssociationWord$ReqBody.java ====
+message ReqBody {
+  bytes key_word = 1;
+  bytes version = 2;
+  repeated uint64 business = 3;
+  uint32 key_word_src = 4;
+  uint32 need_flag = 5;
+  uint32 from_tabbar_index = 7;
+  uint32 req_src = 8;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchAssociationWord$RspBody.java ====
+message RspBody_SuggestUrlItem {
+  bytes url = 1;
+  bytes title = 2;
+}
+
+message RspBody {
+  uint32 result_code = 1;
+  string error_msg = 2;
+  repeated AssociationItem association_items = 3;
+  repeated bytes suggest_url_items = 4;  // was: SuggestUrlItem
+  bytes completed_url_item = 5;  // was: SuggestUrlItem
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchBusiHotWord$ClueWordItem.java ====
+message ClueWordItem {
+  bytes word_id = 1;
+  bytes word = 2;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchBusiHotWord$GroupID.java ====
+message GroupID {
+  repeated uint64 rpt_group_mask = 1;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchBusiHotWord$GroupWord.java ====
+message GroupWord {
+  GroupID group_id = 1;
+  repeated HotWordItem rpt_hot_word_items = 2;
+  ClueWordItem clue_word_item = 3;
+  string title = 4;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchBusiHotWord$HotWordItem.java ====
+message HotWordItem {
+  bytes word_id = 1;
+  bytes word = 2;
+  bytes extension = 3;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$GuessWantItem.java ====
+message GuessWantItem {
+  bytes word_id = 1;
+  bytes word = 2;
+  bytes extension = 3;
+  bytes reportData = 4;
+  uint32 type = 5;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$HotSearchItem.java ====
+message HotSearchItem {
+  uint32 show_type = 1;
+  bytes img_url = 2;
+  bytes title = 3;
+  bytes detail_text = 4;
+  bytes jump_url = 5;
+  bytes mark_text_color = 6;
+  bytes mark_bg_color = 7;
+  bytes img_bg_url = 8;
+  bytes text_color = 9;
+  bytes right_icon_url = 10;
+  uint32 wz_ts = 11;
+  bytes recall_word = 12;
+  bytes item_ext = 13;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$JumpLink.java ====
+message JumpLink {
+  int32 jump_type = 1;
+  string jump_url = 2;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$OperationHotSearchItem.java ====
+message OperationHotSearchItem_HotSearchIcon {
+  string text = 1;
+  string color = 2;
+  string background = 3;
+}
+
+message OperationHotSearchItem {
+  string word = 1;
+  bytes icons = 2;  // was: HotSearchIcon
+  string serial_num_url = 3;
+  JumpLink jump_link = 4;
+  bytes reportData = 5;
+  bool is_manual_operation = 6;
+  string hot_search_text_id = 7;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$OperationItem.java ====
+message OperationItem {
+  bytes left_title = 1;
+  bytes right_title = 2;
+  bytes detail_text = 3;
+  bytes img_url = 4;
+  bytes jump_url = 5;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$Result.java ====
+message Result_TitleHeaderItem {
+  bytes title = 1;
+  bytes icon_url = 2;
+  bytes morn_text = 3;
+  bytes morn_url = 4;
+  uint32 header_type = 5;
+  bytes qq_index_jump_url = 6;
+}
+
+message Result_SpecialTopic {
+  bytes topic_title = 1;
+  bytes title_color = 2;
+  bytes icon_url = 3;
+  repeated TopicItem topic_items = 4;
+  bytes jump_url = 5;
+  uint32 show_type = 6;
+  bytes left_icon_url = 7;
+  bytes more_text = 8;
+  repeated TopicImage topic_images = 9;
+  uint32 is_hotsearch = 10;
+}
+
+message Result_GifInfoItem {
+  bytes gif_url = 1;
+  bytes gif_url_night = 2;
+  bytes gif_id = 3;
+}
+
+message Result_GuessWantSearch {
+  string title = 1;
+  repeated GuessWantItem items = 2;
+}
+
+message Result_OperationHotSearch {
+  string title = 1;
+  string pic_url = 2;
+  repeated bytes pic_jump_link = 3;
+  repeated OperationHotSearchItem items = 4;
+}
+
+message Result {
+  uint32 type = 1;
+  uint32 has_header = 2;
+  bytes title_header = 3;  // was: TitleHeaderItem
+  uint32 hide_top_divider = 4;
+  repeated SubBusinessItem sub_business_items = 20;
+  repeated OperationItem operation_items = 21;
+  repeated HotSearchItem hot_search_items = 22;
+  uint32 hotword_update_ts = 23;
+  bytes special_topic_item = 24;  // was: SpecialTopic
+  bytes hot_word_gif_item = 25;  // was: GifInfoItem
+  bytes hot_search_gif_item = 26;  // was: GifInfoItem
+  bytes result_ext = 27;
+  GuessWantSearch guess_want_items = 28;
+  bytes operation_hot_search_items = 29;  // was: OperationHotSearch
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$SubBusinessItem.java ====
+message SubBusinessItem {
+  bytes title = 1;
+  bytes icon_url = 2;
+  repeated uint64 group_masks = 3;
+  uint32 is_hot_words_list = 4;
+  bytes jump_url = 5;
+  uint32 has_red_dot = 6;
+  uint32 red_seq = 7;
+  uint32 bzid = 8;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$TabBizPair.java ====
+message TabBizPair {
+  int32 key = 1;
+  string value = 2;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$TopicImage.java ====
+message TopicImage {
+  bytes image_url = 1;
+  bytes image_text = 2;
+  bytes jump_url = 3;
+  uint32 is_hotsearch = 4;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchDiscovery$TopicItem.java ====
+message TopicItem {
+  bytes trait_title = 1;
+  bytes title_color = 2;
+  bytes config_time = 3;
+  bytes config_color = 4;
+  bytes jump_url = 5;
+  uint32 is_hotsearch = 6;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchGroupDiscovery$GroupDiscoveryReq.java ====
+message GroupDiscoveryReq {
+  int32 from = 1;
+  bytes session_info = 2;
+  string sug_trans_info = 100;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchGroupDiscovery$GroupDiscoveryRsp.java ====
+message GroupDiscoveryRsp {
+  GuessWantSearch guess_want_items = 1;
+  bytes session_info = 2;
+  bool is_jump_to_net_result_page = 3;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchGroupDiscovery$GuessWantSearch.java ====
+message GuessWantSearch {
+  string title = 1;
+  repeated GuessWantItem items = 2;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchSuggest$NetSugItem.java ====
+message NetSugItem {
+  string word = 1;
+  string hit_key_word = 2;
+  string sug_trans_info = 100;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchUnite$SearchBusiSortInfo.java ====
+message SearchBusiSortInfo {
+  int32 busi_type = 1;
+}
+
+// ==== source: p2035pb/unify/search/UnifySearchUnite$TabItemGroup.java ====
+message TabItemGroup {
+  bytes tab_name = 2;
+  repeated uint64 rpt_group_mask = 3;
+}
+
+// ==== source: p2035pb/unify/search/UnifyTabSearch$ProcessData.java ====
+message ProcessData {
+  uint32 group_mask = 1;
+  bytes key = 2;
+  bytes value = 3;
+}
+
+// ==== source: p2035pb/unify/search/UnifyTabSearch$SubHotWord.java ====
+message SubHotWord {
+  uint32 word_id = 1;
+  bytes show_word = 2;
+  bytes search_word = 3;
+}

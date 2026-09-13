@@ -1,0 +1,3486 @@
+// miniapp 域 — 440 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.miniapp;
+
+// ==== source: NS_MINI_AD/MiniAppAd$ContextInfo.java ====
+message ContextInfo {
+  uint64 public_id = 1;
+  uint64 article_id = 2;
+  uint32 tribe_tag = 3;
+  uint32 tribe_id_tag = 4;
+  uint32 source_from = 5;
+  bytes page_url = 6;
+  repeated uint64 existed_mini_program_ids = 7;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$DebugInfo.java ====
+message DebugInfo {
+  uint32 debug_adindexid = 1;
+  bool nomatch = 2;
+  bool debug = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$DeviceInfo.java ====
+message DeviceInfo {
+  string muid = 1;
+  uint32 muid_type = 2;
+  uint32 conn = 3;
+  uint32 carrier_code = 4;
+  string os_ver = 5;
+  string qq_ver = 6;
+  uint32 os_type = 7;
+  string client_ip = 8;
+  string ios_qidfa = 9;
+  Location location = 10;
+  bool is_wk_webview = 11;
+  string manufacturer = 12;
+  string device_brand_and_model = 13;
+  string qadid = 14;
+  uint32 app_version_id = 15;
+  uint32 device_orientation = 16;
+  string android_imei = 17;
+  string ios_idfa = 18;
+  string android_id = 19;
+  string mac = 20;
+  bool is_googleplay_version = 21;
+  bool is_ios_review_state = 22;
+  string oaid = 23;
+  string taid_ticket = 24;
+  string md5_mac = 25;
+  string md5_android_id = 26;
+  string client_ipv4 = 27;
+  string aid_ticket = 28;
+  string device_ext = 29;
+  string brand = 30;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$Location.java ====
+message Location {
+  int32 latitude = 1;
+  int32 longitude = 2;
+  uint32 coordinates_type = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$PositionExt.java ====
+message PositionExt {
+  ShareInfo share_info = 1;
+  uint32 deep_link_version = 2;
+  int32 get_ad_type = 3;
+  repeated SpecifiedAdsItem specified_ads = 4;
+  string sub_position_id = 5;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$PositionInfo.java ====
+message PositionInfo {
+  string pos_id = 1;
+  uint32 ad_count = 2;
+  PositionExt pos_ext = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$ShareInfo.java ====
+message ShareInfo {
+  uint32 share_rate = 1;
+  string share_check = 2;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$SpecifiedAdsItem.java ====
+message SpecifiedAdsItem {
+  uint64 aid = 1;
+  uint64 creative_id = 2;
+  uint32 prefetch_timestamp = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StAdPageFlipTemplate.java ====
+message StAdPageFlipTemplate {
+  int32 ad_type = 1;
+  int32 effect_id = 2;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StAppAdInfo.java ====
+message StAppAdInfo {
+  string strAppId = 1;
+  int64 iPosition = 2;
+  string strAdInfo = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StAppPlayingFriList.java ====
+message StAppPlayingFriList {
+  string strAppId = 1;
+  repeated uint64 vecFriUin = 2;
+  uint32 total = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StBatchGetAppPlayingFriReq.java ====
+message StBatchGetAppPlayingFriReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string vecAppId = 2;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StBatchGetAppPlayingFriRsp.java ====
+message StBatchGetAppPlayingFriRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StAppPlayingFriList vecAppPlayingFri = 2;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetAdForSdkReq.java ====
+message StGetAdForSdkReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strGetAdUrl = 2;
+  repeated bytes mapParam = 3;  // was: Entry
+  string strAppid = 4;
+  int32 iAdType = 5;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetAdReq.java ====
+message StGetAdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  UserInfo user_info = 2;
+  repeated PositionInfo position_info = 3;
+  DeviceInfo device_info = 4;
+  ContextInfo context_info = 5;
+  DebugInfo debug_info = 6;
+  string gdt_cookie = 7;
+  bool support_https = 8;
+  string appid = 9;
+  int32 ad_type = 10;
+  string client_mod = 11;
+  string busi_cookie = 2001;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetAdRsp.java ====
+message StGetAdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strAdsJson = 2;
+  string strAdTemplateJson = 3;
+  int64 iTestId = 4;
+  repeated StApiAppInfo vecAppInfo = 5;
+  int64 iPreLoadLevel = 6;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetDropdownAppAdListReq.java ====
+message StGetDropdownAppAdListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  UserInfo user_info = 2;
+  repeated PositionInfo position_info = 3;
+  DeviceInfo device_info = 4;
+  ContextInfo context_info = 5;
+  DebugInfo debug_info = 6;
+  string gdt_cookie = 7;
+  bool support_https = 8;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetDropdownAppAdListRsp.java ====
+message StGetDropdownAppAdListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StAppAdInfo vecAppAdInfo = 2;
+  string gdt_cookie = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetMemberStateRsp.java ====
+message StGetMemberStateRsp {
+  bool is_member = 1;
+  uint32 freqctrl_in_second = 2;
+  string toast_text = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetPopAdBannerReq.java ====
+message StGetPopAdBannerReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strAppId = 2;
+  string strRefer = 3;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetPopAdBannerRsp.java ====
+message StGetPopAdBannerRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strAdTitle = 2;
+  string strImgUrl = 3;
+  string strJumpUrl = 4;
+  string strAdTrace = 5;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetSdkAdInfoReq.java ====
+message StGetSdkAdInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strSubPosId = 2;
+  string strAppid = 3;
+  int32 iAdType = 4;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$StGetSdkAdInfoRsp.java ====
+message StGetSdkAdInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strSourceFrom = 2;
+  string strMiniCategory = 3;
+  string strPosId = 4;
+}
+
+// ==== source: NS_MINI_AD/MiniAppAd$UserInfo.java ====
+message UserInfo {
+  repeated uint64 qq = 1;
+  string wx_appid = 2;
+  string wx_openid = 3;
+  string media_specified_id = 4;
+  uint64 qq_appid = 5;
+  string qq_openid = 6;
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StAppPlayingInfo.java ====
+message StAppPlayingInfo {
+  uint32 playType = 1;
+  uint32 myRank = 2;
+  uint32 friendRank = 3;
+  StApiAppInfo appMetaInfo = 4;
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StGetFriendPlayListReq.java ====
+message StGetFriendPlayListReq {
+  string friendUin = 1;
+  uint32 pageSize = 2;
+  bytes ext = 3;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StGetFriendPlayListRsp.java ====
+message StGetFriendPlayListRsp {
+  uint32 total = 1;
+  bool finish = 2;
+  repeated StAppPlayingInfo appPlayingInfos = 3;
+  string moreJumpLink = 4;
+  bytes ext = 5;  // was: StCommonExt
+  bool showOtherFriPlay = 6;
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StGetFriendPlayListV2Req.java ====
+message StGetFriendPlayListV2Req {
+  string friendUin = 1;
+  uint32 pageSize = 2;
+  bytes ext = 3;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StGetFriendPlayListV2Rsp.java ====
+message StGetFriendPlayListV2Rsp {
+  uint32 total = 1;
+  bool finish = 2;
+  repeated StAppPlayingInfo appPlayingInfos = 3;
+  string moreJumpLink = 4;
+  bytes ext = 5;  // was: StCommonExt
+  bool showOtherFriPlay = 6;
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StTrans4RoomidReq.java ====
+message StTrans4RoomidReq {
+  string appid = 1;
+  string groupid = 2;
+}
+
+// ==== source: NS_MINI_APP_MISC/MISC$StTrans4RoomidRsp.java ====
+message StTrans4RoomidRsp {
+  uint64 roomid = 1;
+  string openid = 2;
+  uint64 tinyid = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StCheckGamePayReq.java ====
+message StCheckGamePayReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string appid = 3;
+  string prepay_id = 4;
+  string bill_no = 5;
+  string sig = 6;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StCheckGamePayRsp.java ====
+message StCheckGamePayRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 pay_state = 2;
+  int64 pay_time = 3;
+  string app_remark = 4;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StCheckPayResultReq.java ====
+message StCheckPayResultReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes id = 2;
+  int32 scene = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StCheckPayResultRsp.java ====
+message StCheckPayResultRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 result = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StDegXtionItem.java ====
+message StDegXtionItem_QAPPHead {
+  string str_userip = 1;
+  string str_module = 2;
+  string str_cmdname = 3;
+  uint64 uint64_seq = 4;
+  string str_qua = 5;
+  uint64 uint64_loglevel = 6;
+  string str_logdepth = 7;
+  repeated bytes auth_info = 8;
+  int64 retcode = 9;
+  string retmsg = 10;
+  repeated bytes extinfo = 11;  // was: Entry
+  int32 reqFrm = 12;
+  uint64 logSeq = 13;
+  repeated bytes colorLink = 14;
+  string deviceInfo = 15;
+  repeated bytes trace = 16;
+  repeated bytes all_trace = 17;
+}
+
+message StDegXtionItem_AuthInfo {
+  uint32 uint32_type = 1;
+  string str_uid = 2;
+  bytes bytes_sig = 3;
+  string str_appid = 4;
+  repeated bytes extinfo = 5;  // was: Entry
+}
+
+message StDegXtionItem_StColorLink {
+  repeated StColorItem links = 1;
+  int32 soft_level = 2;
+}
+
+message StDegXtionItem_StLinkTrace {
+  uint64 traceId = 1;
+  uint64 spanId = 2;
+  uint64 parentSpanId = 3;
+  int32 sampled = 4;
+}
+
+message StDegXtionItem_StAllLinkTrace {
+  string traceId = 1;
+  string spanId = 2;
+  string parentSpanId = 3;
+  int32 sampled = 4;
+}
+
+message StDegXtionItem {
+  bytes header = 1;  // was: QAPPHead
+  StGamePayReq body = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGamePayReq.java ====
+message StGamePayReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string prepayId = 3;
+  int32 starCurrency = 4;
+  int32 balanceAmount = 5;
+  int32 topupAmount = 6;
+  int32 payChannel = 7;
+  int32 sandboxEnv = 8;
+  int32 reason = 9;
+  int32 sdkType = 10;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGamePayRsp.java ====
+message StGamePayRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGamePrePayReq.java ====
+message StGamePrePayReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string appid = 3;
+  repeated uint64 ts = 4;
+  string zone_id = 5;
+  string user_ip = 6;
+  int64 amt = 7;
+  string bill_no = 8;
+  string goodid = 9;
+  int32 good_num = 10;
+  string app_remark = 11;
+  string sig = 12;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGamePrePayRsp.java ====
+message StGamePrePayRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string prepayId = 2;
+  string token = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGameQueryPayReq.java ====
+message StGameQueryPayReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string prepayId = 2;
+  string sig = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGameQueryPayRsp.java ====
+message StGameQueryPayRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 status = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetBalanceReq.java ====
+message StGetBalanceReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string appid = 3;
+  string sig = 6;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetBalanceRsp.java ====
+message StGetBalanceRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 remainder = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetExtDataByUniqIdReq.java ====
+message StGetExtDataByUniqIdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  repeated bytes id = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetExtDataByUniqIdRsp.java ====
+message StGetExtDataByUniqIdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string extData = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetMiniPayUniqIdReq.java ====
+message StGetMiniPayUniqIdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string extData = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetMiniPayUniqIdRsp.java ====
+message StGetMiniPayUniqIdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes id = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetPayForFriendInfoReq.java ====
+message StGetPayForFriendInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string prepayId = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetPayForFriendInfoRsp.java ====
+message StGetPayForFriendInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string hostUin = 2;
+  string hostNick = 3;
+  string hostAvatar = 4;
+  int64 starCurrency = 5;
+  string goodsDesc = 6;
+  string goodsPicUrl = 7;
+  int32 tradeStatus = 8;
+  int32 expireAfter = 9;
+  int32 sandboxEnv = 10;
+  string friendUin = 11;
+  string friendNick = 12;
+  string friendAvatar = 13;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetWalletPayLinkReq.java ====
+message StGetWalletPayLinkReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string prepayId = 2;
+  string appid = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StGetWalletPayLinkRsp.java ====
+message StGetWalletPayLinkRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string link = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniCheckOfferIdReq.java ====
+message StMiniCheckOfferIdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string offerId = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniCheckOfferIdRsp.java ====
+message StMiniCheckOfferIdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 result = 2;
+  string firstRefer = 3;
+  string firstVia = 4;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniGetBalanceReq.java ====
+message StMiniGetBalanceReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string appid = 3;
+  string offer_id = 4;
+  repeated uint64 ts = 5;
+  string zone_id = 6;
+  string pfkey = 7;
+  string sig = 8;
+  string qq_sig = 9;
+  int64 sandbox_env = 10;
+  string openkey = 11;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniGetBalanceRsp.java ====
+message StMiniGetBalanceRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 remainder = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniPayReq.java ====
+message StMiniPayReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string appid = 3;
+  string offer_id = 4;
+  repeated uint64 ts = 5;
+  string zone_id = 6;
+  string user_ip = 7;
+  int64 amt = 8;
+  string bill_no = 9;
+  string pay_item = 10;
+  string app_remark = 11;
+  string sig = 12;
+  string qq_sig = 13;
+  int64 sandbox_env = 14;
+  string openkey = 15;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniPayRsp.java ====
+message StMiniPayRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string bill_no = 2;
+  int32 balance = 3;
+  int32 used_gen_amt = 4;
+  string trade_id = 5;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniPresentReq.java ====
+message StMiniPresentReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+  string qq_appid = 3;
+  string offer_id = 4;
+  repeated uint64 ts = 5;
+  string zone_id = 6;
+  string pfkey = 7;
+  string user_ip = 8;
+  int64 present_counts = 9;
+  string bill_no = 10;
+  string sig = 11;
+  string qq_sig = 12;
+  int64 sandbox_env = 13;
+  string openkey = 14;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StMiniPresentRsp.java ====
+message StMiniPresentRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string bill_no = 2;
+  int32 balance = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StNotifyIdePayResultReq.java ====
+message StNotifyIdePayResultReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  repeated bytes id = 3;
+  int32 amt = 4;
+  int32 scene = 5;
+  int32 result = 6;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StNotifyIdePayResultRsp.java ====
+message StNotifyIdePayResultRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StNotifyPayRecordToActbossReq.java ====
+message StNotifyPayRecordToActbossReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uin = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StNotifyPayRecordToActbossRsp.java ====
+message StNotifyPayRecordToActbossRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int64 total_pay = 2;
+  int64 surplus = 3;
+  int64 lottery_count = 4;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StPayForFriendInfo.java ====
+message StPayForFriendInfo {
+  string appid = 1;
+  string prepayId = 2;
+  string hostUin = 3;
+  string goodsDesc = 4;
+  string goodsPicUrl = 5;
+  int32 sandboxEnv = 7;
+  string friendUin = 8;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StQueryStarCurrencyReq.java ====
+message StQueryStarCurrencyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string prepayId = 3;
+  int32 starCurrency = 4;
+  int32 sandboxEnv = 5;
+  int32 sdkType = 6;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StQueryStarCurrencyRsp.java ====
+message StQueryStarCurrencyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 remainder = 2;
+  int32 rechargeNum = 3;
+  string offerid = 4;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StRequrirePayByFriendReq.java ====
+message StRequrirePayByFriendReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string prepayId = 3;
+  string goodsDesc = 5;
+  string goodsPicUrl = 6;
+  int32 sandboxEnv = 7;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StRequrirePayByFriendRsp.java ====
+message StRequrirePayByFriendRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 isValid = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWalletPayB2CReq.java ====
+message StWalletPayB2CReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string mch_id = 2;
+  string trade_no = 3;
+  string appid = 4;
+  string openid = 5;
+  string uin = 6;
+  string total_fee = 7;
+  int32 check_real_name = 8;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWalletPayB2CRsp.java ====
+message StWalletPayB2CRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string retcode = 2;
+  string retmsg = 3;
+  string mch_id = 4;
+  string trade_no = 5;
+  string transaction_id = 6;
+  string transaction_state = 7;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayCheckMWebURLReq.java ====
+message StWxpayCheckMWebURLReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string mweb_url = 2;
+  string appid = 3;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayCheckMWebURLRsp.java ====
+message StWxpayCheckMWebURLRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 is_valid = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayNotifyReq.java ====
+message StWxpayNotifyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes body = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayNotifyRsp.java ====
+message StWxpayNotifyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes body = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayUnifiedOrderReq.java ====
+message StWxpayUnifiedOrderReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes body = 2;
+}
+
+// ==== source: NS_MINI_APP_PAY/MiniAppMidasPay$StWxpayUnifiedOrderRsp.java ====
+message StWxpayUnifiedOrderRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes body = 2;
+}
+
+// ==== source: NS_MINI_APP_REPORT_TRANSFER/APP_REPORT_TRANSFER.java ====
+message SingleDcData {
+  uint32 dcid = 1;
+  repeated bytes report_data = 2;  // was: Entry
+  repeated bytes extinfo = 3;  // was: Entry
+}
+
+message StDataReportReq {
+  repeated SingleDcData dcdata = 1;
+}
+
+message StDataReportRsp {
+  int32 ret = 1;
+}
+
+// ==== source: NS_MINI_APP_SEARCH/SEARCH$StAppSearchItem.java ====
+message StAppSearchItem {
+  string appid = 1;
+  string appname = 2;
+  string appIcon = 3;
+  string desc = 4;
+  int32 showMask = 5;
+}
+
+// ==== source: NS_MINI_APP_SEARCH/SEARCH$StLocalSearchDataReq.java ====
+message StLocalSearchDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_APP_SEARCH/SEARCH$StSearchMiniAppReq.java ====
+message StSearchMiniAppReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string query = 2;
+  int32 pageSize = 3;
+}
+
+// ==== source: NS_MINI_APP_SEARCH/SEARCH$StSearchMiniAppRsp.java ====
+message StSearchMiniAppRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StAppSearchItem items = 2;
+  bool hasmore = 3;
+  repeated string highlightWords = 4;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$Information.java ====
+message Information {
+  string contentId = 1;
+  uint32 status = 2;
+  repeated bytes msg = 3;
+  int32 existStatus = 4;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StInsertBookShelfReq.java ====
+message StInsertBookShelfReq {
+  string appid = 1;
+  string category = 2;
+  repeated string contentIds = 3;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StInsertBookShelfRsp.java ====
+message StInsertBookShelfRsp {
+  repeated Information info = 1;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StQueryBookShelfReq.java ====
+message StQueryBookShelfReq {
+  string appid = 1;
+  repeated string contentIds = 2;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StQueryBookShelfRsp.java ====
+message StQueryBookShelfRsp {
+  repeated Information bookInfo = 1;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StUpdateBookShelfReadTimeReq.java ====
+message StUpdateBookShelfReadTimeReq {
+  string appid = 1;
+  string category = 2;
+  string contentId = 3;
+}
+
+// ==== source: NS_MINI_BOOK_SHELF/MiniBookShelf$StUpdateBookShelfReadTimeRsp.java ====
+message StUpdateBookShelfReadTimeRsp {
+  Information updateInfo = 1;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$FriendInfo.java ====
+message FriendInfo {
+  string avatarUrl = 1;
+  string nickname = 2;
+  string openid = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetFriendCloudStorageReq.java ====
+message StGetFriendCloudStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  repeated string keyList = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetFriendCloudStorageRsp.java ====
+message StGetFriendCloudStorageRsp {
+  bytes ext = 1;  // was: StCommonExt
+  repeated StUserGameData data = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetGroupCloudStorageReq.java ====
+message StGetGroupCloudStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  repeated string keyList = 3;
+  string shareTicket = 4;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetGroupCloudStorageRsp.java ====
+message StGetGroupCloudStorageRsp {
+  bytes ext = 1;  // was: StCommonExt
+  repeated StUserGameData data = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetPotentialFriendListReq.java ====
+message StGetPotentialFriendListReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetPotentialFriendListRsp.java ====
+message StGetPotentialFriendListRsp {
+  bytes ext = 1;  // was: StCommonExt
+  repeated StUserGameData data = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetReactiveFriendListReq.java ====
+message StGetReactiveFriendListReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetReactiveFriendListRsp.java ====
+message StGetReactiveFriendListRsp {
+  bytes ext = 1;  // was: StCommonExt
+  repeated FriendInfo list = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetUserCloudStorageReq.java ====
+message StGetUserCloudStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  repeated string keyList = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetUserCloudStorageRsp.java ====
+message StGetUserCloudStorageRsp {
+  bytes ext = 1;  // was: StCommonExt
+  repeated StKVData KVDataList = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetUserInteractiveStorageReq.java ====
+message StGetUserInteractiveStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  repeated string keyList = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StGetUserInteractiveStorageRsp.java ====
+message StGetUserInteractiveStorageRsp {
+  bytes ext = 1;  // was: StCommonExt
+  string encryptedData = 2;
+  repeated bytes iv = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StInteractiveTemplate.java ====
+message StInteractiveTemplate {
+  string action = 1;
+  string object = 2;
+  uint32 ratio = 3;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StKVData.java ====
+message StKVData {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StModifyFriendInteractiveStorageReq.java ====
+message StModifyFriendInteractiveStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  string toUser = 3;
+  string shareId = 4;
+  int32 opNum = 5;
+  string operation = 6;
+  repeated StKVData KVDataList = 7;
+  int32 version = 8;
+  int32 quiet = 9;
+  StInteractiveTemplate desc = 10;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StModifyFriendInteractiveStorageRsp.java ====
+message StModifyFriendInteractiveStorageRsp {
+  bytes ext = 1;  // was: StCommonExt
+  string details = 2;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StRemoveUserCloudStorageReq.java ====
+message StRemoveUserCloudStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  string openid = 3;
+  string accessToken = 4;
+  string signature = 5;
+  string sigMethod = 6;
+  repeated string keyList = 7;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StSetUserCloudStorageReq.java ====
+message StSetUserCloudStorageReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  string openid = 3;
+  string accessToken = 4;
+  string signature = 5;
+  string sigMethod = 6;
+  repeated StKVData KVDataList = 7;
+}
+
+// ==== source: NS_MINI_CLOUDSTORAGE/CloudStorage$StUserGameData.java ====
+message StUserGameData {
+  string avatarUrl = 1;
+  string nickname = 2;
+  string openid = 3;
+  repeated StKVData KVDataList = 4;
+}
+
+// ==== source: NS_MINI_FILE_MATERIAL/MiniAppFileMaterial$AppMaterialInfo.java ====
+message AppMaterialInfo {
+  string appid = 1;
+  string name = 2;
+  string icon = 3;
+  string desc = 4;
+  string path = 5;
+  repeated bytes vt = 6;
+}
+
+// ==== source: NS_MINI_FILE_MATERIAL/MiniAppFileMaterial$GetMaterialRelevantAppReq.java ====
+message GetMaterialRelevantAppReq {
+  string mime_type = 1;
+  string extra = 2;
+}
+
+// ==== source: NS_MINI_FILE_MATERIAL/MiniAppFileMaterial$GetMaterialRelevantAppRsp.java ====
+message GetMaterialRelevantAppRsp {
+  string title = 1;
+  repeated AppMaterialInfo relevant_list = 2;
+  bool hasMore = 3;
+  string extra = 4;
+}
+
+// ==== source: NS_MINI_GAME_BOX/MINI_GAME_BOX$QueryBoxOptionReq.java ====
+message QueryBoxOptionReq {
+  string app_id = 1;
+}
+
+// ==== source: NS_MINI_GAME_BOX/MINI_GAME_BOX$QueryBoxOptionRsp.java ====
+message QueryBoxOptionRsp {
+  bool is_display_open_btn = 1;
+}
+
+// ==== source: NS_MINI_GAME_BOX/MINI_GAME_BOX$SetBoxDisplayOptionReq.java ====
+message SetBoxDisplayOptionReq {
+  string appid = 1;
+  bool allow_display = 2;
+  int64 duration = 3;
+}
+
+// ==== source: NS_MINI_GAME_RAFFLE/GameRaffleInfo$Pack.java ====
+message Pack {
+  bytes pack_id = 1;
+  uint32 state = 2;
+  uint32 type = 3;
+  uint32 ctime = 4;
+  uint32 money = 5;
+  uint32 business_id = 6;
+  bytes signature = 7;
+  string url = 8;
+  uint32 mtime = 9;
+  string order = 10;
+  uint64 uin = 11;
+  uint64 send_uin = 12;
+  string wishing = 13;
+  uint32 promotion_id = 14;
+  string business_name = 15;
+  string business_logo = 16;
+  string business_cover = 17;
+  string business_video_cover = 18;
+  string business_video = 19;
+  string business_name_pic = 20;
+}
+
+// ==== source: NS_MINI_GAME_RAFFLE/GameRaffleInfo$StDoGameRaffleReq.java ====
+message StDoGameRaffleReq {
+  string appid = 1;
+  string uin = 2;
+}
+
+// ==== source: NS_MINI_GAME_RAFFLE/GameRaffleInfo$StDoGameRaffleRsp.java ====
+message StDoGameRaffleRsp {
+  int32 state = 1;
+  Pack pack = 2;
+  string onlinePrizeImg = 3;
+  uint32 active_id = 4;
+}
+
+// ==== source: NS_MINI_GAME_RAFFLE/GameRaffleInfo$StGetGameRaffleMaterialReq.java ====
+message StGetGameRaffleMaterialReq {
+  string appid = 1;
+  string uin = 2;
+}
+
+// ==== source: NS_MINI_GAME_RAFFLE/GameRaffleInfo$StGetGameRaffleMaterialRsp.java ====
+message StGetGameRaffleMaterialRsp {
+  int32 ret = 1;
+  string raffleImg = 2;
+  string shareImg = 3;
+  string shareBtn = 4;
+  string openedPackImg = 5;
+  string backBtn = 6;
+  string wishingImg = 7;
+  uint32 promotion_id = 8;
+  uint32 active_id = 9;
+  string watchAdBtn = 10;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$CommonInfo.java ====
+message CommonInfo {
+  uint32 scene_id = 1;
+  int32 model_type = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$Content.java ====
+message Content {
+  int32 type = 1;
+  bytes content = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$ControlInfo.java ====
+message ControlInfo {
+  bytes cookies = 1;
+  string namespace = 2;
+  string env = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$DeviceInfo.java ====
+message DeviceInfo_OS {
+  int32 type = 1;
+  string version = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$GetConfigReq.java ====
+message GetConfigReq {
+  CommonInfo common_info = 1;
+  repeated GroupInfo group_infos = 2;
+  DeviceInfo device_info = 3;
+  UserInfo user_info = 4;
+  ControlInfo control_info = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$GetConfigRsp.java ====
+message GetConfigRsp {
+  bytes ext_info = 1;
+  repeated bytes configs = 2;  // was: RespConfig
+  repeated string debug_msgs = 3;
+  RespControlInfo resp_control_info = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$GetMiniAppConfigReq.java ====
+message GetMiniAppConfigReq {
+  CommonInfo common_info = 1;
+  DeviceInfo device_info = 2;
+  UserInfo user_info = 3;
+  ControlInfo control_info = 4;
+  string appid = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$GetMiniAppConfigRsp.java ====
+message GetMiniAppConfigRsp_RespConfig {
+  string group = 1;
+  uint32 version = 2;
+  repeated Content contents = 3;
+}
+
+message GetMiniAppConfigRsp {
+  bytes ext_info = 1;
+  bytes resp_config = 2;  // was: RespConfig
+  RespControlInfo resp_control_info = 3;
+  MiniAppContainer pkg_info = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$GroupInfo.java ====
+message GroupInfo {
+  string group = 1;
+  string version = 2;
+  int32 compress = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$MainPkgInfo.java ====
+message MainPkgInfo {
+  string down_load_url = 1;
+  string version = 2;
+  string version_id = 3;
+  uint32 version_update_time = 4;
+  string version_type = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$MiniAppContainer.java ====
+message MiniAppContainer {
+  MainPkgInfo main_pkg_info = 1;
+  repeated SubPkgInfo sub_pkgs = 2;
+  string app_json = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$RespControlInfo.java ====
+message RespControlInfo {
+  bytes cookies = 1;
+  uint32 interval_reconnect = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$SubPkgInfo.java ====
+message SubPkgInfo {
+  string sub_pkg_name = 1;
+  string down_load_url = 2;
+  int32 independent = 3;
+  int32 file_size = 4;
+  string version = 5;
+  string version_id = 6;
+  string main_pack_version = 7;
+  string version_type = 8;
+  string prefetch_config = 9;
+}
+
+// ==== source: NS_MINI_INTERFACE/CONTAINER_INTERFACE$TabRule.java ====
+message TabRule {
+  string experiment_id = 1;
+  string group_id = 2;
+  string experiment_param = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/GAME_HALL_AUTH$GetGameDataAuthRsp.java ====
+message GetGameDataAuthRsp {
+  int32 auth_status = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/GAME_HALL_AUTH$SetGameDataAuthReq.java ====
+message SetGameDataAuthReq {
+  int32 auth_status = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/GAME_HALL_AUTH$SetGameDataAuthRsp.java ====
+message SetGameDataAuthRsp {
+  // (no fields resolved)
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$AdInfo.java ====
+message AdInfo {
+  bytes ams_info = 1;  // was: AmsInfo
+  string host_scene = 2;
+  double final_score = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$AddRecentPlayReq.java ====
+message AddRecentPlayReq {
+  string appid = 1;
+  int32 versionType = 2;
+  int64 timestamp = 3;
+  int32 source = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$AddRecentPlayRsp.java ====
+message AddRecentPlayRsp {
+  // (no fields resolved)
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$AppCategories.java ====
+message AppCategories {
+  string first = 1;
+  string second = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$AppUniq.java ====
+message AppUniq {
+  string appid = 1;
+  int32 ver_type = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$CommContentSetRsp.java ====
+message CommContentSetRsp {
+  string err_msg = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$DelFreqUseReq.java ====
+message DelFreqUseReq {
+  string appid = 1;
+  int32 ver_type = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetGuildInviteCodeReq.java ====
+message GetGuildInviteCodeReq {
+  string guild_id = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetGuildInviteCodeRsp.java ====
+message GetGuildInviteCodeRsp {
+  string invite_url = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetJoinGuildSigReq.java ====
+message GetJoinGuildSigReq {
+  string guild_id = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetJoinGuildSigRsp.java ====
+message GetJoinGuildSigRsp {
+  repeated bytes bytes_join_guild_sig = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetPrivacyInfoRequest.java ====
+message GetPrivacyInfoRequest {
+  string appid = 1;
+  string privacy_api = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetPrivacyInfoResponse.java ====
+message GetPrivacyInfoResponse {
+  int32 ret_code = 1;
+  int32 need_pop_out = 2;
+  PrivacyInfo privacy_info = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetUserRoleGroupReq.java ====
+message GetUserRoleGroupReq {
+  string guild_openid = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetUserRoleGroupRsp.java ====
+message GetUserRoleGroupRsp {
+  repeated RoleGroupInfo roles = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetWXAppInfoReply.java ====
+message GetWXAppInfoReply {
+  int32 retCode = 1;
+  string appIcon = 2;
+  string appAliasName = 3;
+  string appName = 4;
+  string appDesc = 5;
+  string appRegisterInfo = 6;
+  repeated AppCategories appCategories = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetWXAppInfoRequest.java ====
+message GetWXAppInfoRequest {
+  string appid = 1;
+  string userName = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetWXAppURLReply.java ====
+message GetWXAppURLReply {
+  int32 retCode = 1;
+  repeated bytes URL = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GetWXAppURLRequest.java ====
+message GetWXAppURLRequest {
+  string code = 1;
+  int32 codeType = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$GuardInstruction.java ====
+message GuardInstruction {
+  int32 type = 1;
+  string title = 2;
+  repeated bytes msg = 3;
+  string url = 4;
+  int32 modal = 5;
+  string data = 6;
+  double ratio = 7;
+  string ruleName = 8;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$MiniGameBox.java ====
+message MiniGameBox {
+  bool display = 1;
+  string iconURL = 2;
+  string iconTitle = 3;
+  string pageTitle = 4;
+  string jumpURL = 5;
+  string taskURL = 6;
+  MiniGameBoxRedDot redDot = 7;
+  int64 displayDuration = 8;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$MiniGameBoxRedDot.java ====
+message MiniGameBoxRedDot {
+  bool display = 1;
+  uint32 adID = 2;
+  uint32 adPosID = 3;
+  string traceInfo = 4;
+  string ext = 5;
+  uint32 source = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$MiniGameFloat.java ====
+message MiniGameFloat {
+  StApiAppInfo appInfo = 1;
+  string schema = 2;
+  bool display = 3;
+  string via = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$MiniGamePopup.java ====
+message MiniGamePopup {
+  repeated PopupInfo infos = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$PopupInfo.java ====
+message PopupInfo {
+  string appid = 1;
+  int64 popupType = 2;
+  string title = 3;
+  string popupContent = 4;
+  bool enableGame = 5;
+  bytes extInfo = 6;  // was: StCommonExt
+  string button_txt = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$PrivacyInfo.java ====
+message PrivacyInfo {
+  string name = 1;
+  string url = 2;
+  string authority = 3;
+  string service_terms_name = 4;
+  string service_terms_url = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$RoleGroupInfo.java ====
+message RoleGroupInfo {
+  uint64 role_id = 1;
+  string role_name = 2;
+  uint64 role_color = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$SetWXAppInfoReply.java ====
+message SetWXAppInfoReply {
+  int32 retCode = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$SetWXAppInfoRequest.java ====
+message SetWXAppInfoRequest {
+  WXAppInfo wxAppInfo = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$SetWXAppURLReply.java ====
+message SetWXAppURLReply {
+  int32 retCode = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$SetWXAppURLRequest.java ====
+message SetWXAppURLRequest {
+  URLMap URLMap = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAddPhoneNumberReq.java ====
+message StAddPhoneNumberReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string purePhoneNumber = 3;
+  string countryCode = 4;
+  int32 isSave = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAddPhoneNumberRsp.java ====
+message StAddPhoneNumberRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string encryptedData = 2;
+  repeated bytes iv = 3;
+  string countryCode = 4;
+  string purePhoneNumber = 5;
+  string phoneNumberID = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAddressInfo.java ====
+message StAddressInfo {
+  string country = 1;
+  string province = 2;
+  string city = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StApiAppInfo.java ====
+message StApiAppInfo_StGameCenterInfo {
+  repeated bytes bg = 1;
+}
+
+message StApiAppInfo {
+  string appId = 1;
+  string appName = 2;
+  string icon = 3;
+  string donwLoadUrl = 4;
+  string version = 5;
+  string desc = 6;
+  repeated StPublicAccount pubAccts = 7;
+  int32 type = 8;
+  string baselibMiniVersion = 9;
+  repeated StSubPkgInfo subPkgs = 10;
+  StFirstPage first = 11;
+  StDomainConfig domain = 12;
+  uint32 appType = 13;
+  StMDebugInfo mDebug = 14;
+  string versionId = 15;
+  StApiRightController apiRight = 16;
+  repeated StAppDataCache dataCache = 17;
+  StMainPageExtInfo mainExt = 18;
+  StDeveloperInfo devInfo = 19;
+  string extData = 20;
+  bytes extGameCenter = 21;  // was: StGameCenterInfo
+  int32 isRecommend = 22;
+  repeated uint64 serviceCategory = 23;
+  int32 supportOffline = 24;
+  StAppMode appMode = 25;
+  StOperationInfo operInfo = 26;
+  int32 skipDomainCheck = 27;
+  bytes extInfo = 28;  // was: StCommonExt
+  string extendData = 29;
+  string tags = 30;
+  repeated StExtConfigInfo extConfig = 31;
+  StAppFixInfoExt appNoCacheExt = 32;
+  StAppBasicInfo basicInfo = 33;
+  int32 tabIndex = 34;
+  int32 miniAppType = 36;
+  StAppPkgInfo pkgInfo = 37;
+  repeated bytes video_info = 38;
+  repeated StAppMediaInfo coverInfo = 39;
+  string schema = 40;
+  repeated uint64 loopIcons = 42;
+  string appJson = 6515;
+  int32 isContainer = 6869;
+  int32 auditState = 45;
+  uint32 releaseState = 46;
+  StRegistrationInfo registrationInfo = 48;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StApiAppMoreInfo.java ====
+message StApiAppMoreInfo_StAppInfo {
+  string appid = 1;
+  string appSecret = 2;
+  string developerId = 3;
+  string appname = 4;
+  string appIcon = 5;
+  string appDesc = 6;
+  repeated string serviceCategory = 7;
+  string baselibMiniVersion = 8;
+}
+
+message StApiAppMoreInfo_StDeveloperInfo {
+  string developerId = 1;
+  uint32 createTimestamp = 2;
+  uint32 updateTimestamp = 3;
+  string email = 4;
+  uint32 type = 5;
+  uint32 auditState = 6;
+  uint32 IDType = 7;
+  string IDName = 8;
+  string IDNum = 9;
+  string IDImg = 10;
+  string contactPhoneNum = 11;
+  string contactAddress = 12;
+  repeated bytes administratorInfo = 13;
+  uint32 appNum = 14;
+}
+
+message StApiAppMoreInfo_StAdministratorInfo {
+  string uin = 1;
+  string IDName = 2;
+  string IDNum = 3;
+  string phoneNum = 4;
+}
+
+message StApiAppMoreInfo_StServerDomainInfo {
+  string appid = 1;
+  repeated uint64 requestDomain = 2;
+  repeated uint64 socketDomain = 3;
+  repeated uint64 uploadFileDomain = 4;
+  repeated uint64 downloadFileDomain = 5;
+  uint32 createTimestamp = 6;
+  uint32 updateTimestamp = 7;
+}
+
+message StApiAppMoreInfo {
+  bytes appInfo = 1;  // was: StAppInfo
+  StDeveloperInfo developerInfo = 2;
+  bytes serverDomainInfo = 3;  // was: StServerDomainInfo
+  uint32 updateTime = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StApiRightController.java ====
+message StApiRightController {
+  repeated uint64 whiteLst = 1;
+  repeated uint64 blackLst = 2;
+  repeated StApiRightItem secondApiRights = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StApiRightItem.java ====
+message StApiRightItem {
+  string apiName = 1;
+  string secondName = 2;
+  int32 right = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StApiUserInfo.java ====
+message StApiUserInfo {
+  string nick = 1;
+  string avatar = 2;
+  int32 gender = 3;
+  StAddressInfo address = 4;
+  string language = 5;
+  string openid = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppBasicInfo.java ====
+message StAppBasicInfo {
+  string operationTags = 1;
+  int32 feiqiziduan = 2;
+  int64 usrFileSizeLimit = 3;
+  repeated StAppPreCacheInfo preCacheList = 4;
+  uint32 versionUpdateTime = 5;
+  int32 noNeedRealRecommend = 6;
+  StPluginInfo pluginInfo = 7;
+  uint32 pkgType = 8;
+  StRenderInfo renderInfo = 9;
+  repeated string qualificationInfo = 10;
+  string shareId = 11;
+  string via = 12;
+  StIdeConfig ideConfig = 13;
+  repeated StResourcePreCacheInfo resourcePreCacheList = 14;
+  uint32 splashScreenAd = 15;
+  string splashScreenAdId = 16;
+  uint32 template = 17;
+  StGamePublicationInfo gamePublicationInfo = 18;
+  string gameCopyrightInfo = 19;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppDataCache.java ====
+message StAppDataCache {
+  string wnsCgiUrl = 1;
+  string cacheKey = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppFixInfoExt.java ====
+message StAppFixInfoExt {
+  int32 clearAuths = 1;
+  string prepayId = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppMediaInfo.java ====
+message StAppMediaInfo {
+  int32 type = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+  repeated bytes URL = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppMode.java ====
+message StAppMode {
+  bool interMode = 1;
+  bool authoritySilent = 2;
+  bool keepOffPullList = 3;
+  bool closeTopRightCapsule = 4;
+  bool openNativeApi = 5;
+  bool hideAppSearch = 6;
+  bool isAppStore = 7;
+  bool isWangKa = 8;
+  bool interLoading = 9;
+  bool closeWebviewBounce = 10;
+  bool isLimitedAccess = 11;
+  bool isPayForFriend = 12;
+  bool useAppInfoWhenNavigate = 13;
+  bool disableAddToMyApp = 14;
+  bool disableAddToMyFavor = 15;
+  bool reloadWithFirstPageChange = 16;
+  bool unlimitedApiRight = 17;
+  bool disableShareToAIO = 18;
+  bool disableShareToQZone = 19;
+  bool disableShareToWeChat = 20;
+  bool disableShareToGuild = 21;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppPath.java ====
+message StAppPath {
+  string appid = 1;
+  string path = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppPkgInfo.java ====
+message StAppPkgInfo {
+  string name = 1;
+  int32 isMultiLogin = 2;
+  int32 isSupportPay = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppPreCacheInfo.java ====
+message StAppPreCacheInfo {
+  string getDataUrl = 1;
+  string preCacheKey = 2;
+  int64 expireTime = 3;
+  int32 cacheType = 4;
+  int32 useProxy = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppVersionId.java ====
+message StAppVersionId {
+  string appId = 1;
+  string versionId = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StAppVideoInfo.java ====
+message StAppVideoInfo {
+  StAppMediaInfo video = 1;
+  repeated StAppMediaInfo pics = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBaseLibInfo.java ====
+message StBaseLibInfo {
+  string version = 1;
+  string downloadUrl = 2;
+  int32 libType = 3;
+  string extInfo = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetContactReq.java ====
+message StBatchGetContactReq {
+  repeated string appids = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetPluginPkgReq.java ====
+message StBatchGetPluginPkgReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StPluginPkgInfo pluginPkgInfos = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetPluginPkgRsp.java ====
+message StBatchGetPluginPkgRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StPluginPkgInfo pluginPkgInfos = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetSchemaReq.java ====
+message StBatchGetSchemaReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StSchemeParam params = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetSchemaRsp.java ====
+message StBatchGetSchemaRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetUserInfoReq.java ====
+message StBatchGetUserInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string lang = 3;
+  repeated string openIds = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchGetUserInfoRsp.java ====
+message StBatchGetUserInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StApiUserInfo user = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchQueryAppInfoByPathReq.java ====
+message StBatchQueryAppInfoByPathReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StAppPath appPaths = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchQueryAppInfoByPathRsp.java ====
+message StBatchQueryAppInfoByPathRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StApiAppInfo appInfos = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchQueryAppInfoReq.java ====
+message StBatchQueryAppInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string appIds = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StBatchQueryAppInfoRsp.java ====
+message StBatchQueryAppInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StApiAppInfo appInfos = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCacheController.java ====
+message StCacheController {
+  StApiAppInfo appInfo = 1;
+  int32 cachePkg = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckBindingStateReq.java ====
+message StCheckBindingStateReq {
+  string appId = 1;
+  string uid = 2;
+  int32 bindType = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckBindingStateRsp.java ====
+message StCheckBindingStateRsp {
+  int32 bindingState = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckDownloadRightReq.java ====
+message StCheckDownloadRightReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string link = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckDownloadRightRsp.java ====
+message StCheckDownloadRightRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string realLink = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckNavigateRightReq.java ====
+message StCheckNavigateRightReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string targetAppId = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckNavigateRightRsp.java ====
+message StCheckNavigateRightRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 actionCode = 2;
+  int32 skipLocalCheck = 3;
+  string wording = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCheckSessionReq.java ====
+message StCheckSessionReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StClearAppCountReq.java ====
+message StClearAppCountReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  int32 countType = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StClearAuthsReq.java ====
+message StClearAuthsReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StClearAuthsRsp.java ====
+message StClearAuthsRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StClearUniformAuthReq.java ====
+message StClearUniformAuthReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string wxAppids = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCode2SessionKeyReq.java ====
+message StCode2SessionKeyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string secret = 3;
+  string jsCode = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCode2SessionKeyRsp.java ====
+message StCode2SessionKeyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes ret = 2;  // was: Result
+  string openid = 3;
+  string sessionKey = 4;
+  string unionid = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StContactInfo.java ====
+message StContactInfo {
+  string appId = 1;
+  repeated StPluginDetail plugin_list = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StContentAccelerateReq.java ====
+message StContentAccelerateReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string dataUrl = 3;
+  int32 needCode = 4;
+  repeated bytes reqHeaders = 5;  // was: Entry
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StContentAccelerateRsp.java ====
+message StContentAccelerateRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes rspHeaders = 2;  // was: Entry
+  bytes cacheData = 3;
+  int32 httpReturnCode = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCreateUpdatableMsgReq.java ====
+message StCreateUpdatableMsgReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  StUpdatableMsgShareInfo shareInfo = 3;
+  string templateId = 4;
+  uint32 from = 5;
+  uint32 serviceType = 6;
+  bytes sig = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StCurrChannelInfo.java ====
+message StCurrChannelInfo {
+  string refer = 1;
+  string via = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDelPhoneNumbersReq.java ====
+message StDelPhoneNumbersReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string purePhoneNumber = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDelPhoneNumbersRsp.java ====
+message StDelPhoneNumbersRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDelUserAppReq.java ====
+message StDelUserAppReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  int32 verType = 3;
+  int32 isRecommend = 4;
+  int32 source = 5;
+  int32 noDelTop = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDelUserAppRsp.java ====
+message StDelUserAppRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDeleteUserAuthReq.java ====
+message StDeleteUserAuthReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDeleteUserAuthRsp.java ====
+message StDeleteUserAuthRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDeveloperInfo.java ====
+message StDeveloperInfo {
+  string name = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDomainConfig.java ====
+message StDomainConfig {
+  repeated uint64 requestDomain = 1;
+  repeated uint64 socketDomain = 2;
+  repeated uint64 uploadFileDomain = 3;
+  repeated uint64 downloadFileDomain = 4;
+  repeated uint64 businessDomain = 5;
+  repeated uint64 udpIpList = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StDownLoadUrl.java ====
+message StDownLoadUrl {
+  string fileid = 1;
+  string url = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StExampleDetail.java ====
+message StExampleDetail {
+  string title = 1;
+  repeated bytes contents = 2;  // was: Entry
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StExpandItem.java ====
+message StExpandItem {
+  StApiAppInfo appInfo = 1;
+  string icon = 2;
+  string name = 3;
+  uint32 adId = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StExtConfigInfo.java ====
+message StExtConfigInfo {
+  string configKey = 1;
+  string configVersion = 2;
+  bytes dataBuf = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StFirstPage.java ====
+message StFirstPage {
+  string pagePath = 1;
+  string subPkgName = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StFriendRanking.java ====
+message StFriendRanking {
+  StUserAppInfo gameInfo = 1;
+  int32 friendsNum = 2;
+  repeated StRankingList rankingList = 3;
+  int32 hasmore = 4;
+  string animationPic = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGamePublicationInfo.java ====
+message StGamePublicationInfo {
+  string gamePublicationNumber = 1;
+  string gamePublicationCommpany = 2;
+  string gameApprovalNumber = 3;
+  string gameOperatingCompany = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGenTaskTicketReq.java ====
+message StGenTaskTicketReq {
+  string appid = 1;
+  uint32 taskID = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGenTaskTicketRsp.java ====
+message StGenTaskTicketRsp {
+  string ticket = 1;
+  uint32 taskID = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppBindingInfoReq.java ====
+message StGetAppBindingInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppBindingInfoRsp.java ====
+message StGetAppBindingInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string binding_appid = 2;
+  string app_name = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppInfoByIdReq.java ====
+message StGetAppInfoByIdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  int32 needVersionInfo = 3;
+  int32 checkDevRight = 4;
+  string firstPath = 5;
+  string envVersion = 6;
+  string fromAppid = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppInfoByIdRsp.java ====
+message StGetAppInfoByIdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StApiAppInfo appInfo = 2;
+  bool needGuardianAuth = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppInfoByLinkReq.java ====
+message StGetAppInfoByLinkReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string link = 2;
+  int32 linkType = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAppInfoByLinkRsp.java ====
+message StGetAppInfoByLinkRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StApiAppInfo appInfo = 2;
+  string shareTicket = 3;
+  bool needGuardianAuth = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAuthListReq.java ====
+message StGetAuthListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAuthListRsp.java ====
+message StGetAuthListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StUserAuthInfo auths = 2;
+  repeated StUserSettingInfo settings = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAuthStateReq.java ====
+message StGetAuthStateReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string scope = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetAuthStateRsp.java ====
+message StGetAuthStateRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StUserAuthInfo auth = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetCodeOfRelatedMobileGameReq.java ====
+message StGetCodeOfRelatedMobileGameReq {
+  string appid = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetCodeOfRelatedMobileGameRsp.java ====
+message StGetCodeOfRelatedMobileGameRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string code = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetCodeReq.java ====
+message StGetCodeReq {
+  string appid = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetCodeRsp.java ====
+message StGetCodeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string code = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetDownLoadUrlReq.java ====
+message StGetDownLoadUrlReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string fileids = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetDownLoadUrlRsp.java ====
+message StGetDownLoadUrlRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StDownLoadUrl urls = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetDropdownAppListReq.java ====
+message StGetDropdownAppListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StRecommendApp oldRecommendList = 2;
+  int32 feiqi = 3;
+  repeated uint64 types = 4;
+  int32 hasCache = 5;
+  DeviceInfo deviceInfo = 6;
+  repeated uint64 subTypes = 7;
+  repeated string itemIds = 8;
+  string tab_exp_id = 9;
+  string ams_device_info = 10;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetDropdownAppListRsp.java ====
+message StGetDropdownAppListRsp_StSearchModuleInfo {
+  repeated bytes searchApp = 1;
+  repeated string keywords = 2;
+}
+
+message StGetDropdownAppListRsp_StOperationApp {
+  repeated bytes app = 1;
+  string name = 2;
+  string icon = 3;
+  string nightIcon = 4;
+}
+
+message StGetDropdownAppListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StModuleInfo modules = 2;
+  repeated StCacheController cacheLst = 3;
+  int32 showStore = 4;
+  int32 showUserAppList = 5;
+  repeated StUserAppInfo fixApps = 6;
+  int32 isFinished = 7;
+  int32 freshInternal = 8;
+  int32 realRecommdInternal = 9;
+  bytes searchInfo = 10;  // was: StSearchModuleInfo
+  int32 useOld = 11;
+  bytes operationApp = 12;  // was: StOperationApp
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetExpandAppListReq.java ====
+message StGetExpandAppListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetExpandAppListRsp.java ====
+message StGetExpandAppListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string expandTitle = 2;
+  repeated StExpandItem expandItemList = 3;
+  uint32 totalNum = 4;
+  uint32 cacheTime = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetExtConfigDetailReq.java ====
+message StGetExtConfigDetailReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StExtConfigInfo configs = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetExtConfigDetailRsp.java ====
+message StGetExtConfigDetailRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StExtConfigInfo configs = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetFormIdReq.java ====
+message StGetFormIdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetFormIdRsp.java ====
+message StGetFormIdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string formId = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetNAppForJumpReq.java ====
+message StGetNAppForJumpReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes appid = 2;
+  string native_appid = 3;
+  string android_pkg_name = 4;
+  string ios_bundleid = 5;
+  int32 scene = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetNAppForJumpRsp.java ====
+message StGetNAppForJumpRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string native_appid = 2;
+  string ios_bundleid = 3;
+  string ios_schema = 4;
+  string appName = 5;
+  string android_pkg = 6;
+  string ios_donwload_url = 7;
+  int32 onlyOpen = 8;
+  string android_donwload_url = 9;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetNewBaseLibReq.java ====
+message StGetNewBaseLibReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string curVersion = 2;
+  int32 type = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetNewBaseLibRsp.java ====
+message StGetNewBaseLibRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StBaseLibInfo libInfo = 2;
+  int32 interval = 3;
+  repeated StBaseLibInfo jsOrsoLibs = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetOpenidByUinReq.java ====
+message StGetOpenidByUinReq {
+  bytes ext = 1;  // was: StCommonExt
+  string appid = 2;
+  string uin = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetOpenidByUinRsp.java ====
+message StGetOpenidByUinRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string openid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetPhoneNumberReq.java ====
+message StGetPhoneNumberReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetPhoneNumberRsp.java ====
+message StGetPhoneNumberRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string purePhoneNumber = 2;
+  string countryCode = 3;
+  string encryptedData = 4;
+  repeated bytes iv = 5;
+  repeated StPhoneNumber phoneLists = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetProfileReq.java ====
+message StGetProfileReq {
+  string appid = 1;
+  int32 withCredentials = 2;
+  string lang = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetProfileRsp.java ====
+message StGetProfileRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StApiUserInfo user = 2;
+  string rawData = 3;
+  string signature = 4;
+  string encryptedData = 5;
+  repeated bytes iv = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetRecommendAppListReq.java ====
+message StGetRecommendAppListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  int32 verType = 3;
+  double useTime = 4;
+  repeated StRecommendApp oldRecommendList = 5;
+  DeviceInfo deviceInfo = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetRobotUinReq.java ====
+message StGetRobotUinReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetRobotUinRsp.java ====
+message StGetRobotUinRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uin = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSDKOpenKeyTokenReq.java ====
+message StGetSDKOpenKeyTokenReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSDKOpenKeyTokenRsp.java ====
+message StGetSDKOpenKeyTokenRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string token = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSchemaReq.java ====
+message StGetSchemaReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes appid = 2;
+  string path = 3;
+  string sig_querystring = 4;
+  string querystring = 5;
+  string extradata = 6;
+  int32 versionType = 7;
+  string versionId = 8;
+  string referer = 9;
+  string via = 10;
+  string scene = 11;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSchemaRsp.java ====
+message StGetSchemaRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string schema = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSwitchListReq.java ====
+message StGetSwitchListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetSwitchListRsp.java ====
+message StGetSwitchListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StSwitchInfo switchs = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetTCBTicketReq.java ====
+message StGetTCBTicketReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string envId = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetTCBTicketRsp.java ====
+message StGetTCBTicketRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string ticket = 2;
+  uint32 createTime = 3;
+  uint32 period = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetTeenagerConfigReq.java ====
+message StGetTeenagerConfigReq {
+  string extInfo = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetTeenagerConfigRsp.java ====
+message StGetTeenagerConfigRsp {
+  repeated string appIDs = 1;
+  uint32 frequencySwitch = 2;
+  uint32 timeInterval = 3;
+  string extInfo = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUinByOpenidReq.java ====
+message StGetUinByOpenidReq {
+  bytes ext = 1;  // was: StCommonExt
+  string openid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUinByOpenidRsp.java ====
+message StGetUinByOpenidRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string uin = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUniformAuthListRsp.java ====
+message StGetUniformAuthListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StApiAppInfo appInfos = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUniformAuthReq.java ====
+message StGetUniformAuthReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string wxAppid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUniformAuthRsp.java ====
+message StGetUniformAuthRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StUniformAuthInfo authInfo = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppInfoReq.java ====
+message StGetUserAppInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string appIds = 2;
+  int32 verType = 3;
+  repeated StAppVersionId versionIds = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppInfoRsp.java ====
+message StGetUserAppInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StUserAppInfo userAppList = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppListReq.java ====
+message StGetUserAppListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint64 uin = 2;
+  uint64 num = 3;
+  int32 source = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppListRsp.java ====
+message StGetUserAppListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StUserAppInfo userAppList = 2;
+  int64 totalNum = 3;
+  int32 isFinish = 4;
+  repeated StCacheController cacheLst = 5;
+  int32 showStore = 6;
+  uint32 putTopCount = 7;
+  int32 showUserAppList = 8;
+  repeated StUserAppInfo fixApps = 9;
+  repeated StMotionPicInfo motionPics = 10;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppMoreInfoReq.java ====
+message StGetUserAppMoreInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string appIds = 2;
+  int32 verType = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserAppMoreInfoRsp.java ====
+message StGetUserAppMoreInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StApiAppMoreInfo appMoreInfoList = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserGroupInfoReq.java ====
+message StGetUserGroupInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string groupId = 2;
+  string appid = 3;
+  int64 groupClass = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserGroupInfoRsp.java ====
+message StGetUserGroupInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userGroupInfo = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserHealthDataReq.java ====
+message StGetUserHealthDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserHealthDataRsp.java ====
+message StGetUserHealthDataRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string encryptedData = 3;
+  repeated bytes iv = 4;
+  string cloudID = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserInfoExtraReq.java ====
+message StGetUserInfoExtraReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserInfoExtraRsp.java ====
+message StGetUserInfoExtraRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string encryptedData = 2;
+  repeated bytes iv = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserSettingReq.java ====
+message StGetUserSettingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string openid = 3;
+  string settingItem = 4;
+  repeated string templateIds = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetUserSettingRsp.java ====
+message StGetUserSettingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StUserSettingInfo setting = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetWeixinSDKAppInfoReq.java ====
+message StGetWeixinSDKAppInfoReq {
+  string code = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StGetWeixinSDKAppInfoRsp.java ====
+message StGetWeixinSDKAppInfoRsp {
+  StWeixinSDKAppInfo appInfo = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StIdeConfig.java ====
+message StIdeConfig {
+  string scene = 1;
+  string extraAppid = 2;
+  string extraData = 3;
+  StStartExtInfo startExtInfo = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StJudgeTimingReq.java ====
+message StJudgeTimingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  int32 factType = 3;
+  int32 duration = 4;
+  int64 reportTime = 5;
+  int32 afterCertify = 6;
+  int32 appType = 7;
+  int32 scene = 8;
+  int32 totalTime = 9;
+  string launchId = 10;
+  string via = 11;
+  int32 AdsTotalTime = 12;
+  string hostExtInfo = 13;
+  string sourceID = 14;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StJudgeTimingRsp.java ====
+message StJudgeTimingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string timingTraceId = 2;
+  int32 nextDuration = 3;
+  repeated GuardInstruction loginInstructions = 4;
+  string loginTraceId = 5;
+  repeated GuardInstruction timingInstructions = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StLaunchAppReq.java ====
+message StLaunchAppReq {
+  string appid = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StLaunchAppRsp.java ====
+message StLaunchAppRsp {
+  MiniGameBox miniGameBox = 1;
+  MiniGameFloat miniGameFloat = 2;
+  MiniGamePopup miniGamePopup = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StMDebugInfo.java ====
+message StMDebugInfo {
+  string roomId = 1;
+  string wsUrl = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StMainPageExtInfo.java ====
+message StMainPageExtInfo {
+  int32 file_size = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StModuleInfo.java ====
+message StModuleInfo_StExpressService {
+  repeated StUserAppInfo topApps = 1;
+  repeated StUserAppInfo normalApps = 2;
+  repeated bytes more = 3;
+  int32 normalAppRows = 4;
+}
+
+message StModuleInfo {
+  string title = 1;
+  repeated StUserAppInfo userAppList = 2;
+  int32 moduleType = 3;
+  int32 useOld = 4;
+  StUserAppInfo jumpMoreApp = 5;
+  int32 isFinished = 6;
+  int32 appTotalNum = 7;
+  string desc = 8;
+  repeated StFriendRanking ranks = 9;
+  int32 freshInternal = 10;
+  string titleIcon = 11;
+  string backgroundPic = 12;
+  string dittoDsl = 13;
+  int32 subTypes = 14;
+  string jumpLink = 15;
+  int32 PopupType = 16;
+  bytes extInfo = 17;  // was: StCommonExt
+  bytes expressService = 18;  // was: StExpressService
+  StUsageGuideStyle usageGuide = 19;
+  StModuleLayout layout = 20;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StModuleLayout.java ====
+message StModuleLayout {
+  uint32 direction = 1;
+  string aggregate = 2;
+  uint32 displayRows = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StMotionPicInfo.java ====
+message StMotionPicInfo {
+  string pic = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StOperationInfo.java ====
+message StOperationInfo_StRecommendInfo {
+  string itemId = 1;
+  string recomTrace = 2;
+}
+
+message StOperationInfo {
+  string reportData = 1;
+  string amsAdInfo = 2;
+  uint32 tianshuAdId = 3;
+  bytes recommend = 4;  // was: StRecommendInfo
+  TagInfo tagInfo = 5;
+  repeated TagInfo tagInfos = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPhoneNumber.java ====
+message StPhoneNumber {
+  int32 phoneType = 1;
+  string purePhoneNumber = 2;
+  string countryCode = 3;
+  string encryptedData = 4;
+  repeated bytes iv = 5;
+  string phoneNumberID = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPlugin.java ====
+message StPlugin {
+  string plugin_id = 1;
+  string inner_version = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPluginDetail.java ====
+message StPluginDetail_StPluginNetWork {
+  repeated uint64 RequestDomain = 1;
+  repeated uint64 UploadDomain = 2;
+  repeated uint64 DownloadDomain = 3;
+  repeated uint64 BizDomain = 4;
+  repeated uint64 UDPDomain = 5;
+  repeated uint64 WsRequestDomain = 6;
+}
+
+message StPluginDetail_StLastVersion {
+  string custom_version = 1;
+  string inner_version = 2;
+  uint32 release_time = 3;
+  string source_md5 = 4;
+  uint32 source_size = 5;
+}
+
+message StPluginDetail {
+  bytes PluginNetWork = 1;  // was: StPluginNetWork
+  string brandiconurl = 2;
+  string headimgurl = 3;
+  repeated bytes id = 4;
+  bytes last_version = 5;  // was: StLastVersion
+  string nickname = 6;
+  string signature = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPluginInfo.java ====
+message StPluginInfo {
+  string pluginId = 1;
+  string pluginName = 2;
+  string version = 3;
+  string url = 4;
+  int32 fileSize = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPluginPkgInfo.java ====
+message StPluginPkgInfo {
+  string pluginId = 1;
+  string version = 2;
+  string pkgUrl = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPluginProfile.java ====
+message StPluginProfile {
+  string plugin_id = 1;
+  repeated uint64 download_domain = 2;
+  repeated uint64 request_domain = 3;
+  repeated uint64 wsrequest_domain = 4;
+  repeated uint64 upload_domain = 5;
+  string host_sign = 6;
+  string noncestr = 7;
+  uint32 timestamp = 8;
+  uint32 running_flag_info = 9;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StPublicAccount.java ====
+message StPublicAccount {
+  repeated bytes id = 1;
+  string name = 2;
+  string icon = 3;
+  string desc = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRankingList.java ====
+message StRankingList {
+  string nick = 1;
+  string avatar = 2;
+  int32 ranks = 3;
+  int32 score = 4;
+  string unit = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRecommendApp.java ====
+message StRecommendApp {
+  string appId = 1;
+  int32 exposuredNum = 2;
+  int64 pullTime = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRegistrationInfo.java ====
+message StRegistrationInfo {
+  string registrationNumber = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRejectFrequentlyRecommendsReq.java ====
+message StRejectFrequentlyRecommendsReq {
+  string appID = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRenderInfo.java ====
+message StRenderInfo {
+  int32 renderMode = 1;
+  repeated StRenderMaterial renderMaterials = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StRenderMaterial.java ====
+message StRenderMaterial {
+  int32 renderMode = 1;
+  string downloadUrl = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StReportExecuteReq.java ====
+message StReportExecuteReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string instrTraceId = 3;
+  int32 execTime = 4;
+  string ruleName = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StReportLogFileReq.java ====
+message StReportLogFileReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string fileUrl = 3;
+  int32 fileSize = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StReportLogFileRsp.java ====
+message StReportLogFileRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StReportShareReq.java ====
+message StReportShareReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int64 reportTime = 2;
+  string appid = 3;
+  int32 appType = 4;
+  uint32 shareScene = 5;
+  uint32 shareType = 6;
+  uint32 destType = 7;
+  string destId = 8;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StReportShareRsp.java ====
+message StReportShareRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StResourcePreCacheInfo.java ====
+message StResourcePreCacheInfo {
+  string getDataUrl = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSchemeParam.java ====
+message StSchemeParam {
+  repeated bytes appid = 1;
+  string path = 2;
+  string sig_querystring = 3;
+  string querystring = 4;
+  string extradata = 5;
+  int32 versionType = 6;
+  string versionId = 7;
+  string referer = 8;
+  string via = 9;
+  string scene = 10;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSchemeResult.java ====
+message StSchemeResult {
+  repeated bytes appid = 1;
+  string schema = 2;
+  int32 ret = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetAuthsReq.java ====
+message StSetAuthsReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  repeated StUserAuthInfo auths = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetAuthsRsp.java ====
+message StSetAuthsRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetEnbalePushReq.java ====
+message StSetEnbalePushReq {
+  string appid = 1;
+  uint32 enablePush = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetEnbalePushRsp.java ====
+message StSetEnbalePushRsp {
+  uint32 enablePush = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUniformAuthReq.java ====
+message StSetUniformAuthReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string wxAppid = 2;
+  repeated StUniformAuthItem authInfos = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAppLikeReq.java ====
+message StSetUserAppLikeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  uint32 doLike = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAppLikeRsp.java ====
+message StSetUserAppLikeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAppTopReq.java ====
+message StSetUserAppTopReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  uint32 putTop = 3;
+  int32 verType = 4;
+  int32 oldIdx = 5;
+  int32 newIdx = 6;
+  int32 fromNewDownload = 7;
+  repeated AppUniq appids = 8;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAppTopRsp.java ====
+message StSetUserAppTopRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAvatarReq.java ====
+message StSetUserAvatarReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string uin = 3;
+  int32 set_type = 4;
+  string item_id = 5;
+  string busi_info = 6;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserAvatarRsp.java ====
+message StSetUserAvatarRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSetUserSwitchReq.java ====
+message StSetUserSwitchReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string key = 2;
+  int32 value = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSplitPkgInfo.java ====
+message StSplitPkgInfo {
+  string subPkgName = 1;
+  string fileId = 2;
+  int32 independent = 3;
+  repeated string pages = 4;
+  int32 file_size = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StStartExtInfo.java ====
+message StStartExtInfo {
+  int32 deviceOrientation = 1;
+  int32 showStatusBar = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSubPkgInfo.java ====
+message StSubPkgInfo {
+  string subPkgName = 1;
+  string dowLoadUrl = 2;
+  int32 independent = 3;
+  int32 file_size = 4;
+  string version = 5;
+  string versionId = 6;
+  string mainPackVersion = 7;
+  string version_type = 8;
+  string prefetch_config = 9;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSubmitVersionReq.java ====
+message StSubmitVersionReq_StMainPkgInfo {
+  string fileId = 1;
+  repeated uint64 pages = 2;
+  int32 file_size = 3;
+  repeated uint64 file_md5 = 4;
+}
+
+message StSubmitVersionReq_StUsePlugin {
+  string pluginId = 1;
+  string pluginVersion = 2;
+  string pluginName = 3;
+}
+
+message StSubmitVersionReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string version = 3;
+  int32 versionType = 4;
+  string intro = 5;
+  bytes mainPkg = 6;  // was: StMainPkgInfo
+  repeated StSplitPkgInfo subPkgs = 7;
+  uint32 pkgType = 8;
+  string firstPage = 9;
+  string roomId = 10;
+  int32 supportOffline = 11;
+  int32 skipDomainCheck = 12;
+  int32 property = 13;
+  bytes usePlugin = 14;  // was: StUsePlugin
+  StIdeConfig ideConfig = 15;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSubmitVersionRsp.java ====
+message StSubmitVersionRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string link = 2;
+  string versionid = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSubscribeMessage.java ====
+message StSubscribeMessage {
+  string templateId = 1;
+  int32 authState = 2;
+  StExampleDetail example = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StSwitchInfo.java ====
+message StSwitchInfo {
+  string title = 1;
+  string key = 2;
+  int32 value = 3;
+  string desc = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StTinyidOpenidPair.java ====
+message StTinyidOpenidPair {
+  uint64 tinyid = 1;
+  string openid = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StTrans4TinyidReq.java ====
+message StTrans4TinyidReq {
+  repeated string appids = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StTrans4TinyidRsp.java ====
+message StTrans4TinyidRsp {
+  repeated StTinyidOpenidPair tinyidOpenids = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUniformAuthInfo.java ====
+message StUniformAuthInfo {
+  string wxAppid = 1;
+  repeated StUniformAuthItem items = 2;
+  string mobileGameAppid = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUniformAuthItem.java ====
+message StUniformAuthItem {
+  repeated bytes id = 1;
+  int32 level = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUpdatableMsgShareInfo.java ====
+message StUpdatableMsgShareInfo {
+  uint32 scene = 1;
+  string groupId = 2;
+  string chatUin = 3;
+  uint32 subScene = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUpdateUserSettingReq.java ====
+message StUpdateUserSettingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  StUserSettingInfo setting = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUpdateUserSettingRsp.java ====
+message StUpdateUserSettingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUsageGuideMedia.java ====
+message StUsageGuideMedia {
+  int32 mediaType = 1;
+  repeated string guideMedias = 2;
+  int32 autoSlideInterval = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUsageGuideStyle.java ====
+message StUsageGuideStyle {
+  StUsageGuideMedia media = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUseUserAppReq.java ====
+message StUseUserAppReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  int32 verType = 3;
+  double useTime = 4;
+  int32 source = 5;
+  int32 needRecommend = 6;
+  repeated StRecommendApp oldRecommendList = 7;
+  StCurrChannelInfo channelInfo = 8;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUseUserAppRsp.java ====
+message StUseUserAppRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StModuleInfo recommendModule = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUserAppInfo.java ====
+message StUserAppInfo {
+  StApiAppInfo appInfo = 1;
+  uint32 useTime = 2;
+  uint32 putTop = 3;
+  uint32 doLike = 4;
+  uint32 likeNum = 5;
+  uint32 enablePush = 6;
+  string openid = 7;
+  uint64 tinyid = 8;
+  string bgPic = 9;
+  repeated StMotionPicInfo motionPics = 10;
+  string apngUrl = 11;
+  uint32 userNum = 12;
+  uint32 friendNum = 13;
+  repeated UseUserInfo users = 14;
+  AdInfo ad_info = 15;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUserAuthInfo.java ====
+message StUserAuthInfo {
+  string scope = 1;
+  string desc = 2;
+  int32 authState = 3;
+  string settingPageTitle = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUserInfoExtra.java ====
+message StUserInfoExtra {
+  string uin = 1;
+  string openid = 2;
+  bool is_qq_vip = 3;
+  bool is_qq_svip = 4;
+  bool is_year_vip = 5;
+  bool is_yellow_vip = 6;
+  bool is_yellow_svip = 7;
+  bool is_yellow_year_vip = 8;
+  int32 level_of_qq_vip = 9;
+  int32 level_of_yellow_vip = 10;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StUserSettingInfo.java ====
+message StUserSettingInfo {
+  string settingItem = 1;
+  string desc = 2;
+  int32 authState = 3;
+  repeated StSubscribeMessage subItems = 4;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StVerifyPluginReq.java ====
+message StVerifyPluginReq {
+  string appid = 1;
+  repeated StPlugin plugins = 2;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StVerifyPluginRsp.java ====
+message StVerifyPluginRsp {
+  repeated StPluginProfile pluginList = 1;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$StWeixinSDKAppInfo.java ====
+message StWeixinSDKAppInfo {
+  string appid = 1;
+  string appName = 2;
+  string appIcon = 3;
+  string appDesc = 4;
+  uint32 appType = 5;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$TagInfo.java ====
+message TagInfo {
+  string tag_text = 1;
+  string tag_color = 2;
+  int32 tag_type = 3;
+  string tag_color_token = 4;
+  string image_url = 5;
+  string image_width = 6;
+  string image_height = 7;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$URLMap.java ====
+message URLMap {
+  string code = 1;
+  int32 codeType = 2;
+  repeated bytes URL = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$UseUserInfo.java ====
+message UseUserInfo {
+  string uin = 1;
+  string avatar = 2;
+  string nick = 3;
+}
+
+// ==== source: NS_MINI_INTERFACE/INTERFACE$WXAppInfo.java ====
+message WXAppInfo {
+  string appid = 1;
+  string appIcon = 2;
+  string appAliasName = 3;
+  string appName = 4;
+  string appDesc = 5;
+  string appRegisterInfo = 6;
+  repeated AppCategories appCategories = 7;
+  string errCode = 8;
+  uint32 appType = 9;
+  uint32 scene = 10;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StAccountInfo.java ====
+message StAccountInfo {
+  string email = 1;
+  string passwordMd5 = 2;
+  string activateTicket = 3;
+  uint32 activateEmailTime = 4;
+  uint32 activateState = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StAdminTicketInfo.java ====
+message StAdminTicketInfo {
+  string developerId = 1;
+  uint32 createTimestamp = 2;
+  uint32 renewTimestamp = 3;
+  string pwd = 4;
+  string uin = 5;
+  string A2Key = 6;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StAnnouncementInfo.java ====
+message StAnnouncementInfo {
+  string announceId = 1;
+  uint32 announceTime = 2;
+  string announceTitle = 3;
+  string contentUrl = 4;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StAppResidueModifyTime.java ====
+message StAppResidueModifyTime {
+  int32 appname = 1;
+  int32 appIcon = 2;
+  int32 appDesc = 3;
+  int32 serviceCategory = 4;
+  int32 serverDomain = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StAuditInfo.java ====
+message StAuditInfo {
+  uint32 submitTime = 1;
+  string refuseReason = 2;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StBaselibVersion.java ====
+message StBaselibVersion {
+  string version = 1;
+  string affectedPercentage = 2;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StCodeInfo.java ====
+message StCodeInfo {
+  string uin = 1;
+  string A2Key = 2;
+  string appid = 3;
+  string openid = 4;
+  uint32 createTimestamp = 5;
+  int32 used = 6;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StGeneralSituation.java ====
+message StGeneralSituation {
+  repeated uint64 BLOB = 1;
+  uint64 number = 2;
+  string dayContrast = 3;
+  string weekContrast = 4;
+  string monthContrast = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StLoginCode.java ====
+message StLoginCode {
+  int32 reqFrm = 1;
+  string userIp = 2;
+  uint32 createTimestamp = 3;
+  int32 used = 4;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StLoginTicket.java ====
+message StLoginTicket {
+  int32 reqFrm = 1;
+  string uin = 2;
+  string key = 3;
+  uint32 createTimestamp = 4;
+  uint32 renewTimestamp = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StMemberInfo.java ====
+message StMemberInfo_StAuthorityInfo {
+  uint32 develop = 1;
+  uint32 experience = 2;
+  uint32 loginAdmin = 3;
+  uint32 dataAnalyze = 4;
+  uint32 developManage = 5;
+  uint32 developSetup = 6;
+  uint32 pauseService = 7;
+  uint32 gameOperate = 8;
+}
+
+message StMemberInfo {
+  string appid = 1;
+  uint32 createTime = 2;
+  uint32 updateTime = 3;
+  uint32 state = 4;
+  string uin = 5;
+  string nick = 6;
+  string avatar = 7;
+  string remark = 8;
+  bytes authority = 9;  // was: StAuthorityInfo
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StSessionKeyInfo.java ====
+message StSessionKeyInfo {
+  string uin = 1;
+  string openid = 2;
+  string sessionKey = 3;
+  uint32 createTimestamp = 4;
+  uint32 renewTimestamp = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StTestAccount.java ====
+message StTestAccount {
+  string uin = 1;
+  string pwd = 2;
+  string comment = 3;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StUserIdInfo.java ====
+message StUserIdInfo {
+  string uin = 1;
+  string appid = 2;
+  string openid = 3;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StUserInfo.java ====
+message StUserInfo_StAddressInfo {
+  string country = 1;
+  string province = 2;
+  string city = 3;
+}
+
+message StUserInfo {
+  string nick = 1;
+  string avatar = 2;
+  int32 gender = 3;
+  StAddressInfo address = 4;
+  string language = 5;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StVersionAuditInfo.java ====
+message StVersionAuditInfo {
+  string versionId = 1;
+  uint32 createTime = 2;
+  uint32 updateTime = 3;
+  string updateInstruction = 4;
+  repeated StTestAccount testAccount = 5;
+  string rejectReason = 6;
+}
+
+// ==== source: NS_MINI_META/META_PROTOCOL$StVersionInfo.java ====
+message StVersionInfo {
+  string versionId = 1;
+  uint32 type = 2;
+  string creater = 3;
+  string appid = 4;
+  string version = 5;
+  string versionDesc = 6;
+  string resourceName = 7;
+  string resourceUrl = 8;
+  uint32 createTime = 9;
+  uint32 updateTime = 10;
+  string restoreIp = 11;
+  uint32 releaseRate = 12;
+  int32 hasSubPkg = 13;
+}
+
+// ==== source: NS_MINI_PUBLIC/Head$StColorItem.java ====
+message StColorItem {
+  string moduleName = 1;
+  int32 l5Mod = 2;
+  int32 l5Cmd = 3;
+}
+
+// ==== source: NS_MINI_REALTIMELOG/REALTIMELOG$StLogItem.java ====
+message StLogItem {
+  int64 log_time = 1;
+  int32 log_level = 2;
+  repeated bytes msg = 3;
+}
+
+// ==== source: NS_MINI_REALTIMELOG/REALTIMELOG$StReportLogReq.java ====
+message StReportLogReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string traceid = 2;
+  int64 report_time = 3;
+  string jslib_version = 4;
+  string page = 5;
+  repeated string filter_msgs = 6;
+  repeated StLogItem logs = 7;
+  string appid = 8;
+}
+
+// ==== source: NS_MINI_REALTIMELOG/REALTIMELOG$StReportLogRsp.java ====
+message StReportLogRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StDcReportReq.java ====
+message StDcReportReq {
+  repeated SingleDcData dcdata = 1;
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StDcReportRsp.java ====
+message StDcReportRsp {
+  int32 ret = 1;
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StGameDcReportReq.java ====
+message StGameDcReportReq {
+  repeated SingleDcData dcdata = 1;
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StGameDcReportRsp.java ====
+message StGameDcReportRsp {
+  int32 ret = 1;
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StThirdDcReportReq.java ====
+message StThirdDcReportReq {
+  repeated SingleDcData dcdata = 1;
+}
+
+// ==== source: NS_MINI_REPORT/REPORT$StThirdDcReportRsp.java ====
+message StThirdDcReportRsp {
+  int32 ret = 1;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StAdaptShareInfoReq.java ====
+message StAdaptShareInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string title = 3;
+  string desc = 4;
+  uint32 time = 5;
+  int32 scene = 6;
+  int32 templetType = 7;
+  int32 businessType = 8;
+  string picUrl = 9;
+  string vidUrl = 10;
+  string jumpUrl = 11;
+  string iconUrl = 12;
+  int32 verType = 13;
+  int32 shareType = 14;
+  string versionId = 15;
+  int32 withShareTicket = 16;
+  string webURL = 17;
+  string appidRich = 18;
+  StTemplateInfo template = 19;
+  string rcvOpenId = 20;
+  bool usingComponentArk = 21;
+  int32 origin = 22;
+  bool isHorizontal = 23;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StAdaptShareInfoRsp.java ====
+message StAdaptShareInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string jsonData = 2;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StAdaptSharePicReq.java ====
+message StAdaptSharePicReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string srcPicUrl = 2;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StAdaptSharePicRsp.java ====
+message StAdaptSharePicRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string picUrl = 2;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StGetGroupShareInfoReq.java ====
+message StGetGroupShareInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appid = 2;
+  string shareTicket = 3;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StGetGroupShareInfoRsp.java ====
+message StGetGroupShareInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string encryptedData = 2;
+  repeated bytes iv = 3;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StGetMiniAppPathReq.java ====
+message StGetMiniAppPathReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string main_appid = 2;
+  string appid = 3;
+  string path = 4;
+  int32 miniAppType = 5;
+  string webURL = 6;
+  string content = 7;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StGetMiniAppPathRsp.java ====
+message StGetMiniAppPathRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string content = 2;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StSendArkMsgReq.java ====
+message StSendArkMsgReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string appId = 2;
+  string openId = 3;
+  string arkJson = 4;
+  string apiName = 5;
+}
+
+// ==== source: NS_MINI_SHARE/MiniProgramShare$StTemplateInfo.java ====
+message StTemplateInfo {
+  string templateId = 1;
+  string templateData = 2;
+}
+
+// ==== source: NS_MINI_USERAUTH/MiniUserAuth$StApiNameItem.java ====
+message StApiNameItem {
+  string eventName = 1;
+  string apiName = 2;
+}
+
+// ==== source: NS_MINI_USERAUTH/MiniUserAuth$StApiScopeConfig.java ====
+message StApiScopeConfig {
+  repeated StUserAuthScope scopeList = 1;
+  repeated StApiScopeEntry apiToScope = 2;
+}
+
+// ==== source: NS_MINI_USERAUTH/MiniUserAuth$StApiScopeEntry.java ====
+message StApiScopeEntry {
+  StApiNameItem api = 1;
+  string scope = 2;
+}
+
+// ==== source: NS_MINI_USERAUTH/MiniUserAuth$StUserAuthScope.java ====
+message StUserAuthScope {
+  string scope = 1;
+  int32 authType = 2;
+  string desc = 3;
+  string settingPageTitle = 4;
+}

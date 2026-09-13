@@ -1,0 +1,812 @@
+// weiyun_fav 域 — 104 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.weiyun_fav;
+
+// ==== source: com/qqfav/data/QfavCustomData$CustomData.java ====
+message CustomData {
+  FileStoragePaths file_storage_paths = 1;
+  ReuploadStrategy reupload_strategy = 2;
+}
+
+// ==== source: com/qqfav/data/QfavCustomData$FileStoragePaths.java ====
+message FileStoragePaths {
+  string fsp_src = 1;
+  string fsp_64 = 2;
+  string fsp_128 = 3;
+  string fsp_320 = 4;
+  string fsp_640 = 5;
+  string fsp_1024 = 6;
+}
+
+// ==== source: com/qqfav/data/QfavCustomData$ReuploadStrategy.java ====
+message ReuploadStrategy {
+  int32 type = 1;
+  string message = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddAudioCollectionMsgReq.java ====
+message AddAudioCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  AudioSummary summary = 2;
+  AudioContent content = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddAudioCollectionMsgRsp.java ====
+message AddAudioCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddCustomGroupMsgReq.java ====
+message AddCustomGroupMsgReq {
+  string name = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddCustomGroupMsgRsp.java ====
+message AddCustomGroupMsgRsp {
+  uint32 custom_group_id = 1;
+  uint32 create_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddFileCollectionMsgReq.java ====
+message AddFileCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  FileSummary file_summary = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddFileCollectionMsgRsp.java ====
+message AddFileCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddGalleryCollectionMsgReq.java ====
+message AddGalleryCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  GallerySummary gallery_summary = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddGalleryCollectionMsgRsp.java ====
+message AddGalleryCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddLinkCollectionMsgReq.java ====
+message AddLinkCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  LinkSummary link_summary = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddLinkCollectionMsgRsp.java ====
+message AddLinkCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddLocationCollectionMsgReq.java ====
+message AddLocationCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  LocationSummary summary = 2;
+  LocationContent content = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddLocationCollectionMsgRsp.java ====
+message AddLocationCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddRichMediaCollectionMsgReq.java ====
+message AddRichMediaCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  RichMediaSummary summary = 2;
+  RichMediaContent content = 3;
+  bool need_share_url = 4;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddRichMediaCollectionMsgRsp.java ====
+message AddRichMediaCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+  string share_url = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddTextCollectionMsgReq.java ====
+message AddTextCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  TextSummary summary = 2;
+  TextContent content = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddTextCollectionMsgRsp.java ====
+message AddTextCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddVideoCollectionMsgReq.java ====
+message AddVideoCollectionMsgReq {
+  CollectCommonInfo comm_info = 1;
+  VideoSummary video_summary = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AddVideoCollectionMsgRsp.java ====
+message AddVideoCollectionMsgRsp {
+  string cid = 1;
+  uint64 collect_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Anchor.java ====
+message Anchor {
+  string url = 1;
+  string desc = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ApplyDownloadFileMsgReq.java ====
+message ApplyDownloadFileMsgReq {
+  string cid = 1;
+  FileInfo file_info = 2;
+  bool request_snapshot = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ApplyDownloadFileMsgRsp.java ====
+message ApplyDownloadFileMsgRsp {
+  bytes encode_url = 1;
+  string host_name = 2;
+  uint32 server_port = 3;
+  string cookie_name = 4;
+  string cookie_value = 5;
+  DownloadControl downloadcontrol = 6;
+  string host_name_https = 7;
+  uint32 server_port_https = 8;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AudioContent.java ====
+message AudioContent {
+  bytes data = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$AudioSummary.java ====
+message AudioSummary {
+  uint32 duration = 1;
+  string stt = 2;
+  string note = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Author.java ====
+message Author {
+  uint32 type = 1;
+  uint64 num_id = 2;
+  string str_id = 3;
+  uint64 group_id = 4;
+  string group_name = 5;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$BatchWeiyunShareAddReq.java ====
+message BatchWeiyunShareAddReq {
+  repeated WeiyunShareAddReq share_add_req_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$BatchWeiyunShareAddRsp.java ====
+message BatchWeiyunShareAddRsp {
+  repeated WeiyunShareAddRspInfo share_add_rsp_info_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CollectCommonInfo.java ====
+message CollectCommonInfo {
+  uint32 bid = 1;
+  uint32 category = 2;
+  Author author = 3;
+  uint64 create_time = 4;
+  string biz_key = 5;
+  repeated bytes biz_data_list = 6;
+  string share_url = 7;
+  uint32 original_app_id = 8;
+  uint32 custom_group_id = 9;
+  uint64 modify_time = 10;
+  string qzone_ugc_key = 506;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Collection.java ====
+message Collection {
+  string cid = 1;
+  uint32 type = 2;
+  uint32 status = 3;
+  Author author = 4;
+  uint32 bid = 5;
+  uint32 src_app_id = 6;
+  string src_app_ver = 7;
+  uint32 category = 8;
+  uint64 create_time = 9;
+  uint64 collect_time = 10;
+  uint64 modify_time = 11;
+  string biz_key = 12;
+  repeated bytes biz_data_list = 13;
+  CollectionSummary summary = 14;
+  bool star_mark = 15;
+  uint64 star_time = 16;
+  string share_url = 17;
+  uint32 original_app_id = 18;
+  uint32 custom_group_id = 19;
+  uint32 security_beat = 20;
+  string qzone_ugc_key = 21;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CollectionContent.java ====
+message CollectionContent_LinkContent {
+  // (no fields resolved)
+}
+
+message CollectionContent_GalleryContent {
+  // (no fields resolved)
+}
+
+message CollectionContent_VideoContent {
+  // (no fields resolved)
+}
+
+message CollectionContent_FileContent {
+  // (no fields resolved)
+}
+
+message CollectionContent {
+  TextContent text_content = 1;
+  bytes link_content = 2;  // was: LinkContent
+  bytes gallery_content = 3;  // was: GalleryContent
+  AudioContent audio_content = 4;
+  bytes video_content = 5;  // was: VideoContent
+  bytes file_content = 6;  // was: FileContent
+  LocationContent location_content = 7;
+  RichMediaContent rich_media_content = 8;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CollectionFullInfo.java ====
+message CollectionFullInfo {
+  Collection collection = 1;
+  CollectionContent content = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CollectionGroupIdInfo.java ====
+message CollectionGroupIdInfo {
+  string cid = 1;
+  uint32 custom_group_id = 2;
+  uint32 modi_groupid_time = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CollectionSummary.java ====
+message CollectionSummary {
+  TextSummary text_summary = 1;
+  LinkSummary link_summary = 2;
+  GallerySummary gallery_summary = 3;
+  AudioSummary audio_summary = 4;
+  VideoSummary video_summary = 5;
+  FileSummary file_summary = 6;
+  LocationSummary location_summary = 7;
+  RichMediaSummary rich_media_summary = 8;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$CustomGroupInfo.java ====
+message CustomGroupInfo {
+  uint32 custom_group_id = 1;
+  string name = 2;
+  uint32 create_time = 3;
+  uint32 modify_time = 4;
+  uint32 total_count = 5;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$DelCollectionMsgReq.java ====
+message DelCollectionMsgReq {
+  repeated string cid_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$DelCollectionMsgRsp.java ====
+message DelCollectionMsgRsp {
+  repeated uint32 result_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$DelCustomGroupMsgReq.java ====
+message DelCustomGroupMsgReq {
+  repeated uint32 custom_group_id_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$DelCustomGroupMsgRsp.java ====
+message DelCustomGroupMsgRsp {
+  uint32 del_time = 1;
+  repeated uint32 result_list = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$DownloadControl.java ====
+message DownloadControl {
+  uint32 danger_level = 1;
+  uint32 rename_file = 2;
+  string risk_tips = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FastUploadFileResult.java ====
+message FastUploadFileResult {
+  int32 result = 1;
+  FileInfo file_info = 2;
+  UploadFileInfo upload_file_info = 3;
+  int32 not_retransmission = 4;
+  string fail_tips = 5;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FastUploadPicResult.java ====
+message FastUploadPicResult {
+  uint32 result = 1;
+  PicInfo pic_info = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FastUploadResourceMsgReq.java ====
+message FastUploadResourceMsgReq {
+  repeated PicInfo pic_info_list = 1;
+  repeated FileInfo file_info_list = 2;
+  uint32 host_flag = 3;
+  uint32 https_flag = 4;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FastUploadResourceMsgRsp.java ====
+message FastUploadResourceMsgRsp {
+  repeated FastUploadPicResult pic_result_list = 1;
+  repeated FastUploadFileResult file_result_list = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FileInfo.java ====
+message FileInfo {
+  uint32 src = 1;
+  uint64 uid = 2;
+  uint32 bid = 3;
+  repeated bytes qqcir_business_id = 4;
+  string name = 5;
+  uint64 size = 6;
+  bytes md5 = 7;
+  bytes sha1 = 8;
+  uint32 category = 9;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$FileSummary.java ====
+message FileSummary {
+  FileInfo file_info = 1;
+  FileInfo src_file_info = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GallerySummary.java ====
+message GallerySummary {
+  repeated PicInfo pic_list = 1;
+  string notes = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionContentMsgReq.java ====
+message GetCollectionContentMsgReq {
+  repeated string cid_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionContentMsgRsp.java ====
+message GetCollectionContentMsgRsp {
+  repeated CollectionContent collection_content_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionGroupListMsgReq.java ====
+message GetCollectionGroupListMsgReq {
+  uint32 start_time = 1;
+  uint32 order_type = 2;
+  uint32 page_size = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionGroupListMsgRsp.java ====
+message GetCollectionGroupListMsgRsp {
+  repeated CollectionGroupIdInfo collectiongroupid_list = 1;
+  uint32 total_count = 2;
+  uint32 result = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionListMsgReq.java ====
+message GetCollectionListMsgReq {
+  uint32 type = 1;
+  uint32 bid = 2;
+  uint32 category = 3;
+  uint64 start_time = 4;
+  uint32 order_type = 5;
+  uint64 start_pos = 6;
+  uint32 page_size = 7;
+  uint32 sync_policy = 8;
+  uint32 req_source = 9;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionListMsgRsp.java ====
+message GetCollectionListMsgRsp {
+  repeated Collection collection_list = 1;
+  uint32 total_count = 2;
+  uint32 result = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionSummaryMsgReq.java ====
+message GetCollectionSummaryMsgReq {
+  repeated string cid_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectionSummaryMsgRsp.java ====
+message GetCollectionSummaryMsgRsp {
+  repeated Collection collection_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectorUserFileInfoReq.java ====
+message GetCollectorUserFileInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectorUserFileInfoRsp.java ====
+message GetCollectorUserFileInfoRsp {
+  repeated UintIntPairType previewable_file_list = 1;
+  uint64 capacity = 2;
+  uint64 used = 3;
+  uint32 max_batch_size = 4;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectorUserInfoReq.java ====
+message GetCollectorUserInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCollectorUserInfoRsp.java ====
+message GetCollectorUserInfoRsp {
+  uint64 toatal_space = 1;
+  uint64 used_space = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCompatibleCollectionInfoMsgReq.java ====
+message GetCompatibleCollectionInfoMsgReq {
+  string cid = 1;
+  bool need_resource_list = 2;
+  bool need_summary = 3;
+  uint32 clean_level = 4;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCompatibleCollectionInfoMsgRsp.java ====
+message GetCompatibleCollectionInfoMsgRsp {
+  string html_content = 1;
+  repeated ResourceInfo resource_list = 2;
+  Collection collection = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCustomGroupMsgReq.java ====
+message GetCustomGroupMsgReq {
+  uint32 modi_groupid_time = 1;
+  uint32 modi_group_time = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetCustomGroupMsgRsp.java ====
+message GetCustomGroupMsgRsp {
+  uint32 modi_groupid_time = 1;
+  uint32 total_count = 2;
+  uint32 modi_group_time = 3;
+  repeated CustomGroupInfo customgroupinfo_list = 4;
+  uint32 max_group_count = 5;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetFilePreviewInfoReq.java ====
+message GetFilePreviewInfoReq {
+  string cid = 1;
+  FileInfo file_info = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$GetFilePreviewInfoRsp.java ====
+message GetFilePreviewInfoRsp {
+  string downloadip = 1;
+  string downloaddns = 2;
+  uint32 downloadport = 3;
+  bytes filesha = 4;
+  bytes downloadkey = 5;
+  string cookie = 6;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Item.java ====
+message Item {
+  uint32 item_type = 1;
+  Paragraph parag = 2;
+  Anchor anchor = 3;
+  PicInfo pic_info = 4;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$LinkSummary.java ====
+message LinkSummary {
+  string uri = 1;
+  string title = 2;
+  string publisher = 3;
+  string brief = 4;
+  repeated PicInfo pic_list = 5;
+  uint32 type = 6;
+  string resource_uri = 7;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$LocationContent.java ====
+message LocationContent {
+  // (no fields resolved)
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$LocationSummary.java ====
+message LocationSummary {
+  string name = 1;
+  double latitude = 2;
+  double longitude = 3;
+  double altitude = 4;
+  string address = 5;
+  string note = 6;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCollectionGroupMsgReq.java ====
+message ModCollectionGroupMsgReq {
+  repeated string cid_list = 1;
+  uint32 custom_group_id = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCollectionGroupMsgRsp.java ====
+message ModCollectionGroupMsgRsp {
+  repeated uint32 result_list = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCollectionMsgReq.java ====
+message ModCollectionMsgReq {
+  Collection collection = 1;
+  CollectionContent content = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCollectionMsgRsp.java ====
+message ModCollectionMsgRsp {
+  uint64 modify_time = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCustomGroupMsgReq.java ====
+message ModCustomGroupMsgReq {
+  uint32 custom_group_id = 1;
+  string name = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ModCustomGroupMsgRsp.java ====
+message ModCustomGroupMsgRsp {
+  uint32 modify_time = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$MsgBody.java ====
+message MsgBody {
+  ReqMsgBody ReqMsg_body = 1;
+  RspMsgBody RspMsg_body = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$MsgHead.java ====
+message MsgHead {
+  int64 uin = 1;
+  uint32 seq = 2;
+  uint32 type = 3;
+  uint32 cmd = 4;
+  int32 appid = 5;
+  int32 version = 6;
+  int32 nettype = 7;
+  string clientip = 8;
+  int32 encrypt = 9;
+  int32 keytype = 10;
+  bytes encryptkey = 11;
+  int32 major_version = 14;
+  int32 minor_version = 15;
+  int32 retcode = 101;
+  string retmsg = 102;
+  string promptmsg = 111;
+  uint64 total_space = 112;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Paragraph.java ====
+message Paragraph_Style {
+  string color = 1;
+  string font_family = 2;
+  string font_weight = 3;
+  string font_size = 4;
+}
+
+message Paragraph {
+  string content = 1;
+  bytes style = 2;  // was: Style
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$PicInfo.java ====
+message PicInfo {
+  string uri = 1;
+  bytes md5 = 2;
+  bytes sha1 = 3;
+  string name = 4;
+  string note = 5;
+  uint32 width = 6;
+  uint32 height = 7;
+  uint32 size = 8;
+  uint32 type = 9;
+  Author owner = 10;
+  string pic_id = 11;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ReqMsgBody.java ====
+message ReqMsgBody_GetCollectionCountByCatetoryMsgReq {
+  uint32 bid = 1;
+  repeated uint32 category_list = 2;
+}
+
+message ReqMsgBody_GetCollectionFullInfoMsgReq {
+  repeated string cid_list = 1;
+}
+
+message ReqMsgBody {
+  WeiyunShareAddReq WeiyunShareAddReq_body = 12001;
+  GetCollectionListMsgReq GetCollectionListMsgReq_body = 20000;
+  GetCollectionContentMsgReq GetCollectionContentMsgReq_body = 20001;
+  DelCollectionMsgReq DelCollectionMsgReq_body = 20002;
+  AddTextCollectionMsgReq AddTextCollectionMsgReq_body = 20003;
+  AddLinkCollectionMsgReq AddLinkCollectionMsgReq_body = 20004;
+  AddGalleryCollectionMsgReq AddGalleryCollectionMsgReq_body = 20005;
+  AddAudioCollectionMsgReq AddAudioCollectionMsgReq_body = 20006;
+  AddFileCollectionMsgReq AddFileCollectionMsgReq_body = 20007;
+  AddLocationCollectionMsgReq AddLocationCollectionMsgReq_body = 20008;
+  AddRichMediaCollectionMsgReq AddRichMediaCollectionMsgReq_body = 20009;
+  FastUploadResourceMsgReq FastUploadResourceMsgReq_body = 20010;
+  bytes GetCollectionCountByCatetoryMsgReq_body = 20011;  // was: GetCollectionCountByCatetoryMsgReq
+  ModCollectionMsgReq ModCollectionMsgReq_body = 20012;
+  bytes GetCollectionFullInfoMsgReq_body = 20013;  // was: GetCollectionFullInfoMsgReq
+  ApplyDownloadFileMsgReq ApplyDownloadFileMsgReq_body = 20014;
+  GetCollectionSummaryMsgReq GetCollectionSummaryMsgReq_body = 20015;
+  GetCompatibleCollectionInfoMsgReq GetCompatibleCollectionInfoMsgReq_body = 20016;
+  GetCollectorUserFileInfoReq GetCollectorUserFileInfoReq_body = 20017;
+  GetFilePreviewInfoReq GetFilePreviewInfoReq_body = 20018;
+  AddAudioCollectionMsgReq AddHighQualityAudioCollectionMsgReq_body = 20019;
+  GetCollectorUserInfoReq GetCollectorUserInfoReq_body = 20020;
+  GetCustomGroupMsgReq GetCustomGroupMsgReq_body = 20021;
+  AddCustomGroupMsgReq AddCustomGroupMsgReq_body = 20022;
+  ModCustomGroupMsgReq ModCustomGroupMsgReq_body = 20023;
+  DelCustomGroupMsgReq DelCustomGroupMsgReq_body = 20024;
+  ModCollectionGroupMsgReq ModCollectionGroupMsgReq_body = 20025;
+  GetCollectionGroupListMsgReq GetCollectionGroupListMsgReq_body = 20026;
+  BatchWeiyunShareAddReq BatchWeiyunShareAddReq_body = 20027;
+  AddVideoCollectionMsgReq AddVideoCollectionMsgReq_body = 20028;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$ResourceInfo.java ====
+message ResourceInfo {
+  uint32 type = 1;
+  PicInfo pic_info = 2;
+  FileInfo file_info = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$RichMedia.java ====
+message RichMedia {
+  repeated Section sections = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$RichMediaContent.java ====
+message RichMediaContent {
+  RichMedia rich_media = 1;
+  bytes raw_data = 2;
+  repeated bytes biz_data_list = 3;
+  repeated PicInfo pic_list = 4;
+  repeated FileInfo file_list = 5;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$RichMediaSummary.java ====
+message RichMediaSummary {
+  string title = 1;
+  string sub_title = 2;
+  string brief = 3;
+  repeated PicInfo pic_list = 4;
+  uint32 content_type = 5;
+  string original_uri = 6;
+  string publisher = 7;
+  uint32 rich_media_version = 8;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$RspMsgBody.java ====
+message RspMsgBody_GetCollectionCountByCatetoryMsgRsp {
+  repeated uint32 count_list = 1;
+}
+
+message RspMsgBody_GetCollectionFullInfoMsgRsp {
+  repeated CollectionFullInfo collection_full_info_list = 1;
+}
+
+message RspMsgBody {
+  WeiyunShareAddRsp WeiyunShareAddRsp_body = 12001;
+  GetCollectionListMsgRsp GetCollectionListMsgRsp_body = 20000;
+  GetCollectionContentMsgRsp GetCollectionContentMsgRsp_body = 20001;
+  DelCollectionMsgRsp DelCollectionMsgRsp_body = 20002;
+  AddTextCollectionMsgRsp AddTextCollectionMsgRsp_body = 20003;
+  AddLinkCollectionMsgRsp AddLinkCollectionMsgRsp_body = 20004;
+  AddGalleryCollectionMsgRsp AddGalleryCollectionMsgRsp_body = 20005;
+  AddAudioCollectionMsgRsp AddAudioCollectionMsgRsp_body = 20006;
+  AddFileCollectionMsgRsp AddFileCollectionMsgRsp_body = 20007;
+  AddLocationCollectionMsgRsp AddLocationCollectionMsgRsp_body = 20008;
+  AddRichMediaCollectionMsgRsp AddRichMediaCollectionMsgRsp_body = 20009;
+  FastUploadResourceMsgRsp FastUploadResourceMsgRsp_body = 20010;
+  bytes GetCollectionCountByCatetoryMsgRsp_body = 20011;  // was: GetCollectionCountByCatetoryMsgRsp
+  ModCollectionMsgRsp ModCollectionMsgRsp_body = 20012;
+  bytes GetCollectionFullInfoMsgRsp_body = 20013;  // was: GetCollectionFullInfoMsgRsp
+  ApplyDownloadFileMsgRsp ApplyDownloadFileMsgRsp_body = 20014;
+  GetCollectionSummaryMsgRsp GetCollectionSummaryMsgRsp_body = 20015;
+  GetCompatibleCollectionInfoMsgRsp GetCompatibleCollectionInfoMsgRsp_body = 20016;
+  GetCollectorUserFileInfoRsp GetCollectorUserFileInfoRsp_body = 20017;
+  GetFilePreviewInfoRsp GetFilePreviewInfoRsp_body = 20018;
+  AddAudioCollectionMsgRsp AddHighQualityAudioCollectionMsgRsp_body = 20019;
+  GetCollectorUserInfoRsp GetCollectorUserInfoRsp_body = 20020;
+  GetCustomGroupMsgRsp GetCustomGroupMsgRsp_body = 20021;
+  AddCustomGroupMsgRsp AddCustomGroupMsgRsp_body = 20022;
+  ModCustomGroupMsgRsp ModCustomGroupMsgRsp_body = 20023;
+  DelCustomGroupMsgRsp DelCustomGroupMsgRsp_body = 20024;
+  ModCollectionGroupMsgRsp ModCollectionGroupMsgRsp_body = 20025;
+  GetCollectionGroupListMsgRsp GetCollectionGroupListMsgRsp_body = 20026;
+  BatchWeiyunShareAddRsp BatchWeiyunShareAddRsp_body = 20027;
+  AddVideoCollectionMsgRsp AddVideoCollectionMsgRsp_body = 20028;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$Section.java ====
+message Section {
+  repeated Item items = 1;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$TextContent.java ====
+message TextContent {
+  string data = 1;
+  bool has_emoji = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$TextSummary.java ====
+message TextSummary {
+  string brief = 1;
+  bool has_emoji = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$UintIntPairType.java ====
+message UintIntPairType {
+  uint32 key = 1;
+  int32 val = 2;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$UploadFileInfo.java ====
+message UploadFileInfo {
+  string file_id = 1;
+  bytes sha1 = 2;
+  bytes check_key = 3;
+  string host = 4;
+  uint32 port = 5;
+  string httpshost = 6;
+  uint32 httpsport = 7;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$VideoSummary.java ====
+message VideoSummary {
+  string title = 1;
+  uint32 duration = 2;
+  uint32 format = 3;
+  uint32 category = 10;
+  uint32 preview_type = 20;
+  PicInfo preview_pic_info = 21;
+  uint32 store_type = 30;
+  FileInfo store_file_info = 31;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$WeiyunShareAddReq.java ====
+message WeiyunShareAddReq {
+  bytes pdir_key = 1;
+  repeated string file_id = 2;
+  string share_name = 4;
+  int32 qr_flag = 5;
+  uint32 share_type = 6;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$WeiyunShareAddRsp.java ====
+message WeiyunShareAddRsp {
+  string raw_url = 1;
+  string short_url = 2;
+  string share_name = 3;
+}
+
+// ==== source: com/qqfav/protocal/WeiyunCommonMessage$WeiyunShareAddRspInfo.java ====
+message WeiyunShareAddRspInfo {
+  uint32 result = 1;
+  WeiyunShareAddRsp share_add_rsp = 2;
+}

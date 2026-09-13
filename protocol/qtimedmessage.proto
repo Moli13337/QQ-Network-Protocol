@@ -1,0 +1,84 @@
+// qtimedmessage 域 — 11 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qtimedmessage;
+
+// ==== source: QTimedMessage/QTimedMessage$C2CMessage.java ====
+message C2CMessage {
+  User msg_from_user = 1;
+  User msg_to_user = 2;
+  Client msg_recv_client = 3;
+  bytes bytes_text = 4;
+  RichText msg_rich_text = 5;
+  uint32 uint32_send_text_standalone = 6;
+  uint32 uint32_send_rich_text_standalone = 7;
+}
+
+message RichText {
+  bytes bytes_template_1 = 1;
+  uint32 uint32_service_id = 2;
+  uint32 uint32_gift_id = 3;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$Client.java ====
+message Client {
+  uint32 uint32_PC = 1;
+  uint32 uint32_Mobile = 2;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$Content.java ====
+message Content_PCTip {
+  repeated bytes msg_from_user = 1;
+  repeated bytes msg_to_user = 2;
+  bytes bytes_title = 3;
+  bytes bytes_content = 4;
+  bytes bytes_redirect_url = 5;
+}
+
+message Content_GroupMessage {
+  repeated bytes msg_from_user = 1;
+  repeated bytes msg_to_user = 2;
+}
+
+message Content {
+  bytes bytes_userdef = 1;
+  bytes msg_pc_tip = 2;  // was: PCTip
+  bytes msg_group_message = 3;  // was: GroupMessage
+  C2CMessage msg_c2c_message = 4;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$Message.java ====
+message Message {
+  uint64 uint64_appid = 1;
+  bytes bytes_msg_id = 2;
+  User msg_author = 3;
+  uint32 uint32_main_type = 4;
+  uint32 uint32_sub_type = 5;
+  uint64 uint64_create_time = 6;
+  Timer msg_timer = 7;
+  Content msg_content = 8;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$Timer.java ====
+message Timer {
+  uint64 uint64_time = 1;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$UDPPacket.java ====
+message UDPPacket_Host {
+  uint32 uint32_cmlb_id = 1;
+  bytes bytes_ip = 2;
+  uint32 uint32_port = 3;
+}
+
+message UDPPacket {
+  bytes msg_to_host = 1;  // was: Host
+  bytes bytes_content = 2;
+}
+
+// ==== source: QTimedMessage/QTimedMessage$User.java ====
+message User {
+  int32 enum_uin_type = 1;
+  uint64 uint64_uin = 2;
+}

@@ -1,0 +1,50 @@
+// qbattle 域 — 5 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qbattle;
+
+// ==== source: qbattle/QQBattleInfo$BattleID.java ====
+message BattleID {
+  uint32 desk_id = 1;
+  int32 entity_id = 2;
+  uint32 desk_seq = 3;
+}
+
+// ==== source: qbattle/QQBattleInfo$GetShareBattleVideoInfoReq.java ====
+message GetShareBattleVideoInfoReq {
+  BattleID battle_id = 1;
+  string open_id = 2;
+  string zonearea_id = 3;
+  string authen_id = 4;
+}
+
+// ==== source: qbattle/QQBattleInfo$GetShareBattleVideoInfoRsp.java ====
+message GetShareBattleVideoInfoRsp_PlayerInfo {
+  string open_id = 1;
+  string uin = 2;
+  string nickname = 3;
+  string icon_url = 4;
+  int32 rank = 5;
+  int32 kill_cnt = 6;
+  int32 dead_cnt = 7;
+  int32 assist_cnt = 8;
+  repeated bytes hero = 9;
+}
+
+message GetShareBattleVideoInfoRsp_HeroInfo {
+  repeated uint64 id = 1;
+  string name = 2;
+  int32 rank = 3;
+  int32 rank_type = 4;
+  int32 skin_id = 5;
+}
+
+message GetShareBattleVideoInfoRsp {
+  BattleID battle_id = 1;
+  string timestamp = 2;
+  repeated string titles = 3;
+  bytes player = 4;  // was: PlayerInfo
+  repeated bytes mates = 5;  // was: PlayerInfo
+  repeated bytes opponents = 6;  // was: PlayerInfo
+}

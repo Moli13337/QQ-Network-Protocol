@@ -1,0 +1,250 @@
+// guild 域 — 32 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.guild;
+
+// ==== source: guild/GuildChannelBase$ChannelStateInfo.java ====
+message ChannelStateInfo {
+  uint32 state = 1;
+  uint32 priority = 2;
+}
+
+// ==== source: guild/GuildChannelBase$ChannelUserInfo.java ====
+message ChannelUserInfo_ClientIdentity {
+  uint32 client_id = 1;
+  string desc = 2;
+}
+
+message ChannelUserInfo_ChannelUserPermission {
+  bool allow_read_feed = 1;
+  bool allow_write_feed = 2;
+}
+
+message ChannelUserInfo_VoiceLiveInfo {
+  uint64 guild_id = 1;
+  uint64 channel_id = 2;
+  uint32 channel_type = 3;
+  bytes channel_name = 4;
+  string main_source = 5;
+  string sub_source = 6;
+  bytes join_guild_sig = 7;
+  repeated ChannelStateInfo channel_status_list = 8;
+}
+
+message ChannelUserInfo {
+  bytes client_identity = 1;  // was: ClientIdentity
+  int32 member_type = 2;
+  bytes permission = 3;  // was: ChannelUserPermission
+  repeated RoleGroupInfo role_groups = 4;
+  bytes client_identity_bytes = 5;
+  int32 role_type = 6;
+  bytes client_identity_bytes_json = 7;
+  bytes voice_live_info = 8;  // was: VoiceLiveInfo
+}
+
+// ==== source: guild/GuildChannelBase$ClientIdentityBytes.java ====
+message ClientIdentityBytes {
+  uint32 client_id = 1;
+  repeated IdentityV2 identitys = 2;
+  repeated IdentityV3 default_identitys = 3;
+}
+
+// ==== source: guild/GuildChannelBase$GuildInfo.java ====
+message GuildInfo {
+  uint64 guild_id = 1;
+  string name = 2;
+  uint64 join_time = 3;
+}
+
+// ==== source: guild/GuildChannelBase$IdentityV2.java ====
+message IdentityV2 {
+  uint32 type = 1;
+  string value = 2;
+  int32 identity_type = 3;
+  bytes third_party_data = 4;
+}
+
+// ==== source: guild/GuildChannelBase$IdentityV3.java ====
+message IdentityV3 {
+  uint32 client_id = 1;
+  repeated IdentityV2 identitys = 2;
+}
+
+// ==== source: guild/GuildChannelBase$RoleGroupInfo.java ====
+message RoleGroupInfo {
+  uint64 role_id = 1;
+  string name = 2;
+  uint32 color = 3;
+}
+
+// ==== source: guild/GuildChannelBase$SimpleChannelInfo.java ====
+message SimpleChannelInfo {
+  uint64 channel_id = 1;
+  string name = 2;
+  uint32 hidden_post_channel = 3;
+}
+
+// ==== source: guild/GuildChannelBase$StChannelInfo.java ====
+message StChannelInfo {
+  StChannelSign sign = 1;
+  string name = 2;
+  string icon_url = 3;
+  int32 private_type = 4;
+  string guild_name = 5;
+  string hot_icon = 6;
+  uint32 hot_index = 7;
+  uint32 move_post_section = 8;
+  bool is_square = 9;
+}
+
+// ==== source: guild/GuildChannelBase$StChannelSign.java ====
+message StChannelSign {
+  uint64 guild_id = 1;
+  uint64 channel_id = 2;
+  string url = 3;
+  bytes join_guild_sig = 4;
+  uint32 channel_type = 6;
+}
+
+// ==== source: guild/GuildChannelBase$StEmojiReaction.java ====
+message StEmojiReaction {
+  string emoji_id = 1;
+  uint64 emoji_type = 2;
+  uint64 cnt = 3;
+  bool is_clicked = 4;
+  bool is_default_emoji = 10001;
+}
+
+// ==== source: guild/GuildChannelBase$StEmotionReactionInfo.java ====
+message StEmotionReactionInfo {
+  repeated bytes id = 1;
+  repeated StEmojiReaction emoji_reaction_list = 2;
+  uint64 total_like_count = 3;
+}
+
+// ==== source: guild/GuildChannelBase$TopFeed.java ====
+message TopFeed_TopFeedAbstract {
+  string title = 1;
+  repeated bytes thumbnail = 2;
+}
+
+message TopFeed_Thumbnail {
+  string url = 1;
+  int32 type = 2;
+}
+
+message TopFeed_TopFeedLabel {
+  repeated uint64 id = 1;
+  string text = 2;
+  uint32 color = 3;
+}
+
+message TopFeed {
+  string feed_id = 1;
+  string user_id = 2;
+  uint64 create_time = 3;
+  bytes feed_abstract = 4;  // was: TopFeedAbstract
+  int64 top_timestamp = 5;
+  uint64 operator_tinyid = 6;
+  StChannelSign channel_sign = 7;
+  bytes label = 8;  // was: TopFeedLabel
+  int64 read_time = 9;
+  bool need_notify = 10;
+  bytes feed = 11;
+  string feed_detail_title = 12;
+}
+
+// ==== source: guild/GuildClientReport$CommonReportTransInfo.java ====
+message CommonReportTransInfo {
+  repeated Entry report_data = 1;
+}
+
+// ==== source: guild/GuildClientReport$SingleTableData.java ====
+message SingleTableData {
+  uint32 tableID = 1;
+  repeated Entry reportData = 2;
+  repeated Entry extInfo = 3;
+  repeated BytesEntry byteExtInfo = 4;
+}
+
+// ==== source: guild/GuildClientReport$StDataReportReq.java ====
+message StDataReportReq {
+  repeated SingleTableData data = 1;
+}
+
+// ==== source: guild/GuildCommon$BytesEntry.java ====
+message BytesEntry {
+  string key = 1;
+  bytes value = 2;
+}
+
+// ==== source: guild/GuildCommon$Entry.java ====
+message Entry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: guild/GuildCommon$StCommonExt.java ====
+message StCommonExt {
+  string attachInfo = 1;
+  repeated BytesEntry mapBytesInfo = 2;
+}
+
+// ==== source: guild/GuildCommon$SyncMessage.java ====
+message SyncMessage {
+  bytes data = 1;
+  int64 timestampMS = 2;
+}
+
+// ==== source: guild/GuildShowTag$CustomManageTag.java ====
+message CustomManageTag {
+  string tag_name = 2;
+  uint32 color = 3;
+  uint64 role_id = 4;
+  uint32 word_color = 5;
+}
+
+// ==== source: guild/GuildShowTag$PersonalMedal.java ====
+message PersonalMedal {
+  int64 start_time = 1;
+  int64 end_time = 2;
+  string url = 3;
+}
+
+// ==== source: guild/GuildVideoUrlExchange$GetVideoAdaptReq.java ====
+message GetVideoAdaptReq {
+  string userID = 1;
+  repeated Video videos = 2;
+  int32 from = 3;
+  int32 bizType = 4;
+}
+
+// ==== source: guild/GuildVideoUrlExchange$GetVideoAdaptRsp.java ====
+message GetVideoAdaptRsp {
+  repeated Video videos = 1;
+}
+
+// ==== source: guild/GuildVideoUrlExchange$Video.java ====
+message Video {
+  string fileID = 1;
+  uint32 fileSize = 2;
+  uint32 duration = 3;
+  uint32 width = 4;
+  uint32 height = 5;
+  string playURL = 6;
+  uint32 transStatus = 7;
+  uint32 videoPrior = 8;
+  uint32 videoRate = 9;
+  repeated VideoLevel AlterVideoURL = 10;
+}
+
+// ==== source: guild/GuildVideoUrlExchange$VideoLevel.java ====
+message VideoLevel {
+  uint32 levelType = 1;
+  string playURL = 2;
+  uint32 videoPrior = 3;
+  uint32 videoRate = 4;
+  uint32 transStatus = 5;
+  bool hasWatermark = 6;
+}

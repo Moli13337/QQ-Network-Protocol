@@ -1,0 +1,5405 @@
+// qqcircle 域 — 725 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qqcircle;
+
+// ==== source: circlesearch/CircleSearchExhibition$BypassBeatDetail.java ====
+message BypassBeatDetail {
+  string feed_id = 1;
+  uint32 post_time = 2;
+  uint32 beat_time = 3;
+  uint32 beat_reason = 4;
+  uint32 beat_common = 5;
+  string beat_desc = 6;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$BypassBeatReq.java ====
+message BypassBeatReq {
+  // (no fields resolved)
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$BypassBeatRsp.java ====
+message BypassBeatRsp {
+  int32 ret = 1;
+  bytes errormsg = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$CorrectionInfo.java ====
+message CorrectionInfo {
+  string correction_word = 1;
+  bool correction = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$ExtraIcon.java ====
+message ExtraIcon {
+  int32 icon_type = 1;
+  string text = 2;
+  string text_color = 3;
+  string background_color = 4;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$GetRankingDataReq.java ====
+message GetRankingDataReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  bytes serverParams = 2;
+  string attachInfo = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$GetRankingDataRsp.java ====
+message GetRankingDataRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated bytes ID = 2;
+  repeated bytes data = 3;
+  bytes serverParams = 4;
+  string attachInfo = 5;
+  bool hasMore = 6;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$Icon.java ====
+message Icon {
+  string text = 1;
+  string text_color = 2;
+  string background_color = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$ImgTitleDesStyleData.java ====
+message ImgTitleDesStyleData {
+  string img = 1;
+  string title = 2;
+  string description = 3;
+  string rankImg = 4;
+  JumpInfo jumpInfo = 5;
+  bytes reportInfo = 6;  // was: StCommonExt
+  bytes extInfo = 7;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$JumpInfo.java ====
+message JumpInfo {
+  int32 type = 1;
+  string url = 2;
+  string query = 3;
+  uint32 query_source = 4;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$OneBoxFeedItem.java ====
+message OneBoxFeedItem {
+  string feed_id = 1;
+  string poster_id = 2;
+  uint64 create_time = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$OneBoxTagItem.java ====
+message OneBoxTagItem {
+  string tag_name = 1;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptEventInfo.java ====
+message PromptEventInfo {
+  string rank_img = 1;
+  string name = 2;
+  Icon icon = 3;
+  bytes ext_info = 4;  // was: StCommonExt
+  uint32 heat = 5;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptGuessInfo.java ====
+message PromptGuessInfo {
+  string name = 1;
+  int32 reason = 2;
+  Icon icon = 3;
+  string transfer_info = 4;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptRankingInfo.java ====
+message PromptRankingInfo_TabData {
+  int32 type = 1;
+  string text = 2;
+  string text_color = 3;
+}
+
+message PromptRankingInfo_RankingPageData {
+  repeated bytes ext_info = 1;
+  int32 style = 2;
+  repeated bytes data = 3;
+  string completeRankingURL = 4;
+  bytes serverParams = 5;
+  string attachInfo = 6;
+  bool hasMore = 7;
+}
+
+message PromptRankingInfo {
+  repeated bytes ID = 1;
+  int32 type = 2;
+  bytes tab = 3;  // was: TabData
+  bytes page = 4;  // was: RankingPageData
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptShading.java ====
+message PromptShading {
+  string text = 1;
+  repeated PromptShadingInfo shading_infos = 2;
+  uint32 interval = 3;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptShadingInfo.java ====
+message PromptShadingInfo {
+  string text = 1;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$PromptTagInfo.java ====
+message PromptTagInfo {
+  string tag_name = 1;
+  string tag_dec = 2;
+  string tag_icon = 3;
+  string tag_big_back_img = 4;
+  string tag_mid_back_img = 5;
+  bytes ext_report_info = 6;
+  string jump_url = 7;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$RecommendInfo.java ====
+message RecommendInfo {
+  string feed_id = 1;
+  bytes recommend_info = 5;  // was: StRecommendInfo
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StEveryoneSearchInfo.java ====
+message StEveryoneSearchInfo {
+  string feed_id = 1;
+  StEveryoneSearchInfo everyone_search_info = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StEveryoneSearchReq.java ====
+message StEveryoneSearchReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StFeedSearch feed_searches = 2;
+  string query_text = 3;
+  string trans_info = 10;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StEveryoneSearchRsp.java ====
+message StEveryoneSearchRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StEveryoneSearchInfo everyone_search_infos = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StExhTag.java ====
+message StExhTag {
+  bytes tag = 1;  // was: StTagInfo
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StExhUser.java ====
+message StExhUser {
+  repeated bytes id = 1;
+  string name = 2;
+  string desc = 3;
+  bool isVip = 4;
+  int64 fans_num = 5;
+  int64 feeds_num = 6;
+  bool isFollow = 7;
+  bool isBigV = 8;
+  bool isQQFriend = 9;
+  bool isBlueVip = 10;
+  uint32 relationType = 11;
+  string icon = 12;
+  repeated bytes feeds = 13;  // was: StFeed
+  string remark_name = 14;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StFeedSearch.java ====
+message StFeedSearch {
+  string feed_id = 1;
+  string uid = 2;
+  string title = 3;
+  string content = 4;
+  string content_id = 5;
+  uint32 type = 6;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StGameCollectionResp.java ====
+message StGameCollectionResp_StSearchGameDetail {
+  string game_name = 1;
+  string game_icon = 2;
+  string game_detail_url = 3;
+  string game_download_url = 4;
+  string game_slogan = 5;
+  int32 game_download_total = 6;
+  repeated string game_tag = 7;
+  int32 game_publish_type = 8;
+  int32 game_status = 9;
+  string developer_info = 10;
+  string purview_info = 11;
+  string privacy_policy_url = 12;
+  string management_subject = 13;
+  string ios_pkg_size = 14;
+  string android_pkg_size = 15;
+  string pkg_name = 16;
+}
+
+message StGameCollectionResp_StSearchHeaderColumn {
+  string name = 1;
+  string description = 2;
+  string playing_text = 4;
+  repeated StSearchIconItem playing_icons = 5;
+  string scheme = 9;
+  repeated bytes report = 10;
+  repeated bytes ext_info = 11;
+}
+
+message StGameCollectionResp_StSearchImage {
+  string text = 1;
+  string image = 2;
+  string scheme = 3;
+  repeated bytes report = 10;
+  repeated bytes ext_info = 11;
+}
+
+message StGameCollectionResp {
+  string background = 1;
+  bytes detail = 2;  // was: StSearchGameDetail
+  string app_id = 3;
+  string channel_id = 4;
+  bytes header = 5;  // was: StSearchHeaderColumn
+  repeated StSearchIconItem icons = 6;
+  bytes image = 7;  // was: StSearchImage
+  StSearchGoods gift_bag = 10;
+  StSearchGoods props = 11;
+  StSearchGame game = 12;
+  bytes report = 20;  // was: StCommonExt
+  bytes ext_info = 21;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StGameDescResp.java ====
+message StGameDescResp {
+  string title = 1;
+  string content = 2;
+  string icon = 3;
+  string scheme = 4;
+  repeated StSearchTextItem items = 5;
+  bytes report = 10;  // was: StCommonExt
+  bytes ext_info = 11;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StMoreDataReq.java ====
+message StMoreDataReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  uint32 type = 2;
+  string query = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StMoreDataRsp.java ====
+message StMoreDataRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  uint32 type = 2;
+  repeated StExhTag tags = 3;
+  repeated CircleDetail schools = 4;
+  repeated CircleDetail companys = 5;
+  repeated StExhUser users = 6;
+  repeated bytes feeds = 7;  // was: StFeed
+  uint32 is_end = 8;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StNetResult.java ====
+message StNetResult_StFeedAbstractForNetResult {
+  repeated bytes id = 1;
+  repeated bytes poster = 2;
+  repeated bytes cover = 3;
+  repeated bytes video = 4;
+  string content = 5;
+  uint32 type = 6;
+  repeated bytes visitor_info = 7;
+  repeated bytes images = 8;  // was: StImage
+}
+
+message StNetResult_StUser {
+  repeated bytes id = 1;
+  string nick = 2;
+}
+
+message StNetResult_StImage {
+  uint32 width = 1;
+  uint32 height = 2;
+  string pic_url = 3;
+  string layer_pic_url = 4;
+}
+
+message StNetResult_StVideo {
+  uint32 fileSize = 1;
+  uint32 duration = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+}
+
+message StNetResult_StVisitor {
+  uint32 view_count = 1;
+}
+
+message StNetResult {
+  bytes feed = 1;  // was: StFeedAbstractForNetResult
+  string raw_data = 2;
+  string report_data = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StPopularReq.java ====
+message StPopularReq {
+  bytes ext_info = 1;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StPopularRsp.java ====
+message StPopularRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StPopularWord words = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StPopularWord.java ====
+message StPopularWord {
+  string word = 1;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StPromptReq.java ====
+message StPromptReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  int32 req_type = 2;
+  repeated bytes prompts_type = 3;  // was: enum
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StPromptResp.java ====
+message StPromptResp_PromptTag {
+  string name = 1;
+  repeated PromptTagInfo hot_info = 2;
+}
+
+message StPromptResp_PromptEvent {
+  string name = 1;
+  repeated PromptEventInfo events = 2;
+}
+
+message StPromptResp_PromptGuess {
+  string name = 1;
+  repeated bytes ext_info = 2;
+  repeated PromptGuessInfo guess_info = 3;
+  bool show = 4;
+}
+
+message StPromptResp_PromptRanking {
+  repeated bytes ext_info = 1;
+  repeated PromptRankingInfo rankings = 2;
+}
+
+message StPromptResp {
+  bytes hot_info = 1;  // was: PromptTag
+  bytes tag_search = 2;  // was: PromptTag
+  bytes hot_event = 3;  // was: PromptEvent
+  bytes guess_prompt = 4;  // was: PromptGuess
+  PromptShading shading_prompt = 5;
+  bytes ranking = 6;  // was: PromptRanking
+  bool grey = 7;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StQueryReq.java ====
+message StQueryReq_CorrectionSetting {
+  bool disable_correction = 1;
+}
+
+message StQueryReq {
+  int32 req_type = 1;
+  string attach_info = 2;
+  string word = 3;
+  repeated bytes query_type = 4;  // was: enum
+  repeated uint64 relation_uid = 5;
+  bytes ext_info = 6;  // was: StCommonExt
+  repeated uint64 filters = 7;
+  bytes correction_setting = 8;  // was: CorrectionSetting
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StQueryResp.java ====
+message StQueryResp_StFeedResp {
+  repeated stFeedItem feeds = 1;
+  string attach_info = 2;
+  int32 end = 3;
+}
+
+message StQueryResp_StUserResp {
+  repeated string uid = 1;
+  string attach_info = 2;
+  int32 end = 3;
+  repeated StQueryUser users = 4;
+  repeated bytes correction_info = 5;
+}
+
+message StQueryResp_StTagResp {
+  repeated string tag_name = 1;
+  string attach_info = 2;
+  int32 end = 3;
+  repeated stTagItem tags = 4;
+  repeated bytes correction_info = 5;
+}
+
+message StQueryResp_StHotEventResp {
+  repeated bytes item = 1;
+  string attach_info = 2;
+  int32 end = 3;
+}
+
+message StQueryResp_HotEventItem {
+  int32 type = 1;
+  int32 search_type = 2;
+  string more_text = 3;
+  string more_url = 4;
+  repeated bytes feeds = 5;  // was: StFeed
+  int32 rank = 6;
+  string title = 7;
+  repeated bytes live_feeds = 8;  // was: StFeed
+  repeated stFeedItem feedItems = 9;
+}
+
+message StQueryResp_StSubTagResp {
+  repeated string sub_tags = 1;
+}
+
+message StQueryResp_StGameResp {
+  repeated bytes game = 1;
+  repeated bytes mini_app = 2;
+  repeated bytes goods = 3;
+}
+
+message StQueryResp_StSearchMiniApp {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  repeated bytes ext_info = 10;
+}
+
+message StQueryResp {
+  bytes feeds = 1;  // was: StFeedResp
+  bytes users = 2;  // was: StUserResp
+  bytes tags = 3;  // was: StTagResp
+  bytes events = 4;  // was: StHotEventResp
+  bytes sub_tags = 5;  // was: StSubTagResp
+  bytes games = 6;  // was: StGameResp
+  StGameDescResp game_desc = 7;
+  StGameCollectionResp game_collection = 8;
+  bool grey = 9;
+  bytes ext_info = 10;  // was: StCommonExt
+  CorrectionInfo correction_info = 11;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StQueryUser.java ====
+message StQueryUser {
+  string uid = 1;
+  int32 isBigV = 2;
+  uint32 relationType = 3;
+  int32 isQQFriend = 4;
+  repeated bytes feeds = 5;  // was: StFeed
+  int32 isBlueV = 6;
+  repeated stFeedItem feedItems = 7;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StRecommendQueryReq.java ====
+message StRecommendQueryReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StFeedSearch feed_searches = 2;
+  string query_text = 3;
+  uint32 recommend_type = 4;
+  string trans_info = 10;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StRecommendQueryRsp.java ====
+message StRecommendQueryRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated RecommendInfo recommend_infos = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StResultReq.java ====
+message StResultReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  string query = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StResultRsp.java ====
+message StResultRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StExhTag tags = 2;
+  uint32 tags_end = 3;
+  repeated CircleDetail schools = 4;
+  uint32 schools_end = 5;
+  repeated CircleDetail companys = 6;
+  uint32 companys_end = 7;
+  repeated StExhUser users = 8;
+  uint32 users_end = 9;
+  repeated bytes feeds = 10;  // was: StFeed
+  uint32 feeds_end = 11;
+  string tags_more_url = 12;
+  string users_more_url = 13;
+  CorrectionInfo correction_info = 14;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchGame.java ====
+message StSearchGame {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchGoods.java ====
+message StSearchGoods {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchIconItem.java ====
+message StSearchIconItem {
+  string text = 1;
+  string icon = 2;
+  string scheme = 3;
+  bytes report = 10;  // was: StCommonExt
+  bytes ext_info = 11;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchPublisher.java ====
+message StSearchPublisher {
+  repeated StSearchSmallItem items = 1;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchSmallItem.java ====
+message StSearchSmallItem {
+  string title = 1;
+  string subtitle = 2;
+  string icon = 3;
+  string scheme = 4;
+  repeated string tags = 5;
+  string button_text = 6;
+  string button_scheme = 7;
+  bytes report = 8;  // was: StCommonExt
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSearchTextItem.java ====
+message StSearchTextItem {
+  string text = 1;
+  string scheme = 2;
+  bytes report = 10;  // was: StCommonExt
+  bytes ext_info = 11;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSimpleQueryUserReq.java ====
+message StSimpleQueryUserReq {
+  int32 count = 1;
+  string attach_info = 2;
+  string word = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSquareReq.java ====
+message StSquareReq {
+  repeated int32 type = 1;
+  string query = 2;
+  bytes attach_info = 10;  // was: StCommonExt
+  bytes ext_info = 11;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSquareRsp.java ====
+message StSquareRsp_SquareBubbleInfo {
+  repeated SuggestionWord words = 1;
+  int64 duration = 2;
+  repeated bytes ext_info = 10;
+}
+
+message StSquareRsp_SquareRelevantInfo {
+  repeated SuggestionWord words = 1;
+  repeated bytes ext_info = 10;
+}
+
+message StSquareRsp {
+  bytes bubble_info = 1;  // was: SquareBubbleInfo
+  bytes relevant_info = 2;  // was: SquareRelevantInfo
+  bytes attach_info = 10;  // was: StCommonExt
+  bytes ext_info = 11;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSuggestionInfo.java ====
+message StSuggestionInfo_StSugGameAd {
+  bytes ad_buffer = 1;
+}
+
+message StSuggestionInfo {
+  string suggest_word = 1;
+  int32 suggest_type = 2;
+  string hit_key_word = 3;
+  string report_data = 4;
+  Icon icon = 5;
+  bytes game_ad = 6;  // was: StSugGameAd
+  repeated ExtraIcon extra_icons = 7;
+  bytes ext_info = 8;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSuggestionReq.java ====
+message StSuggestionReq {
+  bytes ext_info = 1;  // was: StCommonExt
+  string input_word = 2;
+  bytes adRequest = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StSuggestionRsp.java ====
+message StSuggestionRsp {
+  bytes ext_info = 1;  // was: StCommonExt
+  repeated StSuggestionInfo infos = 2;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StliveReserveReq.java ====
+message StliveReserveReq {
+  string uin = 1;
+  string room_id = 2;
+  uint32 status = 3;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$StliveReserveRsp.java ====
+message StliveReserveRsp {
+  bool success = 1;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$SuggestionWord.java ====
+message SuggestionWord {
+  string text = 1;
+  bytes ext_info = 10;  // was: StCommonExt
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$TextIconStyleData.java ====
+message TextIconStyleData {
+  string text = 1;
+  Icon icon = 2;
+  string rankImg = 3;
+  JumpInfo jumpInfo = 4;
+  bytes reportInfo = 5;  // was: StCommonExt
+  bytes extInfo = 6;  // was: StCommonExt
+  uint32 heat = 7;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$UnifySearchData.java ====
+message UnifySearchData_UnifyFeedsResult {
+  string title = 1;
+  repeated bytes feeds = 2;  // was: StFeed
+  int32 rank = 3;
+}
+
+message UnifySearchData_UnifyUserCardResult {
+  repeated bytes user = 1;
+  repeated bytes feeds = 2;  // was: StFeed
+}
+
+message UnifySearchData {
+  string more_text = 1;
+  string more_url = 2;
+  int32 type = 3;
+  bytes feed_result = 4;  // was: UnifyFeedsResult
+  bytes user_result = 5;  // was: UnifyUserCardResult
+  StGameDescResp game_desc = 6;
+  StGameCollectionResp game_collection = 7;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$UnifySearchResultExt.java ====
+message UnifySearchResultExt {
+  PromptShading shading_prompt = 1;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$UserTextStyleData.java ====
+message UserTextStyleData {
+  string uid = 1;
+  string avatar = 2;
+  string nick = 3;
+  string text = 4;
+  string rankImg = 5;
+  JumpInfo jumpInfo = 6;
+  bytes reportInfo = 7;  // was: StCommonExt
+  bytes extInfo = 8;  // was: StCommonExt
+  int64 fansNum = 9;
+  int64 feedNum = 10;
+  int32 certification = 11;
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$stFeedItem.java ====
+message stFeedItem {
+  string feed_id = 1;
+  string uid = 2;
+  uint64 create_time = 3;
+  uint64 content_id = 4;
+  bytes ext_info = 19;  // was: StCommonExt
+  bytes recommend_info = 20;  // was: StRecommendInfo
+}
+
+// ==== source: circlesearch/CircleSearchExhibition$stTagItem.java ====
+message stTagItem {
+  string tag_name = 1;
+  repeated stFeedItem feeds = 2;
+  int32 feeds_num = 3;
+}
+
+// ==== source: qqcircle/Hotspots$AttachInfo.java ====
+message AttachInfo {
+  int64 lastRequestTime = 1;
+  int64 lastNeedUpdateTime = 2;
+}
+
+// ==== source: qqcircle/Hotspots$HotSpotReq.java ====
+message HotSpotReq {
+  int64 intervalFromLastReqFeedList = 1;
+  int64 curFeedPosition = 2;
+  bytes attachInfo = 3;
+}
+
+// ==== source: qqcircle/Hotspots$HotSpotRsp.java ====
+message HotSpotRsp {
+  bool needUpdate = 1;
+  bytes attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleActivityLottery$LotteryResultRsp.java ====
+message LotteryResultRsp_LotteryPrizeDetail {
+  int64 prize_id = 1;
+  string name = 2;
+  string award_image_url = 3;
+  string award_use_schema = 4;
+}
+
+message LotteryResultRsp {
+  int32 lottery_result = 1;
+  bytes lottery_detail = 2;  // was: LotteryPrizeDetail
+  string award_list_schema = 3;
+  string more_activity_schema = 4;
+}
+
+// ==== source: qqcircle/QQCircleActivityLottery$QueryRecentLotteryResultReq.java ====
+message QueryRecentLotteryResultReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleActivityLottery$TriggerLotteryCounterReq.java ====
+message TriggerLotteryCounterReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleBase$CircleAchievement.java ====
+message CircleAchievement {
+  int32 rocket = 1;
+  string rocketTitle = 2;
+  string rocketDesc = 3;
+  int32 rocketToast = 4;
+  string rocketIconUrl = 5;
+  string rocketToastUrl = 6;
+  string rocketButtonDesc = 7;
+  string rocketButtonUrl = 8;
+}
+
+// ==== source: qqcircle/QQCircleBase$CircleRankingData.java ====
+message CircleRankingData {
+  string rankDesc = 1;
+  string rankIconUrl = 2;
+  string rankJumpUrl = 3;
+  string backIconUrl = 4;
+  int32 rankingType = 5;
+  int32 reportValue = 6;
+}
+
+// ==== source: qqcircle/QQCircleBase$StAppInfo.java ====
+message StAppInfo {
+  string app_version = 1;
+  string qua = 2;
+  string platform = 3;
+}
+
+// ==== source: qqcircle/QQCircleBase$StGateWayTransfer.java ====
+message StGateWayTransfer {
+  int64 reqBeginTime = 1;
+  int64 reqCost = 2;
+}
+
+// ==== source: qqcircle/QQCircleBase$StNetworkInfo.java ====
+message StNetworkInfo {
+  string network_type = 1;
+}
+
+// ==== source: qqcircle/QQCircleBase$StPublishButtonAnimationInfo.java ====
+message StPublishButtonAnimationInfo {
+  int32 isShowAnimation = 1;
+  string hashIcon = 2;
+  string hashTag = 3;
+  string words = 4;
+  string backImg = 5;
+  string operatorIcon = 6;
+  string jumpUrl = 7;
+  int64 animationStartupTime = 8;
+  int64 animationShowTime = 9;
+  string reportExt = 10;
+  string taskId = 11;
+}
+
+// ==== source: qqcircle/QQCircleBase$StUserBusiData.java ====
+message StUserBusiData_RealNameAuthInfo {
+  string realName = 1;
+}
+
+message StUserBusiData {
+  int64 fansNum = 1;
+  int64 followNum = 2;
+  int32 feedNum = 3;
+  repeated UserCircleInfo schoolInfos = 6;
+  repeated UserCircleInfo companyInfos = 7;
+  int32 certification = 8;
+  int32 talentLevel = 9;
+  string talentLevelJumpUrl = 10;
+  int64 fuelValue = 11;
+  string talentIconUrl = 12;
+  string fuelValueJumpUrl = 13;
+  string certificationDesc = 14;
+  string blueCertifiDesc = 15;
+  CircleAchievement achievement = 16;
+  repeated CircleRankingData rankData = 17;
+  string completionDesc = 18;
+  int64 likedNum = 19;
+  bool has_unread_feed = 20;
+  int64 fuelRedPointCount = 21;
+  string certification_jump_url = 22;
+  repeated bytes id = 23;
+  bytes realNameAuthInfo = 24;  // was: RealNameAuthInfo
+}
+
+// ==== source: qqcircle/QQCircleBase$StaffInfo.java ====
+message StaffInfo {
+  string name = 1;
+  string companyName = 2;
+  string position = 3;
+  string email = 4;
+  repeated string evidencePicturies = 5;
+  int64 optime = 6;
+  repeated bytes id = 7;
+  string companyLogo = 8;
+  uint32 onboardingTime = 9;
+  uint32 leaveTime = 10;
+}
+
+// ==== source: qqcircle/QQCircleBase$StudentInfo.java ====
+message StudentInfo {
+  string name = 1;
+  string schoolName = 2;
+  string collegeName = 3;
+  int32 education = 4;
+  int32 degree = 5;
+  uint32 enrollmentTime = 6;
+  string email = 7;
+  repeated string evidencePicturies = 8;
+  int64 optime = 9;
+  repeated bytes id = 10;
+  string schoolLogo = 11;
+  string collegeID = 12;
+  uint32 graduationTime = 13;
+}
+
+// ==== source: qqcircle/QQCircleBase$UserCircleInfo.java ====
+message UserCircleInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  int32 circleType = 3;
+  int32 circleTab = 4;
+  string logo = 5;
+  bytes shareInfo = 6;  // was: StShare
+  string tagId = 7;
+  string circleJumpUrl = 8;
+}
+
+// ==== source: qqcircle/QQCircleClient$EeveeLoginEvent.java ====
+message EeveeLoginEvent {
+  string toast_text = 1;
+  uint32 toast_count = 2;
+}
+
+// ==== source: qqcircle/QQCircleClient$ReceiveAwardReq.java ====
+message ReceiveAwardReq {
+  repeated uint64 id = 1;
+}
+
+// ==== source: qqcircle/QQCircleClient$ReceiveAwardRsp.java ====
+message ReceiveAwardRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleClient$TaskInfo.java ====
+message TaskInfo {
+  repeated uint64 id = 1;
+  string title = 2;
+  string icon = 3;
+  string desc = 4;
+  string tips = 5;
+  repeated string tags = 6;
+  uint32 upper_count = 7;
+  uint32 reward_count = 8;
+  string botton_text = 9;
+  string jump_url = 10;
+  int32 status = 50;
+  uint32 done_count = 51;
+  uint32 available_reward = 52;
+  uint32 done_step = 53;
+}
+
+// ==== source: qqcircle/QQCircleClient$TaskInfosReq.java ====
+message TaskInfosReq {
+  uint32 group = 1;
+}
+
+// ==== source: qqcircle/QQCircleClient$TaskInfosRsp.java ====
+message TaskInfosRsp {
+  string title = 1;
+  string description = 2;
+  string bottom_text = 3;
+  string jump_url = 4;
+  string tips = 5;
+  repeated TaskInfo infos = 10;
+  uint32 total_fuel = 11;
+}
+
+// ==== source: qqcircle/QQCircleClientData$CommonReportTransInfo.java ====
+message CommonReportTransInfo {
+  repeated bytes report_data = 1;  // was: Entry
+}
+
+// ==== source: qqcircle/QQCircleClientData$MsgBizReport.java ====
+message MsgBizReport {
+  int32 subtype = 1;
+  repeated bytes id = 2;
+  string opUid = 3;
+  string taskTransfer = 4;
+  int32 noticePattonType = 5;
+  string schemaUrl = 6;
+  int32 withPic = 7;
+  string datongJsonData = 8;
+}
+
+// ==== source: qqcircle/QQCircleClientData$RedPointReportTransInfo.java ====
+message RedPointReportTransInfo {
+  int32 redType = 1;
+  string channelTransInfo = 2;
+  string sealTransInfo = 3;
+  int32 subRedType = 4;
+  int64 contentID = 5;
+  string recomMeta = 6;
+  string subRedTypes = 7;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$RetMsg.java ====
+message RetMsg {
+  int32 ret_code = 1;
+  string err_msg = 2;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$SsoPushReportReq.java ====
+message SsoPushReportReq {
+  int32 account_type = 1;
+  string platform = 2;
+  string qimei36 = 3;
+  string province = 4;
+  string operator = 5;
+  string app_version = 6;
+  string model = 7;
+  string os_version = 8;
+  string event_code = 9;
+  string oper_name = 10;
+  repeated bytes module = 11;
+  string action = 12;
+  string ext1 = 13;
+  string ext2 = 14;
+  string ext3 = 15;
+  string ext4 = 16;
+  string ext5 = 17;
+  int64 ext6 = 18;
+  int64 ext7 = 19;
+  int64 ext8 = 20;
+  int64 ext9 = 21;
+  int64 ext10 = 22;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$SsoPushReportRsp.java ====
+message SsoPushReportRsp {
+  RetMsg ret_msg = 1;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$UserActionReportReq.java ====
+message UserActionReportReq {
+  int32 busi_type = 1;
+  string uid = 2;
+  string adid = 3;
+  int32 adpos_type = 4;
+  int32 action_type = 5;
+  int64 action_time = 6;
+  uint32 feeds_index = 7;
+  repeated string experiment_id = 8;
+  string attachment = 9;
+  string adpos_id = 10;
+  string trace_id = 11;
+  string qq_ver = 12;
+  uint32 os_type = 13;
+  string app_id = 14;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$UserActionReportRsp.java ====
+message UserActionReportRsp {
+  RetMsg ret_msg = 1;
+}
+
+// ==== source: qqcircle/QQCircleCommercialDataworksReport$UserData.java ====
+message UserData {
+  repeated UserActionReportReq user_action_data = 1;
+  int64 write_time = 100;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GenericGetRainbowTableConfigReq.java ====
+message GenericGetRainbowTableConfigReq {
+  string appId = 1;
+  string group = 2;
+  string cookie = 3;
+  repeated GetOpt getOpts = 4;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GenericGetRainbowTableConfigRsp.java ====
+message GenericGetRainbowTableConfigRsp {
+  string data = 1;
+  int32 update = 2;
+  string cookie = 3;
+  int32 fetchInterval = 4;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetMooncakeReq.java ====
+message GetMooncakeReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetMooncakeRsp.java ====
+message GetMooncakeRsp {
+  int32 allowLongVideo = 1;
+  int32 videoLength = 2;
+  int32 nextTimeInterval = 3;
+  repeated string needClientReportSuccessRateCmd = 4;
+  int64 featureMask = 5;
+  repeated uint64 tempConversionUin = 6;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetOpt.java ====
+message GetOpt {
+  string key = 1;
+  string val = 2;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetRainbowKVConfReq.java ====
+message GetRainbowKVConfReq {
+  string appId = 1;
+  string group = 2;
+  string key = 3;
+  string cookie = 4;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetRainbowKVConfRsp.java ====
+message GetRainbowKVConfRsp {
+  string data = 1;
+  int32 update = 2;
+  string cookie = 3;
+  int32 fetchInterval = 4;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetRainbowTableConfigReq.java ====
+message GetRainbowTableConfigReq {
+  string group = 1;
+  string uid = 2;
+  string qua = 3;
+  string cookie = 4;
+  string version = 5;
+  int32 platform = 6;
+}
+
+// ==== source: qqcircle/QQCircleConfig$GetRainbowTableConfigRsp.java ====
+message GetRainbowTableConfigRsp {
+  string data = 1;
+  int32 update = 2;
+  string cookie = 3;
+}
+
+// ==== source: qqcircle/QQCircleCountergroup$GetGroupCountReq.java ====
+message GetGroupCountReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int64 gid = 2;
+}
+
+// ==== source: qqcircle/QQCircleCountergroup$GetGroupCountRsp.java ====
+message GetGroupCountRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 count = 2;
+  uint32 hasMore = 3;
+  uint32 timeInterval = 4;
+  string content = 5;
+  string iconUrl = 6;
+  uint32 latestFeedTime = 7;
+}
+
+// ==== source: qqcircle/QQCircleCountergroup$InvitationTicket.java ====
+message InvitationTicket {
+  uint64 groupID = 1;
+  string InvitationCode = 2;
+}
+
+// ==== source: qqcircle/QQCircleCountergroup$VerifyInvitationTicketReq.java ====
+message VerifyInvitationTicketReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string invitationTicket = 2;
+}
+
+// ==== source: qqcircle/QQCircleCountergroup$VerifyInvitationTicketRsp.java ====
+message VerifyInvitationTicketRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 result = 2;
+}
+
+// ==== source: qqcircle/QQCircleCreatorAdvSvr$AdvJobDetail.java ====
+message AdvJobDetail {
+  string title = 1;
+  string summary = 2;
+  string picUrl = 3;
+  string corporationName = 4;
+}
+
+// ==== source: qqcircle/QQCircleCreatorAdvSvr$StNotifyCreatorAdvJobReq.java ====
+message StNotifyCreatorAdvJobReq {
+  int64 jobID = 1;
+  string uid = 2;
+  AdvJobDetail detail = 3;
+}
+
+// ==== source: qqcircle/QQCircleCreatorAdvSvr$StNotifyCreatorAdvJobRsp.java ====
+message StNotifyCreatorAdvJobRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleCreatorAdvSvr$StQueryAdvJobInfoReq.java ====
+message StQueryAdvJobInfoReq {
+  int64 jobID = 1;
+  int32 jobType = 2;
+  string bizID = 3;
+}
+
+// ==== source: qqcircle/QQCircleCreatorAdvSvr$StQueryAdvJobInfoRsp.java ====
+message StQueryAdvJobInfoRsp {
+  AdvJobDetail detail = 1;
+}
+
+// ==== source: qqcircle/QQCircleDitto$RecomFeedsInfo.java ====
+message RecomFeedsInfo {
+  uint32 dittoID = 1;
+  uint32 pattonID = 2;
+  StCircleDittoDataNew dittoData = 3;
+  int32 index = 4;
+  bytes busiReport = 5;
+}
+
+// ==== source: qqcircle/QQCircleDitto$StButton.java ====
+message StButton_StButtonAnimationInfo {
+  bool showScaleAnimation = 1;
+}
+
+message StButton_StButtonStyle {
+  uint32 cornerSize = 1;
+  uint32 textSize = 2;
+  uint32 bgColorPre = 3;
+  uint32 bgColorPost = 4;
+  string textPre = 5;
+  string textPost = 6;
+  uint32 textColorPre = 7;
+  uint32 textColorPost = 8;
+  string button_diaplay_url = 9;
+}
+
+message StButton {
+  string name = 1;
+  bool needShow = 2;
+  string jumpUrl = 3;
+  uint32 buttonValue = 4;
+  bytes animation = 5;  // was: StButtonAnimationInfo
+  int32 type = 6;
+  bytes style = 7;  // was: StButtonStyle
+  string datongJsonData = 8;
+}
+
+// ==== source: qqcircle/QQCircleDitto$StButtonGroup.java ====
+message StButtonGroup {
+  uint32 leftMargin = 1;
+  uint32 rightMargin = 2;
+  uint32 margin = 3;
+  repeated StButton buttons = 4;
+}
+
+// ==== source: qqcircle/QQCircleDitto$StCircleDittoDataNew.java ====
+message StCircleDittoDataNew_StSinglePicBanner {
+  repeated bytes image = 1;
+  int32 actionType = 2;
+  string actionUrl = 3;
+  repeated StNegativeFbButton buttons = 4;
+  repeated bytes tianshuAdItem = 5;
+}
+
+message StCircleDittoDataNew_StDividingLine {
+  string summary = 1;
+  repeated bytes buttonInfo = 2;
+}
+
+message StCircleDittoDataNew_StFlipCard {
+  string cardName = 1;
+  repeated uint32 opMask = 2;
+  repeated bytes cardDetail = 3;
+}
+
+message StCircleDittoDataNew_StCardDetail {
+  repeated bytes frontCardDP = 1;
+  repeated bytes backCardDP = 2;
+}
+
+message StCircleDittoDataNew_StFrontCardDP {
+  repeated bytes recomUser = 1;
+  repeated uint64 matchReson = 2;
+  string recomCommReson = 3;
+  repeated uint64 recomReason = 4;
+  repeated StButton buttons = 5;
+}
+
+message StCircleDittoDataNew_StBackCardDP {
+  repeated bytes recomFeed = 1;
+  repeated StButton buttons = 2;
+}
+
+message StCircleDittoDataNew_StPicTextBanner {
+  string banner_id = 1;
+  string title = 2;
+  string content = 3;
+  repeated bytes backgroundImage = 4;
+  int32 actionType = 5;
+  string actionUrl = 6;
+  repeated StButton buttons = 7;
+  uint32 exposeTimeMs = 8;
+  repeated bytes icon = 9;
+}
+
+message StCircleDittoDataNew_StFeedItemInfo {
+  repeated bytes normalFeed = 1;
+  string jumpUrl = 2;
+}
+
+message StCircleDittoDataNew {
+  StItemContainer itemContainter = 1;
+  bytes singlePicBanner = 2;  // was: StSinglePicBanner
+  bytes dividingLine = 3;  // was: StDividingLine
+  repeated StItemContainer multiItemContainter = 4;
+  bytes flipCard = 5;  // was: StFlipCard
+  bytes picTextBanner = 6;  // was: StPicTextBanner
+  bytes feedItem = 7;  // was: StFeedItemInfo
+}
+
+// ==== source: qqcircle/QQCircleDitto$StItemContainer.java ====
+message StItemContainer {
+  string title = 1;
+  repeated bytes items = 2;  // was: StItemInfo
+  repeated bytes urlInfo = 3;  // was: Entry
+  string subTitle = 4;
+  uint32 containerType = 5;
+  int32 styleType = 6;
+  repeated bytes busiInfo = 7;  // was: Entry
+  repeated bytes userList = 8;  // was: StUser
+  repeated StButton buttons = 9;
+  string toast = 10;
+}
+
+// ==== source: qqcircle/QQCircleDitto$StNegativeFbButton.java ====
+message StNegativeFbButton {
+  int32 buttonType = 1;
+  bool needShow = 2;
+  uint32 buttonValue = 4;
+  string color = 5;
+}
+
+// ==== source: qqcircle/QQCircleDitto$StPymkItemInfoBizData.java ====
+message StPymkItemInfoBizData {
+  bytes recomUser = 1;  // was: StUser
+  bool isNew = 2;
+  string backupContent = 3;
+  StButton newUserPageMoreButton = 4;
+}
+
+// ==== source: qqcircle/QQCircleDurationReport$ReportDurationReq.java ====
+message ReportDurationReq {
+  uint64 uin = 1;
+  uint32 type = 2;
+  int64 duration = 3;
+}
+
+// ==== source: qqcircle/QQCircleDurationReport$ReportDurationRsp.java ====
+message ReportDurationRsp_DurationDialog {
+  repeated bytes id = 1;
+  uint32 dialog_type = 2;
+  string icon = 3;
+  string title = 4;
+  string content = 5;
+  string jump_url = 6;
+  string jump_text = 7;
+  string toast_text = 8;
+}
+
+message ReportDurationRsp {
+  int64 heart_beat_interval = 1;
+  bytes dialog = 2;  // was: DurationDialog
+}
+
+// ==== source: qqcircle/QQCircleDurationReport$ResetDurationReq.java ====
+message ResetDurationReq {
+  uint64 uin = 1;
+  string dialog_id = 2;
+}
+
+// ==== source: qqcircle/QQCircleDurationReport$ResetDurationRsp.java ====
+message ResetDurationRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$CommentActivityInfo.java ====
+message CommentActivityInfo_KeywordHighlightInfo {
+  string keywordHighlightResURL = 1;
+  uint32 keywordHighlightTextAreaWidth = 2;
+}
+
+message CommentActivityInfo_AtConditionToCommentEffect {
+  uint32 minUserInvolve = 1;
+  uint32 maxUserInvolve = 2;
+}
+
+message CommentActivityInfo {
+  string activityID = 1;
+  repeated uint64 keyWords = 2;
+  repeated uint64 expressionURLs = 3;
+  string entrancePicURL = 4;
+  string jumpURL = 5;
+  uint64 startTime = 6;
+  uint64 endTime = 7;
+  uint32 activityStyle = 8;
+  bytes keyWordHighLightInfo = 9;  // was: KeywordHighlightInfo
+  repeated uint64 whiteUIDs = 10;
+  uint32 commentTriggerType = 11;
+  bytes atCondition = 12;  // was: AtConditionToCommentEffect
+  uint32 triggerLimit = 13;
+  repeated uint64 topicID = 14;
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$ExposeTipsReq.java ====
+message ExposeTipsReq {
+  string userId = 1;
+  int32 tipsId = 2;
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$ExposeTipsRsp.java ====
+message ExposeTipsRsp_Tips {
+  repeated uint64 id = 1;
+  string text = 2;
+  uint32 durationMs = 3;
+  bool canExpose = 4;
+  uint32 showAfterTime = 5;
+}
+
+message ExposeTipsRsp {
+  bytes tips = 1;  // was: Tips
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$GetUserFullEnvRsp.java ====
+message GetUserFullEnvRsp_UserLayerInfo {
+  bool isHaveLostUser = 1;
+}
+
+message GetUserFullEnvRsp_CommentEffectInfo {
+  repeated CommentActivityInfo activityInfo = 1;
+  repeated bytes inputToolsBarConfigInfo = 2;
+}
+
+message GetUserFullEnvRsp_InputToolsBarConfigInfo {
+  repeated string recommendEmotionTexts = 1;
+  repeated RecommendReplyText recommendReplyText = 2;
+}
+
+message GetUserFullEnvRsp {
+  repeated bytes tipsList = 1;  // was: Tips
+  bytes userLayerInfo = 2;  // was: UserLayerInfo
+  UserInfo userInfo = 3;
+  bytes commentEffectInfo = 4;  // was: CommentEffectInfo
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$RecommendReplyText.java ====
+message RecommendReplyText {
+  repeated string replyTexts = 1;
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$UserInfo.java ====
+message UserInfo {
+  bool isFunnyKing = 1;
+  uint64 pushEffectStartTime = 2;
+  uint64 pushEffectEndTime = 3;
+  string uid = 4;
+  string nickname = 5;
+  string headUrl = 6;
+  string publishConfig = 7;
+  bool canPublishCommentExpression = 8;
+  bool canPublishGIFExpression = 9;
+  string commentExpressionText = 10;
+  bool isCloseRecommend = 11;
+  uint32 recommendMaxToastTime = 12;
+  repeated bytes QQVip = 13;
+  bool sharePanelRecentFirst = 14;
+  bool sharePanelMultiUser = 15;
+}
+
+// ==== source: qqcircle/QQCircleEnvHub$UserInfoAttachInfo.java ====
+message UserInfoAttachInfo {
+  uint64 funnyKingNextTime = 1;
+  UserInfo lastUserInfo = 2;
+  uint64 nicknameHeadNextTime = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AddAlbumFeedsReq.java ====
+message AddAlbumFeedsReq {
+  int32 add_type = 1;
+  uint64 album_id = 2;
+  repeated FeedSign feed_signs = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AddAlbumFeedsRsp.java ====
+message AddAlbumFeedsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AlbumFeedSign.java ====
+message AlbumFeedSign {
+  uint64 album_id = 1;
+  FeedSign feed_sign = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AlbumInfo.java ====
+message AlbumInfo {
+  repeated uint64 id = 1;
+  string title = 2;
+  string owner_id = 3;
+  string cover_url = 4;
+  string description = 5;
+  uint64 version_number = 6;
+  int64 create_time = 7;
+  int64 last_modified_time = 8;
+  int64 item_count = 9;
+  int32 status = 10;
+  int32 source = 11;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AlbumInfoEntry.java ====
+message AlbumInfoEntry {
+  uint64 album_id = 1;
+  AlbumInfo album_info = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AlbumInfoWithFeed.java ====
+message AlbumInfoWithFeed {
+  AlbumInfo album_info = 1;
+  repeated FeedItem feeds = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$AlbumNewestFeedCTimeEntry.java ====
+message AlbumNewestFeedCTimeEntry {
+  uint64 album_id = 1;
+  uint64 feed_ctime = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$CreateAlbumReq.java ====
+message CreateAlbumReq {
+  AlbumInfo album_info = 1;
+  repeated FeedSign feed_signs = 2;
+  bool draft_album = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$CreateAlbumRsp.java ====
+message CreateAlbumRsp {
+  AlbumInfo album_info = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$DeleteAlbumReq.java ====
+message DeleteAlbumReq {
+  uint64 album_id = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$DeleteAlbumRsp.java ====
+message DeleteAlbumRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$FeedItem.java ====
+message FeedItem {
+  uint64 album_id = 1;
+  FeedSign feed_sign = 2;
+  int64 order = 3;
+  uint32 serial_number = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$FeedSign.java ====
+message FeedSign {
+  repeated bytes id = 1;
+  string poster_id = 2;
+  uint64 create_time = 3;
+  int32 source_index = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedExplicitReq.java ====
+message GetAlbumFeedExplicitReq {
+  repeated AlbumFeedSign album_feed_sign = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedExplicitRsp.java ====
+message GetAlbumFeedExplicitRsp {
+  repeated AlbumInfoWithFeed albums = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedsReq.java ====
+message GetAlbumFeedsReq {
+  uint64 album_id = 1;
+  string attach_info = 2;
+  int64 skip = 3;
+  int32 count = 4;
+  int32 load_more_type = 5;
+  uint64 begin_time = 6;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedsRsp.java ====
+message GetAlbumFeedsRsp {
+  AlbumInfo album_info = 1;
+  repeated FeedItem feed_items = 2;
+  string attach_info = 3;
+  bool has_more = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedsWithEntranceReq.java ====
+message GetAlbumFeedsWithEntranceReq {
+  uint64 album_id = 1;
+  int32 count = 2;
+  int32 entrance_type = 3;
+  FeedSign entrance_feed = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumFeedsWithEntranceRsp.java ====
+message GetAlbumFeedsWithEntranceRsp {
+  AlbumInfo album_info = 1;
+  repeated FeedItem feed_items = 2;
+  string attach_info = 3;
+  bool has_more_next_feed = 4;
+  bool has_more_previous_feed = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumInfosReq.java ====
+message GetAlbumInfosReq {
+  repeated uint64 album_ids = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumInfosRsp.java ====
+message GetAlbumInfosRsp {
+  repeated AlbumInfoEntry album_infos = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumsNewestFeedCTimeReq.java ====
+message GetAlbumsNewestFeedCTimeReq {
+  repeated uint64 album_ids = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumsNewestFeedCTimeRsp.java ====
+message GetAlbumsNewestFeedCTimeRsp {
+  repeated AlbumNewestFeedCTimeEntry albums_newest_feed_ctime = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumsReq.java ====
+message GetAlbumsReq {
+  int32 count = 1;
+  string attach_info = 2;
+  int64 skip = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetAlbumsRsp.java ====
+message GetAlbumsRsp {
+  repeated AlbumInfo album_info = 1;
+  bool has_more = 2;
+  string attach_info = 3;
+  int32 total = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetRelatedAlbumsReq.java ====
+message GetRelatedAlbumsReq {
+  uint64 album_id = 1;
+  string attach_info = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetRelatedAlbumsRsp.java ====
+message GetRelatedAlbumsRsp_StFeedDetail {
+  int32 num = 1;
+  repeated bytes feed = 2;
+}
+
+message GetRelatedAlbumsRsp {
+  repeated StVideoAlbumFeedInfo feed_info = 1;
+  uint32 is_finish = 2;
+  string attach_info = 3;
+  bytes last_feed = 4;  // was: StFeedDetail
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetUserAlbumsReq.java ====
+message GetUserAlbumsReq {
+  string user_id = 1;
+  int32 count = 2;
+  string attach_info = 3;
+  int64 skip = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$GetUserAlbumsRsp.java ====
+message GetUserAlbumsRsp {
+  repeated AlbumInfo album_info = 1;
+  bool has_more = 2;
+  string attach_info = 3;
+  int32 total = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$RemoveFeedsReq.java ====
+message RemoveFeedsReq {
+  repeated FeedSign feed_signs = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$RemoveFeedsRsp.java ====
+message RemoveFeedsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$StVideoAlbumFeedInfo.java ====
+message StVideoAlbumFeedInfo {
+  uint64 album_id = 1;
+  string album_title = 2;
+  string album_desc = 3;
+  int64 item_count = 4;
+  string page_views = 5;
+  repeated bytes detail = 6;  // was: StFeedDetail
+  string more_schema = 7;
+}
+
+// ==== source: qqcircle/QQCircleFeedAlbum$UpdateAlbumReqFilter.java ====
+message UpdateAlbumReqFilter {
+  bool UpdateAlbumInfo = 1;
+  bool UpdateAlbumFeeds = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$AllPushPageSchemaTrans.java ====
+message AllPushPageSchemaTrans_StSimpleFeed {
+  string userID = 1;
+  string feedID = 2;
+  uint64 ctime = 3;
+  bytes busiReportInfo = 4;
+}
+
+message AllPushPageSchemaTrans {
+  bytes entryFeed = 1;  // was: StSimpleFeed
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$BackflowPymkDescEntry.java ====
+message BackflowPymkDescEntry {
+  string key = 1;
+  uint32 count = 2;
+  string describe = 3;
+  bool needDisplay = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$ChannelRobotSchemaTransfer.java ====
+message ChannelRobotSchemaTransfer {
+  bytes entryFeed = 1;  // was: StFeed
+  repeated string taskID = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$GalleryPageFeedListSchemaTransfer.java ====
+message GalleryPageFeedListSchemaTransfer {
+  repeated bytes entryFeeds = 1;  // was: StFeed
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$GroupPageSchemaTransfer.java ====
+message GroupPageSchemaTransfer {
+  int64 startTime = 1;
+  int64 endTime = 2;
+  uint64 groupNumber = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$HeaderInfo.java ====
+message HeaderInfo {
+  bool is_default = 1;
+  bytes img = 2;  // was: StImage
+  string title = 3;
+  string condition_text = 4;
+  string img_type = 5;
+  string jump_url = 6;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$LightInteractionBusiData.java ====
+message LightInteractionBusiData_StUrgeUpdateInfo {
+  string content = 1;
+}
+
+message LightInteractionBusiData {
+  StPolyLike polyInfo = 1;
+  repeated StPolyLike polyInfos = 2;
+  string splitItemText = 3;
+  bytes urgeUpdateInfo = 4;  // was: StUrgeUpdateInfo
+  string hostPushDesc = 5;
+  string hostCancelPushDesc = 6;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$LockPushTransInfo.java ====
+message LockPushTransInfo {
+  string feedId = 1;
+  string author = 2;
+  int64 createTs = 3;
+  int32 feedType = 4;
+  string backFeedId = 5;
+  int32 backFeedType = 6;
+  string backFeedAuthor = 7;
+  string recomInfo = 8;
+  repeated uint64 recomUins = 9;
+  int32 recomReasonType = 10;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$MainPageFeedListSchemaTransfer.java ====
+message MainPageFeedListSchemaTransfer {
+  bytes entryFeed = 1;  // was: StFeed
+  bool needPullEntryFeed = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$MiniGameSchemaTransfer.java ====
+message MiniGameSchemaTransfer {
+  bytes entryFeed = 1;  // was: StFeed
+  string recomTransData = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$OfficialAccountSchemaTransfer.java ====
+message OfficialAccountSchemaTransfer {
+  bytes entryFeed = 1;  // was: StFeed
+  string recomTransData = 2;
+  string hotPointTransData = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$PrePullMetaData.java ====
+message PrePullMetaData {
+  bool isOpenPrePull = 1;
+  bool isOpenPrePullAfter = 2;
+  repeated PrePullSecondaryData secondaryData = 3;
+  bytes extInfo = 4;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$PrePullSecondaryData.java ====
+message PrePullSecondaryData {
+  int32 dataID = 1;
+  int64 cTime = 2;
+  bytes bizData = 3;
+  string bizSimpleStr = 4;
+  int64 bizSimpleNumber = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$PymkPageSchemaTransfer.java ====
+message PymkPageSchemaTransfer {
+  string sealCacheID = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$SearchText.java ====
+message SearchText {
+  string text = 1;
+  bytes ext_info = 5;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StBusiInfoCommentListData.java ====
+message StBusiInfoCommentListData {
+  bytes comment = 1;  // was: StComment
+  bytes reply = 2;  // was: StReply
+  int32 reqType = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StBusiInfoData.java ====
+message StBusiInfoData {
+  repeated StTabInfo tabInfos = 1;
+  repeated bytes busiMap = 2;  // was: Entry
+  repeated StPolyLike allPolyInfo = 3;
+  repeated UserCircleInfo schoolInfos = 4;
+  repeated UserCircleInfo companyInfos = 5;
+  uint32 defaultTabIndex = 6;
+  StRewardData rewardData = 7;
+  int32 goBackToSmallWorldWay = 8;
+  repeated StPolyLike rewardPolyInfo = 9;
+  int32 defaultTabSourceType = 10;
+  RspEntry publishAlienationButton = 11;
+  RspEntry publishToast = 12;
+  repeated StSubTabInfo gallerySubTabInfos = 13;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StBusiInfoReqData.java ====
+message StBusiInfoReqData {
+  bytes gpsInfo = 1;  // was: StGPSV2
+  repeated bytes busiMap = 2;  // was: Entry
+  repeated int64 rewardInfo = 3;
+  string entrySchema = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StBusiReportInfo.java ====
+message StBusiReportInfo_StRecomReportInfo {
+  repeated StSingleRecomReportInfo recomInfos = 1;
+}
+
+message StBusiReportInfo {
+  bytes tianji_report = 1;
+  bytes recom_report = 2;  // was: StRecomReportInfo
+  int64 downTime = 3;
+  string traceID = 4;
+  repeated bytes busiTranparent = 5;  // was: BytesEntry
+  string entryTraceID = 6;
+  uint64 contentID = 7;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StBuyRspBusiData.java ====
+message StBuyRspBusiData {
+  int64 myFuel = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StCommCountStore.java ====
+message StCommCountStore {
+  repeated StPolyInfoData polyInfos = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StDefineNoticePattonInfo.java ====
+message StDefineNoticePattonInfo {
+  uint32 pattonType = 1;
+  string contentJumpUrl = 2;
+  string picJumpUrl = 3;
+  string buttonName = 4;
+  string buttonJumpUrl = 5;
+  bool contentShowCutOff = 6;
+  bytes pic = 7;  // was: StImage
+  string forcePicJumpUrl = 8;
+  string versionContentJumpUrl = 9;
+  string versionPicJumpUrl = 10;
+  string versionButtonJumpUrl = 11;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StDoLikeReqDoPolyLikeBusiReqData.java ====
+message StDoLikeReqDoPolyLikeBusiReqData {
+  StPolyLike polyLikeInfo = 1;
+  StPolyLike curPolyLikeInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StDoLikeReqDoPolyLikeBusiRspData.java ====
+message StDoLikeReqDoPolyLikeBusiRspData {
+  StRewardData rewardData = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StFeedBusiReqData.java ====
+message StFeedBusiReqData_NewUninterest {
+  repeated uint64 not_want_watch = 1;
+  repeated uint64 feedback_question = 2;
+}
+
+message StFeedBusiReqData {
+  bytes allPushList = 1;  // was: StLike
+  bytes pushList = 2;  // was: StPushList
+  repeated uint32 uninterest_buttons = 3;
+  string recomFeedTypeDescribe = 4;
+  bytes hotTagInfo = 5;  // was: StHotTagInfo
+  StButtonGroup bottomButtons = 6;
+  bytes new_uninterest = 7;  // was: NewUninterest
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StFeedDetailBizReqData.java ====
+message StFeedDetailBizReqData {
+  string entrySchema = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StFeedListBusiRspData.java ====
+message StFeedListBusiRspData_StExplorePageData {
+  repeated bytes recomTagList = 1;  // was: StTagInfo
+}
+
+message StFeedListBusiRspData_StSchoolPageData {
+  string schoolName = 1;
+  repeated bytes coverInfo = 2;
+  repeated bytes subsidiaryFieldDesc = 3;  // was: Entry
+  string pageCopywritingDesc = 4;
+  repeated bytes fuelCircleRankItem = 5;  // was: RankingItem
+  repeated bytes urlInfo = 6;  // was: Entry
+  string rankName = 7;
+  int32 guildType = 8;
+  repeated bytes shareInfo = 9;
+}
+
+message StFeedListBusiRspData_StCampanyPageData {
+  string campanyName = 1;
+}
+
+message StFeedListBusiRspData_StCityPageData {
+  string cityName = 1;
+  repeated bytes pageAttachBusiInfo = 2;  // was: Entry
+}
+
+message StFeedListBusiRspData_StTagPageData {
+  string content = 1;
+  string leftButtonName = 2;
+  string rightButtonName = 3;
+  string leftButtonJumpUrl = 4;
+  int32 leftButtonAction = 5;
+  int32 rightButtonAction = 6;
+  string title = 7;
+}
+
+message StFeedListBusiRspData_MedalToast {
+  string content = 1;
+  string leftButtonName = 2;
+  string rightButtonName = 3;
+  string leftButtonJumpUrl = 4;
+  int32 leftButtonAction = 5;
+  int32 rightButtonAction = 6;
+  string title = 7;
+}
+
+message StFeedListBusiRspData_StTagPageTabInfo {
+  string name = 1;
+}
+
+message StFeedListBusiRspData_StFollowPageData {
+  repeated bytes recomCircileCertification = 1;
+  string tipsTitle = 2;
+  repeated bytes dittoFeed = 3;
+  bytes busiReport = 4;
+}
+
+message StFeedListBusiRspData_StGpsPageData {
+  string pageDesc = 1;
+  repeated bytes subsidiaryFieldDesc = 2;  // was: Entry
+  string poiName = 3;
+  repeated bytes shareInfo = 4;
+  repeated bytes coverInfo = 5;
+}
+
+message StFeedListBusiRspData_StFashionCopyPageData {
+  repeated bytes simulateInfo = 1;
+  string pageDesc = 2;
+  repeated bytes subTitleEntry = 3;  // was: Entry
+  repeated bytes shareInfo = 4;
+}
+
+message StFeedListBusiRspData_StNewUserPymkPageData {
+  repeated bytes backgroundImage = 1;
+  repeated bytes friends = 2;  // was: StUser
+  string content = 3;
+}
+
+message StFeedListBusiRspData_StCommSchemaCollectPageData {
+  string title = 1;
+}
+
+message StFeedListBusiRspData_StHomeButtonBubbleData {
+  uint32 triggerFeedIndex = 1;
+}
+
+message StFeedListBusiRspData_StBackflowPymkPageData {
+  uint64 enterBackflowTimestamp = 1;
+  bool isFrequencyHit = 2;
+  repeated bytes backgroundImage = 3;
+  repeated BackflowPymkDescEntry backflowPymkDescEntry = 4;
+  repeated bytes friends = 5;  // was: StUser
+  string content = 6;
+}
+
+message StFeedListBusiRspData_StPhotoSelectorRecomPageData {
+  bool isNegative = 1;
+}
+
+message StFeedListBusiRspData_StMusicPageData {
+  repeated bytes music = 1;
+  string desc = 2;
+  string publishSchema = 3;
+  string title = 4;
+  string subTitle = 5;
+  repeated bytes include_music = 6;
+  string include_publish_schema = 7;
+  bool is_collect = 8;
+  repeated bytes shareInfo = 9;
+}
+
+message StFeedListBusiRspData_StUnifiedTagPageData {
+  string title = 1;
+  repeated bytes pageIcon = 2;
+  string desc = 3;
+  string publishSchema = 4;
+  bool is_collected = 5;
+  repeated bytes shareInfo = 6;
+}
+
+message StFeedListBusiRspData_StGetPrePullInfoRsp {
+  repeated bytes prePullMD = 1;
+}
+
+message StFeedListBusiRspData_StPublisherButton {
+  string title = 1;
+  string jumpUrl = 2;
+  string fontColor = 3;
+  string bgColor = 4;
+  string iconURL = 5;
+  repeated bytes extInfo = 999;  // was: Entry
+}
+
+message StFeedListBusiRspData_StGetPrePullInfoRspV2 {
+  repeated bytes prePullMD = 1;
+  repeated bytes redTouchFeedOpActions = 2;
+  repeated bytes normalFeedOpActions = 3;
+}
+
+message StFeedListBusiRspData_PrePullRspFeedsOpActionDesc {
+  int32 opActionDesc = 1;
+  repeated bytes feeds = 2;  // was: StPrePullCacheFeed
+}
+
+message StFeedListBusiRspData_AlbumPageData {
+  repeated bytes album = 1;
+  repeated bytes share_info = 2;
+  repeated bytes subsidiary_field_desc = 3;  // was: Entry
+}
+
+message StFeedListBusiRspData_StTagChallengePageRsp {
+  repeated bytes challengeTagList = 1;  // was: StTagInfo
+  bool needPreLoad = 2;
+}
+
+message StFeedListBusiRspData_StEditProfileButton {
+  string title = 1;
+  string jumpUrl = 2;
+  repeated bytes loginUser = 3;
+  bytes profileBusiData = 4;
+  bytes guildInfo = 5;
+}
+
+message StFeedListBusiRspData_StRecentWatchPageData {
+  string topContent = 1;
+  string bottomContent = 2;
+}
+
+message StFeedListBusiRspData_StHotTagData {
+  repeated bytes hotTagsInfo = 1;
+}
+
+message StFeedListBusiRspData_StSearchBubbleInfo {
+  repeated SearchText texts = 1;
+  uint32 count = 2;
+  int64 timeout = 3;
+  uint32 position = 4;
+  int64 duration = 5;
+  int64 interval = 6;
+}
+
+message StFeedListBusiRspData_StGalleryQzoneEmptyPageData {
+  // (no fields resolved)
+}
+
+message StFeedListBusiRspData_StFavoritesFeedsPageRsp {
+  string title = 1;
+  repeated bytes share_info = 2;
+  repeated bytes author = 3;
+  int32 status = 4;
+}
+
+message StFeedListBusiRspData {
+  bytes exploredPageData = 1;  // was: StExplorePageData
+  bytes schoolPageData = 2;  // was: StSchoolPageData
+  bytes campanyPageData = 3;  // was: StCampanyPageData
+  bytes cityPageData = 4;  // was: StCityPageData
+  bytes tagPageData = 5;  // was: StTagPageData
+  bytes followPageData = 6;  // was: StFollowPageData
+  repeated uint64 NoUse = 7;
+  repeated uint64 opMask = 8;
+  string refreshAttachInfo = 9;
+  bytes gpsPageData = 10;  // was: StGpsPageData
+  int64 rspTimestamp = 11;
+  bytes fashionCopyPageData = 12;  // was: StFashionCopyPageData
+  bytes newUserPymkPageData = 13;  // was: StNewUserPymkPageData
+  bytes commSchemaCollectPageData = 14;  // was: StCommSchemaCollectPageData
+  string schemaTrans = 15;
+  bytes homeButtonBubbleData = 16;  // was: StHomeButtonBubbleData
+  bytes backflowPymkPageData = 17;  // was: StBackflowPymkPageData
+  int32 pageLayoutType = 18;
+  bytes photoSelectorRecomPageData = 19;  // was: StPhotoSelectorRecomPageData
+  int64 rspExpireAt = 20;
+  bytes musicPageData = 21;  // was: StMusicPageData
+  bytes unifiedTagPageData = 22;  // was: StUnifiedTagPageData
+  StQQSubscriptionPageData qqSubscriptionPageData = 23;
+  bytes getPrePullInfoRsp = 24;  // was: StGetPrePullInfoRsp
+  string entrySchema = 25;
+  bytes publisherButton = 26;  // was: StPublisherButton
+  bytes getPrePullInfoRspV2 = 27;  // was: StGetPrePullInfoRspV2
+  StMiddlePageData middlePageData = 28;
+  bytes album_page_data = 29;  // was: AlbumPageData
+  repeated bytes bannerData = 30;  // was: StDittoFeed
+  bytes tagChallengePageRsp = 31;  // was: StTagChallengePageRsp
+  bytes editProfileButton = 32;  // was: StEditProfileButton
+  bytes recentWatchPageData = 33;  // was: StRecentWatchPageData
+  bytes hotTagData = 34;  // was: StHotTagData
+  StUserPushBoxInfo pushBoxInfo = 36;
+  bytes searchBubbleInfo = 37;  // was: StSearchBubbleInfo
+  bytes activityPublisherButton = 38;  // was: StPublisherButton
+  bytes galleryQzoneEmptyPageData = 39;  // was: StGalleryQzoneEmptyPageData
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StGetNoticeListRspData.java ====
+message StGetNoticeListRspData {
+  int64 rspTimestamp = 1;
+  int64 last_read_timestamp = 6;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StGetRankingListBusiReqData.java ====
+message StGetRankingListBusiReqData {
+  string tagName = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StGetRankingListBusiRspData.java ====
+message StGetRankingListBusiRspData {
+  repeated bytes urlInfo = 1;  // was: Entry
+  string rankName = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StGetRecomUserListBusiReqData.java ====
+message StGetRecomUserListBusiReqData {
+  string desUserID = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StHotCommentReportInfo.java ====
+message StHotCommentReportInfo {
+  string reportID = 1;
+  string reportData = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StImageBusiData.java ====
+message StImageBusiData {
+  StSimulateData simulate_date = 1;
+  StKuoliePasterData kuolie_data = 2;
+  repeated StMaterialData material_datas = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StKuoliePasterData.java ====
+message StKuoliePasterData {
+  string kuolie_id = 1;
+  float center_x = 2;
+  float center_y = 3;
+  float width = 4;
+  float height = 5;
+  float rotation = 6;
+  string scheme = 7;
+  string content = 8;
+  int32 click_type = 9;
+  bytes trans_info = 10;
+  string highlight_words = 11;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StKuoliePasterTransInfo.java ====
+message StKuoliePasterTransInfo {
+  string feed_id = 1;
+  string feed_author_id = 2;
+  string request_uid = 3;
+  uint64 time = 4;
+  string trace_id = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StLayerAttachInfo.java ====
+message StLayerAttachInfo {
+  repeated bytes feedList = 1;  // was: StSimpleFeed
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StLikeBusiData.java ====
+message StLikeBusiData {
+  repeated StPolyLike polyLikeInfo = 1;
+  StPolyLike curPolyLikeInfo = 2;
+  int32 rewardstatus = 3;
+  int32 likestatus = 4;
+  repeated string likeIDs = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMainPageBasicBusiRspData.java ====
+message StMainPageBasicBusiRspData_StUserRocketInfo {
+  int64 rocket_count = 1;
+}
+
+message StMainPageBasicBusiRspData {
+  repeated bytes urlInfo = 1;  // was: Entry
+  repeated uint32 opMask = 2;
+  repeated bytes recomTagList = 3;  // was: StTagInfo
+  uint32 pattonType = 4;
+  bytes profileBusiData = 5;
+  uint32 giftCnt = 6;
+  string giftJumpUrl = 7;
+  string userFeedbackButtonJumpUrl = 8;
+  uint32 urgeStatus = 9;
+  uint32 urgePosition = 10;
+  repeated bytes wordings = 11;  // was: Entry
+  StUserPushBoxInfo pushBoxInfo = 12;
+  bytes rocketInfo = 13;  // was: StUserRocketInfo
+  HeaderInfo header_info = 14;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMainPageBusiElementInfo.java ====
+message StMainPageBusiElementInfo {
+  uint32 elementKey = 1;
+  uint32 elementType = 2;
+  string content = 3;
+  uint32 visibility = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMainPageBusiReqData.java ====
+message StMainPageBusiReqData {
+  uint32 reqType = 1;
+  string entrySchema = 2;
+  repeated bytes filter_feeds = 3;  // was: StFeed
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMainPageBusiRspData.java ====
+message StMainPageBusiRspData_StBlackInfo {
+  uint32 isBlocked = 1;
+  string blockedText = 2;
+}
+
+message StMainPageBusiRspData {
+  repeated bytes urlInfo = 1;  // was: Entry
+  repeated uint32 opMask = 2;
+  repeated bytes recomTagList = 3;  // was: StTagInfo
+  uint32 fuelValue = 4;
+  uint32 pattonType = 5;
+  bytes profileBusiData = 6;
+  uint32 giftCnt = 7;
+  string giftJumpUrl = 8;
+  uint32 timeInterval = 9;
+  bytes blackInfo = 10;  // was: StBlackInfo
+  StPageRedPointInfo RedPointInfo = 11;
+  uint32 fuelValueStyle = 12;
+  repeated StMainPageBusiElementInfo elementInfo = 13;
+  string userFeedbackButtonJumpUrl = 14;
+  uint32 urgeStatus = 15;
+  uint32 urgePosition = 16;
+  string specialMainPageTailText = 17;
+  RspEntry qqProfileGuideCopywriting = 18;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMainPageCommBusiRspData.java ====
+message StMainPageCommBusiRspData {
+  repeated uint64 showSubButtonsPos = 1;
+  StButtonGroup subButtons = 2;
+  repeated uint64 op_mask = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMaterialData.java ====
+message StMaterialData {
+  string material_id = 1;
+  string material_type = 2;
+  uint32 interactive_type = 3;
+  StSimulateData simulate_date = 4;
+  StKuoliePasterData kuolie_data = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StMiddlePageData.java ====
+message StMiddlePageData {
+  int32 jumpSMShowType = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StNoticeBusiData.java ====
+message StNoticeBusiData_StNoticePattonInfo {
+  uint32 pattonType = 1;
+  repeated bytes userCertificationLabel = 2;
+  repeated bytes plainTxt = 3;
+  repeated bytes leftTxtRightPic = 4;
+  repeated bytes leftTxtRightButton = 5;
+  repeated bytes topPicBottomTxt = 6;
+}
+
+message StNoticeBusiData_StUserCertificationLabel {
+  bool needShow = 1;
+  repeated bytes picInfo = 2;
+  string text = 3;
+}
+
+message StNoticeBusiData_StPlainTxtInfo {
+  repeated bytes txtInfo = 1;
+  repeated bytes title = 2;
+}
+
+message StNoticeBusiData_StLeftTxtRightPicInfo {
+  repeated bytes txtInfo = 1;
+  repeated bytes picInfo = 2;
+  repeated bytes title = 3;
+  repeated bytes moreInfo = 4;
+}
+
+message StNoticeBusiData_StLeftTxtRightButtonInfo {
+  repeated bytes txtInfo = 1;
+  repeated bytes buttonInfo = 2;
+}
+
+message StNoticeBusiData_StNoticeButtonInfo {
+  string name = 1;
+  uint32 actionType = 2;
+  string schemaUrl = 3;
+}
+
+message StNoticeBusiData_StTopPicBottomTxtInfo {
+  repeated bytes title = 1;
+  repeated bytes picInfo = 2;
+  repeated bytes txtInfo = 3;
+  repeated bytes moreInfo = 4;
+}
+
+message StNoticeBusiData_MessageBoxRedPointInfo {
+  bool needShow = 1;
+  string wording = 2;
+}
+
+message StNoticeBusiData_StUserRelationLabel {
+  repeated bytes picInfo = 2;
+  int32 LabelType = 3;
+  string text = 4;
+}
+
+message StNoticeBusiData_StUserTypeLabel {
+  int32 LabelType = 1;
+  string text = 2;
+}
+
+message StNoticeBusiData {
+  repeated bytes urlInfo = 1;  // was: Entry
+  repeated bytes busiInfo = 2;  // was: Entry
+  bytes pattonInfo = 3;  // was: StNoticePattonInfo
+  bytes messageBoxRedPointInfo = 4;  // was: MessageBoxRedPointInfo
+  bytes userRelationLabel = 5;  // was: StUserRelationLabel
+  bytes userTypeLabel = 7;  // was: StUserTypeLabel
+  bool thanked = 8;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StNoticePicInfo.java ====
+message StNoticePicInfo {
+  bytes picInfo = 1;  // was: StImage
+  uint32 actionType = 2;
+  string schemaUrl = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StNoticeTxtInfo.java ====
+message StNoticeTxtInfo {
+  string content = 1;
+  string subContent = 2;
+  string summary = 3;
+  uint32 actionType = 4;
+  string schemaUrl = 5;
+  bool contentShowCutOff = 6;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StPageConfigInfo.java ====
+message StPageConfigInfo {
+  repeated bytes tagPageConfig = 1;  // was: Entry
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StPageRedPointInfo.java ====
+message StPageRedPointInfo_StQQProfilePointInfo {
+  string txt = 1;
+  string touin = 2;
+}
+
+message StPageRedPointInfo {
+  string appid = 1;
+  uint32 redType = 2;
+  uint32 redTotalNum = 3;
+  uint32 pushTime = 4;
+  string extend = 5;
+  int64 lastVisitTime = 6;
+  bytes transInfo = 7;
+  bytes qqProfileInfo = 23;  // was: StQQProfilePointInfo
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StPolyInfoData.java ====
+message StPolyInfoData {
+  StPolyLike info = 1;
+  string orderID = 2;
+  uint64 lastRewardOpTime = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StPolyLike.java ====
+message StPolyLike {
+  string polyLikeID = 1;
+  string polyName = 2;
+  string polySource = 3;
+  string polyIconUrl = 4;
+  uint32 count = 5;
+  string polyUnderPicUrl = 6;
+  string polyPreviewSource = 7;
+  int32 articleType = 8;
+  uint32 price = 9;
+  bool clicked = 10;
+  bytes busiData = 11;
+  string fullScreenURL = 12;
+  string fullScreenURLAND = 13;
+  string polyTxtColor = 14;
+  string polyUnderColor = 15;
+  string dynamicPicURL = 16;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StQQSubscriptionPageData.java ====
+message StQQSubscriptionPageData {
+  string title = 1;
+  string viewMoreJumpUrl = 2;
+  uint32 subscription_feed_count = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StRankingItemBusiData.java ====
+message StRankingItemBusiData {
+  repeated bytes feedList = 1;  // was: StFeedAbstract
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StReportInfoForClient.java ====
+message StReportInfoForClient {
+  uint32 feedtype1 = 1;
+  uint32 feedtype2 = 2;
+  uint32 feedtype3 = 3;
+  string datongJsonData = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StRewardData.java ====
+message StRewardData {
+  int64 myMoney = 1;
+  int64 myMoneyWithDraw = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StSessonID.java ====
+message StSessonID {
+  string sessonID = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StShareClickReportInfo.java ====
+message StShareClickReportInfo {
+  string imei = 1;
+  string qimei36 = 2;
+  string sig = 3;
+  string userIP = 4;
+  bytes guid = 5;
+  string qimei36_2 = 6;
+  string idfa = 7;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StSimulateData.java ====
+message StSimulateData {
+  string material_id = 1;
+  string filter_id = 2;
+  string simulate_name = 3;
+  string simulate_schema = 4;
+  uint32 is_show_button = 5;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StSingleRecomReportInfo.java ====
+message StSingleRecomReportInfo {
+  string reportID = 1;
+  bytes reportData = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StSubSessonID.java ====
+message StSubSessonID {
+  string subSessonID = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StSubTabInfo.java ====
+message StSubTabInfo {
+  string tabName = 1;
+  int32 sourceType = 2;
+  string tagId = 3;
+  uint32 status = 4;
+  repeated bytes urlInfo = 5;  // was: Entry
+  bytes pendantInfo = 6;  // was: StImage
+  int32 pageId = 7;
+  string dtPgID = 8;
+  repeated bytes busiInfo = 9;  // was: Entry
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StTabActivityReddotTimeRange.java ====
+message StTabActivityReddotTimeRange {
+  int64 beginTime = 1;
+  int64 endTime = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StTabEffectiveTimeRange.java ====
+message StTabEffectiveTimeRange {
+  int64 beginTime = 1;
+  int64 endTime = 2;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StTabInfo.java ====
+message StTabInfo_StTabOpInfo {
+  string tab_id = 1;
+  repeated bytes tabIconInfo = 3;
+  repeated bytes jumpUrlInfo = 4;
+  string tabPoolID = 5;
+  repeated bytes tabReddotInfo = 6;
+  repeated StTabEffectiveTimeRange effectiveTimeRange = 7;
+  string livingRoomID = 8;
+  string qliveSceneID = 9;
+}
+
+message StTabInfo_StTopTabIconInfo {
+  int32 IconType = 1;
+  string text = 2;
+  string lightIconUrl = 3;
+  string lightIconSelectedUrl = 4;
+  string darkIconUrl = 5;
+  string darkIconSelectedUrl = 6;
+  int32 effectOnPageIcons = 7;
+}
+
+message StTabInfo_StTabJumpUrlInfo {
+  string jumpUrl = 1;
+}
+
+message StTabInfo_StTobTabReddotInfo {
+  bool shouldDisplayNewReddot = 1;
+  bool shouldDisplayActivityReddot = 2;
+  repeated StTabActivityReddotTimeRange activityReddotTimeRange = 3;
+}
+
+message StTabInfo {
+  string tabName = 1;
+  uint32 tabType = 2;
+  string tagId = 3;
+  uint32 status = 4;
+  string attachInfo = 5;
+  repeated bytes urlInfo = 6;  // was: Entry
+  int32 sourceType = 7;
+  int32 pageId = 8;
+  string serverCallee = 9;
+  string dtPgID = 10;
+  repeated StSubTabInfo subTabInfo = 11;
+  uint32 defaultSubTabindex = 12;
+  bytes tabInfoFromYuheng = 13;
+  bytes tabInfoByOperators = 14;  // was: StTabOpInfo
+  repeated bytes tabExtInfo = 15;  // was: Entry
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StUserPushBoxInfo.java ====
+message StUserPushBoxInfo {
+  int64 unopendPushBoxCount = 1;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StUserRecomInfoBusiData.java ====
+message StUserRecomInfoBusiData_StUinBannerData {
+  string text = 1;
+  string jumpUrl = 2;
+  repeated bytes userList = 3;  // was: StUser
+}
+
+message StUserRecomInfoBusiData {
+  uint32 pattonType = 1;
+  uint32 recomSource = 2;
+  bytes bannerData = 3;  // was: StUinBannerData
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$StVideoBusiData.java ====
+message StVideoBusiData {
+  StSimulateData simulate_date = 1;
+  StKuoliePasterData kuolie_data = 2;
+  repeated StMaterialData material_datas = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$TagPageSchemaTransfer.java ====
+message TagPageSchemaTransfer {
+  int64 startTime = 1;
+  int64 endTime = 2;
+  string tagName = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedBase$ViewedFeed.java ====
+message ViewedFeed {
+  string feed_uid = 1;
+  string feed_id = 2;
+  uint64 feed_create_time = 3;
+  uint64 view_time = 4;
+}
+
+// ==== source: qqcircle/QQCircleFeedbackhit$StSetFeedbackHitReq.java ====
+message StSetFeedbackHitReq_StFeedbackCommonInfo {
+  string sourceUin = 1;
+  string feedId = 2;
+  string operationUin = 3;
+  int32 level = 4;
+  string sourceUinName = 5;
+}
+
+message StSetFeedbackHitReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feedbackInfo = 2;  // was: StFeedbackCommonInfo
+  int32 type = 3;
+}
+
+// ==== source: qqcircle/QQCircleFeedbackhit$StSetFeedbackHitRsp.java ====
+message StSetFeedbackHitRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes result = 2;  // was: Result
+}
+
+// ==== source: qqcircle/QQCircleFriendFeedMomentReader$Item.java ====
+message Item {
+  uint64 uin = 1;
+  string nick = 2;
+  string portrait = 3;
+  string jump_url = 4;
+  uint32 circle_type = 10;
+  uint32 buis_type = 11;
+  repeated bytes unread_feeds = 12;  // was: SimpleFeed
+}
+
+// ==== source: qqcircle/QQCircleFriendFeedMomentReader$ReadReq.java ====
+message ReadReq_SimpleFeed {
+  repeated bytes id = 1;
+  uint64 owner = 2;
+  int64 time = 3;
+  string cover = 10;
+  string play_param = 11;
+}
+
+message ReadReq {
+  bytes start_feed = 1;  // was: SimpleFeed
+  uint32 per_page = 2;
+  string cookie = 10;
+}
+
+// ==== source: qqcircle/QQCircleFriendFeedMomentReader$ReadRsp.java ====
+message ReadRsp {
+  repeated bytes feeds = 1;  // was: SimpleFeed
+  bool is_end = 10;
+  string cookie = 11;
+}
+
+// ==== source: qqcircle/QQCircleFriendFeedMomentReader$SsoReadReq.java ====
+message SsoReadReq {
+  uint64 last_uin = 1;
+}
+
+// ==== source: qqcircle/QQCircleFriendFeedMomentReader$SsoReadRsp.java ====
+message SsoReadRsp {
+  repeated Item items = 1;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StBatchDoUrgeReq.java ====
+message StBatchDoUrgeReq {
+  repeated string userIDs = 1;
+  bool withoutRelationVerification = 2;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StBatchDoUrgeRsp.java ====
+message StBatchDoUrgeRsp {
+  repeated StDoUrgeTimeInfo urgeTimes = 1;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StBatchGetUrgeStatusReq.java ====
+message StBatchGetUrgeStatusReq {
+  repeated string userIDs = 1;
+  bool withoutRelationVerification = 2;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StBatchGetUrgeStatusRsp.java ====
+message StBatchGetUrgeStatusRsp {
+  repeated StUrgeStatusInfo urgeStatusInfos = 1;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StDoUrgeReq.java ====
+message StDoUrgeReq {
+  string userID = 1;
+  bool withoutRelationVerification = 2;
+  int32 urgePosition = 3;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StDoUrgeRsp.java ====
+message StDoUrgeRsp {
+  int64 urgeTime = 1;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StDoUrgeTimeInfo.java ====
+message StDoUrgeTimeInfo {
+  string userID = 1;
+  int64 urgeTimestamp = 2;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StGetUrgeStatusReq.java ====
+message StGetUrgeStatusReq {
+  string userID = 1;
+  bool withoutRelationVerification = 2;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StGetUrgeStatusRsp.java ====
+message StGetUrgeStatusRsp {
+  int32 urgeStatus = 1;
+  int32 urgePosition = 2;
+}
+
+// ==== source: qqcircle/QQCircleLightinteract$StUrgeStatusInfo.java ====
+message StUrgeStatusInfo {
+  string userID = 1;
+  int32 urgeStatus = 2;
+  int32 urgePosition = 3;
+}
+
+// ==== source: qqcircle/QQCircleMaterial$MaterialDetail.java ====
+message MaterialDetail {
+  int32 MaterialKeyInt = 1;
+  string MaterialValue = 2;
+}
+
+// ==== source: qqcircle/QQCircleMaterial$MaterialDetailInfos.java ====
+message MaterialDetailInfos {
+  repeated MaterialDetail detail = 1;
+}
+
+// ==== source: qqcircle/QQCircleMaterial$MaterialInfo.java ====
+message MaterialInfo {
+  repeated bytes id = 1;
+  string taskID = 2;
+  string ext = 3;
+  repeated MaterialDetail detail = 4;
+  bytes detailBytes = 5;
+  int32 channelType = 6;
+}
+
+// ==== source: qqcircle/QQCircleMaterial$MaterialReqInfo.java ====
+message MaterialReqInfo {
+  repeated MaterialInfo detail = 1;
+  string ToUin = 2;
+  int64 RecentPubTime = 3;
+  int64 FansNum = 4;
+  int64 FeedsNum = 5;
+}
+
+// ==== source: qqcircle/QQCircleMaterial$MaterialRspInfo.java ====
+message MaterialRspInfo {
+  repeated MaterialInfo detail = 1;
+}
+
+// ==== source: qqcircle/QQCircleNearbyFollow$QuitReq.java ====
+message QuitReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleNearbyFollow$QuitRsp.java ====
+message QuitRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleNearbyFollow$ReportReq.java ====
+message ReportReq_Coordinate {
+  double longitude = 1;
+  double latitude = 2;
+}
+
+message ReportReq {
+  bytes coordinate = 1;  // was: Coordinate
+}
+
+// ==== source: qqcircle/QQCircleNearbyFollow$ReportRsp.java ====
+message ReportRsp {
+  repeated User users = 1;
+  int64 next_interval = 2;
+}
+
+// ==== source: qqcircle/QQCircleNearbyFollow$User.java ====
+message User {
+  string uid = 1;
+  string nick = 2;
+  string portrait = 3;
+  uint64 feeds_count = 5;
+  uint64 fans_count = 6;
+  uint32 follow_state = 7;
+  uint32 relation_state = 8;
+  uint32 frd_state = 9;
+  uint32 black_state = 10;
+}
+
+// ==== source: qqcircle/QQCirclePendant$BuyPendantReq.java ====
+message BuyPendantReq {
+  string pendantKey = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$BuyPendantRsp.java ====
+message BuyPendantRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePendant$DecoratePendantReq.java ====
+message DecoratePendantReq {
+  string pendantKey = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$DecoratePendantRsp.java ====
+message DecoratePendantRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetAllPendantReq.java ====
+message GetAllPendantReq {
+  int32 count = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetDecoratedPendantReq.java ====
+message GetDecoratedPendantReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetDecoratedPendantRsp.java ====
+message GetDecoratedPendantRsp {
+  UserPendantInfo userPendantInfo = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetMyPendantBannerReq.java ====
+message GetMyPendantBannerReq {
+  string pendantKey = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetMyPendantBannerRsp.java ====
+message GetMyPendantBannerRsp {
+  int32 status = 1;
+  string jump_url = 2;
+  string title = 3;
+  string subtitle = 4;
+  string bttn_text = 5;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetMyPendantByIdReq.java ====
+message GetMyPendantByIdReq {
+  string pendantKey = 1;
+  bool isPop = 2;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetMyPendantReq.java ====
+message GetMyPendantReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetNewestPendantReq.java ====
+message GetNewestPendantReq {
+  int32 num = 1;
+  int32 filterPop = 2;
+  int32 filterExpire = 3;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetNewestPendantRsp.java ====
+message GetNewestPendantRsp {
+  repeated UserPendantInfo pendantInfos = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetOnePendantRsp.java ====
+message GetOnePendantRsp {
+  UserPendantInfo userPendantInfo = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetPendantListRsp.java ====
+message GetPendantListRsp {
+  uint64 uin = 1;
+  repeated UserPendantInfo userPendantInfo = 2;
+  string attachInfo = 3;
+  bool hasMore = 4;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetRedPointReq.java ====
+message GetRedPointReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetRedPointRsp.java ====
+message GetRedPointRsp {
+  int32 profilleModify = 1;
+  int32 pendantManage = 2;
+  PendantInfo profille_modify_pendant = 10;
+  PendantInfo pendant_manage_pendant = 11;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetUserPendantByIdReq.java ====
+message GetUserPendantByIdReq {
+  uint64 uin = 1;
+  string pendantKey = 2;
+}
+
+// ==== source: qqcircle/QQCirclePendant$GetUserPendantByIdRsp.java ====
+message GetUserPendantByIdRsp {
+  UserPendantInfo userPendantInfo = 1;
+}
+
+// ==== source: qqcircle/QQCirclePendant$PendantInfo.java ====
+message PendantInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  string desc = 3;
+  string url = 4;
+  string layerUrl = 5;
+  int32 pendantType = 6;
+  int32 pendantPrice = 7;
+  string commentUrl = 8;
+}
+
+// ==== source: qqcircle/QQCirclePendant$UserPendantInfo.java ====
+message UserPendantInfo_PendantTaskInfo {
+  uint64 startTime = 1;
+  uint64 endTime = 2;
+  string url = 3;
+}
+
+message UserPendantInfo {
+  bool hold = 1;
+  bool expired = 2;
+  uint64 startTime = 3;
+  uint64 endTime = 4;
+  PendantInfo pendantInfo = 5;
+  bytes taskInfo = 6;  // was: PendantTaskInfo
+  int32 Pop = 7;
+  string tips = 8;
+}
+
+// ==== source: qqcircle/QQCirclePhotocatemetadata$PhotoMetadata.java ====
+message PhotoMetadata_PhotoExifInfo {
+  int32 orientation = 1;
+  int32 flash = 2;
+  int64 latitude = 3;
+  int64 longitude = 4;
+  string make = 5;
+  string model = 6;
+  string whiteBalance = 7;
+  string exposureTime = 8;
+  string aperture = 9;
+  string focalLength = 10;
+  string iso = 11;
+}
+
+message PhotoMetadata {
+  repeated bytes id = 1;
+  string path = 2;
+  string mimeType = 3;
+  int64 time = 4;
+  int64 modifyTime = 5;
+  int32 width = 6;
+  int32 height = 7;
+  bytes exif = 8;  // was: PhotoExifInfo
+  repeated PhotoTagInfo tags = 9;
+  int32 favourite = 10;
+  float qualityScore = 11;
+}
+
+// ==== source: qqcircle/QQCirclePhotocatemetadata$PhotoTagInfo.java ====
+message PhotoTagInfo {
+  string classifyType = 1;
+  string classifyName = 2;
+  float classifyConfidence = 3;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$PrivateMsgCommReqBody.java ====
+message PrivateMsgCommReqBody {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  uint32 uint32_c2c_type = 3;
+  uint32 uint32_service_type = 4;
+  bytes bytes_pb_reserve = 5;
+  uint32 uint32_msg_seq = 6;
+  uint32 uint32_msg_rand = 7;
+  uint32 uint32_reply_flag = 8;
+  uint64 uint64_src_appid = 11;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$PrivateMsgCommRespBody.java ====
+message PrivateMsgCommRespBody {
+  bytes sint32_result = 1;  // was: PBSInt32Field
+  bytes bytes_err_msg = 2;
+  uint64 uint64_from_uin = 3;
+  uint64 uint64_to_uin = 4;
+  bytes bytes_token = 5;
+  uint32 uint32_freq_check = 6;
+  bytes bytes_trans_info = 7;
+  uint32 uint32_need_callback_after_send = 8;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$PrivateMsgCommToken.java ====
+message PrivateMsgCommToken {
+  uint32 uint32_time_stamp = 1;
+  uint32 uint32_expire_time = 2;
+  bytes bytes_srv_data = 3;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$PrivateMsgTransSvrInfo.java ====
+message PrivateMsgTransSvrInfo {
+  int32 int32_ret_code = 1;
+  string str_err_msg = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$StGetPMBeginShowMsgReq.java ====
+message StGetPMBeginShowMsgReq {
+  string userId = 1;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgAIO$StGetPMBeginShowMsgRsp.java ====
+message StGetPMBeginShowMsgRsp {
+  string pmBeginShow = 1;
+  uint32 followState = 2;
+  uint32 blackState = 3;
+  bool showGuideBar = 4;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$PMGiftInfo.java ====
+message PMGiftInfo_PMGiftDisplayInfo {
+  string icon = 1;
+  string backgroudColor = 2;
+  string numberColor = 3;
+}
+
+message PMGiftInfo {
+  int32 giftType = 1;
+  uint32 giftCnt = 2;
+  bytes display = 3;  // was: PMGiftDisplayInfo
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StBatchGetPMGiftInfoReq.java ====
+message StBatchGetPMGiftInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string uids = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StBatchGetPMGiftInfoRsp.java ====
+message StBatchGetPMGiftInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated UserPMGiftInfo userGiftInfos = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StChangePMSettingReq.java ====
+message StChangePMSettingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  StPMSettingData setting = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StChangePMSettingRsp.java ====
+message StChangePMSettingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 errCode = 2;
+  string errMsg = 3;
+  StPMSettingData setting = 4;
+  StFuelCostRange fuelCostRange = 5;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StFuelCostRange.java ====
+message StFuelCostRange {
+  uint32 min = 1;
+  uint32 max = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StGetPMSettingReq.java ====
+message StGetPMSettingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StGetPMSettingRsp.java ====
+message StGetPMSettingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StPMSettingData setting = 2;
+  StFuelCostRange fuelCostRange = 3;
+  bool isProtection = 4;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$StPMSettingData.java ====
+message StPMSettingData {
+  int32 privilgetype = 1;
+  uint32 fuelCost = 2;
+}
+
+// ==== source: qqcircle/QQCirclePrivateMsgShow$UserPMGiftInfo.java ====
+message UserPMGiftInfo {
+  string uid = 1;
+  uint32 relation = 2;
+  uint32 certification = 3;
+  repeated PMGiftInfo giftInfos = 4;
+}
+
+// ==== source: qqcircle/QQCircleProfile$AuthNearbyReq.java ====
+message AuthNearbyReq {
+  int32 opsType = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$AuthNearbyReqInfo.java ====
+message AuthNearbyReqInfo {
+  uint32 uin = 1;
+  int32 opsType = 2;
+  uint64 uint64_uin = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$AuthNearbyRsp.java ====
+message AuthNearbyRsp {
+  uint32 authNearby = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$AuthNearbyRspInfo.java ====
+message AuthNearbyRspInfo {
+  uint32 uin = 1;
+  uint32 authNearby = 2;
+  uint64 uint64_uin = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$BatchGetAuthNearbyReq.java ====
+message BatchGetAuthNearbyReq {
+  repeated AuthNearbyReqInfo authReqInfos = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$BatchGetAuthNearbyRsp.java ====
+message BatchGetAuthNearbyRsp {
+  repeated AuthNearbyRspInfo authRspInfos = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$BatchGetPenguinProfileReq.java ====
+message BatchGetPenguinProfileReq {
+  repeated uint32 uinList = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$BatchGetPenguinProfileRsp.java ====
+message BatchGetPenguinProfileRsp {
+  repeated PenguinProfile penguinProfiles = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$CheckBindGroupReq.java ====
+message CheckBindGroupReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated uint64 groupIDList = 2;
+  uint32 source = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$CheckBindGroupRsp.java ====
+message CheckBindGroupRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string prompt_text = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$ContentFirstClass.java ====
+message ContentFirstClass {
+  string name = 1;
+  repeated ContentSecondClass second = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$ContentSecondClass.java ====
+message ContentSecondClass {
+  string name = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$GetPersonalizedTagReq.java ====
+message GetPersonalizedTagReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleProfile$GetPersonalizedTagRsp.java ====
+message GetPersonalizedTagRsp {
+  repeated ContentFirstClass selected = 1;
+  repeated ContentFirstClass all = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$GetQQGroupsReq.java ====
+message GetQQGroupsReq_SimpleFeed {
+  string uid = 1;
+  string feed_id = 2;
+  int64 create_time = 3;
+}
+
+message GetQQGroupsReq {
+  uint64 uin = 1;
+  string secret_uin = 2;
+  string uid = 3;
+  uint32 source = 4;
+  bytes feed = 5;  // was: SimpleFeed
+  bool is_pull_allow_bind = 10;
+}
+
+// ==== source: qqcircle/QQCircleProfile$GetQQGroupsRsp.java ====
+message GetQQGroupsRsp_QQGroupController {
+  uint32 allow_bind_groups_count = 1;
+  string bind_notice_text = 2;
+  uint32 can_bind_status = 3;
+}
+
+message GetQQGroupsRsp {
+  repeated QQGroup groups = 1;
+  bool is_self = 2;
+  repeated QQGroup allow_bind_groups = 3;
+  repeated QQGroup other_groups = 4;
+  repeated QQGroup used_groups = 5;
+  repeated QQGroup unbind_groups = 6;
+  bytes controller = 10;  // was: QQGroupController
+}
+
+// ==== source: qqcircle/QQCircleProfile$IconDecorateInfo.java ====
+message IconDecorateInfo {
+  uint32 uin = 1;
+  bytes iconDecorate = 2;  // was: StIconDecorate
+}
+
+// ==== source: qqcircle/QQCircleProfile$JoinGroupReportReq.java ====
+message JoinGroupReportReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint64 groupID = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$JoinGroupReportRsp.java ====
+message JoinGroupReportRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleProfile$PenguinProfile.java ====
+message PenguinProfile {
+  uint32 uin = 1;
+  string mediaID = 2;
+  string mediaName = 3;
+  string mediaIcon = 4;
+  string introduction = 5;
+}
+
+// ==== source: qqcircle/QQCircleProfile$PersonalizedTagStorage.java ====
+message PersonalizedTagStorage {
+  repeated ContentFirstClass tags = 1;
+  int32 scene = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$QQGroup.java ====
+message QQGroup {
+  repeated uint64 id = 1;
+  string name = 2;
+  bool is_full = 3;
+  string head_url = 4;
+  bool is_join = 6;
+  bytes join_auth = 7;
+  string desc = 8;
+  uint32 member_num = 9;
+  bool is_active = 10;
+}
+
+// ==== source: qqcircle/QQCircleProfile$ReportToSecurityReq.java ====
+message ReportToSecurityReq {
+  uint64 uin = 1;
+  string sign = 2;
+  string school = 3;
+  string company = 4;
+  string location = 5;
+}
+
+// ==== source: qqcircle/QQCircleProfile$ReportToSecurityRsp.java ====
+message ReportToSecurityRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleProfile$SavePersonalizedTagReq.java ====
+message SavePersonalizedTagReq {
+  repeated ContentFirstClass tags = 1;
+  int32 scene = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$SavePersonalizedTagRsp.java ====
+message SavePersonalizedTagRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleProfile$SetProfileReq.java ====
+message SetProfileReq_UserID {
+  repeated bytes id = 1;
+  int64 start_time = 2;
+  int64 end_time = 3;
+}
+
+message SetProfileReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes infoTypes = 2;  // was: enum
+  string sign = 3;
+  repeated bytes showTagList = 4;  // was: StTagInfo
+  uint32 pattonType = 5;
+  repeated uint64 groupIDList = 6;
+  string nick = 7;
+  uint32 gender = 8;
+  int32 constellation = 9;
+  string school = 10;
+  string company = 11;
+  string location = 12;
+  string locationCode = 13;
+  uint64 guildId = 14;
+  int64 gwExpireTime = 15;
+  uint32 hideSchool = 16;
+  int64 gwStartTime = 17;
+  string uid = 18;
+  string logo = 19;
+  string certificationDesc = 20;
+  string blueCertifiDesc = 21;
+  string login_ip = 22;
+  string login_ip_location = 23;
+  uint32 certification_type = 24;
+  bytes user_id = 25;  // was: UserID
+  bytes qr_code = 26;
+  uint32 bigVType = 27;
+}
+
+// ==== source: qqcircle/QQCircleProfile$SetProfileRsp.java ====
+message SetProfileRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleProfile$SetUserSwitchReq.java ====
+message SetUserSwitchReq {
+  int32 switchType = 1;
+  int32 value = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$SetUserSwitchRsp.java ====
+message SetUserSwitchRsp {
+  int32 value = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchGetProfileReq.java ====
+message StBatchGetProfileReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string userId = 2;
+  repeated bytes infoTypes = 3;  // was: enum
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchGetProfileRsp.java ====
+message StBatchGetProfileRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StUserInfo userInfos = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchGetUserIconDecorateReq.java ====
+message StBatchGetUserIconDecorateReq {
+  repeated uint32 uin = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchGetUserIconDecorateRsp.java ====
+message StBatchGetUserIconDecorateRsp {
+  repeated IconDecorateInfo iconDecorateInfos = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchVerifyQQFriendReq.java ====
+message StBatchVerifyQQFriendReq {
+  repeated uint32 uinList = 1;
+  bool enable_cache = 2;
+  repeated uint64 uint64_uins = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StBatchVerifyQQFriendRsp.java ====
+message StBatchVerifyQQFriendRsp {
+  repeated StQQFriendInfo friendInfoList = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StGetMainPageProfileReq.java ====
+message StGetMainPageProfileReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  bytes bizData = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StGetMainPageProfileRsp.java ====
+message StGetMainPageProfileRsp_GuildInfo {
+  uint64 guildId = 1;
+  string icon = 2;
+  string name = 3;
+  string redirectText = 4;
+  string redirectUrl = 5;
+}
+
+message StGetMainPageProfileRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes user = 2;  // was: StUser
+  bytes bizData = 3;
+  int32 TempChatBtnStatus = 4;
+  repeated bytes recomTagList = 5;  // was: StTagInfo
+  uint32 pattonType = 6;
+  string pmBeginShow = 7;
+  uint32 hasEditedSign = 8;
+  bytes guildInfo = 9;  // was: GuildInfo
+}
+
+// ==== source: qqcircle/QQCircleProfile$StGetQQFriendListReq.java ====
+message StGetQQFriendListReq {
+  uint32 uin = 1;
+  bool circleUser = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StGetQQFriendListRsp.java ====
+message StGetQQFriendListRsp {
+  repeated uint64 uint64_friend_uins = 1;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StModifyLimitItem.java ====
+message StModifyLimitItem {
+  int32 type = 1;
+  int32 allowNum = 2;
+  int32 totalNum = 3;
+  int32 limitType = 4;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StProfileBizData.java ====
+message StProfileBizData_StInterFollowInfo {
+  repeated string nicks = 1;
+  int32 total = 2;
+}
+
+message StProfileBizData {
+  string followText = 1;
+  repeated uint64 groupIDList = 2;
+  int32 bindGroupStatus = 3;
+  repeated uint64 interFollowList = 4;
+  bytes interFollowInfo = 5;  // was: StInterFollowInfo
+  int32 bindGuildStatus = 6;
+  int32 updateSchoolNum = 7;
+  int32 hideSchool = 8;
+  repeated StModifyLimitItem modifyLimitFields = 9;
+  repeated QQGroup bind_groups = 10;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StQQFriendInfo.java ====
+message StQQFriendInfo {
+  uint32 uin = 1;
+  int32 relationType = 2;
+  uint64 uint64_uin = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StQuerySchoolListReq.java ====
+message StQuerySchoolListReq {
+  string keyword = 1;
+  uint32 count = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StQuerySchoolListRsp.java ====
+message StQuerySchoolListRsp {
+  repeated bytes schoolInfo = 1;  // was: SchoolInfo
+}
+
+// ==== source: qqcircle/QQCircleProfile$StSingleInfo.java ====
+message StSingleInfo {
+  int32 type = 1;
+  string value = 2;
+}
+
+// ==== source: qqcircle/QQCircleProfile$StUserInfo.java ====
+message StUserInfo {
+  bytes user = 1;  // was: StUser
+  repeated StSingleInfo infos = 3;
+}
+
+// ==== source: qqcircle/QQCircleProfile$SyncProfileReq.java ====
+message SyncProfileReq {
+  int32 objType = 1;
+  string key = 2;
+  bytes buf = 3;
+  uint32 cmd_type = 4;
+}
+
+// ==== source: qqcircle/QQCircleProfile$SyncProfileRsp.java ====
+message SyncProfileRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleProfile$SyncQQProfileReq.java ====
+message SyncQQProfileReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleProfile$SyncQQProfileRsp.java ====
+message SyncQQProfileRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCirclePushbox$UserPushBoxCnt.java ====
+message UserPushBoxCnt {
+  uint64 un_open_count = 1;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$BatchGetCircleFuelMedalReq.java ====
+message BatchGetCircleFuelMedalReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listTime = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$BatchGetCircleFuelMedalRsp.java ====
+message BatchGetCircleFuelMedalRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated CircleFuelMedalInfo data = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$BatchThankFansReq.java ====
+message BatchThankFansReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string owner_uin = 2;
+  int32 week = 3;
+  repeated string fans_uin = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$BatchThankFansRsp.java ====
+message BatchThankFansRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$BoolMapEntry.java ====
+message BoolMapEntry {
+  string key = 1;
+  bool value = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$CircleFuelMedalInfo.java ====
+message CircleFuelMedalInfo {
+  string uid = 1;
+  repeated bytes medalList = 2;  // was: StTagMedalInfo
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$CircleFuelMedalQueryItem.java ====
+message CircleFuelMedalQueryItem {
+  string uid = 1;
+  repeated string tidList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$ClassifyUserReq.java ====
+message ClassifyUserReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 listType = 2;
+  int32 opType = 3;
+  repeated string uids = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$ClassifyUserRsp.java ====
+message ClassifyUserRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$CreatorRankItem.java ====
+message CreatorRankItem_RankItemBusiData {
+  int64 fansNum = 1;
+  int64 followNum = 2;
+  int32 feedNum = 3;
+  int32 certification = 4;
+  string purpleVDesc = 5;
+  string blueVDesc = 6;
+  string recDesc = 7;
+  string intro = 8;
+  string eUID = 9;
+}
+
+message CreatorRankItem {
+  bytes user = 1;  // was: StUser
+  bytes busiData = 2;  // was: RankItemBusiData
+  bytes relation = 3;  // was: StRelationInfo
+  int32 rankNo = 4;
+  repeated bytes feeds = 5;  // was: StFeed
+  string recReasonText = 6;
+  int64 interactionIdx = 7;
+  int64 newStarIdx = 8;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetCreatorRankingReq.java ====
+message GetCreatorRankingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 RankingType = 2;
+  string listTime = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetCreatorRankingRsp.java ====
+message GetCreatorRankingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated CreatorRankItem items = 2;
+  repeated string listTimes = 3;
+  bool subscribed = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxFriendRankingReq.java ====
+message GetOpenBoxFriendRankingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+  string attachInfo = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxFriendRankingRsp.java ====
+message GetOpenBoxFriendRankingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated TreasureRankItem items = 2;
+  TreasureRankItem hostRank = 3;
+  bool hasMore = 4;
+  string attachInfo = 5;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxShareDataReq.java ====
+message GetOpenBoxShareDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 rankingType = 2;
+  string uid = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxShareDataRsp.java ====
+message GetOpenBoxShareDataRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  TreasureRankItem userRank = 2;
+  string bigText = 3;
+  string subText = 4;
+  int32 received = 5;
+  int32 pushNum = 6;
+  string imgURL = 7;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxUserRankingReq.java ====
+message GetOpenBoxUserRankingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetOpenBoxUserRankingRsp.java ====
+message GetOpenBoxUserRankingRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  TreasureRankItem userRank = 2;
+  bytes friend = 3;  // was: StUser
+  string text = 4;
+  int32 rocketDiff = 5;
+  int32 textType = 6;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetPushWeekRankingReq.java ====
+message GetPushWeekRankingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetPushWeekRankingRsp.java ====
+message GetPushWeekRankingRsp_PushRankInfo {
+  repeated bytes user = 1;
+  int32 RankNo = 2;
+  uint64 rocketNum = 3;
+  string rankImg = 4;
+  string rocketImg = 5;
+  bool thanked = 6;
+  string fansImg = 7;
+}
+
+message GetPushWeekRankingRsp_PushRankItem {
+  repeated bytes user = 1;
+  int32 RankNo = 2;
+  uint64 rocketNum = 3;
+  string rankImg = 4;
+  string rocketImg = 5;
+  bool thanked = 6;
+  string fansImg = 7;
+}
+
+message GetPushWeekRankingRsp_Notification {
+  string title = 1;
+  string text = 2;
+  string choose_text = 3;
+}
+
+message GetPushWeekRankingRsp {
+  bool IsHostReq = 1;
+  bytes LastWeekInfo = 2;  // was: PushRankInfo
+  bytes ThisWeekInfo = 3;  // was: PushRankInfo
+  string NoRankingText = 4;
+  string NoRankingBtnText = 5;
+  string NoRankingSubText = 6;
+  string NoRankingJumpURL = 7;
+  bytes popWindow = 8;  // was: Notification
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetRankingListReq.java ====
+message GetRankingListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 listType = 2;
+  int32 count = 3;
+  uint32 listTime = 4;
+  int32 listClass = 5;
+  string circleName = 6;
+  int32 needHostUinRank = 7;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetRankingListRsp.java ====
+message GetRankingListRsp_RankingItem {
+  repeated bytes user = 1;
+  repeated bytes relation = 2;
+  int64 score = 3;
+  int32 grade = 4;
+  int32 rankNo = 5;
+  int32 inTopicList = 6;
+  string scoreName = 7;
+}
+
+message GetRankingListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes items = 2;  // was: RankingItem
+  uint32 startTime = 3;
+  uint32 endTime = 4;
+  string title = 5;
+  bytes hostUinRank = 6;  // was: RankingItem
+  int32 isActiveRank = 7;
+  bytes liteDialog = 8;  // was: CovenantLiteDialog
+  string hostNick = 9;
+  bytes busiRptInfo = 6240;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetTreasureWeekRankingReq.java ====
+message GetTreasureWeekRankingReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetTreasureWeekRankingRsp.java ====
+message GetTreasureWeekRankingRsp {
+  repeated TreasureRankItem items = 1;
+  TreasureRankItem hostRank = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserExternalMedalWallReq.java ====
+message GetUserExternalMedalWallReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserExternalMedalWallRsp.java ====
+message GetUserExternalMedalWallRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes medalInfos = 2;  // was: StMedalInfo
+  bool needRedPoint = 3;
+  string medalWallJumpUrl = 4;
+  bool needShowEntrance = 5;
+  bytes liteDialog = 6;  // was: CovenantLiteDialog
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserMedalWallReq.java ====
+message GetUserMedalWallReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserMedalWallRsp.java ====
+message GetUserMedalWallRsp_StWearingMedal {
+  repeated bytes medalInfos = 1;  // was: StWearingMedalInfo
+}
+
+message GetUserMedalWallRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes medalInfos = 2;  // was: StMedalInfo
+  bytes wearingMedal = 3;  // was: StWearingMedal
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserRankInfoReq.java ====
+message GetUserRankInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+  repeated string tagList = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$GetUserRankInfoRsp.java ====
+message GetUserRankInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+  int32 inTopicListCount = 3;
+  repeated SimpleRankItem items = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$IsCoreFanReq.java ====
+message IsCoreFanReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string fanUid = 2;
+  string hostUid = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$IsCoreFanRsp.java ====
+message IsCoreFanRsp {
+  repeated BoolMapEntry result = 1;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyDataReq.java ====
+message NotifyDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated uint64 op = 2;
+  bytes data = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyDataRsp.java ====
+message NotifyDataRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyModifyFeedReq.java ====
+message NotifyModifyFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+  int64 fuelValue = 3;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyModifyFeedRsp.java ====
+message NotifyModifyFeedRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyReq.java ====
+message NotifyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 listType = 2;
+  string toUid = 3;
+  string feedid = 4;
+  int32 cost = 5;
+  uint64 feedCreateTime = 6;
+  int32 pushType = 7;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$NotifyRsp.java ====
+message NotifyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int64 score = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetCircleFuelRankScoreReq.java ====
+message SetCircleFuelRankScoreReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listTime = 3;
+  repeated UserScore userScores = 4;
+  string tid = 5;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetCircleFuelRankScoreRsp.java ====
+message SetCircleFuelRankScoreRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetUserScoreReq.java ====
+message SetUserScoreReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 listType = 2;
+  uint32 listTime = 3;
+  repeated UserScore userScores = 4;
+  int32 listClass = 5;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetUserScoreRsp.java ====
+message SetUserScoreRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetUserWearingMedalReq.java ====
+message SetUserWearingMedalReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+  repeated bytes medalInfos = 3;  // was: StMedalInfo
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SetUserWearingMedalRsp.java ====
+message SetUserWearingMedalRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SimpleRankItem.java ====
+message SimpleRankItem {
+  int32 rank = 1;
+  int32 listType = 2;
+  string rankTitle = 3;
+  string tagId = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SubscribeReq.java ====
+message SubscribeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 action = 2;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$SubscribeRsp.java ====
+message SubscribeRsp {
+  bytes extInfo = 2;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$TreasureRankItem.java ====
+message TreasureRankItem {
+  bytes user = 1;  // was: StUser
+  int32 RankNo = 2;
+  uint64 rocketNum = 3;
+  string rankImg = 4;
+}
+
+// ==== source: qqcircle/QQCircleRankinglist$UserScore.java ====
+message UserScore {
+  string uid = 1;
+  int64 score = 2;
+  int64 deltaScore = 3;
+}
+
+// ==== source: qqcircle/QQCircleRead$CertificationDetail.java ====
+message CertificationDetail {
+  int32 circleType = 1;
+  int32 circleStatue = 2;
+  StudentInfo studentInfo = 3;
+  StaffInfo staffInfo = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$CertificationDetailV2.java ====
+message CertificationDetailV2 {
+  int32 circleType = 1;
+  int32 circleStatue = 2;
+  StudentInfo studentInfo = 3;
+  StaffInfo staffInfo = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$CircleDetail.java ====
+message CircleDetail {
+  repeated bytes id = 1;
+  string name = 2;
+  int32 circleType = 3;
+  int64 memberCount = 4;
+  string avatarUrl = 7;
+}
+
+// ==== source: qqcircle/QQCircleRead$ConfidentCircleMemberReq.java ====
+message ConfidentCircleMemberReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  UserCircleInfo circleInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$ConfidentCircleMemberRsp.java ====
+message ConfidentCircleMemberRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 result = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleDetailReq.java ====
+message GetCircleDetailReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string idList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleDetailRsp.java ====
+message GetCircleDetailRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated CircleDetail circleList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleEmailSuffixReq.java ====
+message GetCircleEmailSuffixReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string circleID = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleEmailSuffixRsp.java ====
+message GetCircleEmailSuffixRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string emailSuffix = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleMemberReq.java ====
+message GetCircleMemberReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes id = 2;
+  int64 count = 3;
+  string attachInfo = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleMemberRsp.java ====
+message GetCircleMemberRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string attachInfo = 2;
+  uint32 hasNext = 3;
+  uint32 total = 4;
+  repeated bytes userList = 5;  // was: StUser
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleTagInfoReq.java ====
+message GetCircleTagInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string tagNameList = 2;
+  int32 needJoinNum = 3;
+  int32 needFollowStatus = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetCircleTagInfoRsp.java ====
+message GetCircleTagInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated TagItem tagList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetFollowTagListReq.java ====
+message GetFollowTagListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string hostUin = 2;
+  string attachInfo = 3;
+  uint32 count = 4;
+  int32 from = 5;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetFollowTagListRsp.java ====
+message GetFollowTagListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated TagItem tagList = 2;
+  string attachInfo = 3;
+  uint32 hasNext = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUploadTmpCredentialReq.java ====
+message GetUploadTmpCredentialReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUploadTmpCredentialRsp.java ====
+message GetUploadTmpCredentialRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string tmpSecretID = 2;
+  string tmpSecretKey = 3;
+  string sessionToken = 4;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUserCertificationReq.java ====
+message GetUserCertificationReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 flag = 2;
+  string hostUin = 3;
+  int32 needNoPass = 4;
+  int32 needDetail = 5;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUserCertificationReqV2.java ====
+message GetUserCertificationReqV2 {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 certFlag = 2;
+  string hostUin = 3;
+  int32 statusFlag = 4;
+  int32 needDetail = 5;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUserCertificationRsp.java ====
+message GetUserCertificationRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated CertificationDetail certList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$GetUserCertificationRspV2.java ====
+message GetUserCertificationRspV2 {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated CertificationDetailV2 certList = 2;
+}
+
+// ==== source: qqcircle/QQCircleRead$ProfileCardCircleInfo.java ====
+message ProfileCardCircleInfo {
+  repeated UserCircleSimpleInfo userCircleList = 1;
+}
+
+// ==== source: qqcircle/QQCircleRead$TagItem.java ====
+message TagItem {
+  string name = 1;
+  int32 tagType = 2;
+  int64 joinNum = 3;
+  int64 isFollow = 4;
+  int64 isTop = 5;
+  int32 isShow = 6;
+}
+
+// ==== source: qqcircle/QQCircleRead$UserCircleSimpleInfo.java ====
+message UserCircleSimpleInfo {
+  string circleID = 1;
+  string name = 2;
+  string jumpUrl = 3;
+  int32 circleType = 4;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelDataReq.java ====
+message FuelDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string userId = 2;
+  int32 reqFrom = 3;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelDataRsp.java ====
+message FuelDataRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated FuelInfo fuelData = 2;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelInfo.java ====
+message FuelInfo {
+  string userId = 1;
+  uint32 myFuel = 2;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelListRecord.java ====
+message FuelListRecord {
+  int32 behaviorType = 1;
+  string opName = 2;
+  uint32 optTime = 3;
+  int32 fuelValue = 4;
+  int32 leftFuel = 5;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelListReq.java ====
+message FuelListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  int32 reqFrom = 3;
+  int32 num = 4;
+  string ext = 5;
+}
+
+// ==== source: qqcircle/QQCircleReader$FuelListRsp.java ====
+message FuelListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated FuelListRecord fuelRecords = 2;
+  int32 isFinish = 3;
+  string ext = 4;
+}
+
+// ==== source: qqcircle/QQCircleReader$TaskListReq.java ====
+message TaskListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  int32 reqFrom = 3;
+  int32 num = 4;
+  string ext = 5;
+}
+
+// ==== source: qqcircle/QQCircleReader$TaskListRsp.java ====
+message TaskListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 myFuel = 2;
+  repeated TaskRecord taskRecords = 3;
+  int32 isFinish = 4;
+  string ext = 5;
+  string taskEntranceUrl = 6;
+}
+
+// ==== source: qqcircle/QQCircleReader$TaskRecord.java ====
+message TaskRecord {
+  int32 taskType = 1;
+  string title = 2;
+  string desc = 3;
+  int32 haveDone = 4;
+  int32 maxCnt = 5;
+  string jumpUrl = 6;
+}
+
+// ==== source: qqcircle/QQCircleRelation$AddFriendAuthReqBody.java ====
+message AddFriendAuthReqBody {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  string source = 3;
+  repeated ExtendInfo extInfos = 4;
+}
+
+// ==== source: qqcircle/QQCircleRelation$AddFriendAuthRespBody.java ====
+message AddFriendAuthRespBody {
+  bytes sint32_result = 1;  // was: PBSInt32Field
+  string bytes_err_msg = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$AddFriendCheckReqBody.java ====
+message AddFriendCheckReqBody {
+  uint64 uint64_friend = 1;
+  uint32 uint32_source = 2;
+  uint32 uint32_subsource = 3;
+  uint32 uint32_from_cmd = 4;
+  uint32 uint32_from_service = 5;
+  uint32 uint32_from_version = 6;
+  uint32 uint32_locale_id = 7;
+  uint32 uint32_req_type = 8;
+  repeated AddFriendTagValue rpt_tag_list = 9;
+  bytes bytes_msg = 10;
+  uint32 uint32_verifyed = 11;
+  uint32 uint32_common_friend = 12;
+  uint32 uint32_common_group = 13;
+  uint32 uint32_contact_relaton = 14;
+}
+
+// ==== source: qqcircle/QQCircleRelation$AddFriendCheckRspBody.java ====
+message AddFriendCheckRspBody {
+  uint32 uint32_result = 1;
+  bytes bytes_reason = 2;
+  uint32 uint32_reason = 3;
+  uint32 uint32_permission = 4;
+  bytes bytes_notice = 5;
+  bytes bytes_ext = 6;
+}
+
+// ==== source: qqcircle/QQCircleRelation$AddFriendTagValue.java ====
+message AddFriendTagValue {
+  uint32 uint32_type = 1;
+  bytes bytes_value = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$BatchVerifyRelationReq.java ====
+message BatchVerifyRelationReq {
+  repeated uint64 uins = 1;
+  uint32 followMethod = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$BatchVerifyRelationRsp.java ====
+message BatchVerifyRelationRsp {
+  repeated RelationInfo infos = 1;
+}
+
+// ==== source: qqcircle/QQCircleRelation$ExtendInfo.java ====
+message ExtendInfo {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$GetFansFollowNumReq.java ====
+message GetFansFollowNumReq {
+  uint64 uin = 1;
+  uint32 followMethod = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$GetFansFollowNumRsp.java ====
+message GetFansFollowNumRsp {
+  int64 fansNum = 1;
+  int64 followNum = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$GetRelationTopListReq.java ====
+message GetRelationTopListReq {
+  int32 num = 1;
+  int32 relType = 2;
+  int32 needCount = 3;
+  int32 page = 4;
+}
+
+// ==== source: qqcircle/QQCircleRelation$GetRelationTopListRsp.java ====
+message GetRelationTopListRsp {
+  repeated RelationTopItem topList = 1;
+}
+
+// ==== source: qqcircle/QQCircleRelation$NotifyFreshUserReq.java ====
+message NotifyFreshUserReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRelation$NotifyFreshUserRsp.java ====
+message NotifyFreshUserRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRelation$RelationBiz.java ====
+message RelationBiz {
+  uint64 timestamp = 1;
+  string nick = 2;
+  string sign = 3;
+  int32 qqRelation = 4;
+  int32 certification = 5;
+  string logo = 6;
+}
+
+// ==== source: qqcircle/QQCircleRelation$RelationInfo.java ====
+message RelationInfo {
+  uint64 uin = 1;
+  uint32 relation = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$RelationTopItem.java ====
+message RelationTopItem {
+  uint64 uin = 1;
+  int64 count = 2;
+}
+
+// ==== source: qqcircle/QQCircleRelation$StInterFollowListReq.java ====
+message StInterFollowListReq_FollowListKeyType {
+  string userId = 1;
+  int32 keyType = 2;
+}
+
+message StInterFollowListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes leftRightKey = 2;  // was: FollowListKeyType
+  bytes rightRightKey = 3;  // was: FollowListKeyType
+  int32 num = 4;
+  string attachInfo = 5;
+}
+
+// ==== source: qqcircle/QQCircleRelation$StInterFollowListRsp.java ====
+message StInterFollowListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes relationInfo = 2;  // was: StRelationInfo
+  int64 total = 3;
+  int32 hasMore = 4;
+  string attachInfo = 5;
+}
+
+// ==== source: qqcircle/QQCircleRelation$TempMsgCommReqBody.java ====
+message TempMsgCommReqBody {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  uint32 uint32_c2c_type = 3;
+  uint32 uint32_service_type = 4;
+  bytes bytes_pb_reserve = 5;
+}
+
+// ==== source: qqcircle/QQCircleRelation$TempMsgCommRespBody.java ====
+message TempMsgCommRespBody {
+  bytes sint32_result = 1;  // was: PBSInt32Field
+  bytes bytes_err_msg = 2;
+  uint64 uint64_from_uin = 3;
+  uint64 uint64_to_uin = 4;
+  bytes bytes_token = 5;
+}
+
+// ==== source: qqcircle/QQCircleRelation$TempMsgCommToken.java ====
+message TempMsgCommToken {
+  uint32 uint32_time_stamp = 1;
+  uint32 uint32_expire_time = 2;
+  bytes bytes_srv_data = 3;
+}
+
+// ==== source: qqcircle/QQCircleReport$PhotoMetadataUploadRsp.java ====
+message PhotoMetadataUploadRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleReport$ReportKandianMigrateItem.java ====
+message ReportKandianMigrateItem {
+  string feed_id = 1;
+  string feed_author_id = 2;
+  int32 comment_reply_num = 3;
+  int32 favor_num = 4;
+  int32 play_num = 5;
+  int32 share_num = 6;
+  int32 rocket_num = 7;
+}
+
+// ==== source: qqcircle/QQCircleReport$SingleDcData.java ====
+message SingleDcData {
+  uint32 dcid = 1;
+  repeated bytes report_data = 2;  // was: Entry
+  repeated bytes extinfo = 3;  // was: Entry
+  repeated bytes byteExtinfo = 4;  // was: BytesEntry
+}
+
+// ==== source: qqcircle/QQCircleRight$BatchVerifyCircleUnCareReq.java ====
+message BatchVerifyCircleUnCareReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated uint64 uins = 2;
+  int32 verUncare = 3;
+  int32 verBlack = 4;
+  int32 verifyType = 5;
+}
+
+// ==== source: qqcircle/QQCircleRight$BatchVerifyCircleUnCareRsp.java ====
+message BatchVerifyCircleUnCareRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated UncareInfo uncareInfos = 2;
+}
+
+// ==== source: qqcircle/QQCircleRight$CountCircleRightReq.java ====
+message CountCircleRightReq {
+  int32 rightType = 1;
+  int32 type = 2;
+}
+
+// ==== source: qqcircle/QQCircleRight$CountCircleRightRsp.java ====
+message CountCircleRightRsp {
+  uint64 count = 1;
+}
+
+// ==== source: qqcircle/QQCircleRight$GetCircleMixRightReq.java ====
+message GetCircleMixRightReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleRight$GetCircleMixRightRsp.java ====
+message GetCircleMixRightRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StMixRightUinData uinData = 2;
+}
+
+// ==== source: qqcircle/QQCircleRight$GetCircleUnCareListReq.java ====
+message GetCircleUnCareListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 rightType = 2;
+  int32 type = 3;
+  int32 flag = 4;
+  int32 num = 5;
+}
+
+// ==== source: qqcircle/QQCircleRight$GetCircleUnCareListRsp.java ====
+message GetCircleUnCareListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated uint32 uinlist = 2;
+  repeated bytes userlist = 3;  // was: StUser
+  repeated string uidlist = 4;
+}
+
+// ==== source: qqcircle/QQCircleRight$SetCircleUnCareReq.java ====
+message SetCircleUnCareReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 uin = 2;
+  int32 operType = 3;
+  string strUid = 4;
+  int32 rightType = 5;
+  int32 src = 6;
+}
+
+// ==== source: qqcircle/QQCircleRight$SetCircleUnCareRsp.java ====
+message SetCircleUnCareRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 result = 2;
+}
+
+// ==== source: qqcircle/QQCircleRight$StMixRightUinData.java ====
+message StMixRightUinData_StRightData {
+  int32 uncareFlag = 1;
+  int32 blackFlag = 2;
+}
+
+message StMixRightUinData {
+  uint64 uin = 1;
+  bytes rightData = 2;  // was: StRightData
+}
+
+// ==== source: qqcircle/QQCircleRight$SyncBlacklistReq.java ====
+message SyncBlacklistReq {
+  uint32 source = 1;
+  uint64 uin = 2;
+  uint32 operation = 3;
+}
+
+// ==== source: qqcircle/QQCircleRight$SyncBlacklistRsp.java ====
+message SyncBlacklistRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleRight$SyncSetRightStoreReq.java ====
+message SyncSetRightStoreReq {
+  int32 opType = 1;
+  string key = 2;
+  string uid = 3;
+  int64 opTime = 4;
+}
+
+// ==== source: qqcircle/QQCircleRight$SyncSetRightStoreRsp.java ====
+message SyncSetRightStoreRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleRight$UncareInfo.java ====
+message UncareInfo {
+  uint64 uin = 1;
+  int32 uncare = 2;
+  int32 reverseuncare = 3;
+  int32 black = 4;
+  int32 reverseblack = 5;
+}
+
+// ==== source: qqcircle/QQCircleRight$VerifyCircleUnCareReq.java ====
+message VerifyCircleUnCareReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 uin = 2;
+  int32 rightType = 3;
+  int32 verifyType = 4;
+  string uid = 5;
+}
+
+// ==== source: qqcircle/QQCircleRight$VerifyCircleUnCareRsp.java ====
+message VerifyCircleUnCareRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 isBlack = 2;
+  int32 isReverseBlack = 3;
+}
+
+// ==== source: qqcircle/QQCircleSac$GetSacBeatInfoReq.java ====
+message GetSacBeatInfoReq {
+  uint64 src = 1;
+  uint64 uin = 2;
+}
+
+// ==== source: qqcircle/QQCircleSac$GetSacBeatInfoRsp.java ====
+message GetSacBeatInfoRsp_SacBeatTimeInfo {
+  uint64 startTime = 1;
+  uint64 endTime = 2;
+  uint64 duration = 3;
+}
+
+message GetSacBeatInfoRsp_SacBeatDisplayInfo {
+  string text = 1;
+  string url = 2;
+}
+
+message GetSacBeatInfoRsp {
+  int32 beatStatus = 1;
+  bytes timeInfo = 2;  // was: SacBeatTimeInfo
+  bytes displayInfo = 3;  // was: SacBeatDisplayInfo
+}
+
+// ==== source: qqcircle/QQCircleSac$SenceBeatInfo.java ====
+message SenceBeatInfo {
+  int32 sence = 1;
+  int32 beatStatus = 2;
+  int64 endTime = 3;
+  string desc = 4;
+}
+
+// ==== source: qqcircle/QQCircleSac$SenceBeatInfos.java ====
+message SenceBeatInfos {
+  repeated SenceBeatInfo infos = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$CheckAudioHasMusicReq.java ====
+message CheckAudioHasMusicReq {
+  bytes audio = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$CheckAudioHasMusicRsp.java ====
+message CheckAudioHasMusicRsp {
+  bool has_music = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$CollectInfo.java ====
+message CollectInfo {
+  string mid = 1;
+  bool is_collected = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$ConfInfo.java ====
+message ConfInfo {
+  int32 startPos = 1;
+  int32 isCollected = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$EffectPoint.java ====
+message EffectPoint {
+  string effectId = 1;
+  string type = 2;
+  uint32 time = 3;
+  uint32 duration = 4;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetDissSongListReq.java ====
+message GetDissSongListReq {
+  string code = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetDissSongListRsp.java ====
+message GetDissSongListRsp {
+  repeated MusicInfo songList = 1;
+  string attachInfo = 2;
+  bool isEnd = 3;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicAuthorCodeReq.java ====
+message GetMusicAuthorCodeReq {
+  int32 code_type = 1;
+  string code = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicAuthorCodeRsp.java ====
+message GetMusicAuthorCodeRsp {
+  string code = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicCategoryInfoRsp.java ====
+message GetMusicCategoryInfoRsp {
+  repeated MusicCategoryInfo categoryInfo = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicCategoryTopListReq.java ====
+message GetMusicCategoryTopListReq {
+  string categoryID = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicCategoryTopListRsp.java ====
+message GetMusicCategoryTopListRsp {
+  repeated MusicInfo musicInfoList = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicCollectionReq.java ====
+message GetMusicCollectionReq {
+  string collectionID = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicCollectionRsp.java ====
+message GetMusicCollectionRsp {
+  repeated MusicInfo musicList = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicTabReq.java ====
+message GetMusicTabReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetMusicTabRsp.java ====
+message GetMusicTabRsp {
+  int32 qq_music_tab = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetSmartMaterialMusicReq.java ====
+message GetSmartMaterialMusicReq {
+  string material_id = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$GetSmartMaterialMusicRsp.java ====
+message GetSmartMaterialMusicRsp {
+  repeated MusicInfo musics = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$IsCollectedReq.java ====
+message IsCollectedReq {
+  string collection_id = 1;
+  repeated string mids = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$IsCollectedRsp.java ====
+message IsCollectedRsp {
+  repeated CollectInfo collects = 1;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$LyricInfo.java ====
+message LyricInfo {
+  int64 uiSongId = 1;
+  string strSongMid = 2;
+  string strFormat = 3;
+  string strLyric = 4;
+  string strMatchLyric = 5;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$ModMusicCollectionReq.java ====
+message ModMusicCollectionReq {
+  string collectionID = 1;
+  string mid = 2;
+  int32 modCmd = 3;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicCategoryInfo.java ====
+message MusicCategoryInfo {
+  string categoryID = 1;
+  string categoryName = 2;
+  string categoryPicture = 3;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicInfo.java ====
+message MusicInfo {
+  AlbumInfo albumInfo = 1;
+  SingerInfo singerInfo = 2;
+  SongInfo songInfo = 3;
+  LyricInfo lyricInfo = 4;
+  LyricInfo subtitleInfo = 5;
+  LyricInfo foreignlyric = 6;
+  ConfInfo confInfo = 7;
+  bytes extInfo = 8;  // was: StCommonExt
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicInfoReq.java ====
+message MusicInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string musicMIDList = 2;
+  bool fromCache = 3;
+  bool disableLyricsTranslation = 4;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicInfoRsp.java ====
+message MusicInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated MusicInfo musicListInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicStuckPointInfo.java ====
+message MusicStuckPointInfo {
+  string mid = 1;
+  string version = 2;
+  repeated StuckPointData allData = 3;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicStuckPointInfoReq.java ====
+message MusicStuckPointInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string musicMIDList = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$MusicStuckPointInfoRsp.java ====
+message MusicStuckPointInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated MusicStuckPointInfo stuckPointInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$SingerInfo.java ====
+message SingerInfo {
+  repeated uint64 iD = 1;
+  string mID = 2;
+  string name = 3;
+  string picURL = 4;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$SmartMatchMusicReq.java ====
+message SmartMatchMusicReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes videoBuffer = 2;
+  uint32 videoDuration = 3;
+  repeated uint64 BLOB = 4;
+  repeated bytes vecPicBuffer = 5;
+  double fLat = 6;
+  double fLon = 7;
+  uint32 videoType = 8;
+  uint32 cameraType = 9;
+  double videoLat = 10;
+  double videoLon = 11;
+  uint64 videoTime = 12;
+  string wording = 13;
+  repeated string vecPicUrl = 14;
+  uint32 scene = 15;
+  bool requireLyrics = 16;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$SmartMatchMusicRsp.java ====
+message SmartMatchMusicRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated MusicInfo musicListInfo = 2;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$SongInfo.java ====
+message SongInfo {
+  repeated uint64 ID = 1;
+  repeated bytes f_ = 2;
+  repeated bytes f__2 = 3;
+  string name = 4;
+  string genre = 5;
+  int32 IsOnly = 6;
+  string Language = 7;
+  string H5Url = 8;
+  string PlayUrl = 9;
+  string PlayUrlStandard = 10;
+  int32 ISize = 11;
+  int32 ISizeStandard = 12;
+  int32 IPlayTime = 13;
+  int32 Copyright = 14;
+  int32 TrySize = 15;
+  int32 ITryBegin = 16;
+}
+
+// ==== source: qqcircle/QQCircleSmartMatchMusic$StuckPointData.java ====
+message StuckPointData {
+  string name = 1;
+  repeated EffectPoint effectPoints = 2;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StActivityInfo.java ====
+message StActivityInfo {
+  repeated bytes _wx_mini_program_key_activity_id = 1;
+  uint64 task_id = 2;
+  uint64 rule_id = 3;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupByIDReq.java ====
+message StGetPrizePopupByIDReq {
+  StActivityInfo activity_info = 1;
+  string prize_id = 2;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupByIDRsp.java ====
+message StGetPrizePopupByIDRsp {
+  StPrizePopupInfo popup_info = 1;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupByShareIDReq.java ====
+message StGetPrizePopupByShareIDReq {
+  string share_id = 1;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupByShareIDRsp.java ====
+message StGetPrizePopupByShareIDRsp {
+  StPrizePopupInfo popup_info = 1;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupReq.java ====
+message StGetPrizePopupReq {
+  int32 popup_scene = 1;
+  StActivityInfo activity_info = 2;
+  repeated bytes id = 3;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StGetPrizePopupRsp.java ====
+message StGetPrizePopupRsp {
+  StPrizePopupInfo popup_info = 1;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StPrizeInfo.java ====
+message StPrizeInfo {
+  uint64 prize_id = 1;
+  string prize_icon = 2;
+  string prize_text = 3;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StPrizePopupInfo.java ====
+message StPrizePopupInfo_StFeedInfo {
+  string cover = 1;
+  string detail_page_scheme = 2;
+}
+
+message StPrizePopupInfo_StCommentInfo {
+  string content = 1;
+  string pic_url = 2;
+}
+
+message StPrizePopupInfo_SpringMaterial {
+  string bg_dialog = 1;
+  string bubble = 2;
+  string small_btn_back = 3;
+  string popup_close = 4;
+  string btn_left = 5;
+  string btn_right = 6;
+  string small_btn_back_jump_url = 7;
+  string btn_left_jump_url = 8;
+  string btn_right_jump_url = 9;
+}
+
+message StPrizePopupInfo_StUser {
+  string nick_name = 1;
+  string icon = 2;
+}
+
+message StPrizePopupInfo {
+  string popup_id = 1;
+  string reason = 2;
+  string text = 3;
+  StActivityInfo activity_info = 4;
+  repeated StPrizeInfo prize_info = 5;
+  bytes feed_info = 6;  // was: StFeedInfo
+  bytes comment_info = 7;  // was: StCommentInfo
+  bytes share_info = 8;  // was: StShare
+  string prize_use_jump_url = 9;
+  string activity_link = 10;
+  bytes material = 11;  // was: SpringMaterial
+  bytes prize_owner = 12;  // was: StUser
+  int32 popup_type = 13;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StTurnOffPrizePopupReq.java ====
+message StTurnOffPrizePopupReq {
+  string popup_id = 1;
+}
+
+// ==== source: qqcircle/QQCircleSpringPrizePopup$StTurnOffPrizePopupRsp.java ====
+message StTurnOffPrizePopupRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$Cell_V2.java ====
+message Cell_V2 {
+  int32 shMcc = 1;
+  int32 shMnc = 2;
+  int32 iLac = 3;
+  int32 iCellId = 4;
+  int32 iRssi = 5;
+  double dStationLat = 6;
+  double dStationLon = 7;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCirclePopupReq.java ====
+message GetCirclePopupReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCirclePopupRsp.java ====
+message GetCirclePopupRsp {
+  repeated StCirclePopup popupList = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCirclePopupSwitchReq.java ====
+message GetCirclePopupSwitchReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCirclePopupSwitchRsp.java ====
+message GetCirclePopupSwitchRsp_StPopup {
+  string title = 1;
+  string tips = 2;
+  string subtitle = 3;
+}
+
+message GetCirclePopupSwitchRsp {
+  string enable = 1;
+  bytes popup = 2;  // was: StPopup
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCircleSwitchReq.java ====
+message GetCircleSwitchReq {
+  string switchKey = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCircleSwitchRsp.java ====
+message GetCircleSwitchRsp {
+  repeated bytes sw = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCircleTabBucketReq.java ====
+message GetCircleTabBucketReq_LBSData {
+  repeated bytes stCommon = 1;
+  repeated bytes stGps = 2;
+  repeated Cell_V2 vCellData = 3;
+  repeated Wifi_V2 vWifiData = 4;
+}
+
+message GetCircleTabBucketReq_ReqCommon_V2 {
+  int32 iAppId = 1;
+  int32 iDeviceType = 2;
+}
+
+message GetCircleTabBucketReq_GPS_V2 {
+  int32 iLat = 1;
+  int32 iLon = 2;
+  int32 eType = 3;
+  int32 iAlt = 4;
+}
+
+message GetCircleTabBucketReq {
+  string userIp = 1;
+  bytes lbsData = 2;  // was: LBSData
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetCircleTabBucketRsp.java ====
+message GetCircleTabBucketRsp {
+  repeated StSwitch sws = 1;
+  bool isNewRegUid = 2;
+  uint32 expId = 3;
+  int32 circleLayoutType = 4;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetMultiCircleSwitchReq.java ====
+message GetMultiCircleSwitchReq {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$GetMultiCircleSwitchRsp.java ====
+message GetMultiCircleSwitchRsp {
+  repeated StSwitch sws = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetCirclePopupReq.java ====
+message SetCirclePopupReq {
+  string key = 1;
+  int32 type = 2;
+  int32 action = 3;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetCirclePopupRsp.java ====
+message SetCirclePopupRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetCirclePopupSwitchReq.java ====
+message SetCirclePopupSwitchReq {
+  string enable = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetCirclePopupSwitchRsp.java ====
+message SetCirclePopupSwitchRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetCircleSwitchReq.java ====
+message SetCircleSwitchReq {
+  repeated bytes sw = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetMultiCircleSwitchReq.java ====
+message SetMultiCircleSwitchReq {
+  repeated StSwitch sws = 1;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$SetMultiCircleSwitchRsp.java ====
+message SetMultiCircleSwitchRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleSwitch$StCirclePopup.java ====
+message StCirclePopup {
+  string key = 1;
+  int32 type = 2;
+  string title = 3;
+  string subtitle = 4;
+  string content = 5;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$StFirstSetCircleSwichMsg.java ====
+message StFirstSetCircleSwichMsg {
+  string uid = 1;
+  repeated uint64 ts = 2;
+  int32 scence = 3;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$StSwitch.java ====
+message StSwitch {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qqcircle/QQCircleSwitch$Wifi_V2.java ====
+message Wifi_V2 {
+  string strMac = 1;
+  int32 iRssi = 2;
+}
+
+// ==== source: qqcircle/QQCircleThank$LAPThankStatusReq.java ====
+message LAPThankStatusReq {
+  string feed_id = 1;
+  repeated string user_id = 2;
+  int32 action_type = 3;
+}
+
+// ==== source: qqcircle/QQCircleThank$LAPThankStatusRsp.java ====
+message LAPThankStatusRsp {
+  repeated ThankStatusRes result = 1;
+}
+
+// ==== source: qqcircle/QQCircleThank$PSVThankStatus.java ====
+message PSVThankStatus {
+  string feed_id = 1;
+  int32 status = 2;
+}
+
+// ==== source: qqcircle/QQCircleThank$PSVThankStatusReq.java ====
+message PSVThankStatusReq {
+  repeated string feed_ids = 1;
+}
+
+// ==== source: qqcircle/QQCircleThank$PSVThankStatusRsp.java ====
+message PSVThankStatusRsp {
+  repeated PSVThankStatus status_results = 1;
+}
+
+// ==== source: qqcircle/QQCircleThank$QuickThankPSVReq.java ====
+message QuickThankPSVReq {
+  uint64 start_time = 1;
+  int32 category_id = 2;
+}
+
+// ==== source: qqcircle/QQCircleThank$QuickThankPSVRsp.java ====
+message QuickThankPSVRsp {
+  repeated string thanked_feed_ids = 1;
+}
+
+// ==== source: qqcircle/QQCircleThank$ThankLAPReq.java ====
+message ThankLAPReq {
+  string feed_id = 1;
+  string user_id = 2;
+  int32 action_type = 3;
+  int32 op_type = 4;
+}
+
+// ==== source: qqcircle/QQCircleThank$ThankLAPRsp.java ====
+message ThankLAPRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleThank$ThankPSVReq.java ====
+message ThankPSVReq {
+  int32 op_type = 1;
+  string feed_id = 2;
+}
+
+// ==== source: qqcircle/QQCircleThank$ThankPSVRsp.java ====
+message ThankPSVRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleThank$ThankStatusRes.java ====
+message ThankStatusRes {
+  string user_id = 1;
+  bool is_thanked = 2;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$BatchGetTimestampField.java ====
+message BatchGetTimestampField {
+  string uID = 1;
+  string toUID = 2;
+  string groupID = 3;
+  int64 timestamp = 4;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$GetTimestampListReq.java ====
+message GetTimestampListReq {
+  repeated GetTimestampReq reqList = 1;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$GetTimestampListRsp.java ====
+message GetTimestampListRsp {
+  repeated BatchGetTimestampField rspList = 1;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$GetTimestampReq.java ====
+message GetTimestampReq {
+  int32 page_type = 1;
+  string uid = 2;
+  string group_id = 3;
+  string to_uid = 4;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$GetTimestampRsp.java ====
+message GetTimestampRsp {
+  int64 timestamp = 1;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$SetTimestampListReq.java ====
+message SetTimestampListReq {
+  repeated SetTimestampReq reqList = 1;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$SetTimestampListRsp.java ====
+message SetTimestampListRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$SetTimestampReq.java ====
+message SetTimestampReq {
+  int64 timestamp = 1;
+  int32 page_type = 2;
+  string uid = 3;
+  string group_id = 4;
+  string to_uid = 5;
+  int64 expire = 6;
+}
+
+// ==== source: qqcircle/QQCircleTimestamp$SetTimestampRsp.java ====
+message SetTimestampRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qqcircle/QQCircleVideourlexchange$StGetVideoAdaptReq.java ====
+message StGetVideoAdaptReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 from = 2;
+  string userID = 3;
+  repeated bytes videos = 4;  // was: StVideo
+}
+
+// ==== source: qqcircle/QQCircleVideourlexchange$StGetVideoAdaptRsp.java ====
+message StGetVideoAdaptRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes videos = 2;  // was: StVideo
+}
+
+// ==== source: qqcircle/QQCircleYuhengActivity$CheckPrizeReq.java ====
+message CheckPrizeReq {
+  repeated YuhengInfo infos = 1;
+  repeated bytes entries = 999;  // was: Entry
+}
+
+// ==== source: qqcircle/QQCircleYuhengActivity$CheckPrizeRsp.java ====
+message CheckPrizeRsp {
+  int32 draw_result = 1;
+  repeated PrizeDetail prize_details = 2;
+  string jump_url = 3;
+}
+
+// ==== source: qqcircle/QQCircleYuhengActivity$PrizeDetail.java ====
+message PrizeDetail_PrizeInfo {
+  string prize_icon = 10;
+  string prize_text = 11;
+  string prize_tips = 12;
+  string lottery_jump_url = 13;
+  string prize_jump_url = 14;
+}
+
+message PrizeDetail {
+  int64 prize_id = 1;
+  int32 prize_type = 2;
+  string prize_name = 3;
+  string material_id = 4;
+  bytes detail = 5;  // was: PrizeInfo
+  string creator = 6;
+  int64 create_time = 8;
+  int64 start_time = 9;
+  int64 end_time = 10;
+}
+
+// ==== source: qqcircle/QQCircleYuhengActivity$YuhengInfo.java ====
+message YuhengInfo {
+  repeated uint64 _wx_mini_program_key_activity_id = 1;
+  int64 task_id = 2;
+  int64 rule_id = 3;
+}
+
+// ==== source: qqcircle/TaskCenterReader$EeveeAttach.java ====
+message EeveeAttach {
+  bool need_vv_info = 1;
+  bytes trans_info = 10;
+}
+
+// ==== source: qqcircle/TaskCenterReader$EeveeMyFuel.java ====
+message EeveeMyFuel_ClockInInfo {
+  bool enabled = 1;
+  uint32 daysCount = 2;
+  uint32 duration = 3;
+  int32 status = 4;
+  repeated bytes texts = 5;  // was: Entry
+  repeated bytes images = 6;  // was: Entry
+  string jumpURL = 7;
+  bool isLastDay = 8;
+  bytes transInfo = 10;
+  int64 pushTime = 11;
+  bool isPush = 12;
+}
+
+message EeveeMyFuel_FuelConf {
+  repeated int32 fuelcount = 1;
+  bool isv4test = 2;
+  repeated PushStyleTest pushtype = 3;
+}
+
+message EeveeMyFuel {
+  int64 pushTime = 1;
+  uint32 myFuelValue = 2;
+  string jumpURL = 3;
+  int32 vvCount = 4;
+  string vvReason = 5;
+  string vvTopTip = 6;
+  string vvTabTip = 7;
+  bytes clockInInfo = 8;  // was: ClockInInfo
+  bytes fuelConf = 9;  // was: FuelConf
+}
+
+// ==== source: qqcircle/TaskCenterReader$EeveeTask.java ====
+message EeveeTask {
+  int64 push_time = 1;
+  uint32 my_fuel_value = 2;
+  string jump_url = 3;
+  int32 vv_count = 4;
+  string vv_reason = 5;
+}
+
+// ==== source: qqcircle/TaskCenterReader$GetTaskReq.java ====
+message GetTaskReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  int32 reqFrom = 3;
+  repeated bytes taskType = 4;  // was: enum
+}
+
+// ==== source: qqcircle/TaskCenterReader$GetTaskRsp.java ====
+message GetTaskRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 myFuel = 2;
+  repeated TaskRecord taskRecords = 3;
+}
+
+// ==== source: qqcircle/TaskCenterReader$PushStyleTest.java ====
+message PushStyleTest {
+  string adtestID = 1;
+  bool isHitABTest = 2;
+}
+
+// ==== source: qqcircle/TaskCenterReader$ReceiveFuelDataReq.java ====
+message ReceiveFuelDataReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string uid = 2;
+  int32 reqFrom = 3;
+}
+
+// ==== source: qqcircle/TaskCenterReader$ReceiveFuelDataRsp.java ====
+message ReceiveFuelDataRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint64 totalReceiveFuel = 2;
+}
+
+// ==== source: qqcircle/TaskCenterReader$ReceiveFuelRecord.java ====
+message ReceiveFuelRecord {
+  string uid = 1;
+  int64 fuelValue = 2;
+}
+
+// ==== source: qqcircle/TaskCenterReader$ReceiveFuelRecordReq.java ====
+message ReceiveFuelRecordReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 reqFrom = 2;
+  int32 scene = 3;
+  repeated string uids = 4;
+}
+
+// ==== source: qqcircle/TaskCenterReader$ReceiveFuelRecordRsp.java ====
+message ReceiveFuelRecordRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated ReceiveFuelRecord records = 2;
+}
+
+// ==== source: tianshu/QQCircleTianShu$AdItem.java ====
+message AdItem {
+  uint32 iAdId = 1;
+  string traceinfo = 5;
+  string title = 10;
+  string desc = 11;
+  string jumpurl = 12;
+  string iconurl = 13;
+  repeated string lstPic = 14;
+  repeated MapEntry argList = 15;
+  string ext_info = 20;
+}
+
+// ==== source: tianshu/QQCircleTianShu$AdPlacementInfo.java ====
+message AdPlacementInfo {
+  int32 type = 1;
+  repeated AdItem lst = 2;
+  uint32 next_query_ts = 3;
+  string extInfo = 4;
+  string ctlInfo = 5;
+}
+
+// ==== source: tianshu/QQCircleTianShu$AdPosItem.java ====
+message AdPosItem {
+  uint32 posId = 1;
+  uint32 nNeedCnt = 2;
+  repeated MapEntry extra_info = 14;
+}
+
+// ==== source: tianshu/QQCircleTianShu$GetAdsReq.java ====
+message GetAdsReq_CommInfo {
+  uint64 lUin = 1;
+  string strDeviceInfo = 3;
+  repeated bytes stGps = 4;
+  uint32 iBid = 5;
+  string strUserIp = 6;
+  string strApp = 7;
+  string strOs = 8;
+  string strVersion = 9;
+  string strOpenId = 10;
+  string strCityCode = 11;
+  int32 iNetWorkEnv = 12;
+  string strQua = 13;
+  string strQimei = 14;
+  string strUid = 15;
+  string strExpSeq = 20;
+}
+
+message GetAdsReq_Gps {
+  int32 lat = 1;
+  int32 lon = 2;
+  int32 accuracy = 3;
+}
+
+message GetAdsReq {
+  bytes stComminfo = 1;  // was: CommInfo
+  repeated AdPosItem lstPos = 2;
+}
+
+// ==== source: tianshu/QQCircleTianShu$GetAdsRsp.java ====
+message GetAdsRsp {
+  int32 code = 1;
+  string errmsg = 2;
+  repeated RspEntry mapAds = 3;
+  string rspExtInfo = 4;
+}
+
+// ==== source: tianshu/QQCircleTianShu$MapEntry.java ====
+message MapEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: tianshu/QQCircleTianShu$RspEntry.java ====
+message RspEntry {
+  uint32 key = 1;
+  AdPlacementInfo value = 2;
+}

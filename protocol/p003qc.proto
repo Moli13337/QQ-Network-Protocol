@@ -1,0 +1,57 @@
+// p003qc 域 — 7 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.p003qc;
+
+// ==== source: p003QC/AioBubbleRecom$GetAioRecommendReq.java ====
+message GetAioRecommendReq {
+  LoginInfo loginInfo = 1;
+  uint32 appid = 2;
+}
+
+// ==== source: p003QC/AioBubbleRecom$GetAioRecommendRsp.java ====
+message GetAioRecommendRsp {
+  repeated ItemInfo items = 1;
+  string ruleId = 2;
+}
+
+// ==== source: p003QC/AioBubbleRecom$ItemInfo.java ====
+message ItemInfo {
+  uint32 appID = 1;
+  uint32 itemID = 2;
+  string name = 3;
+  uint32 feeType = 4;
+  string itemBgColor = 5;
+  string image = 6;
+  uint32 price = 7;
+  uint32 fontEngine = 8;
+  bool isQualified = 9;
+}
+
+// ==== source: p003QC/AioBubbleRecom$LoginInfo.java ====
+message LoginInfo {
+  int32 opplat = 1;
+  string clientVer = 2;
+  int32 keyType = 3;
+}
+
+// ==== source: p003QC/AioBubbleRecom$PayInfo.java ====
+message PayInfo {
+  string payUrl = 1;
+  string titleMsg = 2;
+  string textMsg = 3;
+  string buttonMsg = 4;
+}
+
+// ==== source: p003QC/AioBubbleRecom$SetRecommendItemReq.java ====
+message SetRecommendItemReq {
+  LoginInfo loginInfo = 1;
+  repeated ItemInfo item = 2;
+}
+
+// ==== source: p003QC/AioBubbleRecom$SetRecommendItemRsp.java ====
+message SetRecommendItemRsp {
+  int32 ret = 1;
+  PayInfo payInfo = 2;
+}

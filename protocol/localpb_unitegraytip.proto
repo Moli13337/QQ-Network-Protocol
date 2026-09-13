@@ -1,0 +1,46 @@
+// localpb_unitegraytip 域 — 3 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.localpb_unitegraytip;
+
+// ==== source: localpb/uniteGrayTip/UniteGrayTip$BusinessData.java ====
+message BusinessData {
+  uint32 haveRead = 1;
+  uint32 subType = 2;
+  string masterUin = 3;
+  string extUin = 4;
+  string taskId = 5;
+  uint32 editState = 6;
+  uint64 editTime = 7;
+  string editMsgData = 8;
+  string caidanAnimUrl = 9;
+  string caidanAnimUrlMd5 = 10;
+}
+
+// ==== source: localpb/uniteGrayTip/UniteGrayTip$HightlightParam.java ====
+message HightlightParam {
+  uint32 start = 1;
+  uint32 end = 2;
+  uint64 uin = 3;
+  uint32 needUpdateNick = 4;
+  uint32 actionType = 5;
+  string icon = 6;
+  uint32 textColor = 7;
+  string mMsgActionData = 8;
+  string mMsg_A_ActionData = 9;
+  string iconAlt = 10;
+}
+
+// ==== source: localpb/uniteGrayTip/UniteGrayTip$UniteGrayTipMsg.java ====
+message UniteGrayTipMsg {
+  uint32 graytip_id = 1;
+  uint32 graytip_level = 2;
+  repeated uint32 graytip_mutex_id = 3;
+  string graytip_key = 4;
+  string content = 5;
+  bytes business_related = 6;
+  repeated HightlightParam hightlight_item = 7;
+  uint32 isLocalTroopMsg = 8;
+  BusinessData business_data = 9;
+}

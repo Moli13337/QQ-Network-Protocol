@@ -1,0 +1,36 @@
+// localpb_dataline 域 — 1 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.localpb_dataline;
+
+// ==== source: localpb/dataline/DatalineMsgData$MsgData.java ====
+message MsgData {
+  string str_msg = 1;
+  uint64 uint64_filemsgstatus = 2;
+  uint64 uint64_weiyunsessionid = 3;
+  string str_molokey = 4;
+  string str_moloiconurl = 5;
+  string str_molosource = 6;
+  string str_molosrcurl = 7;
+  string str_reserve1 = 8;
+  uint32 uint32_isapkfile = 9;
+  bytes fixed32_ip = 10;  // was: PBFixed32Field
+  uint32 uint32_port = 11;
+  bytes bytes_url_notify = 12;
+  bytes bytes_tokenkey = 13;
+  uint32 uint32_ismoloimage = 14;
+  uint32 uint32_fileFrom = 15;
+  string str_fileUuid = 16;
+  uint32 uint32_nOpType = 17;
+  uint64 uint64_entityID = 18;
+  uint64 uint64_OwnerUin = 19;
+  uint32 uint32_busId = 20;
+  uint32 uint32_forwardTroopFileEntranc = 21;
+  bool bool_sended = 22;
+  string str_weiyunid = 23;
+  string str_weiyundirkey = 24;
+  uint32 uint32_weiyunsrctype = 25;
+  string str_weiyunmd5 = 26;
+  string str_weiyunsha = 27;
+}

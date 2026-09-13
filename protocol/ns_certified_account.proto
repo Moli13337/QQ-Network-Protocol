@@ -1,0 +1,386 @@
+// ns_certified_account 域 — 37 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_certified_account;
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$FollowBody.java ====
+message FollowBody_Relation {
+  uint64 puin = 1;
+  uint64 uin = 2;
+  uint32 opTime = 3;
+  repeated uint64 op = 4;
+}
+
+message FollowBody {
+  bytes relation = 1;  // was: Relation
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StAioMsg.java ====
+message StAioMsg {
+  repeated bytes id = 1;
+  StUser sendUser = 2;
+  uint64 createTime = 3;
+  string msgContent = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StAutoAioReply.java ====
+message StAutoAioReply {
+  uint32 autoState = 1;
+  uint32 replyType = 2;
+  string replyText = 3;
+  StImage replyImage = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StComment.java ====
+message StComment {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  repeated uint64 vecAtUin = 5;
+  uint32 replyCount = 6;
+  repeated StReply vecReply = 7;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StEntry.java ====
+message StEntry {
+  StImage cover = 1;
+  string title = 2;
+  uint32 updateCount = 3;
+  uint32 type = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StFeed.java ====
+message StFeed {
+  repeated bytes id = 1;
+  string title = 2;
+  string subtitle = 3;
+  StUser poster = 4;
+  StImage cover = 5;
+  StVideo video = 6;
+  string content = 7;
+  uint32 type = 8;
+  uint64 createTime = 9;
+  StLike likeInfo = 10;
+  uint32 commentCount = 11;
+  repeated StComment vecComment = 12;
+  StShare share = 13;
+  StVisitor visitorInfo = 14;
+  repeated StImage images = 15;
+  uint32 status = 16;
+  uint32 pushStatus = 17;
+  StPoiInfoV2 poiInfo = 18;
+  uint32 feedLevel = 19;
+  bytes adBuffer = 20;
+  repeated StYouZanGood goods = 21;
+  uint64 feedAttr = 22;
+  string ext = 23;
+  StLive live = 24;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StFollowRcmd.java ====
+message StFollowRcmd {
+  StUser user = 1;
+  repeated StFeed feedList = 2;
+  string reason = 3;
+  uint32 fansCount = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StGPSV2.java ====
+message StGPSV2 {
+  int64 lat = 1;
+  int64 lon = 2;
+  int64 eType = 3;
+  int64 alt = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StIconInfo.java ====
+message StIconInfo {
+  string iconUrl40 = 1;
+  string iconUrl100 = 2;
+  string iconUrl140 = 3;
+  string iconUrl640 = 4;
+  string iconUrl = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StImage.java ====
+message StImage {
+  string url = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+  repeated StImageUrl vecImageUrl = 4;
+  string fileId = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StImageUrl.java ====
+message StImageUrl {
+  uint32 levelType = 1;
+  string url = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StLike.java ====
+message StLike {
+  repeated bytes id = 1;
+  uint32 count = 2;
+  uint32 status = 3;
+  repeated StUser vecUser = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StLive.java ====
+message StLive {
+  uint64 liveUin = 1;
+  int32 liveState = 2;
+  string anchorName = 3;
+  string anchorIcon = 4;
+  uint64 roomId = 5;
+  string roomTitle = 6;
+  repeated RoomIcon roomIcon = 7;
+  uint64 viewer = 8;
+  string marketStatus = 9;
+  int32 totalGoods = 10;
+  repeated StLiveGoods goodsInfo = 11;
+  string rtmpURL = 12;
+  string typeIcon = 13;
+}
+
+message RoomIcon {
+  string size = 1;
+  string url = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StLiveGoods.java ====
+message StLiveGoods {
+  string goodsId = 1;
+  string imgUrl = 2;
+  string name = 3;
+  string desc = 4;
+  int32 curPrice = 5;
+  int32 orgPrice = 6;
+  int32 inventory = 7;
+  string saleTip = 8;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StMessageStatus.java ====
+message StMessageStatus {
+  uint32 readStatus = 1;
+  string jumpURL = 2;
+  uint32 noticeCount = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StNotice.java ====
+message StNotice_StOperation {
+  uint32 opType = 1;
+  repeated bytes opUser = 2;
+  uint64 opTime = 3;
+  repeated bytes comment = 4;
+  repeated bytes like = 5;
+}
+
+message StNotice {
+  string feedId = 1;
+  uint32 noticeType = 2;
+  uint64 createTime = 3;
+  bytes operation = 4;  // was: StOperation
+  StFeed feed = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StPersonInfo.java ====
+message StPersonInfo {
+  uint32 sex = 1;
+  uint64 birthday = 2;
+  string constellation = 3;
+  string school = 4;
+  string location = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StPoiInfoV2.java ====
+message StPoiInfoV2 {
+  string poiId = 1;
+  string name = 2;
+  int32 poiType = 3;
+  string typeName = 4;
+  string address = 5;
+  int32 districtCode = 6;
+  StGPSV2 gps = 7;
+  int32 distance = 8;
+  int32 hotValue = 9;
+  string phone = 10;
+  string country = 11;
+  string province = 12;
+  string city = 13;
+  int32 poiNum = 14;
+  int32 poiOrderType = 15;
+  string defaultName = 16;
+  string district = 17;
+  string dianPingId = 18;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StPushFeed.java ====
+message StPushFeed {
+  string feedId = 1;
+  StImage cover = 2;
+  string userId = 3;
+  string title = 4;
+  uint32 type = 5;
+  uint32 feedCreateTime = 6;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StPushSet.java ====
+message StPushSet {
+  uint32 createTime = 1;
+  uint32 sendTime = 2;
+  repeated StPushFeed pFeeds = 3;
+  string pushSetID = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StQQGroup.java ====
+message StQQGroup {
+  repeated uint64 id = 1;
+  uint64 owner = 2;
+  uint32 createTime = 3;
+  uint32 memberMaxNum = 4;
+  uint32 memberNum = 5;
+  uint32 icon = 6;
+  string name = 7;
+  string desc = 8;
+  uint32 joinState = 9;
+  uint32 joinTime = 10;
+  string auth = 11;
+  uint32 safeState = 12;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StReply.java ====
+message StReply {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  StUser targetUser = 5;
+  repeated uint64 vecAtUin = 6;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StShare.java ====
+message StShare {
+  string title = 1;
+  string desc = 2;
+  uint32 type = 3;
+  string url = 4;
+  StUser author = 5;
+  StUser poster = 6;
+  StImage cover = 7;
+  StVideo video = 8;
+  string shorturl = 9;
+  string shareCardInfo = 10;
+  bytes shareQzoneInfo = 11;  // was: StShareQzoneInfo
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StUser.java ====
+message StUser {
+  repeated bytes id = 1;
+  string nick = 2;
+  string icon = 3;
+  string desc = 4;
+  uint32 followState = 5;
+  uint32 type = 6;
+  string email = 7;
+  string telNum = 8;
+  uint64 attr = 9;
+  repeated StYouZanShop youZhan = 10;
+  string yzOrderPage = 11;
+  string registerCertifiedAccountUrl = 12;
+  StPersonInfo personInfo = 13;
+  StIconInfo iconInfo = 14;
+  uint32 certifiedType = 15;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StVideo.java ====
+message StVideo {
+  string fileId = 1;
+  uint32 fileSize = 2;
+  uint32 duration = 3;
+  uint32 width = 4;
+  uint32 height = 5;
+  string playUrl = 6;
+  uint32 transStatus = 7;
+  uint32 videoPrior = 8;
+  uint32 videoRate = 9;
+  repeated StVideoUrl vecVideoUrl = 10;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StVideoUrl.java ====
+message StVideoUrl {
+  uint32 levelType = 1;
+  string playUrl = 2;
+  uint32 videoPrior = 3;
+  uint32 videoRate = 4;
+  uint32 transStatus = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StVisitor.java ====
+message StVisitor {
+  uint32 view_count = 1;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StYouZanGood.java ====
+message StYouZanGood {
+  string title = 1;
+  string img = 2;
+  uint64 price = 3;
+  string url = 4;
+  int64 itemID = 5;
+  string alias = 6;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StYouZanShop.java ====
+message StYouZanShop {
+  uint32 type = 1;
+  repeated bytes id = 2;
+  string name = 3;
+  string schema = 4;
+  uint32 goodNum = 5;
+  repeated StYouZanGood goods = 6;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/FeedbackReport$ContentFeedbackItem.java ====
+message ContentFeedbackItem {
+  string cmsid = 1;
+  int32 content_type = 2;
+  int32 feedback_type = 3;
+  int32 reasonid = 4;
+  string agent_tip_words = 5;
+  string details = 6;
+  int32 feedback_time = 7;
+  int32 is_aggregated = 8;
+  int32 times_aggregated = 9;
+  string vid = 10;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/FeedbackReport$FeedbackRequest.java ====
+message FeedbackRequest_BidInfo {
+  string bid = 1;
+  string bsign = 2;
+}
+
+message FeedbackRequest_UserInfo {
+  string uid = 1;
+  repeated bytes qq = 2;
+  string openid = 3;
+  string imei = 4;
+  string idfa = 5;
+  string idfv = 6;
+}
+
+message FeedbackRequest {
+  bytes bid_info = 1;  // was: BidInfo
+  bytes user_info = 2;  // was: UserInfo
+  repeated ContentFeedbackItem content_items = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT/FeedbackReport$FeedbackResponse.java ====
+message FeedbackResponse {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}

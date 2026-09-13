@@ -1,0 +1,142 @@
+// face_qqlogin 域 — 14 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.face_qqlogin;
+
+// ==== source: face/qqlogin/Appconf$AppConfRequest.java ====
+message AppConfRequest {
+  uint32 AppID = 1;
+  string Platform = 2;
+  string QQVersion = 3;
+  string YtSDKEnv = 4;
+  string TmpKey = 5;
+  repeated bytes f_ = 6;
+  repeated uint64 f__2 = 8;
+  repeated bytes support_modes = 9;  // was: enum
+  bytes imei = 10;
+  bytes qimei36 = 11;
+  bytes bssid = 12;
+  bytes enc_identity = 13;
+}
+
+// ==== source: face/qqlogin/Appconf$AppConfResponse.java ====
+message AppConfResponse {
+  string AppName = 1;
+  repeated Wording Wordings = 2;
+  int32 Mode = 3;
+  bytes ColorSeq = 4;
+  string Session = 5;
+  uint32 Ret = 6;
+  string ErrMsg = 7;
+  string Debug = 8;
+  EncryptContext EncContext = 9;
+  bytes ActionSeq = 15;
+  repeated ServiceProtocol protocols = 20;
+  string select_data = 22;
+  bytes huiyan_sdk_token = 23;
+}
+
+// ==== source: face/qqlogin/Appconf$ServiceProtocol.java ====
+message ServiceProtocol {
+  string name = 1;
+  string url = 2;
+  string wording = 3;
+}
+
+// ==== source: face/qqlogin/Appconf$Wording.java ====
+message Wording {
+  int32 serviceType = 1;
+  string Text = 2;
+}
+
+// ==== source: face/qqlogin/FaceCommon$EncryptContext.java ====
+message EncryptContext {
+  int32 Method = 1;
+  bytes EncryptKey = 2;
+  repeated bytes IV = 3;
+}
+
+// ==== source: face/qqlogin/FaceCommon$UserInfo.java ====
+message UserInfo {
+  string Name = 1;
+  string IDCardNumber = 2;
+}
+
+// ==== source: face/qqlogin/FaceSecureCheck$SecureCheckRequest.java ====
+message SecureCheckRequest {
+  uint32 uint32_timestamp = 1;
+  uint32 uint32_seq = 2;
+  uint32 uint32_client_addr = 3;
+  bytes bytes_client_addr = 4;
+  uint32 uint32_version = 5;
+  bytes bytes_guid = 6;
+  uint64 uint64_appid = 7;
+  uint64 uint64_nonce = 8;
+}
+
+// ==== source: face/qqlogin/FaceSecureCheck$SecureCheckResponse.java ====
+message SecureCheckResponse {
+  uint32 uint32_errcode = 1;
+  string str_err_msg = 2;
+  uint32 uint32_seq = 3;
+  bool bool_sec_pass = 4;
+  string str_openid = 5;
+  string str_tmpkey = 6;
+}
+
+// ==== source: face/qqlogin/faceproto$App.java ====
+message App {
+  uint32 AppID = 1;
+  string OpenID = 2;
+  string Sign = 3;
+  string Time = 4;
+}
+
+// ==== source: face/qqlogin/faceproto$FaceInfo.java ====
+message FaceInfo {
+  repeated Media Medias = 1;
+  int32 RecMode = 2;
+}
+
+// ==== source: face/qqlogin/faceproto$ForwardRequest.java ====
+message ForwardRequest {
+  uint64 uin = 1;
+  string client_platform = 2;
+  string client_version = 3;
+  bytes guid = 4;
+  bytes client_ip = 5;
+  repeated bytes face_request = 6;
+}
+
+// ==== source: face/qqlogin/faceproto$Media.java ====
+message Media {
+  int32 Tag = 1;
+  int32 Type = 2;
+  uint32 Size = 3;
+  string Action = 4;
+}
+
+// ==== source: face/qqlogin/faceproto$Request.java ====
+message Request {
+  repeated bytes SrcApp = 1;
+  uint32 AppID = 2;
+  UserInfo UserInfo = 3;
+  repeated bytes FaceInfo = 4;
+  string TmpKey = 5;
+  string Session = 6;
+  uint32 CurRetryCnt = 7;
+  string plt = 8;
+  bytes EncUserInfo = 9;
+  bytes EncFaceInfo = 10;
+  bytes XPSEnvData = 11;
+}
+
+// ==== source: face/qqlogin/faceproto$Response.java ====
+message Response {
+  uint32 Ret = 1;
+  string ErrMsg = 2;
+  string IDKey = 3;
+  bool NeedRetry = 4;
+  string redirect_url = 5;
+}

@@ -1,0 +1,222 @@
+// msf_service 域 — 27 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.msf_service;
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/ImMqPullup.java ====
+message MsgReq {
+  int32 command = 1;
+}
+
+message MsgRsp {
+  int32 command = 1;
+  uint32 uint32_ret = 2;
+  uint32 uint32_itv = 3;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/MsfProbe.java ====
+message AckMsfProbeReq {
+  uint32 main_process_status = 1;
+}
+
+message MsfHelloReq {
+  uint32 main_process_status = 1;
+}
+
+message MsfHelloResp {
+  uint32 reply_code = 1;
+  bytes reply_string = 2;
+  uint32 msf_hello_interval = 3;
+}
+
+message MsfProbePush {
+  uint32 msf_hello_interval = 1;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/SSOLoginMerge.java ====
+message BusiBuffData {
+  repeated BusiBuffItem BusiBuffVec = 1;
+  uint32 MaxRespSizeHint = 2;
+}
+
+message BusiBuffItem {
+  uint32 SeqNo = 1;
+  string ServiceCmd = 2;
+  uint32 BusiBuffLen = 3;
+  bytes BusiBuff = 4;
+  bool NeedResp = 5;
+  SsoTrpcResponse trpc_rsp = 6;
+  repeated SsoMapEntry trans_info = 7;
+  uint32 message_type = 8;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/SSOReserveField.java ====
+message ReserveFields {
+  bytes client_ipcookie = 8;
+  uint32 flag = 9;
+  uint32 env_id = 10;
+  uint32 locale_id = 11;
+  repeated bytes qimei36 = 12;
+  string env = 13;
+  uint32 newconn_flag = 14;
+  string trace_parent = 15;
+  string uid = 16;
+  uint32 imsi = 18;
+  uint32 network_type = 19;
+  uint32 ip_stack_type = 20;
+  uint32 message_type = 21;
+  SsoTrpcResponse trpc_rsp = 22;
+  repeated SsoMapEntry trans_info = 23;
+  SsoSecureInfo sec_info = 24;
+  uint32 sec_sig_flag = 25;
+  uint32 nt_core_version = 26;
+  uint32 sso_route_cost = 27;
+  uint32 sso_ip_origin = 28;
+  bytes presure_token = 30;
+  uint64 rsp_timestamp_ms = 31;
+}
+
+message SsoMapEntry {
+  string key = 1;
+  bytes value = 2;
+}
+
+message SsoSecureInfo {
+  bytes sec_sig = 1;
+  bytes sec_device_token = 2;
+  bytes sec_extra = 3;
+}
+
+message SsoTrpcResponse {
+  int32 ret = 1;
+  int32 func_ret = 2;
+  bytes error_msg = 3;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/StatSvcSimpleGet.java ====
+message ReqBody {
+  repeated uint64 rept_bind_qq = 1;
+  int32 int32_battrey_status = 2;
+}
+
+message RspBody {
+  uint32 uint32_error_code = 1;
+  string str_errmsg = 2;
+  uint32 uint32_hello_interval = 3;
+  string str_clientip = 4;
+  uint32 uint32_client_battey_get_interval = 5;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/SubMsgType0x51.java ====
+message MsgBody {
+  bytes bytes_qrsig_url = 1;
+  bytes bytes_hint1 = 2;
+  bytes bytes_hint2 = 3;
+  bytes bytes_appname = 4;
+  bytes bytes_logincity = 5;
+  uint32 uint32_logintime = 6;
+  uint32 uint32_allow_tmp_auth = 7;
+  bytes bytes_login_conf = 8;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/WirelessMibao.java ====
+message CWirelessMibaoReq {
+  uint64 uin = 1;
+  repeated uint64 ip = 2;
+  uint32 time = 3;
+  bytes ksid = 4;
+  bytes guid = 5;
+  string imei = 6;
+  uint32 cmd = 7;
+}
+
+message CWirelessMibaoRsp {
+  int32 ret = 1;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/WirelessPsw.java ====
+message CWirelessPswReq {
+  uint64 uin = 1;
+  repeated uint64 ip = 2;
+  uint32 time = 3;
+  bytes ksid = 4;
+  uint32 cmd = 5;
+}
+
+message CWirelessPswRsp {
+  int32 ret = 1;
+}
+
+// ==== source: com/tencent/msf/service/protocol/p1409pb/offlinepush.java ====
+message C2CMsgReadedNotify {
+  uint64 lPeerUin = 1;
+  uint64 lLastReadTime = 2;
+}
+
+message C2CTmpOffMsgHead {
+  uint32 c2c_type = 1;
+  uint32 service_type = 2;
+  uint64 group_uin = 3;
+  uint64 group_code = 4;
+  bytes sig = 5;
+  uint32 sig_type = 6;
+  string from_phone = 7;
+  string to_phone = 8;
+  uint32 lock_display = 9;
+  bytes group_card = 10;
+  bytes group_name = 11;
+  bytes discuss_remark = 12;
+  bytes dis_name = 13;
+}
+
+message DisMsgReadedNotify {
+  uint64 lDisUin = 1;
+  uint64 lOpType = 2;
+  uint64 lMemberSeq = 3;
+  uint64 lDisMsgSeq = 4;
+}
+
+message DiscussOffInfo {
+  uint64 discuss_uin = 1;
+  uint32 discuss_type = 2;
+  uint64 discuss_info_seq = 3;
+  bytes discuss_remark = 4;
+  bytes dis_name = 5;
+}
+
+message GroupMsgReadedNotify {
+  uint64 lGroupCode = 1;
+  uint64 lOpType = 2;
+  uint64 lMemberSeq = 3;
+  uint64 lGroupMsgSeq = 4;
+}
+
+message GroupOffInfo {
+  uint64 group_code = 1;
+  uint32 group_type = 2;
+  uint64 group_info_seq = 3;
+  bytes group_card = 4;
+  bytes group_name = 5;
+}
+
+message PbPushOffMsg {
+  uint64 from_uin = 1;
+  uint64 to_uin = 2;
+  bytes from_nick = 3;
+  bytes msg_str = 4;
+  GroupOffInfo group_info = 5;
+  DiscussOffInfo discuss_info = 6;
+  C2CTmpOffMsgHead c2c_tmp_msg_head = 7;
+  uint32 svr_ip = 8;
+  uint32 msg_flag = 9;
+  uint32 dwViedoType = 10;
+}
+
+message PbPushOffReadedNotify {
+  uint32 cNotifyType = 1;
+  repeated C2CMsgReadedNotify vC2CReadedNotify = 2;
+  repeated GroupMsgReadedNotify vGroupReadedNotify = 3;
+  repeated DisMsgReadedNotify vDisReadedNotify = 4;
+  uint32 svr_ip = 5;
+}

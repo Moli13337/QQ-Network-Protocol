@@ -1,0 +1,2590 @@
+// gamecenter 域 — 348 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.gamecenter;
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$AccountInfo.java ====
+message AccountInfo {
+  string uid = 1;
+  string openId = 2;
+  int64 accountType = 3;
+  string toUid = 4;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$AppInfo.java ====
+message AppInfo {
+  string appVersion = 1;
+  string qua = 2;
+  string productId = 3;
+  string appid = 4;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$EventInfo.java ====
+message EventInfo {
+  int64 eventTimestamp = 1;
+  string eventType = 2;
+  string eventType2 = 3;
+  string eventType3 = 4;
+  string eventResult = 5;
+  string eventErrCode = 6;
+  int64 actTimes = 7;
+  string eventType4 = 8;
+  string eventType5 = 9;
+  string page = 10;
+  string pageModule = 20;
+  string fromPage = 21;
+  string eventCode = 22;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$ExpeEventReportReq.java ====
+message ExpeEventReportReq {
+  repeated UserActionInfo actionInfos = 1;
+  int32 noNeedRsp = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$ExpeEventReportRsp.java ====
+message ExpeEventReportRsp_RetInfo {
+  int32 retCode = 1;
+  string retMsg = 2;
+}
+
+message ExpeEventReportRsp {
+  bytes retInfo = 1;  // was: RetInfo
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$ExpeInfo.java ====
+message ExpeInfo {
+  string expeSysTransfer = 1;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/ExpeDataAcc$UserActionInfo.java ====
+message UserActionInfo_DeviceInfo {
+  string platform = 1;
+  string brand = 2;
+  string model = 3;
+  string version = 4;
+  string deviceInfo = 5;
+  string mac = 6;
+  string idfa = 7;
+  string idfv = 8;
+  string imei = 9;
+}
+
+message UserActionInfo_NetworkInfo {
+  int64 networkType = 1;
+  string userClientIp = 2;
+  string gatewayIp = 3;
+}
+
+message UserActionInfo_PushTaskInfo {
+  string taskSysTransfer = 1;
+  int64 channelType = 2;
+}
+
+message UserActionInfo_SvrAlgorithmInfo {
+  string algoritymId = 1;
+  string algorithmType = 2;
+  string traceId = 3;
+  string itemType = 4;
+}
+
+message UserActionInfo {
+  AccountInfo accountInfo = 1;
+  EventInfo eventInfo = 2;
+  bytes deviceInfo = 3;  // was: DeviceInfo
+  AppInfo appInfo = 4;
+  bytes networkInfo = 5;  // was: NetworkInfo
+  ExpeInfo expeInfo = 6;
+  bytes taskInfo = 7;  // was: PushTaskInfo
+  bytes algorithmInfo = 8;  // was: SvrAlgorithmInfo
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/MonitReport$MonitReportReq.java ====
+message MonitReportReq {
+  uint32 type = 1;
+  repeated PublicAccountReq publicAcctReq = 3;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/MonitReport$PublicAccountReq.java ====
+message PublicAccountReq {
+  uint64 msgid = 1;
+  uint32 action = 2;
+  string url = 3;
+  repeated uint64 ts = 4;
+  uint64 taskid = 5;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/TrpcAttaProxy$AttaItem.java ====
+message AttaItem {
+  string attaId = 1;
+  repeated AttaValue valueList = 3;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/TrpcAttaProxy$AttaValue.java ====
+message AttaValue {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/TrpcAttaProxy$ReportAttaListReq.java ====
+message ReportAttaListReq {
+  repeated AttaItem attaList = 1;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/TrpcAttaProxy$ReportAttaReq.java ====
+message ReportAttaReq {
+  repeated bytes id = 1;
+  repeated AttaValue attaValue = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/TrpcProxy.java ====
+message TrpcInovkeReq {
+  bytes data = 1;
+  repeated bytes msg = 2;
+  TrpcOptions options = 3;
+}
+
+message TrpcInovkeRsp {
+  bytes data = 1;
+  int32 errType = 2;
+  int32 ret = 3;
+  repeated bytes msg = 4;
+}
+
+message TrpcListReq {
+  repeated TrpcInovkeReq list = 1;
+}
+
+message TrpcListRsp {
+  repeated TrpcInovkeRsp list = 1;
+  int32 errType = 2;
+  int32 ret = 3;
+  repeated bytes msg = 4;
+}
+
+message TrpcMetaData {
+  string key = 1;
+  bytes value = 2;
+}
+
+message TrpcMsg {
+  string clientRPCName = 1;
+  string calleeApp = 2;
+  string calleeServer = 3;
+  string calleeService = 4;
+}
+
+message TrpcOptions {
+  string target = 1;
+  string nameSpace = 2;
+  int64 timeout = 3;
+  int32 serializationType = 4;
+  int32 currentSerializationType = 6;
+  string serviceName = 7;
+  string calleeMethod = 8;
+  string callerServiceName = 9;
+  int32 currentCompressType = 10;
+  int32 compressType = 11;
+  bool disableFilter = 12;
+  string network = 13;
+  int32 requestType = 14;
+  bool connectionMode = 15;
+  bool disableConnectionPool = 16;
+  bool disableServiceRouter = 17;
+  repeated TrpcMetaData metaData2 = 18;
+}
+
+message UniSsoServerReq {
+  UniSsoServerReqComm comm = 1;
+  string reqdata = 2;
+  bytes pbReqData = 3;
+}
+
+message UniSsoServerReqComm {
+  int64 platform = 1;
+  string osver = 2;
+  string mqqver = 3;
+}
+
+message UniSsoServerRsp {
+  int64 ret = 1;
+  string errmsg = 2;
+  UniSsoServerRspComm comm = 3;
+  string rspdata = 4;
+  bytes pbRsqData = 5;
+}
+
+message UniSsoServerRspComm {
+  uint32 delayms = 1;
+  uint32 packagesize = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/WadlTrpcReport$DcRecord.java ====
+message DcRecord {
+  string dcId = 1;
+  repeated KV data = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/WadlTrpcReport$DcReportReply.java ====
+message DcReportReply {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  int32 succNum = 3;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/WadlTrpcReport$DcReportRequest.java ====
+message DcReportRequest {
+  repeated DcRecord record = 1;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/WadlTrpcReport$KV.java ====
+message KV {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/biz/entity/WebSSOAgent$UniSsoServerRsp.java ====
+message UniSsoServerRsp_UniSsoServerRspComm {
+  uint32 delayms = 1;
+  uint32 packagesize = 2;
+  int32 proctime = 3;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/p261pb/DataOpenapiSvr$GetGameDistributeDataReq.java ====
+message GetGameDistributeDataReq {
+  string guild_id = 1;
+}
+
+// ==== source: com/tencent/gamecenter/wadl/p261pb/DataOpenapiSvr$GetGameDistributeDataRsp.java ====
+message GetGameDistributeDataRsp {
+  bool is_show_distribute = 1;
+  string appid = 2;
+  string download_url = 3;
+  string pkg_name = 4;
+  string company = 5;
+  string version = 6;
+  string privacy = 7;
+  string channel_id = 8;
+  int32 sub_new_version_result = 9;
+  int32 sub_result = 10;
+  int32 follow_result = 11;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$AddFriendRequestForAIOReq.java ====
+message AddFriendRequestForAIOReq {
+  string to_openid = 1;
+  string to_aio_role_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$AddFriendRequestForAIORsp.java ====
+message AddFriendRequestForAIORsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$GetGameAIOTeamLinkReq.java ====
+message GetGameAIOTeamLinkReq {
+  string to_openid = 1;
+  string to_roleid = 2;
+  string from_roleid = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$GetGameAIOTeamLinkRsp.java ====
+message GetGameAIOTeamLinkRsp {
+  string link = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$GetGameFriendIDsReq.java ====
+message GetGameFriendIDsReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$GetGameFriendIDsRsp.java ====
+message GetGameFriendIDsRsp {
+  repeated string openids = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$IsFriendReq.java ====
+message IsFriendReq {
+  uint64 uid = 1;
+  string aio_role_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameCenterMetaDreamUserCenter$IsFriendRsp.java ====
+message IsFriendRsp {
+  bool is_friend = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$AnswerBase.java ====
+message AnswerBase {
+  repeated uint64 id = 1;
+  int32 status = 2;
+  uint32 appid = 3;
+  int64 browse_count = 4;
+  int64 question_id = 5;
+  string content = 6;
+  Pics pics = 7;
+  int64 create_time = 8;
+  int64 like_count = 9;
+  bool is_star = 10;
+  int64 comment_count = 11;
+  bool is_liked = 12;
+  string encode_author_uin = 13;
+  bool questioner_like = 14;
+  int32 source = 15;
+  Videos videos = 16;
+  UserInfo2 author = 17;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$BindedRobot.java ====
+message BindedRobot {
+  uint32 appid = 1;
+  string robot_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$ChangeOnLineStatusReq.java ====
+message ChangeOnLineStatusReq {
+  string guild_id = 1;
+  string channel_id = 2;
+  uint32 game_appid = 3;
+  bool is_online = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$CheckMentionReq.java ====
+message CheckMentionReq {
+  string guild_id = 1;
+  string channel_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$CheckMentionRsp.java ====
+message CheckMentionRsp {
+  bool can_mention = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$FeedsCard.java ====
+message FeedsCard {
+  QuestionBase question = 1;
+  AnswerBase answer = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GameInfo.java ====
+message GameInfo {
+  uint32 appid = 1;
+  string name = 2;
+  string icon = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetBindedRobotReply.java ====
+message GetBindedRobotReply {
+  BindedRobot robot = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetBindedRobotRequest.java ====
+message GetBindedRobotRequest {
+  uint64 guild_id = 1;
+  uint64 channel_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetChannelRecommendsV2Reply.java ====
+message GetChannelRecommendsV2Reply {
+  repeated FeedsCard recommends = 1;
+  int64 next_page = 2;
+  bool is_over = 3;
+  int64 total_num = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetChannelRecommendsV2Request.java ====
+message GetChannelRecommendsV2Request {
+  uint32 appid = 1;
+  int64 page = 2;
+  int64 tag = 3;
+  int64 size = 4;
+  string view_sign = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetMyRefMaterialsReq.java ====
+message GetMyRefMaterialsReq {
+  int32 ref_type = 1;
+  int32 req_type = 2;
+  uint32 page_size = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetMyRefMaterialsRsp.java ====
+message GetMyRefMaterialsRsp {
+  repeated RefMaterialInfo list = 1;
+  bool is_over = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetNoAnsweredReply.java ====
+message GetNoAnsweredReply {
+  int64 num = 1;
+  string jump_url = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetNoAnsweredRequest.java ====
+message GetNoAnsweredRequest {
+  uint32 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetOnLineStatusReq.java ====
+message GetOnLineStatusReq {
+  string guild_id = 1;
+  string channel_id = 2;
+  uint32 game_appid = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetOnLineStatusRsp.java ====
+message GetOnLineStatusRsp {
+  bool is_online = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetRecmdRefMaterialsRsp.java ====
+message GetRecmdRefMaterialsRsp {
+  repeated RefMaterialInfo list = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetRefMaterialByLinkReq.java ====
+message GetRefMaterialByLinkReq {
+  string url = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetRefMaterialByLinkRsp.java ====
+message GetRefMaterialByLinkRsp {
+  RefMaterialInfo info = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetStarListReq.java ====
+message GetStarListReq {
+  string guild_id = 1;
+  string channel_id = 2;
+  uint32 game_appid = 3;
+  int32 page = 4;
+  int32 num = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetStarListRsp.java ====
+message GetStarListRsp {
+  repeated StarUserInfo star_users = 1;
+  bool is_over = 2;
+  int64 total_num = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetStarUsersReply.java ====
+message GetStarUsersReply {
+  repeated StarUser star_users = 1;
+  bool is_over = 2;
+  int64 star_num = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetStarUsersRequest.java ====
+message GetStarUsersRequest {
+  uint32 appid = 1;
+  int64 page = 2;
+  int64 size = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetTagsReply.java ====
+message GetTagsReply {
+  repeated TagInfo tags = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$GetTagsRequest.java ====
+message GetTagsRequest {
+  uint32 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$HeartbeatReportReq.java ====
+message HeartbeatReportReq {
+  string guild_id = 1;
+  string channel_id = 2;
+  uint32 game_appid = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$HeartbeatReportRsp.java ====
+message HeartbeatReportRsp {
+  int32 interval_seconds = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$LikeAnswerReply.java ====
+message LikeAnswerReply {
+  repeated bytes msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$LikeAnswerRequest.java ====
+message LikeAnswerRequest {
+  uint32 appid = 1;
+  int64 question_id = 2;
+  int64 answer_id = 3;
+  int64 value = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$LikeQuestionReply.java ====
+message LikeQuestionReply {
+  repeated bytes msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$LikeQuestionRequest.java ====
+message LikeQuestionRequest {
+  uint32 appid = 1;
+  int64 question_id = 2;
+  int64 value = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewAnswerReply.java ====
+message NewAnswerReply {
+  int64 answer_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewAnswerRequest.java ====
+message NewAnswerRequest {
+  uint32 appid = 1;
+  int64 question_id = 2;
+  string content = 3;
+  Pics pics = 4;
+  int32 source = 5;
+  Videos videos = 6;
+  repeated uint64 id = 7;
+  int32 scene = 8;
+  Refs refs = 9;
+  string rich_content = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewChannelAnswerReply.java ====
+message NewChannelAnswerReply {
+  int64 answer_id = 1;
+  string ark_json = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewChannelAnswerRequest.java ====
+message NewChannelAnswerRequest {
+  uint32 appid = 1;
+  int64 question_id = 2;
+  string content = 3;
+  Pics pics = 4;
+  int32 source = 5;
+  uint64 guild_id = 6;
+  uint64 channel_id = 7;
+  uint64 ark_random = 8;
+  Videos videos = 9;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewChannelQuestionReply.java ====
+message NewChannelQuestionReply {
+  int64 question_id = 1;
+  string ark_json = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewChannelQuestionRequest.java ====
+message NewChannelQuestionRequest {
+  uint32 appid = 1;
+  repeated int64 tag_ids = 2;
+  string title = 3;
+  string content = 4;
+  Pics pics = 5;
+  int32 source = 6;
+  uint64 guild_id = 7;
+  uint64 channel_id = 8;
+  uint64 ark_random = 9;
+  Videos videos = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewQuestionReply.java ====
+message NewQuestionReply {
+  int64 question_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$NewQuestionRequest.java ====
+message NewQuestionRequest {
+  uint32 appid = 1;
+  repeated int64 tag_ids = 2;
+  string title = 3;
+  string content = 4;
+  Pics pics = 5;
+  int32 source = 6;
+  Videos videos = 7;
+  repeated uint64 id = 8;
+  int32 scene = 9;
+  Refs refs = 10;
+  string rich_content = 11;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$PicInfo.java ====
+message PicInfo {
+  string url = 1;
+  int32 height = 2;
+  int32 width = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$Pics.java ====
+message Pics {
+  repeated PicInfo pic_infos = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$PullGamesReply.java ====
+message PullGamesReply {
+  repeated GameInfo games = 1;
+  int64 next_page = 2;
+  bool is_over = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$PullGamesRequest.java ====
+message PullGamesRequest {
+  int64 page = 1;
+  int64 size = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$QuestionBase.java ====
+message QuestionBase {
+  repeated uint64 id = 1;
+  int32 status = 2;
+  uint32 appid = 3;
+  int64 browse_count = 4;
+  repeated int64 answer_ids = 5;
+  repeated TagInfo tags = 6;
+  string title = 7;
+  string content = 8;
+  Pics pics = 9;
+  bool is_star = 10;
+  int64 create_time = 11;
+  int64 like_count = 12;
+  int64 answer_count = 13;
+  string encode_author_uin = 15;
+  bool not_recommend = 16;
+  int32 source = 17;
+  Videos videos = 18;
+  UserInfo2 author = 19;
+  bool is_answered = 20;
+  bool is_liked_question = 21;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$QuestionInfo.java ====
+message QuestionInfo {
+  repeated uint64 id = 1;
+  int32 status = 2;
+  uint32 appid = 3;
+  uint64 author_uin = 4;
+  repeated uint64 answer_ids = 5;
+  repeated uint64 tag_ids = 6;
+  string title = 7;
+  string content = 8;
+  Pics pics = 9;
+  bool is_star = 10;
+  int64 create_time = 11;
+  int64 update_time = 12;
+  uint64 op_uin = 13;
+  int64 op_time = 14;
+  string encode_author_uin = 15;
+  bool not_recommend = 16;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RecommendCard.java ====
+message RecommendCard {
+  int64 question_id = 1;
+  string question_title = 2;
+  int64 create_time = 3;
+  UserInfo author = 4;
+  int64 hot_answer_id = 5;
+  bool is_answered = 6;
+  bool is_liked_question = 7;
+  int64 like = 8;
+  int32 source = 9;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RefChannelInfo.java ====
+message RefChannelInfo {
+  string invite_code = 1;
+  string content_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RefInfo.java ====
+message RefInfo {
+  int32 type = 1;
+  repeated bytes qa = 2;
+  RefChannelInfo channel = 3;
+  RefXWorldInfo xworld = 4;
+  bool has_media = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RefMaterialInfo.java ====
+message RefMaterialInfo {
+  RefInfo ref = 1;
+  UserInfo userinfo = 2;
+  uint64 create_ts = 3;
+  string title = 4;
+  string content = 5;
+  Pics pics = 6;
+  Videos videos = 7;
+  uint32 like_count = 8;
+  repeated string tags = 9;
+  string url = 10;
+  uint32 appid = 11;
+  bool is_self = 12;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RefQAInfo.java ====
+message RefQAInfo {
+  uint32 appid = 1;
+  int64 qusid = 2;
+  int64 ansid = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RefXWorldInfo.java ====
+message RefXWorldInfo {
+  repeated bytes id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$Refs.java ====
+message Refs {
+  repeated RefInfo refs = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$RelatedQuestion.java ====
+message RelatedQuestion {
+  QuestionInfo question_info = 1;
+  int64 like = 2;
+  int64 answer_num = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$SearchQuestionsReply.java ====
+message SearchQuestionsReply {
+  repeated RelatedQuestion questions = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$SearchQuestionsRequest.java ====
+message SearchQuestionsRequest {
+  string keyword = 1;
+  uint32 appid = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$SetBindedRobotReply.java ====
+message SetBindedRobotReply {
+  int32 code = 1;
+  string err_msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$SetBindedRobotRequest.java ====
+message SetBindedRobotRequest {
+  uint64 guild_id = 1;
+  uint64 channel_id = 2;
+  BindedRobot robot = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$StarUser.java ====
+message StarUser {
+  UserInfo author = 1;
+  int64 answer_num = 2;
+  int64 like_num = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$StarUserInfo.java ====
+message StarUserInfo {
+  string head = 1;
+  bytes nick = 2;
+  int64 answer_num = 3;
+  int64 be_liked_num = 4;
+  bool is_online = 5;
+  uint64 uin = 6;
+  bool is_self = 7;
+  string uin_str = 8;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$TagInfo.java ====
+message TagInfo {
+  int64 tag_id = 1;
+  string tag_name = 2;
+  bool is_inner_show = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$UserInfo.java ====
+message UserInfo {
+  uint64 uin = 1;
+  bytes name = 2;
+  string avatar = 3;
+  int32 gender = 4;
+  string title = 5;
+  string encode_uin = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$UserInfo2.java ====
+message UserInfo2 {
+  bytes name = 1;
+  string avatar = 2;
+  int32 gender = 3;
+  string title = 4;
+  string encode_uin = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$VideoInfo.java ====
+message VideoInfo {
+  string video_url = 1;
+  PicInfo cover_pic = 2;
+  uint64 duration = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQA$Videos.java ====
+message Videos {
+  repeated VideoInfo video_infos = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$CheckInWhiteListReply.java ====
+message CheckInWhiteListReply {
+  bool is_in_whitelist = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$CheckInWhiteListRequest.java ====
+message CheckInWhiteListRequest {
+  uint32 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$GetJoinAnswerRequirementReply.java ====
+message GetJoinAnswerRequirementReply {
+  bool can_join_answer = 1;
+  string req_doc = 2;
+  string join_title = 3;
+  bool can_join_qgroup = 4;
+  string success_auth_doc = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$GetJoinAnswerRequirementRequest.java ====
+message GetJoinAnswerRequirementRequest {
+  uint32 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$JoinAnswerUserReply.java ====
+message JoinAnswerUserReply {
+  bool can_join = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAAuth$JoinAnswerUserRequest.java ====
+message JoinAnswerUserRequest {
+  uint32 appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$ExposeGuruUserRequest.java ====
+message ExposeGuruUserRequest {
+  uint32 appid = 1;
+  repeated uint64 exposed_users = 2;
+  repeated string encoded_exposed_users = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$ExposeGuruUserResponse.java ====
+message ExposeGuruUserResponse {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$GuruConfig.java ====
+message GuruConfig {
+  bool enable = 1;
+  string title = 2;
+  uint32 group_appid = 3;
+  string group_tag = 4;
+  string honor_link = 5;
+  string certification_link = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$InnerInvitee.java ====
+message InnerInvitee {
+  int32 way = 1;
+  uint32 appid = 2;
+  uint64 inviter = 3;
+  uint64 invitee = 4;
+  int64 update_time = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$InviteUserRequest.java ====
+message InviteUserRequest {
+  int32 way = 1;
+  uint32 appid = 2;
+  int64 question_id = 3;
+  repeated uint64 uins = 4;
+  repeated string encoded_uins = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$InviteUserResponse.java ====
+message InviteUserResponse {
+  repeated uint64 uins = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserListRequest.java ====
+message QueryUserListRequest {
+  int32 query = 1;
+  uint32 appid = 2;
+  int64 question_id = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserListResponse.java ====
+message QueryUserListResponse {
+  repeated uint64 recommends = 1;
+  repeated uint64 invitees = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserListResponseV2.java ====
+message QueryUserListResponseV2 {
+  repeated uint64 recommends = 1;
+  repeated uint64 invitees = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserRequest.java ====
+message QueryUserRequest {
+  int32 query = 1;
+  uint32 appid = 2;
+  repeated uint64 uins = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserRequestV2.java ====
+message QueryUserRequestV2 {
+  int32 query = 1;
+  uint32 appid = 2;
+  repeated string encoded_uins = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserResponse.java ====
+message QueryUserResponse {
+  int32 qq_title_status = 1;
+  repeated User users = 2;
+  GuruConfig guru_config = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$QueryUserResponseV2.java ====
+message QueryUserResponseV2 {
+  int32 qq_title_status = 1;
+  repeated UserV2 users = 2;
+  GuruConfig guru_config = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$User.java ====
+message User {
+  int32 title_type = 1;
+  uint64 uin = 2;
+  string avatar = 3;
+  string nick = 4;
+  string title = 5;
+  string describe = 6;
+  string encoded_uin = 7;
+  int64 expire_at = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/p1162qa/proto/GameStrategyQAInvite$UserV2.java ====
+message UserV2 {
+  int32 title_type = 1;
+  string avatar = 3;
+  string nick = 4;
+  string title = 5;
+  string describe = 6;
+  string encoded_uin = 7;
+  int64 expire_at = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/AioEggSpring2024Svr$CollectActionReq.java ====
+message CollectActionReq {
+  int32 scene = 1;
+  string act_id = 2;
+  int64 egg_id = 3;
+  string key_word = 4;
+  bool proactive = 5;
+  uint64 friend_uin = 6;
+  uint64 group_id = 7;
+  string channel_id = 8;
+  int32 platform = 9;
+  string qq_version = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/AioEggSpring2024Svr$CollectActionRsp.java ====
+message CollectActionRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$AioArkInfo.java ====
+message AioArkInfo {
+  int32 type = 1;
+  string content = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$AioCapsuleInfo.java ====
+message AioCapsuleInfo {
+  string capsule_id = 1;
+  string name = 2;
+  int32 action = 3;
+  string action_content = 4;
+  string icon_token = 5;
+  string icon_url = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$AioSetting.java ====
+message AioSetting {
+  int32 setting_flag = 1;
+  bool can_add_friend = 2;
+  bool is_partner = 3;
+  int64 to_uin = 4;
+  string cancel_partner_text = 5;
+  string cancel_partner_warn_text = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$AioTipsBar.java ====
+message AioTipsBar {
+  string icon = 1;
+  string text = 2;
+  string jump_url = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$CancelPartnerReq.java ====
+message CancelPartnerReq {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$CancelPartnerRsp.java ====
+message CancelPartnerRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$CapsuleActionReq.java ====
+message CapsuleActionReq {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+  string capsule_id = 3;
+  string action_content = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$CapsuleActionRsp.java ====
+message CapsuleActionRsp {
+  string toast_msg = 1;
+  int32 ret_code = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$GetAioCapsuleReq.java ====
+message GetAioCapsuleReq {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$GetAioCapsuleRsp.java ====
+message GetAioCapsuleRsp {
+  repeated AioCapsuleInfo capsule_list = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$GetTeamLinkReq.java ====
+message GetTeamLinkReq {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$GetTeamLinkRsp.java ====
+message GetTeamLinkRsp {
+  string link = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$QueryAioArkReq.java ====
+message QueryAioArkReq {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+  int32 source = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$QueryAioArkRsp.java ====
+message QueryAioArkRsp {
+  AioArkInfo aio_ark = 1;
+  AioArkInfo social_ark = 2;
+  int32 type = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$QueryAioInfoV2Req.java ====
+message QueryAioInfoV2Req {
+  string me_roleid = 1;
+  string friend_roleid = 2;
+  int32 source = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$QueryAioInfoV2Rsp.java ====
+message QueryAioInfoV2Rsp {
+  bool show_top_delete = 1;
+  bool show_partner_ui = 2;
+  string nick = 3;
+  int32 together_play_game_num = 4;
+  string together_play_icon = 5;
+  string session_sig = 6;
+  string self_profile_url = 7;
+  string friend_profile_url = 8;
+  string relation_desc = 9;
+  bool is_online = 10;
+  int32 game_type = 11;
+  int32 relation = 12;
+  bool is_shield = 13;
+  AioSetting setting = 14;
+  string game_name_abbr = 15;
+  string self_openaio_id = 16;
+  string friend_openaio_id = 17;
+  int32 online_type = 18;
+  AioTipsBar tips_bar = 19;
+  repeated string relation_descs = 20;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$SendMsgReq.java ====
+message SendMsgReq {
+  string from_open_aio_id = 1;
+  string to_open_aio_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterAIOSvr$SendMsgRsp.java ====
+message SendMsgRsp {
+  int64 left_times = 1;
+  int32 ret = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterArkMsgSenderSvr$ArkData.java ====
+message ArkData {
+  int32 type = 1;
+  string data = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterArkMsgSenderSvr$GameMsgRoles.java ====
+message GameMsgRoles {
+  string from_role_id = 1;
+  string to_role_id = 2;
+  string from_nick = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterArkMsgSenderSvr$SendSgameCouponRedEnvelopeMsgReq.java ====
+message SendSgameCouponRedEnvelopeMsgReq {
+  int64 to_uin = 1;
+  int32 type = 2;
+  ArkData ark_info = 3;
+  GameMsgRoles roles = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterArkMsgSenderSvr$SendSgameCouponRedEnvelopeMsgRsp.java ====
+message SendSgameCouponRedEnvelopeMsgRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterHonorRank$PreloadRankReq.java ====
+message PreloadRankReq {
+  uint64 group_code = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterHonorRank$PreloadRankRsp.java ====
+message PreloadRankRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterHyperDataEngineSvr$FetchReq.java ====
+message FetchReq {
+  string scene_name = 1;
+  repeated VariablesEntry variables = 2;
+  int32 accept_encoding = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterHyperDataEngineSvr$FetchRsp.java ====
+message FetchRsp {
+  int32 code = 1;
+  string message = 2;
+  int32 encoding = 3;
+  string data_payload = 4;
+  bytes compressed_payload = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterHyperDataEngineSvr$VariablesEntry.java ====
+message VariablesEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterLimit$CheckLimitReq.java ====
+message CheckLimitReq {
+  string gid = 1;
+  int32 strategy_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterLimit$CheckLimitRsp.java ====
+message CheckLimitRsp {
+  bool is_limit = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterLimit$ReportReq.java ====
+message ReportReq {
+  string gid = 1;
+  int32 strategy_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterLimit$ReportRsp.java ====
+message ReportRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterNewHomePageConfSvr$GetNativeShellConfRsp.java ====
+message GetNativeShellConfRsp {
+  string config_json = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterNewHomePageSvr$GetNativeShellPageInfoReq.java ====
+message GetNativeShellPageInfoReq {
+  string version = 1;
+  repeated ModulePageInfo queries = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterNewHomePageSvr$GetNativeShellPageInfoRsp.java ====
+message GetNativeShellPageInfoRsp {
+  repeated ModuleData datas = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterNewHomePageSvr$ModuleData.java ====
+message ModuleData {
+  ModulePageInfo page_info = 1;
+  string data = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterNewHomePageSvr$ModulePageInfo.java ====
+message ModulePageInfo {
+  string module_id = 1;
+  string page_id = 2;
+  string req_raw_data = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$GetPreDataReq.java ====
+message GetPreDataReq_PreDownloadBundleParams {
+  repeated Bundle bundles = 1;
+}
+
+message GetPreDataReq {
+  int32 source = 1;
+  bool red_point = 2;
+  repeated PublicAccMsg public_acc_msg = 3;
+  Machine machine = 4;
+  ViewPreWarmParams view_pre_warm_params = 5;
+  bytes pre_download_bundle_params = 6;  // was: PreDownloadBundleParams
+  RedPointParams red_point_params = 7;
+}
+
+message Bundle {
+  string name = 1;
+  int32 version = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$GetPreDataRsp.java ====
+message GetPreDataRsp {
+  repeated PreDownloadBundle bundles = 1;
+  repeated PreDownloadFile files = 2;
+  repeated PreDownloadData data = 3;
+  int64 update_interval = 4;
+  ViewPreWarm view_pre_warm = 5;
+  ViewPreWarmConfig view_pre_warm_config = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$Machine.java ====
+message Machine {
+  int64 memory = 1;
+  int64 cpu_core_count = 2;
+  int64 system_api_level = 3;
+  string model = 4;
+  string brand = 5;
+  string qq_version = 6;
+  string system_version = 7;
+  int32 device_type = 8;
+  double cpu_percent = 9;
+  uint64 memory_remain = 10;
+  bool power_saving = 11;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$PreDownloadBundle.java ====
+message PreDownloadBundle {
+  string name = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$PreDownloadData.java ====
+message PreDownloadData {
+  string key = 1;
+  string content = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$PreDownloadFile.java ====
+message PreDownloadFile {
+  string key = 1;
+  string file_path = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$PublicAccMsg.java ====
+message PublicAccMsg {
+  string raw_msg_id = 1;
+  string app_id = 2;
+  string ad_id = 3;
+  string act_id = 4;
+  string act_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$RedPointParams.java ====
+message RedPointParams {
+  string gamecenter_tab_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$ViewPreWarm.java ====
+message ViewPreWarm {
+  repeated BundlePage bundle_pages = 1;
+  repeated ClientBundlePage client_bundle_pages = 2;
+}
+
+message BundlePage {
+  int32 ret = 1;
+  string page_name = 2;
+  string bundle_name = 3;
+  bool speed_up = 4;
+}
+
+message ClientBundlePage {
+  int32 ret = 1;
+  string page_name = 2;
+  string bundle_name = 3;
+  bool speed_up = 4;
+  int64 bundle_min_version = 5;
+  string real_bundle_name = 6;
+  string real_page_name = 7;
+  int64 real_bundle_min_version = 8;
+  string scene_id = 9;
+  int64 min_cache_size = 10;
+  int64 update_type = 11;
+  string params = 12;
+  string turbo_display_key = 13;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$ViewPreWarmConfig.java ====
+message ViewPreWarmConfig {
+  int64 default_update_interval = 1;
+  int64 default_download_bundle_timeout = 2;
+  int64 default_pre_warm_timeout = 3;
+  bool open_pre_warm = 4;
+  repeated Scene scenes = 5;
+  repeated ClientBundlePage client_bundle_pages = 6;
+}
+
+message Scene {
+  repeated bytes id = 1;
+  int64 update_interval = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterPreDownloadSvr$ViewPreWarmParams.java ====
+message ViewPreWarmParams {
+  string scene_id = 1;
+  repeated BundlePage bundle_pages = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterRobotReport$ExtParam.java ====
+message ExtParam {
+  string name = 1;
+  string val = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$AddRecentPlayReq.java ====
+message AddRecentPlayReq {
+  string appid = 1;
+  int32 version_type = 2;
+  int64 timestamp = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$AddRecentPlayRsp.java ====
+message AddRecentPlayRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$ExperienceGameRequest.java ====
+message ExperienceGameRequest {
+  repeated string appids = 1;
+  int32 plat = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$ExperienceGameResponse.java ====
+message ExperienceGameResponse {
+  repeated Info infos = 1;
+}
+
+message Info {
+  string appid = 1;
+  bool allow = 2;
+  string hippy_link = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$GetOAIDReq.java ====
+message GetOAIDReq {
+  string ticket = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$GetOAIDRsp.java ====
+message GetOAIDRsp {
+  string oaid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$GetUserKeyReq.java ====
+message GetUserKeyReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCenterYunGameAuth$GetUserKeyRsp.java ====
+message GetUserKeyRsp {
+  string user_key = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCookieInfo$GetUserSessionReq.java ====
+message GetUserSessionReq {
+  string url = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCookieInfo$GetUserSessionRsp.java ====
+message GetUserSessionRsp {
+  int64 ttl = 1;
+  string session_id = 2;
+  repeated SessionItem session = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameCookieInfo$SessionItem.java ====
+message SessionItem {
+  string key = 1;
+  string val = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$Authorization.java ====
+message Authorization {
+  int32 type = 1;
+  int32 range = 2;
+  string title = 3;
+  string text = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$AuthorizeReply.java ====
+message AuthorizeReply {
+  repeated Authorization authoritys = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$AuthorizeRequest.java ====
+message AuthorizeRequest {
+  string app_id = 1;
+  repeated Authorization authoritys = 2;
+  int32 source = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$FollowPublicAccountReq.java ====
+message FollowPublicAccountReq {
+  string source = 1;
+  uint32 appid = 2;
+  int32 account_type = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetConfReq.java ====
+message GetConfReq {
+  string act_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetConfRsp.java ====
+message GetConfRsp {
+  string url = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetPublicAccountAuthInfoReq.java ====
+message GetPublicAccountAuthInfoReq {
+  string appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetPublicAccountAuthInfoRsp.java ====
+message GetPublicAccountAuthInfoRsp {
+  repeated PublicAcountInfo infos = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetVisibleRangeReply.java ====
+message GetVisibleRangeReply {
+  repeated Authorization authoritys = 1;
+  string jump_url = 2;
+  string bottom_remarks = 3;
+  int32 qq_status = 4;
+  LoginGuide login_guide = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$GetVisibleRangeRequest.java ====
+message GetVisibleRangeRequest {
+  string app_id = 1;
+  int32 source = 2;
+  PkgInfo pkg_info = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$LoginGuide.java ====
+message LoginGuide {
+  bool show_guide = 1;
+  int32 style = 2;
+  string title = 3;
+  repeated Reminder reminders = 4;
+  int64 listening_time = 5;
+  string ads_pic = 6;
+  string app_name = 7;
+  string operator_commpany = 8;
+  string version_name = 9;
+  string privacy_guide = 10;
+  string download_url = 11;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$PkgInfo.java ====
+message PkgInfo {
+  string channel = 1;
+  string model = 2;
+  string version = 3;
+  int32 platform = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$PublicAcountInfo.java ====
+message PublicAcountInfo {
+  string text = 1;
+  int64 puin = 2;
+  int32 type = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$Reminder.java ====
+message Reminder {
+  string icon = 1;
+  string title = 2;
+  string sub_titile = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$ReportAuthorizeInfoReq.java ====
+message ReportAuthorizeInfoReq {
+  string appid = 1;
+  int32 status = 2;
+  repeated Authorization authoritys = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameDataAuthorizeSvr$ReportAuthorizeInfoRsp.java ====
+message ReportAuthorizeInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$Friend.java ====
+message Friend {
+  repeated bytes id = 1;
+  string avatar = 2;
+  string role_name = 3;
+  string qq_nick = 4;
+  int32 intimacy_value = 5;
+  int32 intimacy_type = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetFriendsReq.java ====
+message GetFriendsReq {
+  string appid = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetFriendsRsp.java ====
+message GetFriendsRsp {
+  string partition_name = 1;
+  string role_name = 2;
+  repeated Friend friends = 3;
+  repeated bytes id = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetRoleByIDReq.java ====
+message GetRoleByIDReq {
+  repeated bytes id = 1;
+  int32 send_type = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetRoleByIDRsp.java ====
+message GetRoleByIDRsp_Role {
+  int32 area = 1;
+  int32 plat_id = 2;
+  int32 partition = 3;
+  string role_id = 4;
+  string role_name = 5;
+  string openid = 6;
+  string partition_name = 7;
+  int64 uin = 8;
+  string gamemsg_role_id = 9;
+}
+
+message GetRoleByIDRsp {
+  bytes role = 1;  // was: Role
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetTokenReq.java ====
+message GetTokenReq {
+  string sender_id = 1;
+  string receiver_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$GetTokenRsp.java ====
+message GetTokenRsp {
+  string token = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$RichMsg.java ====
+message RichMsg {
+  int32 type = 1;
+  string text_content = 2;
+  repeated uint64 face = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameFriendSelectorSvr$SendMsgReq.java ====
+message SendMsgReq_ArkData {
+  int32 type = 1;
+  string data = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameLinkShareReportPB$GetReportRulesRsp.java ====
+message GetReportRulesRsp {
+  repeated ReportRule rules = 1;
+  double sample_rate = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameLinkShareReportPB$ReportItem.java ====
+message ReportItem {
+  string url = 1;
+  int64 action_time = 2;
+  int32 scene = 3;
+  string material_id = 4;
+  string imie = 5;
+  repeated bytes ua = 6;
+  string android_id = 7;
+  string device_type = 8;
+  int32 type = 9;
+  int32 link_type = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameLinkShareReportPB$ReportRule.java ====
+message ReportRule {
+  string full_domain_match = 1;
+  string regexp = 2;
+  int32 type = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$GetTransInfoReq.java ====
+message GetTransInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$GetTransInfoRsp.java ====
+message GetTransInfoRsp {
+  int32 stage = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$GetTransferNoticeReq.java ====
+message GetTransferNoticeReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$GetTransferNoticeRsp.java ====
+message GetTransferNoticeRsp_TransferNotice {
+  string title = 1;
+  string content = 2;
+  string imgUrl = 3;
+  string jumpUrl = 4;
+}
+
+message GetTransferNoticeRsp {
+  int32 notice_type = 1;
+  bytes notice = 2;  // was: TransferNotice
+  string tip_bar_msg = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$ReportNoticeExposeReq.java ====
+message ReportNoticeExposeReq {
+  int32 notice_type = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgBoxTransferSvr$ReportNoticeExposeRsp.java ====
+message ReportNoticeExposeRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$GreetReply.java ====
+message GreetReply {
+  repeated bytes msg = 1;
+  int32 retCode = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$GreetRequest.java ====
+message GreetRequest {
+  string appid = 1;
+  string scene = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryAIOGreetInfoReq.java ====
+message QueryAIOGreetInfoReq {
+  string fromRoleID = 1;
+  string toRoleID = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryAIOGreetInfoRsp.java ====
+message QueryAIOGreetInfoRsp {
+  int32 greetType = 1;
+  int64 nextGreetTime = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetCardReply.java ====
+message QueryGreetCardReply {
+  int32 allowFriendGreeting = 1;
+  int32 allowStrangerGreeting = 2;
+  int32 allowFriendVisitProfile = 3;
+  int32 allowStrangerVisitProfile = 4;
+  int32 noticeType = 5;
+  string noticeInfo = 6;
+  int32 isShowUserGuide = 7;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetCardRequest.java ====
+message QueryGreetCardRequest {
+  string fromOpenid = 1;
+  string toOpenid = 2;
+  int32 area = 3;
+  int32 partition = 4;
+  int32 platid = 5;
+  string appid = 6;
+  string scene = 7;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetInfoReply.java ====
+message QueryGreetInfoReply {
+  string tendencyDesc = 1;
+  string playDateTimeDesc = 2;
+  string expertAreaDesc = 3;
+  int32 vistorNum = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetInfoRequest.java ====
+message QueryGreetInfoRequest {
+  string openid = 1;
+  int32 area = 2;
+  int32 partition = 3;
+  int32 platid = 4;
+  string appid = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetRelationReply.java ====
+message QueryGreetRelationReply {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgGreeting$QueryGreetRelationRequest.java ====
+message QueryGreetRelationRequest {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GameDetail.java ====
+message GameDetail {
+  string appid = 1;
+  string name = 2;
+  string icon = 3;
+  SwitchInfoV2 switch_info = 4;
+  string game_name_abbr = 5;
+  string dazi_jump_url = 6;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetAllGameListRsp.java ====
+message GetAllGameListRsp {
+  repeated GameDetail games = 1;
+  string dazi_jump_url = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetGameGiftListReq.java ====
+message GetGameGiftListReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetGameGiftListRsp.java ====
+message GetGameGiftListRsp {
+  repeated Gift gifts = 1;
+  Gift current_play_gift = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetGameMsgTodoReq.java ====
+message GetGameMsgTodoReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetGameMsgTodoRsp.java ====
+message GetGameMsgTodoRsp_LatestTodoInfo {
+  int32 msg_id = 1;
+  repeated bytes id = 2;
+  repeated uint64 ts = 3;
+  string title = 4;
+}
+
+message GetGameMsgTodoRsp {
+  bytes todo = 1;  // was: LatestTodoInfo
+  string icon = 2;
+  string title = 3;
+  string jump_url = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$GetSwitchV2Rsp.java ====
+message GetSwitchV2Rsp {
+  repeated SwitchInfoV2 result_list = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$Gift.java ====
+message Gift {
+  string appid = 1;
+  string game_icon = 2;
+  repeated string icons = 3;
+  string title = 4;
+  string receive_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$OperateContentReq.java ====
+message OperateContentReq {
+  int32 opt_type = 1;
+  bool need_gift = 2;
+  bool need_red_dot_msg = 3;
+  RedDotMsg red_dot_msg = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$OperateContentRsp.java ====
+message OperateContentRsp {
+  GetGameGiftListRsp gift = 1;
+  RedDotMsg red_dot_msg = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$RedDotMsg.java ====
+message RedDotMsg {
+  string item_id = 1;
+  string icon = 2;
+  string title = 3;
+  string jump_url = 4;
+  string scene_id = 5;
+  string algid = 6;
+  string request_id = 7;
+  string btn_text = 8;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$SetSwitchV2Req.java ====
+message SetSwitchV2Req {
+  string appid = 1;
+  int32 accept_game_friend = 2;
+  int32 game_friend_notify = 3;
+  int32 accept_game_stranger = 4;
+  int32 game_stranger_notify = 5;
+  int32 accept_partner_friend = 6;
+  int32 partner_friend_notify = 7;
+  int32 accept_partner_stranger = 8;
+  int32 partner_stranger_notify = 9;
+  string set_flag = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$SetSwitchV2Rsp.java ====
+message SetSwitchV2Rsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$SwitchInfo.java ====
+message SwitchInfo {
+  int32 sync_switch = 1;
+  int32 qq_block_switch = 2;
+  int32 mutex_switch = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameMsgMgrSvr$SwitchInfoV2.java ====
+message SwitchInfoV2 {
+  int32 accept_game_friend = 1;
+  int32 game_friend_notify = 2;
+  int32 accept_game_stranger = 3;
+  int32 game_stranger_notify = 4;
+  int32 accept_partner_friend = 5;
+  int32 partner_friend_notify = 6;
+  int32 accept_partner_stranger = 7;
+  int32 partner_stranger_notify = 8;
+  string appid = 9;
+  string game_name = 10;
+  string game_icon = 11;
+  bool is_support_partner = 12;
+  int32 support = 13;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$ChatPairs.java ====
+message ChatPairs {
+  string from_role_id = 1;
+  string to_role_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$ChatRelation.java ====
+message ChatRelation {
+  ChatPairs chat_pairs = 1;
+  int32 relation = 2;
+  string relation_desc = 3;
+  bool show_team_button = 4;
+  string team_url = 5;
+  string remark = 6;
+  int32 online_type = 7;
+  SocialInfo socail_info = 8;
+  int32 source = 9;
+  string session_id = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$QueryChatRelationReq.java ====
+message QueryChatRelationReq {
+  repeated ChatPairs chat_list = 1;
+  int32 query_source = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$QueryChatRelationRsp.java ====
+message QueryChatRelationRsp {
+  repeated ChatRelation chat_relation_list = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$QuerySocialInfoReq.java ====
+message QuerySocialInfoReq {
+  repeated ChatPairs chat_list = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$QuerySocialInfoRsp.java ====
+message QuerySocialInfoRsp {
+  repeated SocialInfo social_info = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GameRelationSvr$SocialInfo.java ====
+message SocialInfo {
+  ChatPairs chat_pairs = 1;
+  bool has_new_msg = 2;
+  int32 together_play_game_num = 3;
+  string together_play_icon = 4;
+  int64 pull_time_ms = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GetMobileDialogReq.java ====
+message GetMobileDialogReq {
+  int32 offset = 1;
+  int32 pageSize = 2;
+  int64 uin = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/GetMobileDialogRsp.java ====
+message GetMobileDialogRsp {
+  int32 nextOffset = 1;
+  repeated MobileDialog dialogList = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/MobileDialog.java ====
+message MobileDialog {
+  string appid = 1;
+  string fromRoleID = 2;
+  string fromOpenID = 3;
+  string fromTinyID = 4;
+  string toRoleID = 5;
+  string toOpenID = 6;
+  string toTinyID = 7;
+  int64 time = 8;
+  string sig = 9;
+  int64 partner_status = 10;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQGameAioLittleTail$GetShareTailsResponse.java ====
+message GetShareTailsResponse {
+  repeated ShareTail tails = 1;
+  int32 refresh_interval = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQGameAioLittleTail$ShareTail.java ====
+message ShareTail {
+  uint32 appid = 1;
+  string game_icon = 2;
+  string game_name = 3;
+  string title = 4;
+  int32 tail_style = 5;
+  ShareUrl android_url = 6;
+  ShareUrl ios_url = 7;
+  int64 start_time = 8;
+  int64 end_time = 9;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQGameAioLittleTail$ShareUrl.java ====
+message ShareUrl {
+  string url = 1;
+  int32 type = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQGameInstallActionReport$InstallActionReportReq.java ====
+message InstallActionReportReq {
+  string pkg_name = 1;
+  string channel_id = 2;
+  int32 local_version = 3;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQGameInstallActionReport$InstallActionReportRsp.java ====
+message InstallActionReportRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$BattlepassBottom.java ====
+message BattlepassBottom {
+  string exp_item = 1;
+  string prize_name_level = 2;
+  string icon = 3;
+  string desc = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$BattlepassProgress.java ====
+message BattlepassProgress {
+  string icon = 1;
+  int32 level = 2;
+  int32 progress = 3;
+  bool is_advanced = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$BattlepassTask.java ====
+message BattlepassTask {
+  string desc = 1;
+  string exp_item = 2;
+  int32 current_exp = 3;
+  int32 total_exp = 4;
+  string task_name = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$BattlepassWidget.java ====
+message BattlepassWidget {
+  int32 status = 1;
+  BattlepassTask task = 2;
+  BattlepassProgress progress = 3;
+  BattlepassBottom bottom = 4;
+  string jump_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$CloudGame.java ====
+message CloudGame {
+  string appid = 1;
+  string jump_url = 2;
+  string icon = 3;
+  string text = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$GetEncryptedUinRsp.java ====
+message GetEncryptedUinRsp {
+  string encrypted_uin = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$GetNewWidgetReq.java ====
+message GetNewWidgetReq {
+  int32 source = 1;
+  string encrypted_uin = 2;
+  string device_type = 3;
+  string mobile_version = 4;
+  string device_number = 5;
+  string qq_version = 6;
+  int32 platform = 7;
+  string pskey = 8;
+  int32 scene = 9;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$GetNewWidgetRsp.java ====
+message GetNewWidgetRsp {
+  NewWidget widget = 1;
+  int64 next_pull_time = 2;
+  int64 pull_gap = 3;
+  int32 widget_type = 4;
+  BattlepassWidget battlepass_widget = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$GetWidgetReq.java ====
+message GetWidgetReq {
+  int32 source = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$MessageNotice.java ====
+message MessageNotice {
+  repeated bytes msg = 1;
+  string unique_id = 2;
+  string jump_url = 3;
+  repeated bytes id = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$NewWidget.java ====
+message NewWidget {
+  PromotionAd promotion_id = 1;
+  Gift gifts = 2;
+  CloudGame cloud_game = 3;
+  MessageNotice notice = 4;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$PromotionAd.java ====
+message PromotionAd {
+  string pic = 1;
+  string jump_url = 2;
+  int32 type = 3;
+  string appid = 4;
+  repeated bytes id = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/QQWidgetSvr$Widget.java ====
+message Widget {
+  repeated bytes id = 1;
+  string pic = 2;
+  int64 beg_ts = 3;
+  int64 end_ts = 4;
+  string jump_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SgamePartnerSvr$GetPartnerDialogReq.java ====
+message GetPartnerDialogReq {
+  int32 offset = 1;
+  int32 page_size = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SgamePartnerSvr$GetPartnerDialogRsp.java ====
+message GetPartnerDialogRsp {
+  int32 next_offset = 1;
+  repeated PartnerDialog dialog_list = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SgamePartnerSvr$OpenAIOReq.java ====
+message OpenAIOReq {
+  string from_openaio_id = 1;
+  string to_openaio_id = 2;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SgamePartnerSvr$OpenAIORsp.java ====
+message OpenAIORsp {
+  string appid = 1;
+  string from_role_id = 2;
+  string from_openid = 3;
+  string from_tinyid = 4;
+  string to_role_id = 5;
+  string to_openid = 6;
+  string to_tinyid = 7;
+  string sig = 9;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SgamePartnerSvr$PartnerDialog.java ====
+message PartnerDialog_GameAreaRole {
+  int32 area = 1;
+  int32 plat_id = 2;
+  int32 partition = 3;
+  string role_id = 4;
+  string role_name = 5;
+  string openid = 6;
+  string partition_name = 7;
+  int64 uin = 8;
+  string appid = 9;
+  string wxopenid = 10;
+}
+
+message PartnerDialog {
+  string appid = 1;
+  string from_role_id = 2;
+  string to_role_id = 3;
+  string from_openaio_id = 4;
+  string to_openaio_id = 5;
+  GameAreaRole from_role_info = 6;
+  GameAreaRole to_role_info = 7;
+  int32 status = 8;
+  int64 last_msg_time = 9;
+  string to_nick = 10;
+  string to_icon_url = 11;
+  int32 to_online_state = 12;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SocialNewsSvrPB$ClearRedDotReq.java ====
+message ClearRedDotReq {
+  string feed_id = 1;
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SocialNewsSvrPB$ClearRedDotRsp.java ====
+message ClearRedDotRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/tencent/mobileqq/gamecenter/trpcprotocol/SocialNewsSvrPB$GetRedDotStatusRsp.java ====
+message GetRedDotStatusRsp {
+  bool is_read = 1;
+  string last_feed_id = 2;
+  int64 last_time = 3;
+  string summary = 4;
+  string jump_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/search/business/game/GameCenterSearchGame$UnifyGameInfo.java ====
+message UnifyGameInfo {
+  string appid = 1;
+  string name = 2;
+  string icon = 3;
+  repeated string tags = 4;
+  string jump_url = 5;
+}
+
+// ==== source: com/tencent/mobileqq/search/business/game/GameCenterSearchGame$UnifySearchGameReq.java ====
+message UnifySearchGameReq {
+  string search_key = 1;
+}
+
+// ==== source: com/tencent/mobileqq/search/business/game/GameCenterSearchGame$UnifySearchGameRsp.java ====
+message UnifySearchGameRsp {
+  repeated UnifyGameInfo games = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/QqCardSvrPB$GetSwitchReq.java ====
+message GetSwitchReq {
+  int64 uin = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/QqCardSvrPB$GetSwitchRsp.java ====
+message GetSwitchRsp {
+  int32 status = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/QqCardSvrPB$SetSwitchReq.java ====
+message SetSwitchReq {
+  int32 status = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/QqCardSvrPB$SetSwitchRsp.java ====
+message SetSwitchRsp {
+  int32 status = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/QqCardSvrPB$ShowQuickAuthorizeRsp.java ====
+message ShowQuickAuthorizeRsp {
+  bool should_show = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GetGradeDistributeInfoReq.java ====
+message GetGradeDistributeInfoReq {
+  uint64 group_code = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GetGradeDistributeInfoRsp.java ====
+message GetGradeDistributeInfoRsp {
+  repeated GradeDistributed info = 1;
+  uint32 recent_game_num = 2;
+  uint32 recent_user_num = 3;
+  string rank_page_url = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GetGroupUserInfoReq.java ====
+message GetGroupUserInfoReq {
+  uint64 group_code = 1;
+  uint64 to_uin = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GetGroupUserInfoRsp.java ====
+message GetGroupUserInfoRsp {
+  repeated bytes user_profile = 1;
+  string jump_url = 2;
+  int32 switch_err = 3;
+  int32 switch_status = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GetGroupUserSwitchReq.java ====
+message GetGroupUserSwitchReq {
+  uint64 group_code = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$GradeDistributed.java ====
+message GradeDistributed {
+  string name = 1;
+  string icon = 2;
+  uint32 count = 3;
+  string color = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$QualifyingDegreeInfo.java ====
+message QualifyingDegreeInfo {
+  string qualifying = 1;
+  int32 degree = 2;
+  int32 star = 3;
+  int32 integral = 4;
+  int32 qualifying_degree = 5;
+  string icon_url = 10;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$SetGroupUserSwitchReq.java ====
+message SetGroupUserSwitchReq {
+  uint64 group_code = 1;
+  int32 status = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$UserLabel.java ====
+message UserLabel {
+  string category = 1;
+  repeated string labels = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/metadream/metadream_qgroup_datacard$UserProfile.java ====
+message UserProfile {
+  string nickname = 1;
+  string avatar = 2;
+  int32 gender = 3;
+  repeated UserLabel user_labels = 4;
+  repeated uint64 inner_game_images = 5;
+  int32 level = 6;
+  int32 artisan_level = 7;
+  repeated bytes current_qualifying = 8;
+  repeated bytes history_highest_qualifying = 9;
+  string gopenid = 10;
+  int32 online_status = 11;
+  uint64 uid = 12;
+  repeated bytes ugc_level = 13;
+  int32 area = 14;
+  int32 platid = 15;
+  int32 total_battle_times = 20;
+  int32 final_battle_times = 21;
+  int32 championship_battle_times = 22;
+  int32 battle_likes = 23;
+  int32 played_maps = 24;
+  int32 active_days = 25;
+  int32 costume_count = 26;
+  int32 season_fashion_score = 27;
+  repeated uint64 user_tag_names = 30;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/mobileConfSvr/mobileConfSvr/CommonMobileConfQueryReq.java ====
+message CommonMobileConfQueryReq {
+  CommonReq commonReq = 1;
+  repeated MobileConfReq reqConfList = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/mobileConfSvr/mobileConfSvr/CommonMobileConfQueryRsp.java ====
+message CommonMobileConfQueryRsp {
+  repeated MobileConfRsp confList = 1;
+  int64 updatePreDownloadGap = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/mobileConfSvr/mobileConfSvr/CommonReq.java ====
+message CommonReq {
+  string qqVersion = 1;
+  string manufacturer = 2;
+  string model = 3;
+  int32 osVersionCode = 4;
+  int32 totalMemory = 5;
+  int32 cpuCoreCount = 6;
+  int64 lastPreDownloadTime = 7;
+  int64 lastUpdateTime = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/mobileConfSvr/mobileConfSvr/MobileConfReq.java ====
+message MobileConfReq {
+  int32 configType = 1;
+  string busiReq = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/mobileConfSvr/mobileConfSvr/MobileConfRsp.java ====
+message MobileConfRsp {
+  int32 configType = 1;
+  string conf = 2;
+  int32 ret = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$GroupMemberInfo.java ====
+message GroupMemberInfo {
+  int64 uin = 1;
+  int32 ret = 2;
+  repeated bytes msg = 3;
+  int32 grade = 4;
+  string gradeName = 5;
+  string gradeIcon = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$HelloReply.java ====
+message HelloReply {
+  repeated bytes msg = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$HelloRequest.java ====
+message HelloRequest {
+  repeated bytes msg = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$NotifyUpdateReq.java ====
+message NotifyUpdateReq {
+  int64 groupId = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$NotifyUpdateRsp.java ====
+message NotifyUpdateRsp {
+  repeated uint64 n = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryGroupInfoReq.java ====
+message QueryGroupInfoReq {
+  int64 groupId = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryGroupInfoRsp.java ====
+message QueryGroupInfoRsp {
+  repeated GradeDistributed gradeDistributedList = 1;
+  int64 fightScore = 4;
+  double fightScoreRank = 5;
+  int64 weekPlayGameCount = 6;
+  int64 weekPlayUserCount = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryGroupMemberInfoReq.java ====
+message QueryGroupMemberInfoReq {
+  int64 groupId = 1;
+  repeated int64 uinList = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryGroupMemberInfoRsp.java ====
+message QueryGroupMemberInfoRsp {
+  repeated GroupMemberInfo memberList = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryUserInfoReq.java ====
+message QueryUserInfoReq {
+  int64 groupId = 1;
+  int64 showUin = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$QueryUserInfoRsp.java ====
+message QueryUserInfoRsp {
+  int32 grade = 1;
+  double seasonWinRate = 2;
+  int64 gamesTotal = 3;
+  int64 mvpTotal = 4;
+  int32 bestOccupation = 5;
+  repeated UserHeroInfo bestHeroList = 7;
+  string encrptOpenId = 8;
+  string partition = 9;
+  string platid = 10;
+  string area = 11;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameQgroupDatacard/sgame_qgroup_datacard$UserHeroInfo.java ====
+message UserHeroInfo {
+  int64 heroId = 1;
+  string icon = 2;
+  int32 skill = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$GameAreaRole.java ====
+message GameAreaRole {
+  int32 area = 1;
+  int32 plat_id = 2;
+  int32 partition = 3;
+  string role_id = 4;
+  string role_name = 5;
+  string openid = 6;
+  string partition_name = 7;
+  int64 uin = 8;
+  string appid = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$GetGameDetailAndSkinWallReq.java ====
+message GetGameDetailAndSkinWallReq {
+  uint64 group_id = 1;
+  uint64 show_uin = 2;
+  repeated bytes needs = 3;  // was: enum
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$GetGameDetailAndSkinWallRsp.java ====
+message GetGameDetailAndSkinWallRsp {
+  repeated bytes game_detail = 1;
+  repeated bytes skin_wall = 2;
+  repeated bytes md_user_profile = 3;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$GetSkinsRspPBV2.java ====
+message GetSkinsRspPBV2_RoleBaseInfo {
+  string nick = 1;
+  string avatar = 2;
+}
+
+message GetSkinsRspPBV2 {
+  repeated bytes summary = 1;
+  repeated SkinOwn skins = 2;
+  repeated SeriesDisplay series = 3;
+  repeated IDSkin details = 4;
+  repeated bytes role_base_info = 5;
+  repeated HeroSkilledInfo hero_skilled_info = 6;
+  repeated bytes role_info = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$HeroSkilledInfo.java ====
+message HeroSkilledInfo_SkilledInfo {
+  string skilled_title = 1;
+  int32 skilled = 2;
+}
+
+message HeroSkilledInfo {
+  string hero = 1;
+  repeated bytes skill = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$IDSkin.java ====
+message IDSkin {
+  repeated bytes id = 1;
+  repeated bytes skin = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$MDUserProfile.java ====
+message MDUserProfile {
+  string nickname = 1;
+  string avatar = 2;
+  int32 gender = 3;
+  repeated UserLabel user_labels = 4;
+  repeated string inner_game_images = 5;
+  repeated bytes current_qualifying = 6;
+  int32 total_battle_times = 7;
+  int32 championship_battle_times = 8;
+  int32 played_maps = 9;
+  int32 costume_count = 10;
+  string jump_url = 11;
+  bool has_role = 12;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$SeriesDisplay.java ====
+message SeriesDisplay {
+  string name = 1;
+  repeated User frds_own_all = 2;
+  repeated SkinOwn skins = 3;
+  int32 frds_beated_percent = 4;
+  repeated bytes id = 5;
+  bool own_all = 6;
+  int32 owns_skin_num = 7;
+  int32 type = 8;
+  repeated bytes first_skin = 9;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$Skin.java ====
+message Skin {
+  string icon = 1;
+  string hero_name = 2;
+  string name = 3;
+  string goods_id = 4;
+  repeated int32 qualities = 5;
+  int32 price = 6;
+  string badge = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$SkinOwn.java ====
+message SkinOwn {
+  string skin_id = 1;
+  bool owned = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$SummaryPBV2.java ====
+message SummaryPBV2 {
+  int32 owned = 1;
+  int32 total = 2;
+  int32 price = 3;
+  int32 frds_beated_percent = 4;
+  repeated SummaryStatsPBV2 stats = 5;
+  int32 honor = 6;
+  string honor_badge_url = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/gamecenter/sgameSkinWall/sgame_skin_wall$SummaryStatsPBV2.java ====
+message SummaryStatsPBV2_SkinQualityStat {
+  int32 owned = 1;
+  int32 total = 2;
+}
+
+message SummaryStatsPBV2 {
+  int32 quality = 1;
+  repeated bytes stat = 2;
+}
+
+// ==== source: tencent/gamecenter/config/GameCenterConfig$MobileConfQueryReq.java ====
+message MobileConfQueryReq {
+  string qqVersion = 1;
+  string manufacturer = 2;
+  string model = 3;
+  int32 osVersionCode = 4;
+  int32 totalMemory = 5;
+  int32 cpuCoreCount = 6;
+}
+
+// ==== source: tencent/gamecenter/config/GameCenterConfig$MobileConfQueryRsp.java ====
+message MobileConfQueryRsp {
+  bool isPredrawHippy = 1;
+  bool isPreloadHippy = 2;
+  bool isLoadHippyInToolProcess = 3;
+  int64 loadCache = 4;
+}

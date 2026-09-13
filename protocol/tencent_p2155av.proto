@@ -1,0 +1,56 @@
+// tencent_p2155av 域 — 7 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_p2155av;
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$Msg.java ====
+message Msg {
+  uint64 uin = 1;
+  repeated bytes msg = 2;
+  uint32 msg_id = 3;
+  uint64 msg_time = 4;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$PushMsg.java ====
+message PushMsg {
+  repeated bytes room_key = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$ReqGetMsg.java ====
+message ReqGetMsg {
+  repeated bytes room_key = 1;
+  bool is_terminal_switch = 2;
+  uint64 room_id = 3;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$ReqSendMsg.java ====
+message ReqSendMsg {
+  repeated bytes room_key = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$RoomKey.java ====
+message RoomKey {
+  uint32 type = 1;
+  repeated uint64 id = 2;
+  uint64 room_id = 3;
+  uint32 create_ts = 4;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$RspGetMsg.java ====
+message RspGetMsg {
+  uint32 result = 1;
+  string err_msg = 2;
+  repeated Msg msg_list = 3;
+  bool retry = 4;
+  uint64 retry_delay = 5;
+}
+
+// ==== source: tencent/p2155av/chatroom/chatroom_sso$RspSendMsg.java ====
+message RspSendMsg {
+  uint32 result = 1;
+  string err_msg = 2;
+  uint32 msg_id = 3;
+}

@@ -1,0 +1,5844 @@
+// feedcloud 域 — 766 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.feedcloud;
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$ActivityRankInfo.java ====
+message ActivityRankInfo {
+  StUser user = 1;
+  int64 start_date = 2;
+  int64 end_date = 3;
+  int64 play_count = 4;
+  int32 rank_level = 5;
+  int32 feed_count = 6;
+  StFeedAbstract feed_item = 7;
+  bool is_followed = 8;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$AttachInfo.java ====
+message AttachInfo {
+  string cookie = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$BannerData.java ====
+message BannerData {
+  string img = 1;
+  string jump_url = 2;
+  int32 task_id = 3;
+  int32 jump_type = 4;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetActivityTabListReq.java ====
+message GetActivityTabListReq {
+  int32 biz_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetActivityTabListRsp.java ====
+message GetActivityTabListRsp {
+  repeated RspTab tab_list = 1;
+  int32 total = 2;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetActivityTopicListReq.java ====
+message GetActivityTopicListReq {
+  int32 biz_id = 1;
+  repeated bytes id = 2;
+  int32 offset = 3;
+  int32 limit = 4;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetActivityTopicListRsp.java ====
+message GetActivityTopicListRsp {
+  repeated Topic topics = 1;
+  int32 total = 2;
+  bool is_finish = 3;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetBannerDataReq.java ====
+message GetBannerDataReq {
+  int32 biz_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetBannerDataRsp.java ====
+message GetBannerDataRsp {
+  repeated BannerData banner = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetFeedsReq.java ====
+message GetFeedsReq {
+  int32 biz_id = 1;
+  int64 pub_start_time = 3;
+  int64 pub_end_time = 4;
+  int32 count = 5;
+  AttachInfo attach_info = 6;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetFeedsRsp.java ====
+message GetFeedsRsp {
+  repeated StFeedAbstract feed_items = 1;
+  bool is_finish = 2;
+  AttachInfo attach_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserInfoReq.java ====
+message GetUserInfoReq {
+  int32 biz_id = 1;
+  int64 start_date = 3;
+  int64 end_date = 4;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserInfoRsp.java ====
+message GetUserInfoRsp {
+  string activity_rule = 1;
+  ActivityRankInfo rank_info = 2;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserRankInfoReq.java ====
+message GetUserRankInfoReq {
+  int32 biz_id = 1;
+  int64 start_date = 3;
+  int64 end_date = 4;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserRankInfoRsp.java ====
+message GetUserRankInfoRsp {
+  ActivityRankInfo rank_info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserRankListReq.java ====
+message GetUserRankListReq {
+  int32 biz_id = 1;
+  int64 start_date = 2;
+  int64 end_date = 3;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$GetUserRankListRsp.java ====
+message GetUserRankListRsp {
+  repeated ActivityRankInfo rank_list = 1;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$RspTab.java ====
+message RspTab {
+  repeated bytes id = 1;
+  string name = 2;
+  int32 order = 3;
+}
+
+// ==== source: feedcloud/FeedCloudActivityLandingPage$Topic.java ====
+message Topic {
+  repeated bytes id = 1;
+  string name = 2;
+  int32 order = 3;
+  int32 play_count = 4;
+  int32 feed_count = 5;
+  repeated StFeedAbstract feed_items = 6;
+  string publish_schema = 7;
+}
+
+// ==== source: feedcloud/FeedCloudAdrepull$GetADRePullReq.java ====
+message GetADRePullReq {
+  bytes adres = 1;
+  string attach_info = 2;
+  bytes client_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudAdrepull$GetADRePullRsp.java ====
+message GetADRePullRsp {
+  repeated StFeed feeds = 1;
+  string attach_info = 2;
+  bytes client_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$CancelReq.java ====
+message CancelReq {
+  repeated string task_ids = 1;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$CancelRsp.java ====
+message CancelRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$DrawParam.java ====
+message DrawParam {
+  string template_name = 1;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$GetModelsReq.java ====
+message GetModelsReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$GetModelsRsp.java ====
+message GetModelsRsp {
+  repeated Model models = 1;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$Image.java ====
+message Image {
+  uint32 width = 1;
+  uint32 height = 2;
+  string url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$Model.java ====
+message Model_CustomParam {
+  string icon_url = 1;
+  string description = 2;
+}
+
+message Model {
+  string model = 1;
+  bytes custom_param = 2;  // was: CustomParam
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$QueryReq.java ====
+message QueryReq {
+  string task_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$QueryRsp.java ====
+message QueryRsp_Task {
+  string task_id = 1;
+  uint32 task_status = 2;
+  repeated bytes image = 3;
+}
+
+message QueryRsp {
+  bytes task = 1;  // was: Task
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$SubmitReq.java ====
+message SubmitReq {
+  string model = 1;
+  Image image = 2;
+}
+
+// ==== source: feedcloud/FeedCloudAigcsvr$SubmitRsp.java ====
+message SubmitRsp {
+  string task_id = 1;
+  Image image = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$BytesEntry.java ====
+message BytesEntry {
+  string key = 1;
+  bytes value = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$Entry.java ====
+message Entry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$RecomReed.java ====
+message RecomReed {
+  string item_id = 1;
+  bytes tranfer = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$Result.java ====
+message Result {
+  int32 retCode = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$StCommonExt.java ====
+message StCommonExt_RecomNeedInfo {
+  repeated RecomReed preloadFeeds = 1;
+  repeated RecomReed unableExpoFeeds = 2;
+  bytes unreadAdsInfo = 3;
+}
+
+message StCommonExt {
+  string attachInfo = 1;
+  repeated BytesEntry mapBytesInfo = 2;
+  bytes recomNeedInfo = 3;  // was: RecomNeedInfo
+}
+
+// ==== source: feedcloud/FeedCloudCommon$StWebCommJsonReq.java ====
+message StWebCommJsonReq {
+  bytes data = 1;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$StWebCommJsonRsp.java ====
+message StWebCommJsonRsp {
+  bytes data = 1;
+}
+
+// ==== source: feedcloud/FeedCloudCommon$SyncMessage.java ====
+message SyncMessage {
+  bytes data = 1;
+  int64 timestampMS = 2;
+}
+
+// ==== source: feedcloud/FeedCloudCommonDialog$Dialog.java ====
+message Dialog {
+  uint32 dialog_type = 1;
+  string icon = 2;
+  string title = 3;
+  string content = 4;
+  string jump_url = 5;
+  string jump_text = 6;
+}
+
+// ==== source: feedcloud/FeedCloudConvertidClient$ConvertToXWorldReq.java ====
+message ConvertToXWorldReq {
+  int32 id_type = 1;
+  repeated string ids = 2;
+}
+
+// ==== source: feedcloud/FeedCloudConvertidClient$ConvertToXWorldRsp.java ====
+message ConvertToXWorldRsp_PollConf {
+  uint32 duration = 1;
+  uint32 max_count = 2;
+}
+
+message ConvertToXWorldRsp {
+  repeated IDItem id_items = 1;
+  bytes poll_conf = 10;  // was: PollConf
+}
+
+// ==== source: feedcloud/FeedCloudConvertidClient$IDItem.java ====
+message IDItem {
+  string feedsid = 1;
+  string bizid = 2;
+  int32 status = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$AddRedPocketCoverReq.java ====
+message AddRedPocketCoverReq {
+  RedPocketCoverInfo cover_info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$AddRedPocketCoverRsp.java ====
+message AddRedPocketCoverRsp {
+  RedPocketCoverInfo cover_info = 1;
+  GetRedPocketNumberRsp number = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$BypassBeatReq.java ====
+message BypassBeatReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$BypassBeatRsp.java ====
+message BypassBeatRsp {
+  int32 ret = 1;
+  bytes errormsg = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$DataCardCoverClientInfo.java ====
+message DataCardCoverClientInfo {
+  float y_percent = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetDataCardCoverReq.java ====
+message GetDataCardCoverReq {
+  string user_id = 1;
+  string device_info = 2;
+  string qua = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetDataCardCoverRsp.java ====
+message GetDataCardCoverRsp {
+  string user_id = 1;
+  StFeedAbstract feed = 2;
+  uint64 update_time = 3;
+  bytes client_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetQQProfilePictureFeedReq.java ====
+message GetQQProfilePictureFeedReq {
+  string user_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetQQProfilePictureFeedRsp.java ====
+message GetQQProfilePictureFeedRsp {
+  string user_id = 1;
+  StFeedAbstract feed = 2;
+  uint64 update_time = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverListByIDsReq.java ====
+message GetRedPocketCoverListByIDsReq {
+  repeated string cover_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverListByIDsRsp.java ====
+message GetRedPocketCoverListByIDsRsp {
+  repeated RedPocketCoverQQInfo covers = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverListByUserReq.java ====
+message GetRedPocketCoverListByUserReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverListByUserRsp.java ====
+message GetRedPocketCoverListByUserRsp {
+  repeated RedPocketCoverQQInfo covers = 1;
+  GetRedPocketNumberRsp number = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverReq.java ====
+message GetRedPocketCoverReq {
+  string cover_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketCoverRsp.java ====
+message GetRedPocketCoverRsp {
+  RedPocketCoverInfo cover = 1;
+  StFeedAbstract feed = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketNumberReq.java ====
+message GetRedPocketNumberReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$GetRedPocketNumberRsp.java ====
+message GetRedPocketNumberRsp {
+  int64 count = 1;
+  int64 left_num = 2;
+  int64 check_num = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$HitQQProfilePictureFeedReq.java ====
+message HitQQProfilePictureFeedReq {
+  string feed_owner = 1;
+  string feed_id = 2;
+  int64 feed_time = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$HitQQProfilePictureFeedRsp.java ====
+message HitQQProfilePictureFeedRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$QQProfilePictureFeedStore.java ====
+message QQProfilePictureFeedStore_QQProfilePictureFlag {
+  bool is_hit = 1;
+}
+
+message QQProfilePictureFeedStore {
+  string feed_owner = 1;
+  string feed_id = 2;
+  int64 feed_time = 3;
+  int64 update_time = 4;
+  bytes flag = 5;  // was: QQProfilePictureFlag
+  string dynamic_pfp_file_id = 6;
+  string static_pfp_file_id = 7;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$RedPocketCoverInfo.java ====
+message RedPocketCoverInfo {
+  repeated bytes id = 1;
+  string owner = 2;
+  string feed_owner = 3;
+  string feed_id = 4;
+  int64 feed_time = 5;
+  StImage cover_image = 6;
+  StImage first_frame = 7;
+  int64 update_time = 8;
+  int64 status = 9;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$RedPocketCoverQQInfo.java ====
+message RedPocketCoverQQInfo_Merchant {
+  string name = 1;
+  string logo = 2;
+}
+
+message RedPocketCoverQQInfo_Activity {
+  string name = 1;
+  string url = 2;
+  string icon = 3;
+}
+
+message RedPocketCoverQQInfo {
+  repeated bytes id = 1;
+  string title = 2;
+  string default_skin_url = 3;
+  string aio_res_url = 4;
+  int32 type = 5;
+  string pop_res_url = 6;
+  bytes merchant = 7;  // was: Merchant
+  bytes activity = 8;  // was: Activity
+  repeated Story stories = 9;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$SetDataCardCoverReq.java ====
+message SetDataCardCoverReq {
+  string feed_id = 1;
+  bytes client_info = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$SetDataCardCoverRsp.java ====
+message SetDataCardCoverRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$SetQQProfilePictureFeedReq.java ====
+message SetQQProfilePictureFeedReq {
+  string feed_owner = 1;
+  string feed_id = 2;
+  int64 feed_time = 3;
+  string dynamic_pfp_file_id = 4;
+  string static_pfp_file_id = 5;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$SetQQProfilePictureFeedRsp.java ====
+message SetQQProfilePictureFeedRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$Story.java ====
+message Story {
+  int32 type = 1;
+  string img_url = 2;
+  string video_url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$VerifyRedPocketCoverReq.java ====
+message VerifyRedPocketCoverReq {
+  string cover_id = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDatacard$VerifyRedPocketCoverRsp.java ====
+message VerifyRedPocketCoverRsp {
+  bool valid = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDomainip$DomainIPInfo.java ====
+message DomainIPInfo {
+  string domain = 1;
+  repeated IP ips = 2;
+}
+
+// ==== source: feedcloud/FeedCloudDomainip$DomainIPRsp.java ====
+message DomainIPRsp {
+  repeated DomainIPInfo infos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudDomainip$IP.java ====
+message IP {
+  repeated bytes ip = 1;
+  int32 port = 2;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeBase$StEeveeAttachInfo.java ====
+message StEeveeAttachInfo {
+  string key = 1;
+  string value = 2;
+  bytes busiData = 3;
+  uint32 tag = 4;
+  string uid = 5;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeBase$StEeveeBusiInfo.java ====
+message StEeveeBusiInfo {
+  int32 appid = 1;
+  int32 msgMainType = 2;
+  int32 msgSubType = 3;
+  bytes busiData = 4;
+  string pushStr = 5;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeBase$StEeveeDialogData.java ====
+message StEeveeDialogData {
+  uint32 type = 1;
+  CommDialog dialog = 2;
+  repeated Entry entries = 3;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeUndealmsg$BizUndealMsg.java ====
+message BizUndealMsg {
+  Result result = 1;
+  string msgid = 2;
+  int32 mainType = 3;
+  int32 subid = 4;
+  bytes bufferData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeUndealmsg$FcUndealMsgsReq.java ====
+message FcUndealMsgsReq_ClientInfo {
+  string clientAppVersion = 1;
+}
+
+message FcUndealMsgsReq_SignalMsg {
+  bytes signalBuff = 1;
+  string msgid = 2;
+}
+
+message FcUndealMsgsReq {
+  int32 appid = 1;
+  string uid = 2;
+  bytes clientInfo = 3;  // was: ClientInfo
+  int32 visitScene = 4;
+  int32 visitPage = 5;
+  bytes signalMsg = 6;  // was: SignalMsg
+  repeated StEeveeAttachInfo attachInfo = 7;
+}
+
+// ==== source: feedcloud/FeedCloudEeveeUndealmsg$FcUndealMsgsRsp.java ====
+message FcUndealMsgsRsp_IntervalControl {
+  int32 pollingInterval = 1;
+  int32 sceneSwitchInterval = 2;
+  int32 homeSwitchInterval = 3;
+}
+
+message FcUndealMsgsRsp {
+  Result result = 1;
+  bytes intervalCtl = 2;  // was: IntervalControl
+  repeated BizUndealMsg msgs = 3;
+  repeated StEeveeAttachInfo attachInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$AddFavoritesFeedsReq.java ====
+message AddFavoritesFeedsReq {
+  repeated uint64 id = 1;
+  repeated bytes feedsigns = 2;  // was: FavoritesFeedDetail
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$AddFavoritesFeedsRsp.java ====
+message AddFavoritesFeedsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$CloseDraftFavoritesReq.java ====
+message CloseDraftFavoritesReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$CloseDraftFavoritesRsp.java ====
+message CloseDraftFavoritesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$CreateFavoritesReq.java ====
+message CreateFavoritesReq {
+  FavoritesInfo info = 1;
+  bool isDraft = 2;
+  repeated bytes feed_signs = 3;  // was: FavoritesFeedDetail
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$CreateFavoritesRsp.java ====
+message CreateFavoritesRsp {
+  FavoritesInfo info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$DelFavoritesReq.java ====
+message DelFavoritesReq {
+  repeated uint64 id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$DelFavoritesRsp.java ====
+message DelFavoritesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$FavoritesFeed.java ====
+message FavoritesFeed_FavoritesFeedDetail {
+  repeated bytes id = 1;
+  string poster_id = 2;
+  int64 create_time = 3;
+  bool is_added = 4;
+}
+
+message FavoritesFeed {
+  uint64 favorites_id = 1;
+  bytes feed_sign = 2;  // was: FavoritesFeedDetail
+  int64 collect_time = 3;
+  int64 c_time = 4;
+  string owner_id = 5;
+  int64 sort_time = 6;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$FavoritesInfo.java ====
+message FavoritesInfo {
+  repeated uint64 id = 1;
+  string title = 2;
+  string owner_id = 3;
+  int64 feed_num = 4;
+  int32 status = 5;
+  string cover_url = 6;
+  int64 create_time = 7;
+  int64 last_modified_time = 8;
+  int64 newest_sort_time = 9;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$FavoritesPeople.java ====
+message FavoritesPeople {
+  string owner_id = 1;
+  int32 status = 2;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$GetFavoritesFeedListReq.java ====
+message GetFavoritesFeedListReq {
+  repeated uint64 id = 1;
+  string attach_info = 2;
+  int32 count = 3;
+  bool isAddFeedsPage = 4;
+  bool isDraft = 5;
+  StCommonExt ext_info = 10;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$GetFavoritesFeedListRsp.java ====
+message GetFavoritesFeedListRsp {
+  FavoritesInfo favorites = 1;
+  repeated bytes feedsigns = 2;  // was: FavoritesFeedDetail
+  bool has_more = 3;
+  string attach_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$GetFavoritesListReq.java ====
+message GetFavoritesListReq {
+  string uin = 1;
+  int32 count = 2;
+  string attach_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$GetFavoritesListRsp.java ====
+message GetFavoritesListRsp {
+  repeated FavoritesInfo favorites_list = 1;
+  repeated FavoritesInfo draft_favorites_list = 2;
+  bool has_more = 3;
+  string attch_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$MoveFavoritesFeedsReq.java ====
+message MoveFavoritesFeedsReq {
+  uint64 src_id = 1;
+  uint64 dst_id = 2;
+  repeated bytes feedsigns = 3;  // was: FavoritesFeedDetail
+  bool need_new_favorites = 4;
+  FavoritesInfo new_favorites_info = 5;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$MoveFavoritesFeedsRsp.java ====
+message MoveFavoritesFeedsRsp {
+  int32 src_delta_num = 1;
+  int32 dst_delta_num = 2;
+  uint64 dst_id = 3;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$ReomveFavoritesFeedsReq.java ====
+message ReomveFavoritesFeedsReq {
+  repeated uint64 id = 1;
+  repeated bytes feedsigns = 2;  // was: FavoritesFeedDetail
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$ReomveFavoritesFeedsRsp.java ====
+message ReomveFavoritesFeedsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$UpdateFavoritesReq.java ====
+message UpdateFavoritesReq {
+  FavoritesInfo info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudFavoritessvr$UpdateFavoritesRsp.java ====
+message UpdateFavoritesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudMeta$AICommentCache.java ====
+message AICommentCache {
+  repeated StComment hot_comments = 1;
+  repeated StComment my_history_comments = 2;
+  StUser me_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$AdvertClientInfo.java ====
+message AdvertClientInfo {
+  repeated int32 advert_expose_position = 1;
+  repeated AdvertItem items = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$AdvertItem.java ====
+message AdvertItem {
+  repeated uint64 id = 1;
+  string feed_id = 2;
+  bytes transfer = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$CateInfo.java ====
+message CateInfo {
+  string cate = 1;
+  string subCate = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$ChildFeedDeclaration.java ====
+message ChildFeedDeclaration {
+  repeated bytes id = 1;
+  string content = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$CovenantLiteDialog.java ====
+message CovenantLiteDialog {
+  uint32 type = 1;
+  repeated bytes id = 2;
+  string icon_url = 3;
+  string background_url = 4;
+  string title = 5;
+  string description = 6;
+  string internal_title = 7;
+  string jump_url = 8;
+  string template_id = 9;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$DailyInfo.java ====
+message DailyInfo {
+  bool is_daily = 1;
+  uint32 valid_time = 2;
+  string tag = 3;
+  bool right_change = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$DecorateJumpInfo.java ====
+message DecorateJumpInfo {
+  string name = 1;
+  string description = 2;
+  string activityUrl = 3;
+  uint32 jumpType = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$ExpressionInfo.java ====
+message ExpressionInfo {
+  string expressionURL = 1;
+  string expressionMD5 = 2;
+  uint32 expression_src = 3;
+  uint32 height = 4;
+  uint32 width = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$FeedAlbum.java ====
+message FeedAlbum_CollectionInfo {
+  uint32 status = 1;
+}
+
+message FeedAlbum {
+  repeated uint64 id = 1;
+  string title = 2;
+  uint32 feed_count = 3;
+  StUser owner = 4;
+  string cover_url = 5;
+  int32 status = 6;
+  uint64 version_number = 7;
+  string description = 8;
+  StVisitor visitorInfo = 9;
+  int64 create_time = 10;
+  bytes collection_info = 11;  // was: CollectionInfo
+}
+
+// ==== source: feedcloud/FeedCloudMeta$FeedAlbumInfo.java ====
+message FeedAlbumInfo {
+  FeedAlbum album = 1;
+  uint32 feed_serial_number = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$FeedRedTouchTransInfo.java ====
+message FeedRedTouchTransInfo_GuideAttachInfo {
+  string woridng = 1;
+  repeated string uids = 2;
+  string headWording = 3;
+  string schema = 4;
+}
+
+message FeedRedTouchTransInfo_PsvAttatchInfo {
+  string uid = 1;
+  int32 feedType = 2;
+  string commentId = 3;
+  string replyId = 4;
+}
+
+message FeedRedTouchTransInfo {
+  string feedId = 1;
+  string author = 2;
+  int64 createTs = 3;
+  int32 msgType = 4;
+  int32 pageType = 5;
+  int32 redType = 6;
+  int32 insertPageType = 7;
+  bytes guideInfo = 8;  // was: GuideAttachInfo
+  string sealTransfer = 9;
+  int64 contentID = 10;
+  repeated BytesEntry recomInfo = 11;
+  int32 recomReasonTypeForClient = 12;
+  int32 recomReasonType = 13;
+  bytes psvInfo = 14;  // was: PsvAttatchInfo
+  int32 recomRedType = 15;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$FrameVertexInfo.java ====
+message FrameVertexInfo {
+  repeated uint64 coordinate = 1;
+  uint64 width = 2;
+  uint64 height = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$InteractListTransData.java ====
+message InteractListTransData {
+  StCommonExt ext_info = 1;
+  string commcount_round = 2;
+  repeated uint64 topped_uins = 3;
+  int32 cursor = 4;
+  repeated StUser user_cache = 5;
+  string session_id = 6;
+  repeated uint64 remove_dup_uids = 7;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$MaterialInfo.java ====
+message MaterialInfo {
+  repeated bytes id = 1;
+  string title = 2;
+  string buttonName = 3;
+  string iconURL = 4;
+  string jumpURL = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$PushBoxViewInfo.java ====
+message PushBoxViewInfo {
+  uint32 viewType = 1;
+  float loading = 2;
+  uint32 boxType = 3;
+  uint64 drawCount = 4;
+  string desc = 5;
+  uint32 available_box_cnt = 6;
+  string rules_jump_url = 7;
+  string push_time = 8;
+  string task_center_jump_url = 9;
+  int64 total_heat_num = 10;
+  int64 normal_box_draw_count = 11;
+  int64 super_box_draw_count = 12;
+  int64 normal_box_heat_num = 13;
+  int64 super_box_heat_num = 14;
+  int64 push_timestamp = 15;
+  string rocket_consume_id = 16;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$PushBrokeToast.java ====
+message PushBrokeToast {
+  bool should_toast = 1;
+  string title = 2;
+  string content = 3;
+  uint32 give_rocket_num = 4;
+  uint32 give_no = 5;
+  uint32 give_tot = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$QQGroupInfo.java ====
+message QQGroupInfo {
+  string name = 1;
+  repeated uint64 id = 2;
+  string jumpURL = 3;
+  bytes jumpAuth = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$RecomReasonV2.java ====
+message RecomReasonV2 {
+  repeated StUser recomUserInfo = 1;
+  string recomReason = 2;
+  string recomGroupInfo = 3;
+  string recomSchema = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$RecommendItem.java ====
+message RecommendItem {
+  string suggestion_word = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$RightInfo.java ====
+message RightInfo {
+  int32 rightFlag = 1;
+  repeated RightTagInfo tagList = 2;
+  repeated string uinList = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$RightTagInfo.java ====
+message RightTagInfo {
+  string tagID = 1;
+  string tagName = 2;
+  repeated string uinList = 3;
+  uint32 updateTime = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$RoomInfoData.java ====
+message RoomInfoData {
+  uint64 roomId = 1;
+  string roomTitle = 2;
+  string rtmpUrl = 3;
+  string topic = 4;
+  uint32 roomState = 5;
+  uint32 roomType = 6;
+  string coverUrl = 7;
+  uint64 source = 8;
+  string flvUrl = 9;
+  bool isUseFlvUrl = 10;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$SchoolInfo.java ====
+message SchoolInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  uint32 category = 3;
+  uint64 comeFrom = 4;
+  uint64 approvalStatus = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$ShootLBS.java ====
+message ShootLBS {
+  int64 shoot_time = 1;
+  string country = 2;
+  string province = 3;
+  string city = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$SourceInfo.java ====
+message SourceInfo {
+  string feed_id = 1;
+  string ec_uid = 2;
+  string nick = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StBarrage.java ====
+message StBarrage {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  uint64 createTimeNs = 5;
+  repeated Entry storeExtInfo = 6;
+  uint64 feedPlayTime = 7;
+  uint32 status = 8;
+  uint64 pannelOpenTime = 9;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StBgm.java ====
+message StBgm {
+  string album_mid = 1;
+  string singer_mid = 2;
+  string song_mid = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StButtomBanner.java ====
+message StButtomBanner_PopUpControl {
+  int32 play_times = 2;
+  int32 play_duration_seconds = 3;
+}
+
+message StButtomBanner_UserImageAndText {
+  string text = 1;
+  repeated bytes image = 2;
+  repeated bytes user = 3;
+  string schema = 4;
+}
+
+message StButtomBanner {
+  string title = 1;
+  int32 style_type = 2;
+  bytes pop_up_ctrl = 3;  // was: PopUpControl
+  repeated StUser vecUser = 4;
+  repeated Entry extInfo = 5;
+  bytes content = 6;  // was: UserImageAndText
+  StCountInfo count_info = 7;
+  StFeedButton button = 8;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StCircleRankItem.java ====
+message StCircleRankItem {
+  int32 rankNo = 1;
+  string circleName = 2;
+  int64 fuelValue = 3;
+  int64 feedNum = 4;
+  string circleID = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StComment.java ====
+message StComment_CmtBlockAd {
+  bytes trans_rsp = 1;
+}
+
+message StComment {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  uint32 replyCount = 5;
+  repeated StReply vecReply = 6;
+  bytes busiData = 7;
+  StLike likeInfo = 8;
+  uint32 typeFlag = 9;
+  repeated string atUinList = 10;
+  uint32 typeFlag2 = 11;
+  uint64 createTimeNs = 12;
+  repeated Entry storeExtInfo = 13;
+  string thirdId = 14;
+  uint32 sourceType = 15;
+  StDittoFeed dittocomment = 16;
+  string replyAttachInfo = 17;
+  repeated uint64 state = 18;
+  repeated uint64 aboutType = 19;
+  goodsInfo goodsInfo = 20;
+  ExpressionInfo expressionInfo = 21;
+  StFeedAbstract commentFeed = 22;
+  uint32 cmt_block_type = 23;
+  bytes cmt_block_ad = 24;  // was: CmtBlockAd
+  StImage commentPic = 25;
+  bool hasSubmitRanComment = 26;
+  bool show_submit_ran_comment_btn = 27;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StCommentExtraInfo.java ====
+message StCommentExtraInfo {
+  bool displayShopEntrance = 1;
+  repeated int32 privileges = 2;
+  StCommentReddotInfo reddotInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StCommentReddotInfo.java ====
+message StCommentReddotInfo {
+  StUser user = 1;
+  string commentId = 2;
+  string replyId = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StCommentTextInfo.java ====
+message StCommentTextInfo {
+  string normalCommentBoxDesc = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StCountInfo.java ====
+message StCountInfo {
+  uint32 barragecount = 1;
+  uint32 view_count = 2;
+  uint32 like_count = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StDebugInfo.java ====
+message StDebugInfo {
+  repeated Entry debugMap = 1;
+  repeated BytesEntry debugMapBytes = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StDeliveryContentReq.java ====
+message StDeliveryContentReq {
+  int64 taskID = 1;
+  string tag = 2;
+  repeated int64 ContentID = 3;
+  uint32 DisType = 4;
+  uint32 SingleFeedExposure = 5;
+  uint32 MaxExposure = 6;
+  int64 StartTime = 7;
+  int64 EndTime = 8;
+  uint32 Opt = 9;
+  uint32 MainDisType = 10;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StDeliveryContentResp.java ====
+message StDeliveryContentResp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StDittoFeed.java ====
+message StDittoFeed {
+  uint32 dittoId = 1;
+  uint32 dittoPatternId = 2;
+  bytes dittoData = 3;
+  bytes dittoDataNew = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StEShopGoodsInfo.java ====
+message StEShopGoodsInfo_StEShopJumpInfo {
+  string jumpUrl = 1;
+}
+
+message StEShopGoodsInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  string desc = 3;
+  bytes goodsJumpInfo = 4;  // was: StEShopJumpInfo
+  StImage cover = 5;
+  string customTitle = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StEveryoneSearchInfo.java ====
+message StEveryoneSearchInfo {
+  repeated string suggestion_words = 1;
+  int32 plan_type = 2;
+  int32 plan_time_value = 3;
+  int32 plan_page_value = 4;
+  string trans_info = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StExifInfo.java ====
+message StExifInfo {
+  repeated Entry kvs = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StExternalMedalWallInfo.java ====
+message StExternalMedalWallInfo {
+  bool needRedPoint = 1;
+  repeated StMedalInfo medalInfos = 2;
+  string medalWallJumpUrl = 3;
+  bool needShowEntrance = 4;
+  repeated StMedalInfo myNewMedalInfos = 5;
+  repeated StMedalInfo officialNewMedalInfos = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeed.java ====
+message StFeed_StOpinfo {
+  repeated uint64 createTime = 1;
+}
+
+message StFeed_StSameTopicGuideInfo {
+  uint32 isSameTopicGuide = 1;
+  int64 stayShowTime = 2;
+  string hashTag = 3;
+  string words = 4;
+  string jumpUrl = 5;
+  string reportExt = 6;
+}
+
+message StFeed_StClientInfo {
+  string feedclientkey = 1;
+  repeated Entry clientMap = 2;
+}
+
+message StFeed_StEShopGoods {
+  int32 total = 1;
+  repeated StEShopGoodsInfo goodsInfos = 2;
+  repeated bytes eshopPlatformInfo = 3;
+}
+
+message StFeed_StEShopPlatformInfo {
+  bool isBindedWithPlatform = 1;
+  string adID = 2;
+  uint32 channel = 3;
+  bytes contentExt = 4;
+}
+
+message StFeed_StFeedShowReason {
+  string showReason = 1;
+  uint32 type = 2;
+}
+
+message StFeed_StFeedAdv {
+  int64 jobID = 1;
+  bytes advData = 2;
+}
+
+message StFeed_StSpecialPublisherInfo {
+  repeated uint64 id = 1;
+  string publisherSchema = 2;
+  repeated bytes tip = 3;
+}
+
+message StFeed_DisplayedTips {
+  repeated uint64 id = 1;
+  string text = 2;
+  uint32 durationMs = 3;
+  bool canExpose = 4;
+  uint32 showAfterTime = 5;
+}
+
+message StFeed_StSecurityInfo {
+  string reportPageUrl = 1;
+}
+
+message StFeed_StQuickPushBoxInfo {
+  uint32 divide_num = 1;
+  repeated uint64 low_rockets = 2;
+  repeated uint64 high_rockets = 3;
+}
+
+message StFeed_StCommInfo {
+  int32 pubType = 1;
+  int32 contentCategory = 2;
+  bool isAddedFeed = 3;
+  bool show_qzone_auth_banner = 4;
+}
+
+message StFeed_StActivityInfo {
+  string activityValue = 1;
+}
+
+message StFeed_StCommunityInfo {
+  int32 subSource = 1;
+  string name = 2;
+  string schemaURL = 3;
+}
+
+message StFeed_StFeedDrawerBase {
+  string desc = 1;
+  string drawerDesc = 2;
+}
+
+message StFeed_StCollection {
+  uint32 count = 1;
+}
+
+message StFeed_StHotEventInfo {
+  uint64 eventID = 1;
+  string eventName = 2;
+  uint64 heat = 3;
+  repeated bytes bannerInfo = 4;
+}
+
+message StFeed_StHotEventBannerInfo {
+  string showIcon = 1;
+  uint32 rank = 2;
+}
+
+message StFeed_ShareMessageReplyBox {
+  repeated bytes messageInfo = 1;
+}
+
+message StFeed_MessageInfo {
+  int64 msgTime = 1;
+  int64 msgRandom = 2;
+  int64 msgSeq = 3;
+  int64 clientSeq = 4;
+  int32 chatType = 5;
+  string peerUID = 6;
+  string senderUID = 7;
+}
+
+message StFeed_AvatarJump {
+  int32 type = 1;
+}
+
+message StFeed {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedAbstract.java ====
+message StFeedAbstract {
+  repeated bytes id = 1;
+  string title = 2;
+  StUser poster = 3;
+  StImage pic = 4;
+  uint32 type = 5;
+  uint64 createTime = 6;
+  StVideo video = 7;
+  uint32 fuelNum = 8;
+  string content = 9;
+  repeated StImage images = 10;
+  StFeedCount countInfo = 11;
+  repeated Entry extInfo = 12;
+  StRight right = 13;
+  bool topFeed = 14;
+  uint32 stFeedType = 15;
+  uint32 security_review_status = 16;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedButton.java ====
+message StFeedButton {
+  string text = 1;
+  string jump_url = 2;
+  string button_url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedCount.java ====
+message StFeedCount {
+  int64 liked = 1;
+  int64 push = 2;
+  int64 comment = 3;
+  int64 visitor = 4;
+  int64 shareCount = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedDeclaration.java ====
+message StFeedDeclaration {
+  string declaration_id = 1;
+  string declaration_content = 2;
+  bool has_check_box = 3;
+  repeated ChildFeedDeclaration declarations = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedExtraInfo.java ====
+message StFeedExtraInfo_StFeedAppInnnerJumpInfo {
+  uint64 qq_group_id = 1;
+  int64 qq_group_message_id = 2;
+  uint64 guild_id = 3;
+  uint32 qq_group_source = 4;
+  uint32 qq_group_flag = 5;
+}
+
+message StFeedExtraInfo_FeedSelfDeclaration {
+  repeated bytes id = 1;
+  repeated bytes lbs = 2;
+  repeated bytes source = 3;
+}
+
+message StFeedExtraInfo {
+  string publisherSchema = 1;
+  bytes inner_jump = 2;  // was: StFeedAppInnnerJumpInfo
+  uint32 channel = 3;
+  bytes self_declaration = 4;  // was: FeedSelfDeclaration
+  DailyInfo daily = 5;
+  uint32 security_review_status = 6889;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFeedMusic.java ====
+message StFeedMusic_StSameMusicGuide {
+  bool isButtonDisplayed = 1;
+  uint32 displayDelayTime = 2;
+  string buttonSchema = 3;
+}
+
+message StFeedMusic {
+  repeated uint64 ID = 1;
+  repeated bytes f_ = 2;
+  repeated bytes f__2 = 3;
+  string musicName = 4;
+  uint32 scene = 5;
+  StImage cover = 6;
+  string playUrl = 7;
+  string singerName = 8;
+  int32 startPos = 9;
+  int32 endPos = 10;
+  StUser authorUser = 11;
+  int32 status = 12;
+  bytes sameMusicGuideButton = 13;  // was: StSameMusicGuide
+  repeated uint32 show_mask = 14;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFollowRecomInfo.java ====
+message StFollowRecomInfo {
+  string followText = 1;
+  repeated StFollowUser followUsers = 4;
+  string commFriendText = 6;
+  string commGroupText = 7;
+  string secondFriendText = 8;
+  repeated StSecondFriend secondFriends = 9;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StFollowUser.java ====
+message StFollowUser {
+  uint64 uid = 1;
+  string nick = 2;
+  string head_url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StGPSV2.java ====
+message StGPSV2 {
+  int64 lat = 1;
+  int64 lon = 2;
+  int64 eType = 3;
+  int64 alt = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StGuidePublishBubble.java ====
+message StGuidePublishBubble {
+  repeated bytes id = 1;
+  StImage backgroundImage = 2;
+  string jumpUrl = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StHotTagInfo.java ====
+message StHotTagInfo {
+  repeated bytes id = 1;
+  string title = 2;
+  string subTitle = 3;
+  string description = 4;
+  uint32 rank = 5;
+  StImage cover = 6;
+  StShare shareInfo = 7;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StIconDecorate.java ====
+message StIconDecorate {
+  string mainpageUrl = 1;
+  string layerUrl = 2;
+  uint64 endTime = 3;
+  repeated bytes id = 4;
+  string comment_url = 5;
+  DecorateJumpInfo jumpInfo = 10;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StIconInfo.java ====
+message StIconInfo {
+  string iconUrl40 = 1;
+  string iconUrl100 = 2;
+  string iconUrl140 = 3;
+  string iconUrl640 = 4;
+  string iconUrl = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StImage.java ====
+message StImage {
+  uint32 width = 1;
+  uint32 height = 2;
+  string picUrl = 3;
+  repeated StImageUrl vecImageUrl = 4;
+  string picId = 5;
+  bytes busiData = 6;
+  string imageMD5 = 7;
+  string layerPicUrl = 8;
+  repeated StMaterialDataNew materialList = 9;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StImageUrl.java ====
+message StImageUrl {
+  uint32 levelType = 1;
+  string url = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+  bytes busiData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StLightInteractInfo.java ====
+message StLightInteractInfo {
+  StUser user = 1;
+  StRelationInfo relation = 2;
+  uint32 count = 3;
+  bytes busiData = 4;
+  uint32 opTime = 5;
+  uint32 urgeStatus = 6;
+  bool thanked = 7;
+  repeated uint32 opMask = 8;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StLike.java ====
+message StLike {
+  repeated bytes id = 1;
+  uint32 count = 2;
+  uint32 status = 3;
+  repeated StUser vecUser = 4;
+  bytes busiData = 5;
+  StUser postUser = 6;
+  uint32 hasLikedCount = 7;
+  uint32 ownerStatus = 8;
+  string jumpUrl = 9;
+  uint32 negativeLikeStatus = 10;
+  uint32 negativeLikeCount = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StLiteBanner.java ====
+message StLiteBanner {
+  StImage icon = 1;
+  string title = 2;
+  string jumpUrl = 3;
+  string activityID = 4;
+  string jsonStyle = 5;
+  repeated Entry extInfo = 6;
+  string summary = 7;
+  int32 business_type = 8;
+  repeated StFeedButton button = 9;
+  int32 style_type = 10;
+  bytes tianshuEntry = 11;  // was: RspEntry
+  StImage picture = 12;
+  StImage postPicture = 13;
+  int64 stylePlayTime = 14;
+  uint32 startActionIndex = 15;
+  bytes jumpAuth = 16;
+  repeated StUser vecUser = 17;
+  bytes original_ad = 18;
+  string thumbURL = 19;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StLive.java ====
+message StLive {
+  string schema = 1;
+  RoomInfoData room = 2;
+  repeated Entry liveExtInfo = 3;
+  repeated BytesEntry liveBytesExtInfo = 4;
+  StFeedButton liveJumpButton = 5;
+  StFeedButton liveStatusButton = 6;
+  bool isDisplayStaticCover = 7;
+  string liveDisplayText = 8;
+  StFeedButton liveStatusCornerPendent = 9;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StMaterialDataNew.java ====
+message StMaterialDataNew {
+  string materialType = 1;
+  repeated StSingleMaterial materialList = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StMedalAcitivityBannerInfo.java ====
+message StMedalAcitivityBannerInfo {
+  string title = 1;
+  string label = 2;
+  string joinText = 3;
+  string backUrl = 4;
+  string buttonText = 5;
+  string jumpUrl = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StMedalInfo.java ====
+message StMedalInfo {
+  int32 type = 1;
+  string medalName = 2;
+  string medalID = 3;
+  int32 rank = 4;
+  bool isHighLight = 5;
+  bool isNew = 6;
+  string jumpUrl = 7;
+  string iconUrl = 8;
+  string backgroundUrl = 9;
+  string describe = 10;
+  int32 reportValue = 11;
+  int64 recieveTime = 12;
+  string shortDescribe = 13;
+  string activityUrl = 14;
+  string activityDesc = 15;
+  int32 status = 16;
+  string invalidDesc = 17;
+  string restoreDesc = 18;
+  int64 invalidTime = 19;
+  int64 restoreTime = 20;
+  string shortInvalidDesc = 21;
+  string shortActivityDesc = 22;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StNoticeCategoryLabel.java ====
+message StNoticeCategoryLabel {
+  bool need_show = 1;
+  StImage pic_info = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StPoiInfoV2.java ====
+message StPoiInfoV2 {
+  string poiId = 1;
+  string name = 2;
+  int32 poiType = 3;
+  string typeName = 4;
+  string address = 5;
+  int32 districtCode = 6;
+  StGPSV2 gps = 7;
+  int32 distance = 8;
+  int32 hotValue = 9;
+  string phone = 10;
+  string country = 11;
+  string province = 12;
+  string city = 13;
+  int32 poiNum = 14;
+  int32 poiOrderType = 15;
+  string defaultName = 16;
+  string district = 17;
+  string dianPingId = 18;
+  string distanceText = 19;
+  string displayName = 20;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StPost.java ====
+message StPost {
+  int32 post_type = 1;
+  StFeedAbstract feed = 2;
+  string comment_id = 3;
+  string reply_id = 4;
+  string sec_reply_id = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StPrePullCacheFeed.java ====
+message StPrePullCacheFeed {
+  repeated bytes id = 1;
+  StUser poster = 2;
+  uint64 createTime = 3;
+  repeated BytesEntry busiTranparent = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StPromoteInfo.java ====
+message StPromoteInfo {
+  bool usePromoteTicket = 1;
+  string ticketJumpUrl = 2;
+  string ticketID = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StProxyInfo.java ====
+message StProxyInfo {
+  int32 cmdId = 1;
+  int32 subCmdId = 2;
+  string appProtocol = 3;
+  bytes reqBody = 4;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StPushList.java ====
+message StPushList {
+  repeated bytes id = 1;
+  uint32 count = 2;
+  uint32 status = 3;
+  repeated StUser vecUser = 4;
+  bytes busiData = 5;
+  StUser postUser = 6;
+  uint32 hasClickCount = 7;
+  uint32 totalClickCount = 8;
+  string jumpUrl = 9;
+  uint32 pushUserCount = 10;
+  PushBoxViewInfo pushBoxViewInfo = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StRecomForward.java ====
+message StRecomForward {
+  repeated bytes id = 1;
+  string title = 2;
+  string subtitle = 3;
+  StUser poster = 4;
+  uint64 createTime = 5;
+  uint32 type = 6;
+  bytes busiData = 7;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StRecomInfo.java ====
+message StRecomInfo {
+  string recomReason = 1;
+  bytes recomAttachInfo = 2;
+  string recomTrace = 3;
+  bytes clientSealData = 4;
+  string iconUrl = 5;
+  int32 recomReasonType = 6;
+  string recomDebugInfo = 7;
+  RecomReasonV2 recomReasonV2 = 8;
+  int32 recomReasonTypeForClinet = 9;
+  bytes recomSoftADTrans = 10;
+  int32 reorderType = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StRecommendInfo.java ====
+message StRecommendInfo {
+  uint32 recommend_type = 1;
+  repeated RecommendItem items = 2;
+  string trans_info = 10;
+  int32 recommend_status = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StRelationInfo.java ====
+message StRelationInfo {
+  repeated bytes id = 1;
+  uint32 relation = 2;
+  bytes busiData = 3;
+  uint32 relationState = 4;
+  uint32 score = 5;
+  bool isBlock = 6;
+  bool isBlocked = 7;
+  bool isFriend = 8;
+  bool isUncare = 9;
+  uint64 imBitMap = 10;
+  bool banned = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StReply.java ====
+message StReply {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  StUser targetUser = 5;
+  bytes busiData = 6;
+  StLike likeInfo = 7;
+  uint32 typeFlag = 8;
+  uint32 modifyflag = 9;
+  repeated string atUinList = 10;
+  uint32 typeFlag2 = 11;
+  uint64 createTimeNs = 12;
+  repeated Entry storeExtInfo = 13;
+  string thirdId = 14;
+  string targetReplyID = 15;
+  uint32 sourceType = 16;
+  repeated int32 state = 17;
+  ExpressionInfo expressionInfo = 18;
+  StFeedAbstract replyFeed = 19;
+  StImage replyPic = 20;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StReportInfo.java ====
+message StReportInfo {
+  repeated bytes id = 1;
+  bytes busiReport = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StRight.java ====
+message StRight {
+  RightInfo ugcRight = 1;
+  string rightDisplayText = 2;
+  string iconUrl = 3;
+  string jumpUrl = 4;
+  bool notAllowDownLoad = 5;
+  int32 commentRightFlag = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StSecondFriend.java ====
+message StSecondFriend {
+  uint64 uid = 1;
+  string nick = 2;
+  string head_url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StShadingWords.java ====
+message StShadingWords {
+  string text = 1;
+  repeated Entry ext_info = 10;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StShare.java ====
+message StShare_StShareQzoneInfo {
+  repeated Entry entrys = 1;
+}
+
+message StShare_StShareWebInfo {
+  string url = 1;
+  string shortURL = 2;
+}
+
+message StShare {
+  string title = 1;
+  string desc = 2;
+  uint32 type = 3;
+  string url = 4;
+  StUser author = 5;
+  StUser poster = 6;
+  StImage cover = 7;
+  StVideo video = 8;
+  string shorturl = 9;
+  string shareCardInfo = 10;
+  bytes shareQzoneInfo = 11;  // was: StShareQzoneInfo
+  bytes busiData = 12;
+  repeated StImage images = 13;
+  uint32 publishTotalUser = 14;
+  uint32 sharedCount = 15;
+  string qqNearByDetailUrl = 16;
+  bytes shareWebInfo = 17;  // was: StShareWebInfo
+  string feed_id = 18;
+  string prompt = 19;
+  string aio_pure_text = 20;
+  repeated StShareURLInfo url_infos = 21;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StShareURLInfo.java ====
+message StShareURLInfo {
+  uint32 type = 1;
+  string url = 2;
+  StCommonExt ext_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StSingleMaterial.java ====
+message StSingleMaterial {
+  string materialId = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StSingleVideoUrlAttachOption.java ====
+message StSingleVideoUrlAttachOption {
+  bool isHdrVideo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StTagInfo.java ====
+message StTagInfo_StTagChallenge {
+  string title = 1;
+  string subTitle = 2;
+  uint32 tagChallengeRank = 3;
+}
+
+message StTagInfo {
+  string tagId = 1;
+  string tagName = 2;
+  string tagDec = 3;
+  repeated StUser userList = 4;
+  repeated StFeedAbstract feedList = 5;
+  uint32 tagTotalUser = 6;
+  uint32 tagTotalFeed = 7;
+  string tagWording = 8;
+  uint32 tagType = 9;
+  uint32 followState = 10;
+  StShare shareInfo = 11;
+  uint32 isTop = 12;
+  uint32 isSelected = 13;
+  int64 userViewHistory = 14;
+  StTagMedalInfo medal = 15;
+  uint32 status = 16;
+  StTagOperateInfo optInfo = 17;
+  uint32 tagBaseStatus = 18;
+  int32 isRecommend = 19;
+  int64 tagViewHistory = 20;
+  string operateIconUrl = 21;
+  bytes tagChallengeData = 22;  // was: StTagChallenge
+  bytes busiReport = 23;
+  uint32 nature = 24;
+  string tagReport = 6240;
+  string tagIconUrl = 100;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StTagMedalInfo.java ====
+message StTagMedalInfo {
+  string tagID = 1;
+  string tagName = 2;
+  uint64 rank = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StTagOperateInfo.java ====
+message StTagOperateInfo_ActivityInfo {
+  bool isRunning = 1;
+  string text = 2;
+  string joinSchema = 3;
+  int64 activityID = 4;
+}
+
+message StTagOperateInfo {
+  string createUser = 1;
+  string coverURL = 2;
+  string desc = 3;
+  string backgroundURL = 4;
+  string bannerURL = 5;
+  string bannerSkipLink = 6;
+  int64 activityStartTime = 7;
+  int64 activityEndTime = 8;
+  string recommendReason = 9;
+  int32 isWhite = 10;
+  int64 beWhiteStartTime = 11;
+  int64 beWhiteEndTime = 12;
+  string publishSchema = 13;
+  bytes activityInfo = 14;  // was: ActivityInfo
+  int32 recommendType = 15;
+  repeated MaterialInfo materialInfo = 16;
+  repeated CateInfo cateFilterInfos = 17;
+  int32 isSendAudit = 18;
+  repeated uint32 priorityAdvIDs = 19;
+  string versionLimit = 20;
+  string versionLink = 21;
+  string topicBannerResourceID = 22;
+  string effectTopicBannerResourceID = 23;
+  int32 isForceBidChallengeSticker = 24;
+  int32 isAutoChallenge = 25;
+  int64 isForceBidUpdateTime = 26;
+  int32 isForceBidExpire = 27;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StUnifiedTag.java ====
+message StUnifiedTag {
+  string unifiedType = 1;
+  string unifiedId = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StUser.java ====
+message StUser_StGuildStateInfo {
+  uint64 guild_id = 1;
+  uint32 type = 2;
+  uint32 state = 3;
+  string jump_url = 4;
+  string icon_url = 5;
+  string around_url = 6;
+  string report_data = 10;
+}
+
+message StUser {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StUserCommentInfo.java ====
+message StUserCommentInfo {
+  uint32 opType = 1;
+  StReply reply = 2;
+  StComment comment = 3;
+  StFeed feed = 4;
+  uint32 feed_status = 5;
+  string row_id = 6;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StUserGroupInfo.java ====
+message StUserGroupInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  repeated StUser userList = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StUserRecomInfo.java ====
+message StUserRecomInfo {
+  StUser user = 1;
+  repeated StFeedAbstract feedList = 2;
+  bytes busiData = 3;
+  string recomReason = 4;
+  bool isNew = 5;
+  repeated Entry busiInfo = 6;
+  string datongJsonData = 7;
+  bytes busiReport = 8;
+  repeated StFeed stFeedList = 9;
+  repeated StUser relationUserList = 10;
+  repeated Entry userTagList = 11;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StVideo.java ====
+message StVideo_StVideoAdaptInfo {
+  repeated bytes audioInfo = 1;
+}
+
+message StVideo_StAudioInfo {
+  string inputI = 1;
+  string inputTP = 2;
+  string inputLRA = 3;
+  string inputThresh = 4;
+  string targetOffset = 5;
+}
+
+message StVideo {
+  string fileId = 1;
+  uint32 fileSize = 2;
+  uint32 duration = 3;
+  uint32 width = 4;
+  uint32 height = 5;
+  string playUrl = 6;
+  uint32 transStatus = 7;
+  uint32 videoPrior = 8;
+  uint32 videoRate = 9;
+  repeated StVideoUrl vecVideoUrl = 10;
+  bytes busiData = 11;
+  uint32 approvalStatus = 12;
+  uint32 videoSource = 13;
+  uint32 mediaQualityRank = 14;
+  float mediaQualityScore = 15;
+  string videoMD5 = 16;
+  uint32 isQuic = 17;
+  int32 orientation = 18;
+  repeated StMaterialDataNew materialList = 19;
+  StSingleVideoUrlAttachOption attachOption = 20;
+  bytes videoAdaptInfo = 21;  // was: StVideoAdaptInfo
+  string videoComposeSourceInfo = 22;
+  bool canLowFormat = 23;
+  bool is_block = 24;
+  bool is_delete = 25;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StVideoUrl.java ====
+message StVideoUrl {
+  uint32 levelType = 1;
+  string playUrl = 2;
+  uint32 videoPrior = 3;
+  uint32 videoRate = 4;
+  uint32 transStatus = 5;
+  bytes busiData = 6;
+  bool hasWatermark = 7;
+  uint32 width = 8;
+  uint32 height = 9;
+  float videoClarityScore = 10;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StVisitor.java ====
+message StVisitor {
+  uint32 viewCount = 1;
+  bytes busiData = 2;
+  uint32 recomCount = 3;
+  string viewDesc = 4;
+  string yesterday_desc = 5;
+  string advice_desc = 6;
+  string advice_content = 7;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StWearingMedalInfo.java ====
+message StWearingMedalInfo {
+  int32 type = 1;
+  string medalName = 2;
+  string medalID = 3;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StYuHengContentInfo.java ====
+message StYuHengContentInfo {
+  FrameVertexInfo vertices = 1;
+  int64 content_id = 2;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$StYuHengMaterialInfo.java ====
+message StYuHengMaterialInfo {
+  repeated bytes id = 1;
+  string taskID = 2;
+  string ext = 3;
+  bytes detailBytes = 4;
+  int32 channelType = 5;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$TabCache.java ====
+message TabCache {
+  repeated Entry cacheinfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudMeta$goodsInfo.java ====
+message goodsInfo {
+  uint32 isGoodsCmt = 1;
+  string goodsID = 2;
+  uint32 goodsType = 3;
+  string goodsURL = 4;
+  string media_product_id = 5;
+  string saas_product_id = 6;
+  string product_type = 7;
+  uint32 channel = 8;
+  string category_id = 9;
+  string category_name = 10;
+  uint32 real_goods_type = 11;
+  string original_url = 12;
+}
+
+// ==== source: feedcloud/FeedCloudOfficialaccount$OfficialTopFollowUsersReq.java ====
+message OfficialTopFollowUsersReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudOfficialaccount$OfficialTopFollowUsersRsp.java ====
+message OfficialTopFollowUsersRsp {
+  string title = 1;
+  repeated TopUserDetail users_detail = 2;
+}
+
+// ==== source: feedcloud/FeedCloudOfficialaccount$TopUserDetail.java ====
+message TopUserDetail {
+  string uin = 1;
+  string nick = 2;
+  repeated bytes avatarUrl = 3;
+  bool show_aperture = 4;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$AdsInfo.java ====
+message AdsInfo {
+  int32 type = 1;
+  int32 style = 2;
+  repeated AdsItem ads_items = 3;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$AdsItem.java ====
+message AdsItem {
+  repeated bytes id = 1;
+  string title = 2;
+  string desc = 3;
+  string back_img = 4;
+  string jump_url = 5;
+  string button_text = 6;
+  string material_id = 7;
+  string icon_url = 8;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$GuideResource.java ====
+message GuideResource {
+  string back_img = 1;
+  string main_title = 2;
+  string sub_title = 3;
+  string guide_word = 4;
+  string btn_word = 5;
+  string jump_url = 6;
+  string thumbnail_img = 7;
+  bytes ad_item = 8;  // was: AdItem
+  string guide_tag = 9;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$MainPageBannerReq.java ====
+message MainPageBannerReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$MainPageBannerRsp.java ====
+message MainPageBannerRsp {
+  AdsInfo info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$NegativeFeedbackReq.java ====
+message NegativeFeedbackReq {
+  int32 feedback_type = 1;
+  int32 type = 2;
+  repeated bytes id = 3;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$NegativeFeedbackRsp.java ====
+message NegativeFeedbackRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$PlusEntryGuideReq.java ====
+message PlusEntryGuideReq_ExpInfo {
+  string app_id = 1;
+  string exp_id = 2;
+}
+
+message PlusEntryGuideReq {
+  bytes exp = 1;  // was: ExpInfo
+  int32 page = 2;
+  string light_sdk_version = 3;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$PlusEntryGuideRsp.java ====
+message PlusEntryGuideRsp {
+  repeated ResourceInfo resources = 1;
+  bool show_first_pub_animation = 2;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$QueryPubInfoReq.java ====
+message QueryPubInfoReq {
+  int32 query_scene = 1;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$QueryPubInfoRsp.java ====
+message QueryPubInfoRsp {
+  int32 has_pub = 1;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideSvr$ResourceInfo.java ====
+message ResourceInfo {
+  int32 resource_type = 1;
+  repeated GuideResource guide_resources = 2;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideWriter$FirstPubAnimationReportReq.java ====
+message FirstPubAnimationReportReq {
+  uint32 channel = 1;
+}
+
+// ==== source: feedcloud/FeedCloudPubGuideWriter$FirstPubAnimationReportRsp.java ====
+message FirstPubAnimationReportRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$Advice.java ====
+message Advice {
+  string advice_id = 1;
+  string advice_rate = 2;
+  bool advice_update = 3;
+  string advice_tips = 4;
+  string jump_url = 5;
+  string jump_toast = 6;
+  string advice_desc = 7;
+  int32 useful = 8;
+  string advice_rate_desc = 9;
+  string advice_rate_unit = 10;
+}
+
+// ==== source: feedcloud/FeedCloudRead$AssemblyFeedReq.java ====
+message AssemblyFeedReq {
+  StCommonExt extInfo = 1;
+  repeated string FeedItemKey = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$AssemblyFeedRsp.java ====
+message AssemblyFeedRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeed feeds = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CallFollow.java ====
+message CallFollow {
+  bool isCanCall = 1;
+  string text = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CheckFeedOwnerReq.java ====
+message CheckFeedOwnerReq {
+  string feedId = 1;
+  string userId = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CheckFeedOwnerRsp.java ====
+message CheckFeedOwnerRsp {
+  bool isOwner = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CmtExps.java ====
+message CmtExps {
+  uint32 share_cmt = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CmtShowConfig.java ====
+message CmtShowConfig {
+  CommDialog ai_cmt_tip_dialog = 1;
+  UploadPhotoIcon upload_photo_icon = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$CommDialog.java ====
+message CommDialog {
+  string title = 1;
+  string text = 2;
+  repeated DialogJumpInfo jump_infos = 3;
+  string ok_btn_text = 4;
+  string cancel_btn_text = 5;
+  string check_box_text = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$DataMixKV.java ====
+message DataMixKV {
+  int32 field = 1;
+  bytes value = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$DialogJumpInfo.java ====
+message DialogJumpInfo {
+  string key_word = 1;
+  string jump_url = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$FeedAdInfo.java ====
+message FeedAdInfo {
+  string feedID = 1;
+  repeated bytes ad = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$FeedCountEntry.java ====
+message FeedCountEntry {
+  StFeed vecFeed = 1;
+  repeated int32 failFields = 2;
+  bool invalidFeed = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$FilterGroup.java ====
+message FilterGroup {
+  string name = 1;
+  repeated string choices = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$FollowedUserItem.java ====
+message FollowedUserItem {
+  string uid = 1;
+  repeated string keys = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetAICommentsReq.java ====
+message GetAICommentsReq {
+  bytes trans_info = 1;
+  StFeed feed = 2;
+  string user_write_text = 3;
+  int32 gen_type = 4;
+  StComment target_cmt = 5;
+  StReply target_reply = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetAICommentsRsp.java ====
+message GetAICommentsRsp {
+  bytes trans_info = 1;
+  repeated StComment comments = 2;
+  StCommonExt ext_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetCollectionListReq.java ====
+message GetCollectionListReq {
+  StCommonExt extInfo = 1;
+  string user_id = 2;
+  uint32 req_type = 3;
+  string attach_info = 4;
+  int32 from = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetCollectionListRsp.java ====
+message GetCollectionListRsp_CollectionData {
+  repeated FeedAlbum albumList = 1;
+  repeated StFeed feeds = 2;
+}
+
+message GetCollectionListRsp {
+  StCommonExt extInfo = 1;
+  bytes collectionData = 2;  // was: CollectionData
+  bool has_more = 3;
+  string attach_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetDataMixReq.java ====
+message GetDataMixReq {
+  repeated uint64 uids = 1;
+  repeated uint64 cipher_uids = 2;
+  repeated int32 fields = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetDataMixRsp.java ====
+message GetDataMixRsp {
+  repeated UserDataMix datas = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetDecorationReq.java ====
+message GetDecorationReq {
+  string decoration_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetDecorationRsp.java ====
+message GetDecorationRsp {
+  DecorateJumpInfo jump_info = 1;
+  string icon = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFansNumReq.java ====
+message GetFansNumReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFansNumRsp.java ====
+message GetFansNumRsp {
+  int32 fansNum = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFeedAdviceReq.java ====
+message GetFeedAdviceReq {
+  StCommonExt extInfo = 1;
+  string user_id = 2;
+  int32 from = 3;
+  string feed_id = 4;
+  int64 create_time = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFeedAdviceRsp.java ====
+message GetFeedAdviceRsp {
+  repeated Advice advices = 1;
+  string mordata_word = 2;
+  string mordata_url = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFeedsAttachInfo.java ====
+message GetFeedsAttachInfo {
+  string cookie = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFollowedUserLatestPublishReq.java ====
+message GetFollowedUserLatestPublishReq {
+  string uin = 1;
+  uint64 timestamp = 2;
+  uint64 userFeedLimit = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetFollowedUserLatestPublishRsp.java ====
+message GetFollowedUserLatestPublishRsp {
+  repeated FollowedUserItem items = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetGuildListReq.java ====
+message GetGuildListReq {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetGuildListRsp.java ====
+message GetGuildListRsp {
+  repeated GuildInfo guilds = 1;
+  string createUrl = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetHalfFloatWindownRecomReq.java ====
+message GetHalfFloatWindownRecomReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetHalfFloatWindownRecomRsp.java ====
+message GetHalfFloatWindownRecomRsp {
+  StFeed dittoFeed = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetHotTagRankPageReq.java ====
+message GetHotTagRankPageReq {
+  StCommonExt extInfo = 1;
+  string feedAttachInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetHotTagRankPageRsp.java ====
+message GetHotTagRankPageRsp {
+  StCommonExt extInfo = 1;
+  repeated HotTagRankItem items = 2;
+  uint32 isFinish = 3;
+  string feedAttachInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetMainPageLayerShareADReq.java ====
+message GetMainPageLayerShareADReq {
+  repeated string feed_ids = 1;
+  bytes adres = 2;
+  string attach_info = 3;
+  string dst_user_id = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetMainPageLayerShareADRsp.java ====
+message GetMainPageLayerShareADRsp {
+  repeated ShareADItem items = 1;
+  string attach_info = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetMyDecorationPopByIdReq.java ====
+message GetMyDecorationPopByIdReq {
+  string decoration_id = 1;
+  bool pop = 2;
+  int32 src = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetMyDecorationPopByIdRsp.java ====
+message GetMyDecorationPopByIdRsp {
+  StUser user = 1;
+  CovenantLiteDialog pendantDialog = 2;
+  int32 popInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetPublishPageCommonInfoReq.java ====
+message GetPublishPageCommonInfoReq {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetPublishPageCommonInfoRsp.java ====
+message GetPublishPageCommonInfoRsp_StUserEShopInfo {
+  bool isBindEShop = 1;
+  string goodsPickPageUrl = 2;
+}
+
+message GetPublishPageCommonInfoRsp {
+  StCommonExt extInfo = 1;
+  bytes userEShopInfo = 2;  // was: StUserEShopInfo
+  StUser publishUser = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetSecurityControlStateReq.java ====
+message GetSecurityControlStateReq {
+  repeated uint64 feedID = 1;
+  repeated uint64 posterID = 2;
+  uint32 queryType = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetSecurityControlStateRsp.java ====
+message GetSecurityControlStateRsp {
+  repeated SecurityControlResult result = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetTagChallengeRankReq.java ====
+message GetTagChallengeRankReq {
+  StCommonExt extInfo = 1;
+  string feedAttchInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetTagChallengeRankRsp.java ====
+message GetTagChallengeRankRsp {
+  StCommonExt extInfo = 1;
+  repeated TagChallengeRankItem vecTagChallengeItem = 2;
+  uint32 isFinish = 3;
+  string feedAttchInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetUserAlbumListReq.java ====
+message GetUserAlbumListReq {
+  StCommonExt extInfo = 1;
+  string user_id = 2;
+  string attach_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetUserAlbumListRsp.java ====
+message GetUserAlbumListRsp {
+  StCommonExt extInfo = 1;
+  repeated FeedAlbum albums = 2;
+  bool has_more = 3;
+  string attach_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetUserBoxCntReq.java ====
+message GetUserBoxCntReq {
+  string uid = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetUserBoxCntRsp.java ====
+message GetUserBoxCntRsp {
+  uint64 un_open_count = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetVisitorListReq.java ====
+message GetVisitorListReq {
+  string transfer_info = 1;
+  bool need_visitor = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GetVisitorListRsp.java ====
+message GetVisitorListRsp {
+  StCommonExt ext_info = 1;
+  bool is_authed = 2;
+  repeated VisitorItem visitors = 3;
+  bool has_more = 4;
+  string transfer_info = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GroupReqItem.java ====
+message GroupReqItem {
+  string gid = 1;
+  string attachInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GuideEntry.java ====
+message GuideEntry {
+  string jump_url = 1;
+  string jump_name = 2;
+  string name = 3;
+  string desc = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$GuildInfo.java ====
+message GuildInfo {
+  uint64 guildId = 1;
+  string icon = 2;
+  string name = 3;
+  string redirectText = 4;
+  string redirectUrl = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$HotTagRankItem.java ====
+message HotTagRankItem {
+  StHotTagInfo info = 1;
+  repeated StFeed feedList = 2;
+  string innerAttachInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PicRecTags.java ====
+message PicRecTags {
+  string recomTags = 1;
+  float score = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PicRecomEntry.java ====
+message PicRecomEntry {
+  string picId = 1;
+  repeated string recomTags = 2;
+  string materialId = 3;
+  string filterId = 4;
+  StExifInfo exifInfo = 5;
+  repeated PicRecTags tags = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PopStUserInfo.java ====
+message PopStUserInfo {
+  StUser user = 1;
+  string desc = 2;
+  string keyword = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PrivateMsgUserInfo.java ====
+message PrivateMsgUserInfo {
+  uint64 uin = 1;
+  string nick = 2;
+  string logo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PushBoxDetail.java ====
+message PushBoxDetail {
+  uint32 box_type = 1;
+  float loading = 2;
+  float rate = 3;
+  uint32 draw_rocket_count = 4;
+  uint32 box_status = 5;
+  string show_off_label = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$PushBoxInfo.java ====
+message PushBoxInfo {
+  StFeed push_feed = 1;
+  repeated PushBoxDetail box_list = 2;
+  uint32 push_time = 3;
+  uint32 push_cnt = 4;
+  string shared_scheme = 5;
+  uint32 update_time = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$QueryUsersLiverStatusReq.java ====
+message QueryUsersLiverStatusReq {
+  repeated string uids = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$QueryUsersLiverStatusRsp.java ====
+message QueryUsersLiverStatusRsp {
+  repeated string in_live_uids = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$QuickShareUser.java ====
+message QuickShareUser {
+  string uin = 1;
+  string name = 2;
+  uint32 type = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$RedPoint.java ====
+message RedPoint_RedPointDetail {
+  string icon = 1;
+  string text = 2;
+}
+
+message RedPoint_VisitorRedPointInfo {
+  repeated string icons = 1;
+}
+
+message RedPoint {
+  int32 profilleModify = 1;
+  int32 pendantManage = 2;
+  bytes profille_modify_detail = 10;  // was: RedPointDetail
+  bytes pendant_manage_detail = 11;  // was: RedPointDetail
+  bytes visitor = 12;  // was: VisitorRedPointInfo
+  int32 level_benefit_flag = 13;
+}
+
+// ==== source: feedcloud/FeedCloudRead$RelationGroup.java ====
+message RelationGroup {
+  string gid = 1;
+  string name = 2;
+  repeated StRelationInfo relationInfo = 3;
+  string attachInfo = 4;
+  uint32 hasNext = 5;
+  int32 groupFlag = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$SecurityControlResult.java ====
+message SecurityControlResult {
+  string queryID = 1;
+  uint32 commentState = 2;
+  uint32 barrageState = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$SetFeedAdviceReq.java ====
+message SetFeedAdviceReq {
+  string user_id = 1;
+  string advice_id = 2;
+  int32 userful = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$SetFeedAdviceRsp.java ====
+message SetFeedAdviceRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$ShareADItem.java ====
+message ShareADItem {
+  uint32 position = 1;
+  StFeed ad_feed = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$SingleProfileCardInfo.java ====
+message SingleProfileCardInfo {
+  int32 card_cover_type = 1;
+  bool setting_status = 2;
+  bool allow_modify = 3;
+  string tips_word = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedAbstractReq.java ====
+message StBatchGetFeedAbstractReq_StReadControll {
+  bool weakConsistencyMode = 1;
+}
+
+message StBatchGetFeedAbstractReq {
+  repeated StFeedAbstract feedIndex = 1;
+  repeated bytes mask = 2;  // was: enum
+  int32 source = 3;
+  StCommonExt extInfo = 4;
+  bytes readControll = 5;  // was: StReadControll
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedAbstractRsp.java ====
+message StBatchGetFeedAbstractRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeedAbstract feeds = 2;
+  repeated StFeed moreFeedInfos = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedCountsReq.java ====
+message StBatchGetFeedCountsReq {
+  repeated StFeed vecFeed = 1;
+  repeated int32 fields = 2;
+  bool filterFeed = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedCountsRsp.java ====
+message StBatchGetFeedCountsRsp {
+  repeated FeedCountEntry feedCountInfo = 1;
+  uint64 nextReqTimeInterval = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedSharePanelReq.java ====
+message StBatchGetFeedSharePanelReq {
+  repeated string feed_id = 1;
+  int32 source = 2;
+  StCommonExt extInfo = 3;
+  int32 shareStyleType = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetFeedSharePanelRsp.java ====
+message StBatchGetFeedSharePanelRsp {
+  repeated StShare share_info = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetRakingListReq.java ====
+message StBatchGetRakingListReq {
+  StCommonExt extInfo = 1;
+  repeated StGetRankingListReq singleReq = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchGetRakingListRsp.java ====
+message StBatchGetRakingListRsp {
+  StCommonExt extInfo = 1;
+  repeated StGetRankingListRsp singleRsp = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchVerifyFollowReq.java ====
+message StBatchVerifyFollowReq {
+  repeated uint64 uins = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StBatchVerifyFollowRsp.java ====
+message StBatchVerifyFollowRsp {
+  repeated StRelationInfo infos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StChoiceQuestionBannerOption.java ====
+message StChoiceQuestionBannerOption {
+  repeated bytes id = 1;
+  string icon = 2;
+  string content = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearCountInfo.java ====
+message StClearCountInfo {
+  int32 countType = 1;
+  int32 clearType = 2;
+  int64 delayTimeInterval = 3;
+  int64 rewriteClearTime = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearCountReq.java ====
+message StClearCountReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  repeated StClearCountInfo clearCountInfos = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearCountRsp.java ====
+message StClearCountRsp {
+  StCommonExt extInfo = 1;
+  Result result = 2;
+  repeated StClearCountRspInfo clearCountRspInfos = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearCountRspInfo.java ====
+message StClearCountRspInfo {
+  int32 countType = 1;
+  int64 clearTime = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearRedPointReq.java ====
+message StClearRedPointReq {
+  StCommonExt extInfo = 1;
+  int32 pageType = 2;
+  string userID = 3;
+  string groupID = 4;
+  string toUID = 5;
+  int64 lastPageTime = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StClearRedPointRsp.java ====
+message StClearRedPointRsp {
+  StCommonExt extInfo = 1;
+  Result result = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StCollectionDetail.java ====
+message StCollectionDetail {
+  int32 num = 1;
+  string feedID = 2;
+  string cover = 3;
+  string content = 4;
+  string schema = 5;
+  StFeed feed = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StCorrectionInfo.java ====
+message StCorrectionInfo {
+  string correction_word = 1;
+  bool correction = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StDrawerCard.java ====
+message StDrawerCard {
+  int32 type = 1;
+  StUser userInfo = 2;
+  StFeed feedInfo = 3;
+  string recomUserReason = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StFeedDeatilSecondaryLoadReq.java ====
+message StFeedDeatilSecondaryLoadReq {
+  StFeed feed = 1;
+  int32 source = 2;
+  StCommonExt extInfo = 3;
+  repeated bytes mask = 4;  // was: enum
+}
+
+// ==== source: feedcloud/FeedCloudRead$StFeedDeatilSecondaryLoadRsp.java ====
+message StFeedDeatilSecondaryLoadRsp_StGetFeedSharePanelRsp {
+  repeated bytes share_info = 1;
+  bool is_collect = 2;
+  repeated bytes profile_card_cover_data = 3;
+}
+
+message StFeedDeatilSecondaryLoadRsp_ProfileCardCover {
+  bool show_entry = 1;
+  repeated SingleProfileCardInfo single_profile_card_infos = 2;
+}
+
+message StFeedDeatilSecondaryLoadRsp_StFeedDrawer {
+  int32 type = 1;
+  repeated StDrawerCard cards = 2;
+  string drawerTitle = 3;
+  repeated Entry ext_info = 999;
+}
+
+message StFeedDeatilSecondaryLoadRsp_StChoiceQuestionBanner {
+  int32 type = 1;
+  string title = 2;
+  repeated StChoiceQuestionBannerOption options = 3;
+  repeated Entry ext_info = 999;
+}
+
+message StFeedDeatilSecondaryLoadRsp_StGuideInfo {
+  int32 guide_type = 1;
+  repeated bytes btmSubInfo = 2;
+  int32 displayTimeSecond = 3;
+  repeated bytes extData = 4;
+}
+
+message StFeedDeatilSecondaryLoadRsp_ButtonInfo {
+  repeated StButton buttons = 1;
+}
+
+message StFeedDeatilSecondaryLoadRsp_StButtonGroup {
+  repeated StButton buttons = 1;
+}
+
+message StFeedDeatilSecondaryLoadRsp_ExtGuideData {
+  repeated QQGroupInfo qqGroupInfo = 1;
+}
+
+message StFeedDeatilSecondaryLoadRsp_QuickShare {
+  uint32 type = 1;
+  repeated QuickShareUser users = 2;
+  bool use_recom = 3;
+}
+
+message StFeedDeatilSecondaryLoadRsp {
+  bytes share_info = 1;  // was: StGetFeedSharePanelRsp
+  bytes feedDrawer = 2;  // was: StFeedDrawer
+  repeated StShadingWords shadingWords = 3;
+  bytes quality_feedback_banner = 4;  // was: StChoiceQuestionBanner
+  bytes guide_info = 5;  // was: StGuideInfo
+  StCommonExt extInfo = 6;
+  bytes quick_share = 7;  // was: QuickShare
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetBarrageListReq.java ====
+message StGetBarrageListReq {
+  StCommonExt extInfo = 1;
+  string feedUserID = 2;
+  string feedID = 3;
+  uint64 feedPlayTime = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetBarrageListRsp.java ====
+message StGetBarrageListRsp {
+  StCommonExt extInfo = 1;
+  repeated StBarrage vecBarrage = 2;
+  uint32 isFinish = 3;
+  uint64 feedPlayTime = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetBusiInfoReq.java ====
+message StGetBusiInfoReq {
+  StCommonExt extInfo = 1;
+  bytes busiReqData = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetBusiInfoRsp.java ====
+message StGetBusiInfoRsp {
+  StCommonExt extInfo = 1;
+  bytes busiRspData = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetC2CFeedReq.java ====
+message StGetC2CFeedReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  bytes busiReqData = 3;
+  string attchInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCircleRankListReq.java ====
+message StGetCircleRankListReq {
+  StCommonExt extInfo = 1;
+  string activeID = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCircleRankListRsp.java ====
+message StGetCircleRankListRsp {
+  StCommonExt extInfo = 1;
+  repeated StCircleRankItem rankList = 2;
+  int64 startTime = 3;
+  int64 endTime = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCircleUnCareListReq.java ====
+message StGetCircleUnCareListReq {
+  StCommonExt extInfo = 1;
+  int32 rightType = 2;
+  int32 type = 3;
+  int32 flag = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCircleUnCareListRsp.java ====
+message StGetCircleUnCareListRsp {
+  StCommonExt extInfo = 1;
+  repeated uint32 uinlist = 2;
+  repeated StUser userlist = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCloudSealFeedReq.java ====
+message StGetCloudSealFeedReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  string attachInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCloudSealFeedRsp.java ====
+message StGetCloudSealFeedRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeed sealFeeds = 2;
+  string attachInfo = 3;
+  bytes sealClientInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCommentListReq.java ====
+message StGetCommentListReq_StGetCommtListAdInfo {
+  uint32 is_need_pull_ad = 1;
+  bytes ad_trans_req = 2;
+}
+
+message StGetCommentListReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  string feedId = 3;
+  uint32 listNum = 4;
+  int32 from = 5;
+  string feedAttchInfo = 6;
+  bytes busiReqData = 7;
+  string likeKey = 8;
+  repeated BytesEntry busiTranparent = 9;
+  int32 source = 10;
+  int32 replyType = 11;
+  int64 commentCount = 12;
+  bytes ad_get_req = 13;  // was: StGetCommtListAdInfo
+  int32 rank_type = 16;
+  string hot_comment_id = 17;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCommentListRsp.java ====
+message StGetCommentListRsp_GuildDisplayInfo {
+  string guildID = 1;
+  string guildName = 2;
+  string guildHead = 3;
+  string guildHotnessText = 4;
+  string joinSignature = 5;
+  repeated string guildUserHeads = 6;
+  string schemaURL = 7;
+}
+
+message StGetCommentListRsp {
+  StCommonExt extInfo = 1;
+  repeated StComment vecComment = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  string feedAttchInfo = 5;
+  bytes busiRspData = 6;
+  string tailText = 7;
+  string fastCommentText = 8;
+  bytes guildDisplayInfo = 9;  // was: GuildDisplayInfo
+  repeated uint64 textAfterLikeComment = 10;
+  repeated uint64 emojiAfterLikeComment = 11;
+  uint32 show_qq_lianxiang_emoji = 12;
+  CmtExps epxs = 13;
+  bytes ai_cmt_trans_info = 14;
+  CmtShowConfig cmt_show_config = 15;
+  bool need_ad_req_nextpage = 16;
+  bool is_e_da_xia = 17;
+  bool show_satisfy_vote = 18;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCreatorCenterFeedsReq.java ====
+message StGetCreatorCenterFeedsReq {
+  string dstUserID = 1;
+  uint32 count = 2;
+  bool pageUp = 3;
+  uint32 targetPageNum = 4;
+  string roundParam = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetCreatorCenterFeedsRsp.java ====
+message StGetCreatorCenterFeedsRsp {
+  repeated StFeed feeds = 1;
+  uint32 isOver = 2;
+  uint32 totalcount = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetDiscoverTagListReq.java ====
+message StGetDiscoverTagListReq {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  bytes busiReqData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetDiscoverTagListRsp.java ====
+message StGetDiscoverTagListRsp {
+  StCommonExt extInfo = 1;
+  repeated StTagInfo tagList = 2;
+  string attachInfo = 3;
+  uint32 isFinish = 4;
+  bytes busiRspData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFansListReq.java ====
+message StGetFansListReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  string attachInfo = 3;
+  int64 count = 4;
+  bytes busiReqData = 5;
+  uint32 fansMethod = 6;
+  int64 from = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFansListRsp.java ====
+message StGetFansListRsp {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  uint32 hasNext = 3;
+  repeated StRelationInfo relationInfo = 4;
+  bytes busiRspData = 5;
+  uint32 isFiltered = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFeedDetailReq.java ====
+message StGetFeedDetailReq {
+  StCommonExt extInfo = 1;
+  int32 from = 2;
+  string userId = 3;
+  string feedId = 4;
+  uint64 createTime = 5;
+  bytes adres = 6;
+  string adAttchInfo = 7;
+  bytes bizReqData = 8;
+  bool useUGCStore = 9;
+  StFeed entryFeed = 10;
+  bool isMiddlePage = 11;
+  string entrySchema = 12;
+  bool isFetchPrimaryMod = 13;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFeedDetailRsp.java ====
+message StGetFeedDetailRsp {
+  StCommonExt extInfo = 1;
+  string detailUrl = 2;
+  StFeed feed = 3;
+  repeated StFeed vecRcmdFeed = 4;
+  StShare share = 5;
+  uint32 isFinish = 6;
+  string adAttchInfo = 7;
+  bytes busiRspData = 8;
+  bool isFirstLogin = 9;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFeedListReq.java ====
+message StGetFeedListReq_LoadMoreFeedInfo {
+  int32 load_more_type = 1;
+  string page_up_attach_info = 2;
+}
+
+message StGetFeedListReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  int32 from = 3;
+  StFeed feed = 4;
+  bytes adres = 5;
+  string adAttchInfo = 6;
+  string feedAttchInfo = 7;
+  int32 source = 10;
+  bytes busiReqData = 11;
+  string dstUserId = 12;
+  bool isMiddlePage = 13;
+  int32 subSource = 14;
+  bytes load_more_info = 15;  // was: LoadMoreFeedInfo
+  bool isFetchPrimaryMod = 16;
+  bool isFetchFullScreenFeed = 17;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFeedListRsp.java ====
+message StGetFeedListRsp_LoadMoreFeedStatus {
+  bool can_page_up = 1;
+  string page_up_attach_info = 2;
+}
+
+message StGetFeedListRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeed vecFeed = 2;
+  uint32 isFinish = 3;
+  StUser user = 4;
+  string adAttchInfo = 5;
+  string feedAttchInfo = 6;
+  bytes busiRspData = 7;
+  bool isFirstLogin = 8;
+  bytes load_more_status = 9;  // was: LoadMoreFeedStatus
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFollowListReq.java ====
+message StGetFollowListReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  string attachInfo = 3;
+  uint32 count = 4;
+  bytes busiReqData = 5;
+  int32 filterRelation = 6;
+  uint32 sortType = 7;
+  uint32 followMethod = 8;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFollowListRsp.java ====
+message StGetFollowListRsp {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  uint32 hasNext = 3;
+  repeated StRelationInfo relationInfo = 4;
+  bytes busiRspData = 5;
+  uint32 isFiltered = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFollowTagListReq.java ====
+message StGetFollowTagListReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  string attachInfo = 3;
+  uint32 count = 4;
+  bytes busiReqData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetFollowTagListRsp.java ====
+message StGetFollowTagListRsp {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  uint32 hasNext = 3;
+  repeated StTagInfo tagInfos = 4;
+  bytes busiRspData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetGoodsDetailReq.java ====
+message StGetGoodsDetailReq {
+  StCommonExt extInfo = 1;
+  int32 from = 2;
+  StFeed entryFeed = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetGoodsDetailRsp.java ====
+message StGetGoodsDetailRsp {
+  string EGoodsRsp = 1;
+  StCommonExt extInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetInspirationLibraryReq.java ====
+message StGetInspirationLibraryReq {
+  int32 from = 1;
+  bool isFirstPage = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetInspirationLibraryRsp.java ====
+message StGetInspirationLibraryRsp {
+  repeated StTagInfo tagList = 1;
+  string recommendIconUrl = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetKOLActReq.java ====
+message StGetKOLActReq {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetKOLActRsp.java ====
+message StGetKOLActRsp {
+  StCommonExt extInfo = 1;
+  string city = 2;
+  uint32 cityRank = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetLightInteractListReq.java ====
+message StGetLightInteractListReq {
+  StCommonExt extInfo = 1;
+  uint32 type = 2;
+  string attachInfo = 3;
+  repeated bytes id = 4;
+  string hostID = 5;
+  string feedID = 6;
+  int32 source = 7;
+  repeated BytesEntry busiTranparent = 8;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetLightInteractListRsp.java ====
+message StGetLightInteractListRsp {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  repeated StLightInteractInfo listInfo = 3;
+  uint32 isFinish = 4;
+  uint32 totalCount = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetLikeListByOpUIDsFeedIDReq.java ====
+message StGetLikeListByOpUIDsFeedIDReq {
+  StCommonExt ext_info = 1;
+  string feed_id = 2;
+  string like_key = 3;
+  int32 count = 4;
+  bytes backent_trans_data = 5;
+  string anchor_uid = 6;
+  repeated string anchor_uids = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetLikeListByOpUIDsFeedIDRsp.java ====
+message StGetLikeListByOpUIDsFeedIDRsp {
+  StCommonExt ext_info = 1;
+  repeated UserAndLikeTips likes = 2;
+  uint32 is_finish = 3;
+  bytes backent_trans_data = 4;
+  string tail_text = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetMainPageBasicDataRsp.java ====
+message StGetMainPageBasicDataRsp_TaskEntry {
+  int32 mode = 1;
+  string static_default_icon = 2;
+  string static_cover_icon = 3;
+  string static_dark_icon = 4;
+  string active_icon = 5;
+  string jump_url = 6;
+  uint32 count = 10;
+  int32 red_dot_flag = 12;
+  string icon = 13;
+  string text = 14;
+}
+
+message StGetMainPageBasicDataRsp_TaskEntryNew {
+  repeated TaskEntryConf task_conf = 1;
+  string vertical_separator_bar = 2;
+  string gradient_mask_bar = 3;
+}
+
+message StGetMainPageBasicDataRsp {
+  StCommonExt extInfo = 1;
+  StUser user = 2;
+  uint32 fansValueStyle = 3;
+  uint32 fuelValueStyle = 4;
+  StShare share = 5;
+  bytes busiRspData = 6;
+  string pmBeginShow = 7;
+  bool isFirstLogin = 8;
+  uint32 isPenguinUser = 9;
+  StFollowRecomInfo followRecomInfo = 10;
+  StExternalMedalWallInfo medalWall = 11;
+  GuildInfo guildInfo = 12;
+  repeated StMainPageOperateInfo operateInfo = 13;
+  string penguinModifyGuideURL = 14;
+  bool isKandianUser = 15;
+  StUser kandianUser = 16;
+  bytes taskEntry = 17;  // was: TaskEntry
+  RedPoint redPoint = 18;
+  CovenantLiteDialog dialog = 19;
+  CallFollow callFollow = 20;
+  StIconInfo magic_icon = 21;
+  bytes task_entry_new = 22;  // was: TaskEntryNew
+  bool hasFansEntryRedPoint = 23;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetMainPageCommDataRsp.java ====
+message StGetMainPageCommDataRsp {
+  StCommonExt extInfo = 1;
+  uint32 feedCount = 2;
+  repeated StFeed vecFeed = 3;
+  uint32 isFinish = 4;
+  string feedAttchInfo = 5;
+  bytes busiRspData = 6;
+  uint32 likedFeedCount = 7;
+  uint32 pushRocketCount = 8;
+  uint32 collectionCount = 9;
+  UserAlbumInfo albumInfo = 10;
+  StTemplateInfo templateInfo = 11;
+  bytes busiPublisherEntrance = 12;
+  string draftBoxButtonName = 13;
+  string specialMainPageTailText = 14;
+  repeated bytes tianshuMaterialInfos = 15;  // was: RspEntry
+  bool isOpenShareAD = 16;
+  AdsInfo guide_banner = 17;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetMainPageReq.java ====
+message StGetMainPageReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  int32 from = 3;
+  string feedAttchInfo = 4;
+  bytes busiReqData = 5;
+  bool needFeed = 6;
+  bool isMiddlePage = 7;
+  uint64 lastEnterMainpageTime = 8;
+  uint32 draftBoxNum = 9;
+  bool needTaskEntry = 10;
+  bool isFetchPrimaryMod = 11;
+  bytes adres = 12;
+  int32 clientFrom = 13;
+  uint32 feed_list_type = 14;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetMainPageVisitorReq.java ====
+message StGetMainPageVisitorReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetMainPageVisitorRsp.java ====
+message StGetMainPageVisitorRsp_VideoGuide {
+  repeated StFeedAbstract feed_list = 1;
+  repeated bytes guide_info = 2;
+  repeated string jump_scheme = 3;
+}
+
+message StGetMainPageVisitorRsp_CommentGuide {
+  repeated string imagesUrl = 1;
+  repeated bytes guide_info = 2;
+}
+
+message StGetMainPageVisitorRsp_InteractGuide {
+  repeated bytes guide_info = 1;
+}
+
+message StGetMainPageVisitorRsp_SharedGuide {
+  repeated bytes guide_info = 1;
+}
+
+message StGetMainPageVisitorRsp_VisitorBanner {
+  string text = 1;
+  uint64 count = 2;
+  repeated string icons = 3;
+  string url = 4;
+  uint64 type = 5;
+}
+
+message StGetMainPageVisitorRsp {
+  repeated VisitorEntry total_data = 1;
+  uint64 total_count = 2;
+  repeated VisitorEntry day_data = 3;
+  uint64 day_count = 4;
+  bytes video = 5;  // was: VideoGuide
+  bytes comment = 6;  // was: CommentGuide
+  bytes interact = 7;  // was: InteractGuide
+  repeated TopicGuide topic = 8;
+  bytes shared = 9;  // was: SharedGuide
+  bytes banner = 10;  // was: VisitorBanner
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeCategoriesPageReq.java ====
+message StGetNoticeCategoriesPageReq {
+  StCommonExt ext = 1;
+  int32 count = 2;
+  string attach_info = 3;
+  int32 scene = 4;
+  int32 drawer_id = 5;
+  int32 category_id = 6;
+  int64 quick_thank_timestamp = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeCategoriesPageRsp.java ====
+message StGetNoticeCategoriesPageRsp {
+  StCommonExt ext = 1;
+  repeated StNoticeCategoryItem top_items = 2;
+  repeated StNoticeCategoryItem items = 3;
+  uint32 tatal_count = 4;
+  bool has_more = 5;
+  string attach_info = 6;
+  bytes red_point_bytes = 7;
+  int64 rsp_timestamp = 8;
+  int64 last_read_timestamp = 9;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeCategoryDetailPageReq.java ====
+message StGetNoticeCategoryDetailPageReq {
+  StCommonExt ext = 1;
+  int32 count = 2;
+  string attach_info = 3;
+  int32 category_id = 4;
+  int64 quick_thank_timestamp = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeCategoryDetailPageRsp.java ====
+message StGetNoticeCategoryDetailPageRsp {
+  StCommonExt ext = 1;
+  repeated bytes notices = 2;  // was: StNotice
+  uint32 tatal_count = 3;
+  bool has_more = 4;
+  string attach_info = 5;
+  int64 last_read_timestamp = 6;
+  bytes red_point_bytes = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeListReq.java ====
+message StGetNoticeListReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  string feedAttchInfo = 3;
+  uint32 pageType = 4;
+  bytes busiReqData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetNoticeListRsp.java ====
+message StGetNoticeListRsp {
+  StCommonExt extInfo = 1;
+  repeated bytes vecNotice = 2;  // was: StNotice
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  string feedAttchInfo = 5;
+  bytes busiRspData = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPrePullFeedListForRedTouchReq.java ====
+message StGetPrePullFeedListForRedTouchReq {
+  StCommonExt extInfo = 1;
+  repeated FeedRedTouchTransInfo feedRedTouchTrans = 2;
+  bytes getFeedListReq = 3;
+  repeated BytesEntry getFeedListReqs = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPrePullFeedListForRedTouchRsp.java ====
+message StGetPrePullFeedListForRedTouchRsp {
+  StCommonExt extInfo = 1;
+  bytes getFeedListRsp = 2;
+  repeated BytesEntry getFeedListRsps = 3;
+  bool shouldNotSendRedDot = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPrivateMsgInfoReq.java ====
+message StGetPrivateMsgInfoReq {
+  StCommonExt extInfo = 1;
+  repeated uint64 uinList = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPrivateMsgInfoRsp.java ====
+message StGetPrivateMsgInfoRsp {
+  repeated PrivateMsgUserInfo userInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPublishPageRecomTagListReq.java ====
+message StGetPublishPageRecomTagListReq {
+  int32 from = 1;
+  string word = 2;
+  repeated string matchTagNameList = 3;
+  string attachInfo = 4;
+  repeated PicRecomEntry picRecomMap = 5;
+  int32 sceneType = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPublishPageRecomTagListRsp.java ====
+message StGetPublishPageRecomTagListRsp {
+  repeated StTagInfo tagInfos = 1;
+  string attachInfo = 2;
+  int32 isOver = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPublisherTemplateFeedReq.java ====
+message StGetPublisherTemplateFeedReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPublisherTemplateFeedRsp.java ====
+message StGetPublisherTemplateFeedRsp {
+  StFeed template_feed = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPushListByOpUIDsFeedIDReq.java ====
+message StGetPushListByOpUIDsFeedIDReq {
+  StCommonExt ext_info = 1;
+  string feed_id = 2;
+  string like_key = 3;
+  int32 count = 4;
+  bytes backent_trans_data = 5;
+  string anchor_uid = 6;
+  string author_uid = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPushListByOpUIDsFeedIDRsp.java ====
+message StGetPushListByOpUIDsFeedIDRsp {
+  StCommonExt ext_info = 1;
+  repeated UserAndPushCnt pushes = 2;
+  uint32 is_finish = 3;
+  bytes backent_trans_data = 4;
+  string tail_text = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPushPageReq.java ====
+message StGetPushPageReq {
+  string feed_id = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetPushPageRsp.java ====
+message StGetPushPageRsp {
+  float minRate = 1;
+  float maxRate = 2;
+  float limit = 3;
+  uint64 userRocketCount = 4;
+  repeated PopStUserInfo popUser = 5;
+  string taskCenterJumpUrl = 6;
+  string rulesJumpUrl = 7;
+  string exchangeText = 8;
+  PushBrokeToast push_broke_toast = 9;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetQQRecallCardReq.java ====
+message StGetQQRecallCardReq {
+  repeated string targetUins = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetQQRecallCardRsp.java ====
+message StGetQQRecallCardRsp {
+  repeated StQQRecallCard cards = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRankingListReq.java ====
+message StGetRankingListReq {
+  StCommonExt extInfo = 1;
+  uint32 listType = 2;
+  uint32 count = 3;
+  uint32 listTime = 4;
+  bytes busiReqData = 5;
+  bool enable_page = 8;
+  int32 items_per_page = 9;
+  int32 cursor = 10;
+  string tag_name = 11;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRankingListRsp.java ====
+message StGetRankingListRsp_StRankingItem {
+  repeated bytes user = 1;
+  repeated bytes relation = 2;
+  int64 score = 3;
+  int32 grade = 4;
+  bytes busiData = 5;
+  int32 rankNo = 6;
+  int32 inTopicList = 7;
+  repeated bytes show_info = 8;
+}
+
+message StGetRankingListRsp_RankH5ShowInfo {
+  string cover_url = 1;
+  string feed_id = 2;
+}
+
+message StGetRankingListRsp {
+  StCommonExt extInfo = 1;
+  repeated bytes items = 2;  // was: StRankingItem
+  uint32 startTime = 3;
+  uint32 endTime = 4;
+  bytes busiRspData = 5;
+  bytes hostUinRank = 6;  // was: StRankingItem
+  int32 isActiveRank = 7;
+  CovenantLiteDialog liteDialog = 8;
+  string hostNick = 9;
+  int32 cursor = 100;
+  bool has_more = 101;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRecomTagListReq.java ====
+message StGetRecomTagListReq {
+  StCommonExt extInfo = 1;
+  StGPSV2 gpsInfo = 2;
+  bytes busiReqData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRecomTagListRsp.java ====
+message StGetRecomTagListRsp {
+  StCommonExt extInfo = 1;
+  repeated StTagInfo tagList = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRecomUserListReq.java ====
+message StGetRecomUserListReq {
+  StCommonExt extInfo = 1;
+  bool needFeeds = 2;
+  string attachInfo = 3;
+  bytes busiReqData = 4;
+  int32 listType = 5;
+  bool needStFeeds = 6;
+  int32 sceneID = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRecomUserListRsp.java ====
+message StGetRecomUserListRsp {
+  StCommonExt extInfo = 1;
+  repeated StUserRecomInfo userRecoms = 2;
+  string attachInfo = 3;
+  uint32 isFinish = 4;
+  bytes busiRspData = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRelationGroupListReq.java ====
+message StGetRelationGroupListReq {
+  StCommonExt extInfo = 1;
+  repeated GroupReqItem reqItems = 2;
+  int64 count = 3;
+  int32 scene = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRelationGroupListRsp.java ====
+message StGetRelationGroupListRsp {
+  StCommonExt extInfo = 1;
+  repeated RelationGroup groupList = 2;
+  int64 timeInterval = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetReplyListReq.java ====
+message StGetReplyListReq {
+  StCommonExt extInfo = 1;
+  string feedUserId = 2;
+  string feedId = 3;
+  string attchInfo = 4;
+  string commentID = 5;
+  int32 cnt = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetReplyListRsp.java ====
+message StGetReplyListRsp {
+  StCommonExt extInfo = 1;
+  repeated StReply vecReply = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  string attchInfo = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRocketHelperListReq.java ====
+message StGetRocketHelperListReq {
+  StCommonExt extInfo = 1;
+  string feedId = 2;
+  int32 source = 3;
+  StUser shareUser = 4;
+  int64 shareTime = 5;
+  int32 num = 6;
+  string attachInfo = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetRocketHelperListRsp.java ====
+message StGetRocketHelperListRsp {
+  StCommonExt extInfo = 1;
+  repeated StHelperInfo helperInfos = 2;
+  bool hasNext = 3;
+  string attachInfo = 4;
+  int32 count = 5;
+  PushBoxViewInfo viewInfo = 6;
+  string enable_rocket_permission_url = 7;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetSearchPageReq.java ====
+message StGetSearchPageReq {
+  int32 source = 1;
+  int32 searchReqScene = 2;
+  repeated bytes searchType = 3;  // was: enum
+  string word = 4;
+  string attachInfo = 5;
+  int32 from = 6;
+  StCommonExt extInfo = 7;
+  string trans_info = 8;
+  bytes adRequest = 9;
+  repeated string filters = 10;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetSearchPageRsp.java ====
+message StGetSearchPageRsp_StSearchTagInfo {
+  repeated StTagInfo tagList = 1;
+  string attachInfo = 2;
+  int32 isOver = 3;
+  repeated bytes correction_info = 4;
+}
+
+message StGetSearchPageRsp_StSearchUserInfo {
+  repeated StUser userList = 1;
+  string attachInfo = 2;
+  int32 isOver = 3;
+  repeated StUserFeedsInfo userFeeds = 4;
+  repeated bytes correction_info = 5;
+  repeated StRecReasonInfo reason = 6;
+}
+
+message StGetSearchPageRsp_StSearchFeedInfo {
+  repeated StFeed feedList = 1;
+  string attachInfo = 2;
+  string feedJumpUrl = 3;
+  int32 isOver = 4;
+  bool isJumpTagSearch = 5;
+  repeated FeedAdInfo feedAds = 6;
+}
+
+message StGetSearchPageRsp_StSearchBannerInfo {
+  repeated StSearchBanner banners = 1;
+}
+
+message StGetSearchPageRsp_StSearchHotEventInfo {
+  repeated StFeed feedList = 1;
+  string more_text = 2;
+  string more_url = 3;
+  int32 rank = 4;
+  string title = 5;
+  string attachInfo = 6;
+  int32 isOver = 7;
+  uint32 heat = 8;
+}
+
+message StGetSearchPageRsp_StSearchMixPageTagInfo {
+  repeated bytes extInfo = 1;
+  repeated bytes tagInfo = 2;
+  bool need_medal = 3;
+  repeated StFeed feeds = 4;
+}
+
+message StGetSearchPageRsp_StSearchMixPageUserInfo {
+  repeated bytes extInfo = 1;
+  repeated bytes user = 2;
+  string attachInfo = 3;
+  repeated StFeed feeds = 4;
+}
+
+message StGetSearchPageRsp_StSearchPublisher {
+  repeated StSearchSmallItem items = 1;
+  repeated bytes extInfo = 10;
+}
+
+message StGetSearchPageRsp_StSearchMiniApp {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  repeated bytes extInfo = 10;
+}
+
+message StGetSearchPageRsp_StSearchRelatedGoods {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  repeated bytes extInfo = 10;
+}
+
+message StGetSearchPageRsp_Filter {
+  repeated FilterGroup groups = 1;
+}
+
+message StGetSearchPageRsp_StSearchGameDesc {
+  string title = 1;
+  string content = 2;
+  string icon = 3;
+  string scheme = 4;
+  repeated StSearchTextItem items = 5;
+  repeated bytes report = 10;
+  repeated bytes extInfo = 11;
+}
+
+message StGetSearchPageRsp_StSearchGameCollection {
+  string background = 1;
+  repeated bytes detail = 2;
+  string app_id = 3;
+  string channel_id = 4;
+  repeated bytes header = 5;
+  repeated StSearchIconItem icons = 6;
+  string image = 7;
+  repeated bytes gift_bag = 10;
+  repeated bytes props = 11;
+  repeated bytes game = 12;
+  repeated bytes report = 20;
+  repeated bytes extInfo = 21;
+}
+
+message StGetSearchPageRsp_StSearchGameDetail {
+  string game_name = 1;
+  string game_icon = 2;
+  string game_detail_url = 3;
+  string game_download_url = 4;
+  string game_slogan = 5;
+  int32 game_download_total = 6;
+  repeated string game_tag = 7;
+  int32 game_publish_type = 8;
+  int32 game_status = 9;
+  string developer_info = 10;
+  string purview_info = 11;
+  string privacy_policy_url = 12;
+  string management_subject = 13;
+  string ios_pkg_size = 14;
+  string android_pkg_size = 15;
+  string pkg_name = 16;
+}
+
+message StGetSearchPageRsp_StSearchHeaderColumn {
+  string name = 1;
+  string description = 2;
+  string playing_text = 4;
+  repeated StSearchIconItem playing_icons = 5;
+  string scheme = 9;
+  repeated bytes report = 10;
+  repeated bytes extInfo = 11;
+}
+
+message StGetSearchPageRsp_StSearchImage {
+  string text = 1;
+  string image = 2;
+  string scheme = 3;
+  repeated bytes report = 10;
+  repeated bytes extInfo = 11;
+}
+
+message StGetSearchPageRsp_StSearchGoods {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  repeated bytes ext_info = 10;
+}
+
+message StGetSearchPageRsp_StVideoCollectionInfo {
+  string collectionID = 1;
+  string collectionName = 2;
+  string collectionDesc = 3;
+  string cover = 4;
+  string authorSchema = 5;
+  string btnName = 6;
+  string btnSchema = 7;
+  repeated StCollectionDetail detail = 8;
+  string moreSchema = 9;
+  int32 btnIndex = 10;
+}
+
+message StGetSearchPageRsp_StSearchMixTag {
+  repeated bytes tagInfo = 1;
+  repeated bytes picBanner = 2;
+  bool isShowTagMedal = 3;
+}
+
+message StGetSearchPageRsp_StSearchMixTagBanner {
+  repeated bytes image = 1;
+  string actionUrl = 3;
+  repeated bytes tianshuAdItem = 5;
+}
+
+message StGetSearchPageRsp_StSearchKuikly {
+  string page_name = 1;
+  string bundle_name = 2;
+  string ext = 3;
+  int32 high = 4;
+  string business_id = 5;
+}
+
+message StGetSearchPageRsp {
+  bytes searchTagInfo = 1;  // was: StSearchTagInfo
+  bytes searchUserInfo = 2;  // was: StSearchUserInfo
+  bytes searchFeedInfo = 3;  // was: StSearchFeedInfo
+  bool isFirstLogin = 4;
+  bytes busiReport = 5;
+  string searchReportData = 6;
+  bytes bannerInfo = 7;  // was: StSearchBannerInfo
+  bytes searchHotEventInfo = 8;  // was: StSearchHotEventInfo
+  StCommonExt extInfo = 9;
+  bytes mixPageTagInfo = 10;  // was: StSearchMixPageTagInfo
+  bytes mixPageUserInfo = 11;  // was: StSearchMixPageUserInfo
+  repeated StSearchSubTag subTags = 12;
+  bytes searchPublisherInfo = 14;  // was: StSearchPublisher
+  StSearchGame searchGameInfo = 15;
+  bytes searchMiniAppInfo = 16;  // was: StSearchMiniApp
+  bytes searchRelatedGoodsInfo = 17;  // was: StSearchRelatedGoods
+  bool grey = 18;
+  bytes filter = 19;  // was: Filter
+  bytes searchGameDesc = 20;  // was: StSearchGameDesc
+  bytes searchGameCollection = 21;  // was: StSearchGameCollection
+  StCorrectionInfo correction_info = 22;
+  bytes videoCollection = 23;  // was: StVideoCollectionInfo
+  bytes searchMixTag = 24;  // was: StSearchMixTag
+  bytes searchKuikly = 25;  // was: StSearchKuikly
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetSessionInfoReq.java ====
+message StGetSessionInfoReq {
+  StCommonExt extInfo = 1;
+  uint32 scene = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetSessionInfoRsp.java ====
+message StGetSessionInfoRsp {
+  StCommonExt extInfo = 1;
+  bytes sessonID = 2;
+  bytes subSessonID = 3;
+  bytes transInfo = 4;
+  uint32 expireTime = 5;
+  uint32 sessionType = 6;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetTagPageHeaderReq.java ====
+message StGetTagPageHeaderReq {
+  string tagID = 1;
+  string tagName = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetTagPageHeaderRsp.java ====
+message StGetTagPageHeaderRsp {
+  bytes tagBytesData = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUIDReq.java ====
+message StGetUIDReq {
+  int32 uidScence = 1;
+  string userId = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUIDRsp.java ====
+message StGetUIDRsp {
+  StCommonExt extInfo = 1;
+  bool uidValid = 2;
+  string uid = 3;
+  string errMsg = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserCommentListReq.java ====
+message StGetUserCommentListReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  string attchInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserCommentListRsp.java ====
+message StGetUserCommentListRsp {
+  StCommonExt extInfo = 1;
+  repeated StUserCommentInfo vecCommentInfo = 2;
+  uint32 isFinish = 3;
+  string attchInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserFeedInfoReq.java ====
+message StGetUserFeedInfoReq {
+  repeated string uids = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserFeedInfoRsp.java ====
+message StGetUserFeedInfoRsp {
+  repeated uint64 lastPublishTime = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserFollowLivingListReq.java ====
+message StGetUserFollowLivingListReq {
+  StCommonExt extInfo = 1;
+  string attchInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserFollowLivingListRsp.java ====
+message StGetUserFollowLivingListRsp {
+  StCommonExt extInfo = 1;
+  repeated StUser userlist = 2;
+  string attchInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserGalleryStateReq.java ====
+message StGetUserGalleryStateReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserGalleryStateRsp.java ====
+message StGetUserGalleryStateRsp {
+  bool enableGallery = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserGroupListReq.java ====
+message StGetUserGroupListReq {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserGroupListRsp.java ====
+message StGetUserGroupListRsp {
+  StCommonExt extInfo = 1;
+  repeated StUserGroupInfo groupList = 2;
+  repeated StUserGroupInfo friendGroupList = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserPushBoxPageReq.java ====
+message StGetUserPushBoxPageReq {
+  int32 box_list_type = 1;
+  StCommonExt extInfo = 2;
+  string attach_info = 3;
+  uint32 sort_type = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserPushBoxPageRsp.java ====
+message StGetUserPushBoxPageRsp_PushStatisticData {
+  uint32 today_push_cnt = 1;
+  uint32 today_recv_box = 2;
+  uint32 today_recv_rocket = 3;
+  uint32 history_push_cnt = 4;
+  uint32 history_recv_box = 5;
+  uint32 history_recv_rocket = 6;
+  string tips = 7;
+}
+
+message StGetUserPushBoxPageRsp_PushPageRes {
+  uint32 res_type = 1;
+  string res_cover_url = 2;
+  string res_title = 3;
+  string res_desc = 4;
+  string res_jump_url = 5;
+}
+
+message StGetUserPushBoxPageRsp {
+  repeated PushBoxInfo box_list = 1;
+  StCommonExt extInfo = 2;
+  uint32 rocket_count = 3;
+  uint32 normal_box_count = 4;
+  uint32 super_box_count = 5;
+  int32 has_more = 6;
+  string attach_info = 7;
+  string rules_jump_url = 8;
+  bytes push_statistic_data = 9;  // was: PushStatisticData
+  bytes push_page_res = 10;  // was: PushPageRes
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserSettingInfoReq.java ====
+message StGetUserSettingInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$StGetUserSettingInfoRsp.java ====
+message StGetUserSettingInfoRsp {
+  repeated Entry urlInfo = 1;
+  repeated uint32 opmasks = 2;
+  uint32 isPenguinUser = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StHelperInfo.java ====
+message StHelperInfo {
+  StUser user = 1;
+  int32 rocketNum = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StMainPageOperateInfo.java ====
+message StMainPageOperateInfo {
+  string name = 1;
+  StImage icon = 2;
+  string jumpUrl = 3;
+  string desc = 4;
+  uint32 type = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StNoticeCategoryItem.java ====
+message StNoticeCategoryItem_StNoticeCategory {
+  repeated uint64 id = 1;
+  string title = 2;
+  string summary = 3;
+  repeated bytes icon = 4;
+  int32 right_icon = 5;
+  string jump_url = 6;
+  uint64 newest_notice_timestamp = 7;
+  string label_text = 8;
+  int64 notice_count = 9;
+  repeated bytes report_info = 10;
+}
+
+message StNoticeCategoryItem_StNoticeCategoryReport {
+  string entrance_name = 1;
+  string psv_task_id = 2;
+  bytes busiReport = 3;
+}
+
+message StNoticeCategoryItem_StNotice {
+  uint32 opType = 1;
+  repeated bytes opUser = 2;
+  uint64 opTime = 3;
+  repeated bytes comment = 4;
+  repeated bytes like = 5;
+  bytes busiData = 6;
+  repeated BytesEntry busiTranparent = 7;
+  string jumpUrl = 8;
+}
+
+message StNoticeCategoryItem_StOperation {
+  uint32 opType = 1;
+  repeated bytes opUser = 2;
+  uint64 opTime = 3;
+  repeated bytes comment = 4;
+  repeated bytes like = 5;
+  bytes busiData = 6;
+  repeated BytesEntry busiTranparent = 7;
+  string jumpUrl = 8;
+}
+
+message StNoticeCategoryItem {
+  int32 type = 1;
+  bytes category = 2;  // was: StNoticeCategory
+  bytes notice = 3;  // was: StNotice
+}
+
+// ==== source: feedcloud/FeedCloudRead$StPrePullOfficialAccountOverlayADReq.java ====
+message StPrePullOfficialAccountOverlayADReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudRead$StPrePullOfficialAccountOverlayADRsp.java ====
+message StPrePullOfficialAccountOverlayADRsp {
+  bytes overLayADBytes = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StQQRecallCard.java ====
+message StQQRecallCard {
+  int32 type = 1;
+  StFeed feed = 2;
+  string jumpURL = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StQuerySchoolListByKeywordReq.java ====
+message StQuerySchoolListByKeywordReq {
+  string keyword = 1;
+  uint32 count = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StQuerySchoolListByKeywordRsp.java ====
+message StQuerySchoolListByKeywordRsp {
+  repeated SchoolInfo schoolInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StRecReasonInfo.java ====
+message StRecReasonInfo_StRecReason {
+  string textColor = 1;
+  string bgColor = 2;
+  string text = 3;
+}
+
+message StRecReasonInfo {
+  string uid = 1;
+  bytes reason = 2;  // was: StRecReason
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchBanner.java ====
+message StSearchBanner {
+  StImage image = 1;
+  string imageJumpUrl = 2;
+  bytes tianshuEntry = 3;  // was: RspEntry
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchGame.java ====
+message StSearchGame {
+  string title = 1;
+  repeated StSearchSmallItem items = 2;
+  string more = 3;
+  StCommonExt extInfo = 10;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchIconItem.java ====
+message StSearchIconItem {
+  string text = 1;
+  string icon = 2;
+  string scheme = 3;
+  StCommonExt report = 10;
+  StCommonExt extInfo = 11;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchSmallItem.java ====
+message StSearchSmallItem {
+  string title = 1;
+  string subtitle = 2;
+  string icon = 3;
+  string scheme = 4;
+  repeated string tags = 5;
+  string button_text = 6;
+  string button_scheme = 7;
+  StCommonExt report = 8;
+  StCommonExt extInfo = 10;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchSubTag.java ====
+message StSearchSubTag {
+  string text = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StSearchTextItem.java ====
+message StSearchTextItem {
+  string text = 1;
+  string scheme = 2;
+  StCommonExt report = 10;
+  StCommonExt extInfo = 11;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StTemplateInfo.java ====
+message StTemplateInfo {
+  string QQLogo = 1;
+  string nickWord = 2;
+  string timeMapWord = 3;
+  string locationMapWord = 4;
+  string descMapWord = 5;
+  string starMapWord = 6;
+  string monthLabelWord = 7;
+  string dayLabelWord = 8;
+  string ageMapWord = 9;
+  string genderMapWord = 10;
+}
+
+// ==== source: feedcloud/FeedCloudRead$StUserFeedsInfo.java ====
+message StUserFeedsInfo {
+  string uid = 1;
+  repeated StFeed feeds = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TagChallengeRankItem.java ====
+message TagChallengeRankItem {
+  StTagInfo tagInfo = 1;
+  repeated StFeed feedList = 2;
+  string innerAttchInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TaskEntryConf.java ====
+message TaskEntryConf {
+  string task_name = 1;
+  string task_icon = 2;
+  string jump_url = 3;
+  int32 red_dot_flag = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TofuExt.java ====
+message TofuExt {
+  bool qzone_first = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TofuFeed.java ====
+message TofuFeed {
+  string url = 1;
+  bool is_pic = 2;
+  string jump = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TofuProfileReq.java ====
+message TofuProfileReq {
+  string uid = 1;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TofuProfileRsp.java ====
+message TofuProfileRsp {
+  repeated TofuFeed feeds = 1;
+  string ext = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$TopicGuide.java ====
+message TopicGuide {
+  string name = 1;
+  string desc = 2;
+  uint64 topic_count = 3;
+  GuideEntry guide_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$UploadPhotoIcon.java ====
+message UploadPhotoIcon {
+  string pag_url = 1;
+  string pag_url_dark = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRead$UserAlbumInfo.java ====
+message UserAlbumInfo {
+  repeated FeedAlbum albums = 1;
+  bool has_more = 2;
+  string load_more_attach_info = 3;
+  bool allow_create_album = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$UserAndLikeTips.java ====
+message UserAndLikeTips {
+  StUser user = 1;
+  string text = 2;
+  uint32 is_force = 3;
+  uint32 is_highlight = 4;
+  bool is_thanked = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRead$UserAndPushCnt.java ====
+message UserAndPushCnt {
+  StUser user = 1;
+  int32 push_cnt = 2;
+  bool is_thanked = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$UserDataMix.java ====
+message UserDataMix {
+  string uid = 1;
+  bool is_self = 2;
+  repeated DataMixKV kvs = 3;
+}
+
+// ==== source: feedcloud/FeedCloudRead$VisitorEntry.java ====
+message VisitorEntry {
+  string name = 1;
+  int32 page_type = 2;
+  uint64 value = 3;
+  float percent = 4;
+}
+
+// ==== source: feedcloud/FeedCloudRead$VisitorItem.java ====
+message VisitorItem {
+  StUser visitors = 1;
+  string vis_time = 2;
+}
+
+// ==== source: feedcloud/FeedCloudRenderFeedDetail$GetFeedDetailWithExtraDataReq.java ====
+message GetFeedDetailWithExtraDataReq {
+  repeated bytes id = 1;
+  string entry_schema = 2;
+  int32 source = 3;
+  bool force_detail = 4;
+  bytes red_trans_info = 5;
+}
+
+// ==== source: feedcloud/FeedCloudRenderFeedDetail$GetFeedDetailWithExtraDataRsp.java ====
+message GetFeedDetailWithExtraDataRsp {
+  StFeed feed_detail = 1;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGICancelReq.java ====
+message SEAGICancelReq {
+  int32 taskType = 1;
+  string taskID = 2;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGIComfyMedia.java ====
+message SEAGIComfyMedia {
+  uint32 width = 1;
+  uint32 height = 2;
+  string url = 3;
+  int32 mediaType = 4;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGIMemeInput.java ====
+message SEAGIMemeInput {
+  string content = 1;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGIMemeOutput.java ====
+message SEAGIMemeOutput {
+  bytes jsonData = 1;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGIQueryReq.java ====
+message SEAGIQueryReq {
+  int32 taskType = 1;
+  string taskID = 2;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGIQueryRsp.java ====
+message SEAGIQueryRsp_SEAGIComfyOutput {
+  repeated bytes media = 1;
+}
+
+message SEAGIQueryRsp {
+  int32 taskStatus = 1;
+  float queryInterval = 2;
+  SEAGIMemeOutput memeOutput = 3;
+  bytes comfyOutput = 4;  // was: SEAGIComfyOutput
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGISubmitReq.java ====
+message SEAGISubmitReq_SEAGIComfyInput {
+  string model = 1;
+  repeated bytes media = 2;
+}
+
+message SEAGISubmitReq {
+  int32 taskType = 1;
+  SEAGIMemeInput memeInput = 2;
+  bytes comfyInput = 3;  // was: SEAGIComfyInput
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEAGISubmitRsp.java ====
+message SEAGISubmitRsp {
+  string taskID = 1;
+  float estimatedTimeCost = 2;
+  float queryInterval = 3;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEComfyModel.java ====
+message SEComfyModel {
+  string model = 1;
+  string iconUrl = 2;
+  string description = 3;
+  string schema = 4;
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEGetComfyModelsReq.java ====
+message SEGetComfyModelsReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudSeedsvr$SEGetComfyModelsRsp.java ====
+message SEGetComfyModelsRsp {
+  repeated SEComfyModel models = 1;
+}
+
+// ==== source: feedcloud/FeedCloudSwitch$SwitchRsp.java ====
+message SwitchRsp {
+  repeated Entry switchs = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbase$AggregatePageButtonType.java ====
+message AggregatePageButtonType {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbase$EditOpType.java ====
+message EditOpType {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbase$SourceAppId.java ====
+message SourceAppId {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbase$StTagBaseInfo.java ====
+message StTagBaseInfo_YuhengTagOperateConfig {
+  int32 aggregatePageButtonType = 1;
+}
+
+message StTagBaseInfo {
+  string tagName = 1;
+  repeated uint64 categoryChilds = 2;
+  repeated uint64 tagChilds = 3;
+  repeated uint64 relates = 4;
+  repeated uint64 parents = 5;
+  int32 status = 6;
+  int32 type = 7;
+  int64 tagNameId = 8;
+  int64 createTime = 9;
+  int64 userViewYesterday = 10;
+  int64 userViewHistory = 11;
+  int64 userPublishYesterday = 12;
+  int64 userPublishHistory = 13;
+  int64 showPublishHistory = 14;
+  int64 feedPublishHistory = 15;
+  int64 updateMillTime = 16;
+  int64 categoryIndex = 17;
+  StTagOperateInfo optInfo = 18;
+  int32 isRecommend = 19;
+  int64 userLikeYesterday = 20;
+  int64 userLikeHistory = 21;
+  int64 userCmtYesterday = 22;
+  int64 userCmtHistory = 23;
+  int64 userPushYesterday = 24;
+  int64 userPushHistory = 25;
+  int64 exposureCountImmediate = 26;
+  int64 publishCountImmediate = 27;
+  string tagId = 28;
+  int32 nature = 29;
+  string tabId = 30;
+  bytes yuhengTagConfig = 31;  // was: YuhengTagOperateConfig
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StAddTagBaseInfoReq.java ====
+message StAddTagBaseInfoReq {
+  string tagParentName = 1;
+  string tagName = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StAddTagBaseInfoRsp.java ====
+message StAddTagBaseInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StAddTagBaseRelateReq.java ====
+message StAddTagBaseRelateReq {
+  string tagName = 1;
+  string tagRelateName = 2;
+  int32 relateType = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StAddTagBaseRelateRsp.java ====
+message StAddTagBaseRelateRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCategoryFilter.java ====
+message StCategoryFilter {
+  string tagCategory = 1;
+  int32 pageSize = 2;
+  int32 pageCurrent = 3;
+  int32 sort = 4;
+  int32 sortType = 5;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCategoryTag.java ====
+message StCategoryTag {
+  string tagCategory = 1;
+  repeated StTagBaseInfo infos = 2;
+  int32 pageSize = 3;
+  int32 pageCurrent = 4;
+  int32 pageTotal = 5;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCategoryTagBaseInfoReq.java ====
+message StCategoryTagBaseInfoReq {
+  repeated StCategoryFilter filters = 1;
+  string search = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCategoryTagBaseInfoRsp.java ====
+message StCategoryTagBaseInfoRsp {
+  repeated StCategoryTag infos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StChangeTagOrderReq.java ====
+message StChangeTagOrderReq {
+  string tagParentName = 1;
+  string tagName = 2;
+  int32 orderChange = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StChangeTagOrderRsp.java ====
+message StChangeTagOrderRsp {
+  StTagBaseInfo parentInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCommTagBaseInfoReq.java ====
+message StCommTagBaseInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StCommTagBaseInfoRsp.java ====
+message StCommTagBaseInfoRsp {
+  repeated string allCategorys = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StDelParentIndexReq.java ====
+message StDelParentIndexReq {
+  string tagParentName = 1;
+  int32 categoryIndex = 2;
+  int32 tagIndex = 3;
+  bool fakeDel = 4;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StDelParentIndexRsp.java ====
+message StDelParentIndexRsp {
+  StTagBaseInfo delCategoryInfo = 1;
+  StTagBaseInfo delTagInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StDelTagBaseInfoReq.java ====
+message StDelTagBaseInfoReq {
+  repeated string tagNames = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StDelTagBaseInfoRsp.java ====
+message StDelTagBaseInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StEditTagBaseInfoReq.java ====
+message StEditTagBaseInfoReq {
+  repeated bytes editInfos = 1;  // was: StEditTagInfo
+  bool delPreEdit = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StEditTagBaseInfoRsp.java ====
+message StEditTagBaseInfoRsp {
+  repeated bytes editInfos = 1;  // was: StEditTagInfo
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StFilterTagBaseInfoReq.java ====
+message StFilterTagBaseInfoReq {
+  repeated string tagNames = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StFilterTagBaseInfoRsp.java ====
+message StFilterTagBaseInfoRsp {
+  repeated StTagBaseInfo filteredTags = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StGetTagBaseAllCategoryReq.java ====
+message StGetTagBaseAllCategoryReq {
+  string tagName = 1;
+  bool useCache = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StGetTagBaseAllCategoryRsp.java ====
+message StGetTagBaseAllCategoryRsp {
+  repeated StTagBaseInfo categorys = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StGetTagBaseInfoReq.java ====
+message StGetTagBaseInfoReq {
+  repeated string tagNames = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StGetTagBaseInfoRsp.java ====
+message StGetTagBaseInfoRsp {
+  repeated StTagBaseInfo tagBaseInfos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StListTagBaseInfoReq.java ====
+message StListTagBaseInfoReq_StListFilter {
+  repeated uint64 tagStatuss = 1;
+  repeated string tagCategorys = 2;
+  repeated uint64 tagTypes = 3;
+  string startDay = 4;
+  string endDay = 5;
+  string search = 6;
+  int32 appid = 100;
+}
+
+message StListTagBaseInfoReq {
+  bytes filter = 1;  // was: StListFilter
+  int32 sort = 2;
+  int32 pageSize = 3;
+  int32 pageCurrent = 4;
+  int32 sortType = 5;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StListTagBaseInfoRsp.java ====
+message StListTagBaseInfoRsp {
+  repeated StTagBaseInfo infos = 1;
+  int32 pageSize = 2;
+  int32 pageCurrent = 3;
+  int32 pageTotal = 4;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StPublishTagBaseInfoReq.java ====
+message StPublishTagBaseInfoReq {
+  int32 publishType = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagbasesvr$StPublishTagBaseInfoRsp.java ====
+message StPublishTagBaseInfoRsp_StEditTagInfo {
+  repeated bytes addTag = 1;
+  repeated bytes delTag = 2;
+  repeated bytes editTagName = 3;
+  repeated bytes editTag = 4;
+  repeated bytes addCategory = 5;
+  repeated bytes sortTag = 6;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoAddTag {
+  repeated bytes info = 1;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoDelTag {
+  repeated bytes info = 1;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoEditTagName {
+  repeated bytes oldInfo = 1;
+  repeated bytes newInfo = 2;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoEditTag {
+  repeated bytes info = 1;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoAddCategory {
+  string tagCategory = 1;
+}
+
+message StPublishTagBaseInfoRsp_StEditTagInfoSortTag {
+  string tagCategory = 1;
+  repeated StTagBaseInfo infos = 2;
+}
+
+message StPublishTagBaseInfoRsp {
+  int32 publishResult = 1;
+  bytes notOkInfo = 2;  // was: StEditTagInfo
+  int32 publishStatus = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StAddBlackTagNameReq.java ====
+message StAddBlackTagNameReq {
+  string tagName = 1;
+  string tagToken = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StAddBlackTagNameRsp.java ====
+message StAddBlackTagNameRsp {
+  int32 errCode = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StAddPicTagMapInfo.java ====
+message StAddPicTagMapInfo {
+  string picTag = 1;
+  string recomTag = 2;
+  int32 mapStatus = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StAddPicTagMapReq.java ====
+message StAddPicTagMapReq {
+  repeated StAddPicTagMapInfo infos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StAddPicTagMapRsp.java ====
+message StAddPicTagMapRsp {
+  int32 errCode = 1;
+  repeated bytes msg = 2;
+  repeated StAddPicTagMapInfo infos = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StCreateUserTagReq.java ====
+message StCreateUserTagReq {
+  string tagName = 1;
+  int32 tagType = 2;
+  int32 appID = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StCreateUserTagRsp.java ====
+message StCreateUserTagRsp {
+  int32 errCode = 1;
+  repeated bytes msg = 2;
+  StTagInfo tagInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetAllPicTagMapReq.java ====
+message StGetAllPicTagMapReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetAllPicTagMapRsp.java ====
+message StGetAllPicTagMapRsp {
+  int32 errCode = 1;
+  repeated bytes msg = 2;
+  repeated StAddPicTagMapInfo infos = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetPublishTagGuideReq.java ====
+message StGetPublishTagGuideReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetPublishTagGuideRsp.java ====
+message StGetPublishTagGuideRsp_TagGuideInfo {
+  string tagName = 1;
+  string tagID = 2;
+  string describe = 3;
+  string icon = 4;
+  string button = 5;
+  string guideTitle = 6;
+  int32 nature = 7;
+}
+
+message StGetPublishTagGuideRsp {
+  int32 tagGuideScene = 1;
+  bytes tagGuideInfo = 2;  // was: TagGuideInfo
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetTagChallengeReq.java ====
+message StGetTagChallengeReq {
+  int32 ReqType = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetTagChallengeRsp.java ====
+message StGetTagChallengeRsp {
+  int32 errCode = 1;
+  repeated bytes msg = 2;
+  repeated StTagInfo tagInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StGetTagsBackendReq.java ====
+message StGetTagsBackendReq {
+  int32 count = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryAllReq.java ====
+message StTagCategoryAllReq {
+  StGPSV2 gpsInfo = 1;
+  int32 reqType = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryAllRsp.java ====
+message StTagCategoryAllRsp {
+  repeated bytes categoryList = 1;  // was: StTagCategoryInfo
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryInfoByIdReq.java ====
+message StTagCategoryInfoByIdReq {
+  repeated string tagIds = 1;
+  int32 ReqType = 2;
+  int32 appID = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryInfoReq.java ====
+message StTagCategoryInfoReq {
+  repeated string TagNames = 1;
+  int32 ReqType = 2;
+  int32 appID = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryInfoRsp.java ====
+message StTagCategoryInfoRsp {
+  repeated StTagInfo tagInfos = 1;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryRecomReq.java ====
+message StTagCategoryRecomReq {
+  StGPSV2 gpsInfo = 1;
+  repeated PicRecomEntry picRecomMap = 2;
+  int32 reqType = 3;
+  string musicID = 4;
+  repeated bytes picBufferList = 5;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagCategoryRecomRsp.java ====
+message StTagCategoryRecomRsp {
+  repeated StTagInfo tagList = 1;
+  string toast = 2;
+  string jumpURL = 3;
+  int32 recomType = 4;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagOneCategoryReq.java ====
+message StTagOneCategoryReq {
+  string categoryName = 1;
+  int32 reqPage = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagOneCategoryRsp.java ====
+message StTagOneCategoryRsp_StTagCategoryInfo {
+  string categoryName = 1;
+  repeated StTagInfo tagList = 2;
+  int32 nextPage = 3;
+}
+
+message StTagOneCategoryRsp {
+  bytes categoryInfo = 1;  // was: StTagCategoryInfo
+  int32 nextPage = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagUserRelateName.java ====
+message StTagUserRelateName {
+  int32 type = 1;
+  repeated string tagNames = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagUserRelateNum.java ====
+message StTagUserRelateNum {
+  int32 type = 1;
+  int32 num = 2;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagUserRelateReq.java ====
+message StTagUserRelateReq {
+  string uid = 1;
+  repeated StTagUserRelateNum nums = 2;
+  StGPSV2 gpsInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudTagcategorysvr$StTagUserRelateRsp.java ====
+message StTagUserRelateRsp {
+  repeated StTagUserRelateName names = 1;
+}
+
+// ==== source: feedcloud/FeedCloudToastshowsvr$StGetToastDetailReq.java ====
+message StGetToastDetailReq {
+  StCommonExt extInfo = 1;
+  string userId = 2;
+  string toastId = 3;
+  bytes busiReqData = 4;
+}
+
+// ==== source: feedcloud/FeedCloudToastshowsvr$StGetToastDetailRsp.java ====
+message StGetToastDetailRsp_StToast {
+  string title = 1;
+  string content = 2;
+  repeated bytes user = 3;
+  repeated bytes jumpInfo = 4;
+  uint64 createTime = 5;
+  repeated bytes cover = 6;
+  repeated bytes closeButtonImg = 7;
+  repeated bytes coverLayerAnimation = 8;
+  repeated bytes rightIconAnimation = 9;
+  repeated bytes toastBackgroundImg = 10;
+}
+
+message StGetToastDetailRsp_StToastContent {
+  string title = 1;
+  string content = 2;
+  repeated bytes user = 3;
+  repeated bytes jumpInfo = 4;
+  uint64 createTime = 5;
+  repeated bytes cover = 6;
+  repeated bytes closeButtonImg = 7;
+  repeated bytes coverLayerAnimation = 8;
+  repeated bytes rightIconAnimation = 9;
+  repeated bytes toastBackgroundImg = 10;
+}
+
+message StGetToastDetailRsp_StJumpInfo {
+  int32 jumpType = 1;
+  string jumpLink = 2;
+}
+
+message StGetToastDetailRsp_StAnimation {
+  uint32 width = 1;
+  uint32 height = 2;
+  string animationUrl = 3;
+  bytes busiData = 4;
+}
+
+message StGetToastDetailRsp_StToastBackgroundImg {
+  repeated bytes backgroundImg = 1;
+  float cornerRadius = 2;
+}
+
+message StGetToastDetailRsp_StShowControl {
+  uint32 showPageType = 1;
+  repeated bytes showTime = 2;
+}
+
+message StGetToastDetailRsp_StShowTime {
+  uint32 showTimeType = 1;
+  int64 value = 2;
+  int64 showDuration = 3;
+}
+
+message StGetToastDetailRsp {
+  StCommonExt extInfo = 1;
+  bytes toastInfo = 2;  // was: StToast
+}
+
+// ==== source: feedcloud/FeedCloudUsersettings$GetUsersettingsReq.java ====
+message GetUsersettingsReq {
+  string traceid = 1;
+  string qua = 2;
+  int32 appID = 3;
+  int32 visitScene = 4;
+  repeated Entry attachInfos = 5;
+}
+
+// ==== source: feedcloud/FeedCloudUsersettings$GetUsersettingsRsp.java ====
+message GetUsersettingsRsp_Result {
+  int32 retCode = 1;
+  repeated bytes msg = 2;
+}
+
+message GetUsersettingsRsp_Interval {
+  int32 polling = 1;
+  int32 homeSwitch = 2;
+}
+
+message GetUsersettingsRsp {
+  Result result = 1;
+  bytes interval = 2;  // was: Interval
+  repeated SettingsInfo msgs = 3;
+  repeated Entry attachInfos = 4;
+}
+
+// ==== source: feedcloud/FeedCloudUsersettings$SettingsInfo.java ====
+message SettingsInfo {
+  int32 mainType = 1;
+  bytes bizData = 2;
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StAddViewHistoryReq.java ====
+message StAddViewHistoryReq {
+  repeated bytes viewed_feed = 1;  // was: ViewedFeed
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StAddViewHistoryRsp.java ====
+message StAddViewHistoryRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StDelViewHistoryReq.java ====
+message StDelViewHistoryReq {
+  int32 del_type = 1;
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StDelViewHistoryRsp.java ====
+message StDelViewHistoryRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StGetViewHistoryReq.java ====
+message StGetViewHistoryReq {
+  string attach_info = 1;
+  repeated bytes feeds = 2;  // was: ViewedFeed
+}
+
+// ==== source: feedcloud/FeedCloudViewHistory$StGetViewHistoryRsp.java ====
+message StGetViewHistoryRsp {
+  uint64 count_data = 1;
+  bool is_over = 2;
+  string attach_info = 3;
+  repeated bytes feeds = 4;  // was: ViewedFeed
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$AddWatchLaterEntry.java ====
+message AddWatchLaterEntry {
+  string feed_id = 1;
+  uint64 watch_time = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchAddToWatchLaterReq.java ====
+message BatchAddToWatchLaterReq {
+  repeated AddWatchLaterEntry feed_list = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchAddToWatchLaterRsp.java ====
+message BatchAddToWatchLaterRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchDelFromWatchLaterReq.java ====
+message BatchDelFromWatchLaterReq {
+  int32 del_mode = 1;
+  repeated string feed_id_list = 2;
+  bytes attach_info = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchDelFromWatchLaterRsp.java ====
+message BatchDelFromWatchLaterRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchUpdateFeedStatusReq.java ====
+message BatchUpdateFeedStatusReq {
+  repeated Feed feeds = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$BatchUpdateFeedStatusRsp.java ====
+message BatchUpdateFeedStatusRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$CheckIsInWatchLaterReq.java ====
+message CheckIsInWatchLaterReq {
+  repeated string feed_id_list = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$CheckIsInWatchLaterRsp.java ====
+message CheckIsInWatchLaterRsp {
+  repeated CheckListEntry check_list = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$CheckListEntry.java ====
+message CheckListEntry {
+  string feed_id = 1;
+  bool is_in_watch_later = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$Feed.java ====
+message Feed {
+  StFeed feed_info = 1;
+  uint64 add_time = 2;
+  uint64 watch_time = 3;
+  bool is_completed = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$GetWatchLaterListReq.java ====
+message GetWatchLaterListReq {
+  uint32 size = 1;
+  bytes attach_info = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWatchlater$GetWatchLaterListRsp.java ====
+message GetWatchLaterListRsp {
+  repeated Feed feeds = 1;
+  uint32 list_length = 2;
+  bool has_hidden = 3;
+  string bottom_text = 4;
+  bool is_finished = 5;
+  bytes attach_info = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWidget$StButton.java ====
+message StButton_StButtonStyle {
+  uint32 cornerSize = 1;
+  uint32 textSize = 2;
+  uint32 bgColorPre = 3;
+  uint32 bgColorPost = 4;
+  string textPre = 5;
+  string textPost = 6;
+  uint32 textColorPre = 7;
+  uint32 textColorPost = 8;
+}
+
+message StButton {
+  string name = 1;
+  string jumpUrl = 2;
+  uint32 buttonValue = 3;
+  int32 type = 4;
+  string datongJsonData = 5;
+  bytes style = 6;  // was: StButtonStyle
+}
+
+// ==== source: feedcloud/FeedCloudWrite$AddFriendTagValue.java ====
+message AddFriendTagValue {
+  uint32 uint32_type = 1;
+  bytes bytes_value = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$BatchStDoModCommentExtReq.java ====
+message BatchStDoModCommentExtReq {
+  repeated StDoModCommentExtReq rptStDoModCommentExtReq = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$BatchStDoModCommentExtRsp.java ====
+message BatchStDoModCommentExtRsp {
+  StCommonExt extInfo = 1;
+  repeated ModResult modResults = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$DelFeedLightInteractDataReq.java ====
+message DelFeedLightInteractDataReq {
+  string feedID = 1;
+  string feedPosterID = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$DelFeedLightInteractDataRsp.java ====
+message DelFeedLightInteractDataRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$DoSecurityControlReq.java ====
+message DoSecurityControlReq {
+  repeated uint64 feedID = 1;
+  repeated uint64 posterID = 2;
+  uint32 actionType = 3;
+  uint32 subActionType = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$DoSecurityControlRsp.java ====
+message DoSecurityControlRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$FriendSysMsg.java ====
+message FriendSysMsg {
+  bytes bytes_paster_info = 50;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$GYContentInfo.java ====
+message GYContentInfo {
+  uint32 content = 1;
+  uint32 type = 2;
+  string url = 3;
+  bytes data = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$ModResult.java ====
+message ModResult {
+  string cmtID = 1;
+  uint32 modResult = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxBasic.java ====
+message PushBoxBasic {
+  string feed_id = 1;
+  string auth_uin = 2;
+  repeated PushBoxBasicDrawInfo drawBoxInfo = 3;
+  PushBoxViewInfo pushBoxViewInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxBasicDrawInfo.java ====
+message PushBoxBasicDrawInfo {
+  uint32 box_type = 1;
+  float rate = 2;
+  uint64 count = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxDrawAllReq.java ====
+message PushBoxDrawAllReq {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxDrawAllRsp.java ====
+message PushBoxDrawAllRsp {
+  repeated PushBoxBasic drawBoxResult = 1;
+  bool isEnd = 2;
+  string taskCenterJumpUrl = 3;
+  PushBoxDrawGiftResult gift_result = 4;
+  uint64 un_open_count = 5;
+  PushShowOffBtn show_off_btn = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxDrawGiftResult.java ====
+message PushBoxDrawGiftResult {
+  uint32 gift_type = 1;
+  uint32 total_rocket = 2;
+  string congratulation_words = 3;
+  float rate = 4;
+  string sub_title = 5;
+  string gift_id = 6;
+  string setting_btn_text = 7;
+  string setting_btn_url = 8;
+  string img_url = 9;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxDrawRocketReq.java ====
+message PushBoxDrawRocketReq {
+  PushBoxBasic drawBox = 1;
+  int32 from = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushBoxDrawRocketRsp.java ====
+message PushBoxDrawRocketRsp {
+  PushBoxBasic drawBoxResult = 1;
+  string taskCenterJumpUrl = 2;
+  PushBoxDrawGiftResult gift_result = 3;
+  uint64 un_open_count = 4;
+  PushShowOffBtn show_off_btn = 5;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$PushShowOffBtn.java ====
+message PushShowOffBtn {
+  string url = 1;
+  repeated bytes id = 2;
+  string jump_url = 3;
+  StCommonExt ext_info = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$ShareItem.java ====
+message ShareItem {
+  string to_uin = 1;
+  int32 type = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$ShareResult.java ====
+message ShareResult_ShareTarget {
+  string dest_uin = 1;
+  int32 type = 2;
+}
+
+message ShareResult {
+  bytes targets = 1;  // was: ShareTarget
+  int32 status = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StAddUserGroupReq.java ====
+message StAddUserGroupReq {
+  StCommonExt extInfo = 1;
+  StUserGroupInfo groupInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StAddUserGroupRsp.java ====
+message StAddUserGroupRsp {
+  StCommonExt extInfo = 1;
+  repeated bytes id = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StBatchCallFollowReq.java ====
+message StBatchCallFollowReq {
+  repeated string uids = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StBatchCallFollowRsp.java ====
+message StBatchCallFollowRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StCallFollowRsp.java ====
+message StCallFollowRsp {
+  string uid = 1;
+  uint32 code = 2;
+  repeated bytes msg = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDelFeedReq.java ====
+message StDelFeedReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  int32 from = 3;
+  int32 src = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDelNoticeCategoryPageAndDetailReq.java ====
+message StDelNoticeCategoryPageAndDetailReq {
+  string feedId = 1;
+  int32 category_id = 2;
+  repeated Entry extInfo = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDelNoticeCategoryPageAndDetailRsp.java ====
+message StDelNoticeCategoryPageAndDetailRsp {
+  StCommonExt ext = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDelUserGroupReq.java ====
+message StDelUserGroupReq {
+  StCommonExt extInfo = 1;
+  repeated bytes id = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDelUserGroupRsp.java ====
+message StDelUserGroupRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoAddFriendReq.java ====
+message StDoAddFriendReq {
+  uint64 uint64_friend = 1;
+  uint32 uint32_source = 2;
+  uint32 uint32_subsource = 3;
+  uint32 uint32_from_cmd = 4;
+  uint32 uint32_from_service = 5;
+  uint32 uint32_from_version = 6;
+  uint32 uint32_locale_id = 7;
+  uint32 uint32_req_type = 8;
+  repeated AddFriendTagValue rpt_tag_list = 9;
+  bytes bytes_msg = 10;
+  uint32 uint32_verifyed = 11;
+  uint32 uint32_common_friend = 12;
+  uint32 uint32_common_group = 13;
+  uint32 uint32_contact_relaton = 14;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoAddFriendRsp.java ====
+message StDoAddFriendRsp {
+  uint32 uint32_result = 1;
+  bytes bytes_reason = 2;
+  uint32 uint32_reason = 3;
+  uint32 uint32_permission = 4;
+  bytes bytes_notice = 5;
+  bytes bytes_ext = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBarrageReq.java ====
+message StDoBarrageReq {
+  StCommonExt extInfo = 1;
+  uint32 barrageType = 2;
+  StBarrage barrage = 3;
+  StFeed feed = 4;
+  int32 src = 5;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBarrageRsp.java ====
+message StDoBarrageRsp {
+  StCommonExt extInfo = 1;
+  StBarrage barrage = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchFollowReq.java ====
+message StDoBatchFollowReq {
+  StCommonExt extInfo = 1;
+  repeated StUser userList = 2;
+  int32 from = 3;
+  int32 followMethod = 4;
+  int32 src = 5;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchFollowRsp.java ====
+message StDoBatchFollowRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchMuteFollowReq.java ====
+message StDoBatchMuteFollowReq {
+  StCommonExt extInfo = 1;
+  repeated StUser userList = 2;
+  int32 from = 3;
+  int32 followMethod = 4;
+  int32 src = 5;
+  int32 followDirection = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchMuteFollowRsp.java ====
+message StDoBatchMuteFollowRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchShareFeedReq.java ====
+message StDoBatchShareFeedReq {
+  string feedID = 1;
+  repeated bytes targets = 2;  // was: ShareTarget
+  string text = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBatchShareFeedRsp.java ====
+message StDoBatchShareFeedRsp {
+  repeated ShareResult res = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBrowseReportReq.java ====
+message StDoBrowseReportReq {
+  int32 vv_count = 1;
+  repeated string feed_ids = 2;
+  int32 source = 3;
+  bytes trans_info = 10;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBrowseReportRsp.java ====
+message StDoBrowseReportRsp {
+  string bubble_text = 1;
+  string jump_url = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBuyReq.java ====
+message StDoBuyReq {
+  StCommonExt extInfo = 1;
+  string giftID = 2;
+  int32 amount = 3;
+  int32 giftType = 4;
+  bytes busiReqData = 5;
+  int32 src = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoBuyRsp.java ====
+message StDoBuyRsp {
+  StCommonExt extInfo = 1;
+  bytes busiRspData = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoCollectReq.java ====
+message StDoCollectReq {
+  StCommonExt extInfo = 1;
+  int32 from = 2;
+  uint32 collectType = 3;
+  uint32 collectAction = 4;
+  FeedAlbum feedAlbum = 5;
+  StFeed feed = 6;
+  string collectionID = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoCollectRsp.java ====
+message StDoCollectRsp {
+  StCommonExt extInfo = 1;
+  bool hasFavorites = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoCommentReq.java ====
+message StDoCommentReq {
+  StCommonExt extInfo = 1;
+  uint32 commentType = 2;
+  StComment comment = 3;
+  StFeed feed = 4;
+  int32 from = 5;
+  bytes busiReqData = 6;
+  int32 src = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoCommentRsp.java ====
+message StDoCommentRsp {
+  StCommonExt extInfo = 1;
+  StComment comment = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoFeedCloudProxyReq.java ====
+message StDoFeedCloudProxyReq {
+  StCommonExt extInfo = 1;
+  int32 proxyType = 2;
+  StProxyInfo proxyInfo = 3;
+  bool notifyAfterSec = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoFeedCloudProxyRsp.java ====
+message StDoFeedCloudProxyRsp {
+  StCommonExt extInfo = 1;
+  StProxyInfo proxyInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoFollowReq.java ====
+message StDoFollowReq {
+  StCommonExt extInfo = 1;
+  StUser user = 2;
+  int32 from = 3;
+  int32 followMethod = 4;
+  StFeed feed = 5;
+  int32 src = 6;
+  string euid = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoFollowRsp.java ====
+message StDoFollowRsp {
+  StCommonExt extInfo = 1;
+  bool isDoubly = 2;
+  int32 result = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoGYGenerateReq.java ====
+message StDoGYGenerateReq {
+  StCommonExt extInfo = 1;
+  uint32 scene = 2;
+  repeated uint32 contents = 3;
+  uint32 from = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoGYGenerateRsp.java ====
+message StDoGYGenerateRsp_QRCodeUserInfo {
+  string nick = 1;
+  string avatar = 2;
+  string sign = 3;
+}
+
+message StDoGYGenerateRsp {
+  StCommonExt extInfo = 1;
+  repeated GYContentInfo infos = 2;
+  bytes userInfo = 3;  // was: QRCodeUserInfo
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoModCommentExtReq.java ====
+message StDoModCommentExtReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  StComment comment = 3;
+  int32 extType = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoModCommentExtRsp.java ====
+message StDoModCommentExtRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoMuteFollowReq.java ====
+message StDoMuteFollowReq {
+  StCommonExt extInfo = 1;
+  StUser user = 2;
+  int32 from = 3;
+  int32 followMethod = 4;
+  StFeed feed = 5;
+  int32 src = 6;
+  int32 followDirection = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoMuteFollowRsp.java ====
+message StDoMuteFollowRsp {
+  StCommonExt extInfo = 1;
+  bool isDoubly = 2;
+  int32 result = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoOpBypassBeatReq.java ====
+message StDoOpBypassBeatReq {
+  int32 actionType = 1;
+  int32 subActionType = 2;
+  string feedID = 3;
+  string commentID = 4;
+  string replyID = 5;
+  string barrageID = 6;
+  string commentPosterID = 7;
+  string commentFeedID = 8;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoOpBypassBeatRsp.java ====
+message StDoOpBypassBeatRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoPushReq.java ====
+message StDoPushReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  int32 comboCount = 3;
+  StPushList push = 4;
+  int32 from = 5;
+  bytes busiReqData = 6;
+  int32 pushType = 7;
+  int32 src = 8;
+  int32 push_version = 9;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoPushRsp.java ====
+message StDoPushRsp_PushDoneTaskInfo {
+  repeated bytes id = 1;
+  string desc = 2;
+  string jump_url = 3;
+}
+
+message StDoPushRsp {
+  StCommonExt extInfo = 1;
+  uint32 consumeFuel = 2;
+  uint32 myFuel = 3;
+  bytes busiRspData = 4;
+  uint32 returnFuel = 5;
+  uint32 totalCnt = 6;
+  uint32 cancelPushStatus = 7;
+  int32 pushedCnt = 8;
+  bytes taskInfo = 9;  // was: PushDoneTaskInfo
+  PushBoxViewInfo pushBoxViewInfo = 10;
+  PushBrokeToast push_broke_toast = 11;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoReplyRsp.java ====
+message StDoReplyRsp {
+  StCommonExt extInfo = 1;
+  StReply reply = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoRewardPersonReq.java ====
+message StDoRewardPersonReq {
+  StCommonExt extInfo = 1;
+  StUser toUser = 2;
+  bytes rewardInfo = 3;  // was: StPolyLike
+  int32 from = 4;
+  int32 src = 5;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoRewardPersonRsp.java ====
+message StDoRewardPersonRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoSecurityRsp.java ====
+message StDoSecurityRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoShareReq.java ====
+message StDoShareReq {
+  repeated ShareItem items = 1;
+  string feedID = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoShareRsp.java ====
+message StDoShareRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoThanksRsp.java ====
+message StDoThanksRsp {
+  StCommonExt extInfo = 1;
+  StLike like = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoTopProfileFeedRsp.java ====
+message StDoTopProfileFeedRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoTopReq.java ====
+message StDoTopReq {
+  StCommonExt extInfo = 1;
+  uint32 topType = 2;
+  StFeed feed = 3;
+  StComment comment = 4;
+  int32 from = 5;
+  bytes busiReqData = 6;
+  int32 src = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StDoTopRsp.java ====
+message StDoTopRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StMergeQQKandianAssetsReq.java ====
+message StMergeQQKandianAssetsReq {
+  StCommonExt extInfo = 1;
+  uint32 profileAuthorize = 2;
+  uint32 feedsAuthorize = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StMergeQQKandianAssetsRsp.java ====
+message StMergeQQKandianAssetsRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModUserGroupReq.java ====
+message StModUserGroupReq {
+  StCommonExt extInfo = 1;
+  StUserGroupInfo groupInfo = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModUserGroupRsp.java ====
+message StModUserGroupRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyDownLoadSwitchReq.java ====
+message StModifyDownLoadSwitchReq {
+  string feedID = 1;
+  string posterID = 2;
+  uint64 createTime = 3;
+  uint32 downLoadOper = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyDownLoadSwitchRsp.java ====
+message StModifyDownLoadSwitchRsp {
+  bool isSuccess = 1;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyFeedReq.java ====
+message StModifyFeedReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  uint64 mBitmap = 3;
+  int32 from = 4;
+  int32 src = 5;
+  repeated Entry modifyFeedExtInfo = 6;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyFeedRsp.java ====
+message StModifyFeedRsp {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyUgcRightReq.java ====
+message StModifyUgcRightReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StModifyUgcRightRsp.java ====
+message StModifyUgcRightRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StPublishFeedReq.java ====
+message StPublishFeedReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  bytes busiReqData = 3;
+  int32 from = 4;
+  int32 src = 5;
+  repeated Entry storeFeedExtInfo = 6;
+  bool isSilent = 7;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StPublishFeedRsp.java ====
+message StPublishFeedRsp {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  bytes busiRspData = 3;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StRecomForwardFeedReq.java ====
+message StRecomForwardFeedReq {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  bytes busiReqData = 3;
+  int32 from = 4;
+  StComment comment = 5;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StRecomForwardFeedRsp.java ====
+message StRecomForwardFeedRsp {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+  bytes busiRspData = 3;
+  StComment comment = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StReportReq.java ====
+message StReportReq {
+  StCommonExt extInfo = 1;
+  repeated uint64 type = 2;
+  int32 from = 3;
+  repeated StReportInfo reportInfo = 4;
+}
+
+// ==== source: feedcloud/FeedCloudWrite$StReportRsp.java ====
+message StReportRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: feedcloud/TagCollection$BatchAddReq.java ====
+message BatchAddReq {
+  string unified_type = 1;
+  repeated string unified_id = 2;
+}
+
+// ==== source: feedcloud/TagCollection$BatchAddRsp.java ====
+message BatchAddRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/TagCollection$DeleteReq.java ====
+message DeleteReq {
+  string unified_type = 1;
+  string unified_id = 2;
+}
+
+// ==== source: feedcloud/TagCollection$DeleteRsp.java ====
+message DeleteRsp {
+  // (no fields resolved)
+}
+
+// ==== source: feedcloud/TagCollection$ReadListReq.java ====
+message ReadListReq {
+  string unified_type = 1;
+}
+
+// ==== source: feedcloud/TagCollection$ReadListRsp.java ====
+message ReadListRsp {
+  repeated string unified_id = 1;
+}

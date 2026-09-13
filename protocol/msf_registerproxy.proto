@@ -1,0 +1,70 @@
+// msf_registerproxy 域 — 6 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.msf_registerproxy;
+
+// ==== source: msf/registerproxy/register_proxy$DiscussList.java ====
+message DiscussList {
+  uint64 discuss_code = 1;
+  uint64 discuss_seq = 2;
+  uint64 member_seq = 3;
+  uint64 info_seq = 4;
+  bool bHotGroup = 5;
+  uint64 redpack_time = 6;
+  bool has_msg = 7;
+  int64 dicuss_flag = 8;
+}
+
+// ==== source: msf/registerproxy/register_proxy$GroupList.java ====
+message GroupList {
+  uint64 group_code = 1;
+  uint64 group_seq = 2;
+  uint64 member_seq = 3;
+  uint64 mask = 4;
+  uint64 redpack_time = 5;
+  bool has_msg = 6;
+  int64 group_flag = 7;
+  uint64 group_type = 8;
+  uint32 group_name_seq = 9;
+  uint32 group_member_seq = 10;
+  uint32 uin_flag_ex2 = 11;
+  uint32 important_msg_latest_seq = 12;
+  uint32 group_max_event_seq = 13;
+  uint64 guild_id = 14;
+}
+
+// ==== source: msf/registerproxy/register_proxy$SvcPbResponsePullDisMsgProxy.java ====
+message SvcPbResponsePullDisMsgProxy {
+  uint64 member_seq = 1;
+  bytes msg_content = 2;
+}
+
+// ==== source: msf/registerproxy/register_proxy$SvcRegisterProxyMsgResp.java ====
+message SvcRegisterProxyMsgResp_SvcResponseMsgInfo {
+  uint32 group_num = 1;
+  uint32 discuss_num = 2;
+}
+
+message SvcRegisterProxyMsgResp {
+  uint32 result = 1;
+  bytes err_msg = 2;
+  uint32 flag = 3;
+  uint32 seq = 4;
+  repeated bytes msg_info = 5;
+  repeated GroupList group_list = 6;
+  repeated DiscussList discuss_list = 7;
+  repeated SvcResponsePbPullGroupMsgProxy gourp_msg = 8;
+  repeated SvcPbResponsePullDisMsgProxy discuss_msg = 9;
+  bytes c2c_msg = 10;
+  bytes pub_account_msg = 11;
+  uint32 discuss_list_flag = 12;
+  uint32 roam_msg_optimize_flag = 13;
+  uint32 group_guild_flag = 14;
+}
+
+// ==== source: msf/registerproxy/register_proxy$SvcResponsePbPullGroupMsgProxy.java ====
+message SvcResponsePbPullGroupMsgProxy {
+  uint64 member_seq = 1;
+  bytes msg_content = 2;
+}

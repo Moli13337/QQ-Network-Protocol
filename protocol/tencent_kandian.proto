@@ -1,0 +1,95 @@
+// tencent_kandian 域 — 11 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_kandian;
+
+// ==== source: tencent/kandian/flaginfo/flag_info$FlagInfo.java ====
+message FlagInfo {
+  uint64 uint64_uin = 1;
+  int64 int64_update_time = 2;
+  uint64 uint64_private_flag = 11;
+  uint32 uint32_teenager_flag = 12;
+}
+
+// ==== source: tencent/kandian/p2161im/apn/PushComponentExtPB$MsgBody.java ====
+message MsgBody {
+  string articleIds = 1;
+  string foldStatus = 2;
+  string algoId = 3;
+  string strategyId = 4;
+  string subscripts = 5;
+  bytes pushExtData = 6;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$CooperatorUser.java ====
+message CooperatorUser {
+  string str_head_url = 1;
+  string nick_name = 2;
+  uint64 latest_op_time = 3;
+  uint64 uid = 4;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$ModuleInfo.java ====
+message ModuleInfo {
+  repeated uint64 id = 1;
+  string name = 2;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$SyncCookie.java ====
+message SyncCookie {
+  uint64 start = 1;
+  uint32 is_end = 2;
+  uint32 module_id = 3;
+  uint32 type = 4;
+  string end_rowkey = 5;
+  uint64 end_rowkey_score = 6;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$TopicBubbleInfo.java ====
+message TopicBubbleInfo {
+  uint32 uint32_topic_id = 1;
+  uint32 uint32_up_ts = 2;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$TopicFeedsCountInfo.java ====
+message TopicFeedsCountInfo {
+  uint32 topic_id = 1;
+  uint32 content_count = 2;
+  string end_rowkey = 3;
+  uint64 end_score = 4;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$TopicFeedsRecentInfo.java ====
+message TopicFeedsRecentInfo_RowkeyInfo {
+  uint64 add_time = 1;
+  string rowkey = 2;
+  uint32 start_ts = 3;
+  uint32 end_ts = 4;
+  uint32 content_type = 5;
+  uint32 pay_type = 6;
+  uint32 weight = 7;
+  uint32 chapter = 8;
+  string show_text = 9;
+}
+
+message TopicFeedsRecentInfo {
+  uint32 topic_id = 1;
+  repeated bytes rowkey_info = 2;
+  uint32 module_type = 3;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$TopicModuleFeedsCookie.java ====
+message TopicModuleFeedsCookie {
+  repeated SyncCookie info = 1;
+  uint32 source = 2;
+  repeated uint32 live_rowkeys = 15;
+}
+
+// ==== source: tencent/kandian/ugc/topic_info$TopicRocommend.java ====
+message TopicRocommend {
+  uint32 topic_id = 1;
+  uint32 pos_score = 2;
+  uint32 start_ts = 3;
+  uint32 end_ts = 4;
+}

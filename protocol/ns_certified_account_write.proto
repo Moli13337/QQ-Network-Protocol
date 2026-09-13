@@ -1,0 +1,189 @@
+// ns_certified_account_write 域 — 28 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_certified_account_write;
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StCancelPushReq.java ====
+message StCancelPushReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes pFeed = 2;  // was: StPushSet
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StCancelPushRsp.java ====
+message StCancelPushRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StCreateAccountReq.java ====
+message StCreateAccountReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string name = 2;
+  string desc = 3;
+  string logo = 4;
+  string adminqq = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StCreateAccountRsp.java ====
+message StCreateAccountRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDelAioMsgReq.java ====
+message StDelAioMsgReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string vecMsgId = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDelAioMsgRsp.java ====
+message StDelAioMsgRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDelFeedReq.java ====
+message StDelFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+  int32 from = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoCommentReq.java ====
+message StDoCommentReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 commentType = 2;
+  bytes comment = 3;  // was: StComment
+  bytes feed = 4;  // was: StFeed
+  int32 from = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoCommentRsp.java ====
+message StDoCommentRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes comment = 2;  // was: StComment
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoFollowReq.java ====
+message StDoFollowReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes user = 2;  // was: StUser
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoFollowRsp.java ====
+message StDoFollowRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoLikeReq.java ====
+message StDoLikeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 likeType = 2;
+  bytes like = 3;  // was: StLike
+  bytes feed = 4;  // was: StFeed
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoLikeRsp.java ====
+message StDoLikeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes like = 2;  // was: StLike
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoReplyReq.java ====
+message StDoReplyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 replyType = 2;
+  bytes reply = 3;  // was: StReply
+  bytes comment = 4;  // was: StComment
+  bytes feed = 5;  // was: StFeed
+  int32 from = 6;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoReplyRsp.java ====
+message StDoReplyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes reply = 2;  // was: StReply
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StDoTipOffReq.java ====
+message StDoTipOffReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 reasonId = 2;
+  string reasonText = 3;
+  uint32 tipOffType = 4;
+  bytes user = 5;  // was: StUser
+  bytes feed = 6;  // was: StFeed
+  uint32 feedbackType = 7;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModAccountInfoReq.java ====
+message StModAccountInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes user = 2;  // was: StUser
+  uint32 modField = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModAccountInfoRsp.java ====
+message StModAccountInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModAutoAioReplyReq.java ====
+message StModAutoAioReplyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 sceneType = 2;
+  uint32 modType = 3;
+  bytes autoAioReply = 4;  // was: StAutoAioReply
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModAutoAioReplyRsp.java ====
+message StModAutoAioReplyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModifyFeedReq.java ====
+message StModifyFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+  uint64 mBitmap = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StModifyFeedRsp.java ====
+message StModifyFeedRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StPublishFeedReq.java ====
+message StPublishFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StPublishFeedRsp.java ====
+message StPublishFeedRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes feed = 2;  // was: StFeed
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StPushFeedReq.java ====
+message StPushFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes pFeed = 2;  // was: StPushSet
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StPushFeedRsp.java ====
+message StPushFeedRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes pFeed = 2;  // was: StPushSet
+  uint32 pushFeedResult = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StSetFansGroupListReq.java ====
+message StSetFansGroupListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecGroup = 2;  // was: StQQGroup
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StSetFansGroupListRsp.java ====
+message StSetFansGroupListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}

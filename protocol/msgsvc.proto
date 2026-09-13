@@ -1,0 +1,826 @@
+// msgsvc 域 — 103 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.msgsvc;
+
+// ==== source: msf/msgsvc/msg_ctrl$MsgCtrl.java ====
+message MsgCtrl {
+  uint32 msg_flag = 1;
+  repeated bytes resv_resv_info = 2;
+}
+
+// ==== source: msf/msgsvc/msg_ctrl$ResvResvInfo.java ====
+message ResvResvInfo {
+  uint32 uint32_flag = 1;
+  bytes bytes_reserv1 = 2;
+  uint64 uint64_reserv2 = 3;
+  uint64 uint64_reserv3 = 4;
+  uint32 uint32_create_time = 5;
+  uint32 uint32_pic_height = 6;
+  uint32 uint32_pic_width = 7;
+  uint32 uint32_resv_flag = 8;
+}
+
+// ==== source: msf/msgsvc/msg_svc$AccostTmp.java ====
+message AccostTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+  bool reply = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$AddressListTmp.java ====
+message AddressListTmp {
+  string from_phone = 1;
+  string to_phone = 2;
+  uint64 to_uin = 3;
+  bytes sig = 4;
+  uint32 from_contact_size = 5;
+}
+
+// ==== source: msf/msgsvc/msg_svc$AuthTmp.java ====
+message AuthTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$BsnsTmp.java ====
+message BsnsTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$BusinessWPATmp.java ====
+message BusinessWPATmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+  bytes sigt = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$C2C.java ====
+message C2C {
+  uint64 to_uin = 1;
+}
+
+// ==== source: msf/msgsvc/msg_svc$CommTmp.java ====
+message CommTmp {
+  uint64 to_uin = 1;
+  uint32 c2c_type = 2;
+  uint32 svr_type = 3;
+  bytes sig = 4;
+  bytes reserved = 5;
+}
+
+// ==== source: msf/msgsvc/msg_svc$Dis.java ====
+message Dis {
+  uint64 dis_uin = 1;
+}
+
+// ==== source: msf/msgsvc/msg_svc$DisTmp.java ====
+message DisTmp {
+  uint64 dis_uin = 1;
+  uint64 to_uin = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$Grp.java ====
+message Grp {
+  uint64 group_code = 1;
+}
+
+// ==== source: msf/msgsvc/msg_svc$GrpTmp.java ====
+message GrpTmp {
+  uint64 group_uin = 1;
+  uint64 to_uin = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$MultiMsgAssist.java ====
+message MultiMsgAssist {
+  repeated RoutingHead repeated_routing = 1;
+  int32 msg_use = 2;
+  uint64 uint64_temp_id = 3;
+  uint64 uint64_vedio_len = 4;
+  bytes bytes_redbag_id = 5;
+  uint64 uint64_redbag_amount = 6;
+  uint32 uint32_has_readbag = 7;
+  uint32 uint32_has_vedio = 8;
+}
+
+// ==== source: msf/msgsvc/msg_svc$NearByAssistantTmp.java ====
+message NearByAssistantTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+  bool reply = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$NearByDatingTmp.java ====
+message NearByDatingTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+  bool reply = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbBindUinGetMsgReq.java ====
+message PbBindUinGetMsgReq {
+  uint64 bind_uin = 1;
+  bytes bind_uin_sig = 2;
+  int32 sync_flag = 3;
+  bytes sync_cookie = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbBindUinMsgReadedConfirmReq.java ====
+message PbBindUinMsgReadedConfirmReq {
+  bytes sync_cookie = 1;
+  uint64 bind_uin = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbBindUinMsgReadedConfirmResp.java ====
+message PbBindUinMsgReadedConfirmResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  bytes sync_cookie = 3;
+  uint64 bind_uin = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbBindUinUnReadMsgNumReq.java ====
+message PbBindUinUnReadMsgNumReq {
+  uint64 bind_uin = 1;
+  bytes sync_cookie = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbBindUinUnReadMsgNumResp.java ====
+message PbBindUinUnReadMsgNumResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 bind_uin = 3;
+  uint32 msg_num = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbC2CMsgWithDrawReq.java ====
+message PbC2CMsgWithDrawReq {
+  repeated MsgInfo msg_info = 1;
+  uint32 uint32_long_message_flag = 2;
+  bytes bytes_reserved = 3;
+  uint32 uint32_sub_cmd = 4;
+}
+
+message MsgInfo {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  uint32 uint32_msg_seq = 3;
+  uint64 uint64_msg_uid = 4;
+  uint64 uint64_msg_time = 5;
+  uint32 uint32_msg_random = 6;
+  uint32 uint32_pkg_num = 7;
+  uint32 uint32_pkg_index = 8;
+  uint32 uint32_div_seq = 9;
+  uint32 uint32_msg_type = 10;
+  repeated bytes routing_head = 20;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbC2CMsgWithDrawResp.java ====
+message PbC2CMsgWithDrawResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  repeated MsgStatus msg_status = 3;
+  uint32 uint32_sub_cmd = 4;
+  repeated bytes msg_wording_info = 5;
+}
+
+message MsgStatus {
+  MsgInfo msg_info = 1;
+  uint32 uint32_status = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbC2CReadedReportReq.java ====
+message PbC2CReadedReportReq {
+  bytes sync_cookie = 1;
+  repeated UinPairReadInfo pair_info = 2;
+}
+
+message UinPairReadInfo {
+  uint64 peer_uin = 1;
+  uint32 last_read_time = 2;
+  bytes crm_sig = 3;
+  int32 peer_type = 4;
+  uint32 chat_type = 5;
+  uint64 cpid = 6;
+  uint32 aio_type = 7;
+  uint64 uint64_to_tiny_id = 9;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbC2CReadedReportResp.java ====
+message PbC2CReadedReportResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  bytes sync_cookie = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDelRoamMsgReq.java ====
+message PbDelRoamMsgReq {
+  C2CMsg c2c_msg = 1;
+  GrpMsg grp_msg = 2;
+  DisMsg dis_msg = 3;
+}
+
+message C2CMsg {
+  uint64 from_uin = 1;
+  uint64 peer_uin = 2;
+  uint32 msg_time = 3;
+  uint32 msg_random = 4;
+  uint32 msg_seq = 5;
+}
+
+message DisMsg {
+  uint64 discuss_uin = 1;
+  uint64 msg_seq = 2;
+}
+
+message GrpMsg {
+  uint64 group_code = 1;
+  uint64 msg_seq = 2;
+  uint32 uint32_resv_flag = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDelRoamMsgResp.java ====
+message PbDelRoamMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDeleteMsgReq.java ====
+message PbDeleteMsgReq {
+  repeated MsgItem msgItems = 1;
+}
+
+message MsgItem {
+  uint64 from_uin = 1;
+  uint64 to_uin = 2;
+  uint32 msg_seq = 3;
+  uint64 msg_uid = 4;
+  bytes sig = 5;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDeleteMsgResp.java ====
+message PbDeleteMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDiscussReadedReportReq.java ====
+message PbDiscussReadedReportReq {
+  uint64 conf_uin = 1;
+  uint64 last_read_seq = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbDiscussReadedReportResp.java ====
+message PbDiscussReadedReportResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 conf_uin = 3;
+  uint64 member_seq = 4;
+  uint64 conf_seq = 5;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetDiscussMsgReq.java ====
+message PbGetDiscussMsgReq {
+  uint64 discuss_uin = 1;
+  uint64 end_seq = 2;
+  uint64 begin_seq = 3;
+  uint64 last_get_time = 4;
+  uint64 discuss_info_seq = 5;
+  int32 filter = 6;
+  uint64 member_seq = 7;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetDiscussMsgResp.java ====
+message PbGetDiscussMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 discuss_uin = 3;
+  uint64 return_end_seq = 4;
+  uint64 return_begin_seq = 5;
+  repeated bytes msg = 6;
+  uint64 last_get_time = 7;
+  uint64 discuss_info_seq = 8;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetGroupMsgReq.java ====
+message PbGetGroupMsgReq {
+  uint64 group_code = 1;
+  uint64 begin_seq = 2;
+  uint64 end_seq = 3;
+  int32 filter = 4;
+  uint64 member_seq = 5;
+  bool public_group = 6;
+  uint32 shield_flag = 7;
+  uint32 save_traffic_flag = 8;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetGroupMsgResp.java ====
+message PbGetGroupMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 group_code = 3;
+  uint64 return_begin_seq = 4;
+  uint64 return_end_seq = 5;
+  repeated bytes msg = 6;
+  uint32 uint32_has_share_history_msg = 9;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetMsgReq.java ====
+message PbGetMsgReq {
+  int32 sync_flag = 1;
+  bytes sync_cookie = 2;
+  uint32 ramble_flag = 3;
+  uint32 latest_ramble_number = 4;
+  uint32 other_ramble_number = 5;
+  uint32 online_sync_flag = 6;
+  uint32 context_flag = 7;
+  uint32 whisper_session_id = 8;
+  uint32 msg_req_type = 9;
+  bytes pubaccount_cookie = 10;
+  bytes msg_ctrl_buf = 11;
+  bytes bytes_server_buf = 12;
+  uint32 nt_flag = 16;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetMsgResp.java ====
+message PbGetMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  bytes sync_cookie = 3;
+  int32 sync_flag = 4;
+  repeated bytes uin_pair_msgs = 5;  // was: UinPairMsg
+  uint64 bind_uin = 6;
+  uint32 msg_rsp_type = 7;
+  bytes pubaccount_cookie = 8;
+  bool is_partial_sync = 9;
+  bytes msg_ctrl_buf = 10;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetOneDayRoamMsgReq.java ====
+message PbGetOneDayRoamMsgReq {
+  uint64 peer_uin = 1;
+  uint64 last_msgtime = 2;
+  uint64 random = 3;
+  uint32 read_cnt = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetOneDayRoamMsgResp.java ====
+message PbGetOneDayRoamMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 peer_uin = 3;
+  uint64 last_msgtime = 4;
+  uint64 random = 5;
+  repeated bytes msg = 6;
+  uint32 iscomplete = 7;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetRoamMsgReq.java ====
+message PbGetRoamMsgReq {
+  uint64 peer_uin = 1;
+  uint64 last_msgtime = 2;
+  uint64 random = 3;
+  uint32 read_cnt = 4;
+  uint32 check_pwd = 5;
+  bytes sig = 6;
+  bytes pwd = 7;
+  uint64 begin_msgtime = 8;
+  uint32 req_type = 9;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGetRoamMsgResp.java ====
+message PbGetRoamMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 peer_uin = 3;
+  uint64 last_msgtime = 4;
+  uint64 random = 5;
+  repeated bytes msg = 6;
+  bytes sig = 7;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGroupMsgWithDrawReq.java ====
+message PbGroupMsgWithDrawReq {
+  uint32 uint32_sub_cmd = 1;
+  uint32 uint32_group_type = 2;
+  uint64 uint64_group_code = 3;
+  repeated MessageInfo msg_list = 4;
+  bytes bytes_userdef = 5;
+}
+
+message MessageInfo {
+  uint32 uint32_msg_seq = 1;
+  uint32 uint32_msg_random = 2;
+  uint32 uint32_msg_type = 3;
+  uint32 uint32_resv_flag = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGroupMsgWithDrawResp.java ====
+message PbGroupMsgWithDrawResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint32 uint32_sub_cmd = 3;
+  uint32 uint32_group_type = 4;
+  uint64 uint64_group_code = 5;
+  repeated MessageResult failed_msg_list = 6;
+  bytes bytes_userdef = 7;
+  repeated bytes msg_wording_info = 8;
+}
+
+message MessageResult {
+  uint32 uint32_result = 1;
+  uint32 uint32_msg_seq = 2;
+  uint32 uint32_msg_time = 3;
+  uint32 uint32_msg_random = 4;
+  bytes bytes_err_msg = 5;
+  uint32 uint32_msg_type = 6;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGroupReadedReportReq.java ====
+message PbGroupReadedReportReq {
+  uint64 group_code = 1;
+  uint64 last_read_seq = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbGroupReadedReportResp.java ====
+message PbGroupReadedReportResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint64 group_code = 3;
+  uint64 member_seq = 4;
+  uint64 group_msg_seq = 5;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbMsgReadedReportReq.java ====
+message PbMsgReadedReportReq {
+  repeated PbGroupReadedReportReq grp_read_report = 1;
+  repeated PbDiscussReadedReportReq dis_read_report = 2;
+  repeated bytes c2c_read_report = 3;
+  repeated bytes bind_uin_read_report = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbMsgReadedReportResp.java ====
+message PbMsgReadedReportResp {
+  repeated PbGroupReadedReportResp grp_read_report = 1;
+  repeated PbDiscussReadedReportResp dis_read_report = 2;
+  repeated bytes c2c_read_report = 3;
+  repeated bytes bind_uin_read_report = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbMsgWithDrawReq.java ====
+message PbMsgWithDrawReq {
+  repeated PbC2CMsgWithDrawReq c2c_with_draw = 1;
+  repeated PbGroupMsgWithDrawReq group_with_draw = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbMsgWithDrawResp.java ====
+message PbMsgWithDrawResp {
+  repeated PbC2CMsgWithDrawResp c2c_with_draw = 1;
+  repeated PbGroupMsgWithDrawResp group_with_draw = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbPullGroupMsgSeqReq.java ====
+message PbPullGroupMsgSeqReq {
+  repeated GroupInfoReq group_info_req = 1;
+}
+
+message GroupInfoReq {
+  uint64 group_code = 1;
+  uint64 last_seq = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbPullGroupMsgSeqResp.java ====
+message PbPullGroupMsgSeqResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  repeated GroupInfoResp group_info_resp = 3;
+}
+
+message GroupInfoResp {
+  uint64 group_code = 1;
+  uint64 member_seq = 2;
+  uint64 group_seq = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbSearchRoamMsgInCloudReq.java ====
+message PbSearchRoamMsgInCloudReq {
+  bytes serialize_reqbody = 1;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbSearchRoamMsgInCloudResp.java ====
+message PbSearchRoamMsgInCloudResp {
+  repeated bytes msg = 1;
+  bytes serialize_rspbody = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbSendMsgReq.java ====
+message PbSendMsgReq_PbInputNotifyInfo {
+  uint64 to_uin = 1;
+  uint32 ime = 2;
+  uint32 notify_flag = 3;
+  bytes bytes_pb_reserve = 4;
+  bytes ios_push_wording = 5;
+}
+
+message PbSendMsgReq_ReceiptReq {
+  int32 command = 1;
+  repeated bytes msg_info = 2;
+}
+
+message PbSendMsgReq_MsgInfo {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  uint32 uint32_msg_seq = 3;
+  uint32 uint32_msg_random = 4;
+}
+
+message PbSendMsgReq {
+  repeated bytes routing_head = 1;
+  repeated bytes content_head = 2;
+  repeated bytes msg_body = 3;
+  uint32 msg_seq = 4;
+  uint32 msg_rand = 5;
+  bytes sync_cookie = 6;
+  repeated bytes app_share = 7;
+  uint32 msg_via = 8;
+  uint32 data_statist = 9;
+  repeated bytes multi_msg_assist = 10;
+  repeated bytes input_notify_info = 11;
+  repeated bytes msg_ctrl = 12;
+  repeated bytes receipt_req = 13;
+  uint32 multi_send_seq = 14;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbSendMsgResp.java ====
+message PbSendMsgResp_MsgSendInfo {
+  uint32 receiver = 1;
+}
+
+message PbSendMsgResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint32 send_time = 3;
+  uint32 uint32_svrbusy_wait_time = 4;
+  repeated bytes msg_send_info = 5;
+  uint32 errtype = 6;
+  repeated bytes trans_svr_info = 7;
+  repeated bytes receipt_resp = 8;
+  uint32 text_analysis_result = 9;
+  uint32 uint32_msg_info_flag = 10;
+  bytes msgeleminfo_servtype37 = 13;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbThirdQQUnReadMsgNumReq.java ====
+message PbThirdQQUnReadMsgNumReq {
+  repeated ThirdQQReqInfo thirdqq_req_info = 1;
+  uint32 source = 2;
+}
+
+message ThirdQQReqInfo {
+  uint64 third_uin = 1;
+  bytes third_uin_sig = 2;
+  bytes third_uin_cookie = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbThirdQQUnReadMsgNumResp.java ====
+message PbThirdQQUnReadMsgNumResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  repeated ThirdQQRespInfo thirdqq_resp_info = 3;
+  uint32 interval = 4;
+}
+
+message ThirdQQRespInfo {
+  uint64 third_uin = 1;
+  bytes third_uin_cookie = 2;
+  uint32 msg_num = 3;
+  uint32 msg_flag = 4;
+  uint32 redbag_time = 5;
+  uint32 status = 6;
+  uint32 last_msg_time = 7;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbUnReadMsgSeqReq.java ====
+message PbUnReadMsgSeqReq_PbC2CUnReadMsgNumReq {
+  // (no fields resolved)
+}
+
+message PbUnReadMsgSeqReq_PbPullDiscussMsgSeqReq {
+  repeated DiscussInfoReq discuss_info_req = 1;
+}
+
+message PbUnReadMsgSeqReq {
+  repeated bytes c2c_unread_info = 1;
+  repeated PbBindUinUnReadMsgNumReq binduin_unread_info = 2;
+  repeated bytes group_unread_info = 3;
+  repeated bytes discuss_unread_info = 4;
+  repeated bytes thirdqq_unread_info = 5;
+}
+
+message DiscussInfoReq {
+  uint64 conf_uin = 1;
+  uint64 last_seq = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PbUnReadMsgSeqResp.java ====
+message PbUnReadMsgSeqResp_PbC2CUnReadMsgNumResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint32 msg_num = 3;
+}
+
+message PbUnReadMsgSeqResp_PbPullDiscussMsgSeqResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  repeated DiscussInfoResp discuss_info_resp = 3;
+}
+
+message PbUnReadMsgSeqResp {
+  repeated bytes c2c_unread_info = 1;
+  repeated PbBindUinUnReadMsgNumResp binduin_unread_info = 2;
+  repeated bytes group_unread_info = 3;
+  repeated bytes discuss_unread_info = 4;
+  repeated bytes thirdqq_unread_info = 5;
+}
+
+message DiscussInfoResp {
+  uint64 conf_uin = 1;
+  uint64 member_seq = 2;
+  uint64 conf_seq = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PubGroupTmp.java ====
+message PubGroupTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+  uint64 group_uin = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$PublicPlat.java ====
+message PublicPlat {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$QQQueryBusinessTmp.java ====
+message QQQueryBusinessTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$RichStatusTmp.java ====
+message RichStatusTmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$RoutingHead.java ====
+message RoutingHead_SecretFileHead {
+  repeated bytes secret_file_msg = 1;
+  repeated bytes secret_file_status = 2;
+}
+
+message RoutingHead_MsgBody {
+  bytes bytes_file_key = 1;
+  uint64 uint64_from_uin = 2;
+  uint64 uint64_to_uin = 3;
+  uint32 uint32_status = 4;
+  uint32 uint32_ttl = 5;
+  uint32 uint32_type = 6;
+  uint32 uint32_encrypt_prehead_length = 7;
+  uint32 uint32_encrypt_type = 8;
+  bytes bytes_encrypt_key = 9;
+  uint32 uint32_read_times = 10;
+  uint32 uint32_left_time = 11;
+  repeated bytes not_online_image = 12;
+}
+
+message RoutingHead_NotOnlineImage {
+  bytes file_path = 1;
+  uint32 file_len = 2;
+  bytes download_path = 3;
+  bytes old_ver_send_file = 4;
+  uint32 img_type = 5;
+  bytes previews_image = 6;
+  bytes pic_md5 = 7;
+  uint32 pic_height = 8;
+  uint32 pic_width = 9;
+  bytes res_id = 10;
+  bytes flag = 11;
+  string str_download_url = 12;
+  uint32 original = 13;
+}
+
+message RoutingHead_TransCmd {
+  uint64 to_uin = 1;
+}
+
+message RoutingHead {
+  repeated bytes c2c = 1;
+  repeated bytes grp = 2;
+  repeated bytes grp_tmp = 3;
+  repeated bytes dis = 4;
+  repeated bytes dis_tmp = 5;
+  repeated bytes wpa_tmp = 6;
+  repeated bytes secret_file = 7;
+  repeated bytes public_plat = 8;
+  repeated bytes trans_msg = 9;
+  repeated bytes address_list = 10;
+  repeated bytes rich_status_tmp = 11;
+  repeated bytes trans_cmd = 12;
+  repeated bytes accost_tmp = 13;
+  repeated bytes pub_group_tmp = 14;
+  repeated bytes trans_0x211 = 15;
+  repeated bytes business_wpa_tmp = 16;
+  repeated bytes auth_tmp = 17;
+  repeated bytes bsns_tmp = 18;
+  repeated bytes qq_querybusiness_tmp = 19;
+  repeated bytes nearby_dating_tmp = 20;
+  repeated bytes nearby_assistant_tmp = 21;
+  repeated bytes comm_tmp = 22;
+}
+
+// ==== source: msf/msgsvc/msg_svc$Trans0x211.java ====
+message Trans0x211 {
+  uint64 to_uin = 1;
+  uint32 cc_cmd = 2;
+  repeated bytes inst_ctrl = 3;
+  bytes sig = 4;
+  uint32 c2c_type = 5;
+  uint32 service_type = 6;
+  uint32 dataline_flag = 7;
+}
+
+// ==== source: msf/msgsvc/msg_svc$TransMsg.java ====
+message TransMsg {
+  uint64 to_uin = 1;
+  uint32 c2c_cmd = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$TransReq.java ====
+message TransReq {
+  int32 command = 1;
+  uint32 req_tag = 2;
+  bytes req_buff = 3;
+}
+
+// ==== source: msf/msgsvc/msg_svc$TransResp.java ====
+message TransResp {
+  uint32 result = 1;
+  string errmsg = 2;
+  uint32 resp_tag = 3;
+  bytes resp_buff = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$TransSvrInfo.java ====
+message TransSvrInfo {
+  uint32 uint32_sub_type = 1;
+  int32 int32_ret_code = 2;
+  bytes bytes_err_msg = 3;
+  bytes bytes_trans_info = 4;
+}
+
+// ==== source: msf/msgsvc/msg_svc$WPATmp.java ====
+message WPATmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+// ==== source: msf/msgsvc/msg_svc$WithDrawWordingInfo.java ====
+message WithDrawWordingInfo {
+  int32 int32_item_id = 1;
+  string string_item_name = 2;
+}
+
+// ==== source: msf/msgsvc/msgtransmit/msg_transmit$PbMultiMsgItem.java ====
+message PbMultiMsgItem {
+  string fileName = 1;
+  bytes buffer = 2;
+}
+
+// ==== source: msf/msgsvc/msgtransmit/msg_transmit$PbMultiMsgNew.java ====
+message PbMultiMsgNew {
+  repeated bytes msg = 1;
+}
+
+// ==== source: msf/msgsvc/msgtransmit/msg_transmit$PbMultiMsgTransmit.java ====
+message PbMultiMsgTransmit {
+  repeated bytes msg = 1;
+  repeated PbMultiMsgItem pbItemList = 2;
+}
+
+// ==== source: msf/msgsvc/nt_register_proxy$GetGroupShareMsgReq.java ====
+message GetGroupShareMsgReq {
+  uint64 group_code = 1;
+}
+
+// ==== source: msf/msgsvc/nt_register_proxy$GetGroupShareMsgRsp.java ====
+message GetGroupShareMsgRsp {
+  uint32 result = 1;
+  bytes err_msg = 2;
+  uint64 group_code = 3;
+  repeated bytes msg = 4;
+  repeated uint64 failed_seqs = 5;
+}

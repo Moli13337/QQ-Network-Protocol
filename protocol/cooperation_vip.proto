@@ -1,0 +1,290 @@
+// cooperation_vip 域 — 36 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.cooperation_vip;
+
+// ==== source: cooperation/vip/p1670pb/SsoElement.java ====
+message AIOEntraceReq {
+  uint64 co_adopter = 1;
+  uint32 version = 2;
+}
+
+message AIOEntraceRsp {
+  string element_pic = 1;
+  string tag_pic = 2;
+  string main_title = 3;
+  string content = 4;
+  uint32 element_count = 5;
+}
+
+// ==== source: cooperation/vip/p1670pb/TianShuAccess.java ====
+message AdItem {
+  uint32 iAdId = 1;
+  string traceinfo = 5;
+  string title = 10;
+  string desc = 11;
+  string jumpurl = 12;
+  string iconurl = 13;
+  repeated string lstPic = 14;
+  repeated MapEntry argList = 15;
+  string ext_info = 20;
+  string content_hash = 23;
+}
+
+message AdPlacementInfo {
+  int32 type = 1;
+  repeated AdItem lst = 2;
+  uint32 next_query_ts = 3;
+  string extInfo = 4;
+  string ctlInfo = 5;
+}
+
+message AdPosItem {
+  uint32 posId = 1;
+  uint32 nNeedCnt = 2;
+  repeated MapEntry extra_info = 14;
+}
+
+message ClientStatus {
+  MsgTabStatus stMsgTabStatus = 1;
+}
+
+message CommInfo {
+  uint64 lUin = 1;
+  string strDeviceInfo = 3;
+  Gps stGps = 4;
+  uint32 iBid = 5;
+  string strUserIp = 6;
+  string strApp = 7;
+  string strOs = 8;
+  string strVersion = 9;
+  string strOpenId = 10;
+  string strCityCode = 11;
+  int32 iNetWorkEnv = 12;
+  string strQua = 13;
+  string strQimei = 14;
+  string strUid = 15;
+  bool bLocationAuthorization = 16;
+  string strExpSeq = 20;
+  string traceId = 21;
+  int32 mode = 24;
+  uint32 a11yMode = 27;
+}
+
+message GetAdsEntry {
+  uint64 key = 1;
+  bytes value = 2;
+}
+
+message GetAdsReq {
+  CommInfo stComminfo = 1;
+  repeated AdPosItem lstPos = 2;
+  repeated GetAdsEntry mapPosTran = 3;
+  ClientStatus stClientStatus = 4;
+}
+
+message GetAdsRsp {
+  int32 code = 1;
+  string errmsg = 2;
+  repeated RspEntry mapAds = 3;
+  string rspExtInfo = 4;
+  repeated MapEntry ctrlInfo = 5;
+  repeated GetAdsEntry mapPosTran = 6;
+}
+
+message Gps {
+  int32 lat = 1;
+  int32 lon = 2;
+  int32 accuracy = 3;
+}
+
+message MapEntry {
+  string key = 1;
+  string value = 2;
+}
+
+message MsgTabShowingAd {
+  uint64 ad_id = 1;
+  int64 first_show_ts = 2;
+}
+
+message MsgTabStatus {
+  int32 scene = 1;
+  bool IsContainerShowing = 2;
+  repeated MsgTabShowingAd showing_ads = 3;
+}
+
+message RspEntry {
+  uint32 key = 1;
+  AdPlacementInfo value = 2;
+}
+
+// ==== source: cooperation/vip/p1670pb/TianShuReport.java ====
+message UserActionMultiReportReq {
+  UserCommReport user_comm_report = 1;
+  repeated UserActionReport report_infos = 2;
+}
+
+message UserActionMultiReportRsp {
+  string err_msg = 1;
+  int32 multi_duration = 2;
+}
+
+message UserActionPvStatic {
+  string appid = 1;
+  string page_id = 2;
+  string module_id = 3;
+  string sub_module_id = 4;
+  int64 rule_id = 5;
+  string item_id = 6;
+  int32 action_id = 7;
+  int64 value = 8;
+}
+
+message UserActionReport {
+  string trace_id = 1;
+  uint32 trace_num = 2;
+  string trace_detail = 3;
+  string trace_index = 4;
+  string appid = 5;
+  string page_id = 6;
+  string item_id = 7;
+  string sub_item_id = 8;
+  string module_id = 9;
+  string sub_module_id = 10;
+  string position_id = 11;
+  int64 test_id = 12;
+  int64 rule_id = 13;
+  int64 oper_time = 14;
+  int32 action_id = 15;
+  int64 action_value = 16;
+  int32 action_attr = 17;
+  string trigger_info = 18;
+  string busi_info = 19;
+  string item_type = 20;
+  string to_uid = 21;
+}
+
+message UserActionReportReq {
+  // (no fields resolved)
+}
+
+message UserActionReportRsp {
+  string err_msg = 1;
+}
+
+message UserCommReport {
+  string uid = 1;
+  string to_uid = 2;
+  string guid = 3;
+  double longitude = 4;
+  double latitude = 5;
+  string city_code = 6;
+  string platform = 7;
+  string client_type = 8;
+  string app_version = 9;
+  string market = 10;
+  string qua = 11;
+  string os_version = 12;
+  string mobile_type = 13;
+  string ip_addr = 14;
+  string network_type = 15;
+  string operators = 16;
+  repeated bytes qimei36 = 17;
+  string brand = 18;
+  string sub_platform = 19;
+  uint64 appid = 20;
+}
+
+// ==== source: cooperation/vip/p1670pb/vac_adv_get.java ====
+message DefaultConf {
+  string left_bottom_text = 1;
+  string right_bottom_button = 2;
+}
+
+message DropList {
+  string iconurl = 1;
+  string optext = 2;
+  string jumpurl = 3;
+  int32 action_type = 4;
+}
+
+message FeedsContextInfo {
+  int32 index = 1;
+  string ugckey = 2;
+}
+
+message QzoneBusiMsg {
+  int32 page_num = 1;
+  repeated FeedsContextInfo cur_page_infos = 2;
+  string device_info = 3;
+}
+
+message RewardReqInfo {
+  int32 reward_type = 1;
+  bytes reward_item = 2;
+}
+
+message RewardRspInfo {
+  uint64 time = 1;
+  int32 nonce = 2;
+  string signature = 3;
+}
+
+message VacAdvMetaMsg {
+  bytes adv_rsp = 1;  // was: AdInfo
+  int32 insert_pos = 2;
+  string recomm_cookie = 3;
+}
+
+message VacAdvReq {
+  repeated uint64 qq = 1;
+  bytes device_info = 2;  // was: DeviceInfo
+  int32 adv_pos = 3;
+  QzoneBusiMsg qzone_busi_info = 4;
+  string attach_info = 5;
+  RewardReqInfo reward_req_info = 7;
+  uint32 source_from = 8;
+}
+
+message VacAdvRsp {
+  string err_msg = 1;
+  repeated VacAdvMetaMsg vac_adv_msgs = 2;
+  string attach_info = 3;
+  RewardRspInfo reward_rsp_info = 4;
+  bytes busi_buffer = 5;
+}
+
+message VacFeedsAdvMetaInfo {
+  bytes adv_rsp = 1;  // was: AdInfo
+  DefaultConf default_conf = 2;
+  repeated DropList droplist = 3;
+  string recomm_cookie = 4;
+}
+
+message VacFeedsAdvMetaMsg {
+  bytes rsp_buffer = 1;
+  int32 insert_pos = 2;
+}
+
+message VacFeedsAdvMetaReq {
+  bytes device_info = 1;  // was: DeviceInfo
+}
+
+message VacFeedsAdvReq {
+  repeated uint64 qq = 1;
+  int32 adv_pos = 2;
+  bytes req_buffer = 3;
+  int32 page_num = 4;
+  int32 pre_feed_index = 5;
+  repeated string recom_adv_pos = 6;
+  string attach_info = 7;
+}
+
+message VacFeedsAdvRsp {
+  string err_msg = 1;
+  repeated VacFeedsAdvMetaMsg vac_adv_msgs = 2;
+  string attach_info = 3;
+  int32 adv_export_cnt = 4;
+}

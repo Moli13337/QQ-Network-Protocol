@@ -1,0 +1,311 @@
+// tencent_mobileim 域 — 25 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_mobileim;
+
+// ==== source: tencent/mobileim/structmsg/QPayReminderMsg$GetInfoReq.java ====
+message GetInfoReq {
+  string scene = 1;
+  string sub_cmd = 2;
+  string info_date = 3;
+}
+
+// ==== source: tencent/mobileim/structmsg/QPayReminderMsg$GetInfoRsp.java ====
+message GetInfoRsp {
+  uint32 result_code = 1;
+  string result_info = 2;
+  uint32 urgency = 3;
+  uint32 template_no = 4;
+  string content = 5;
+  string info_date = 6;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$AddFrdSNInfo.java ====
+message AddFrdSNInfo {
+  uint32 uint32_not_see_dynamic = 1;
+  uint32 uint32_set_sn = 2;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$FlagInfo.java ====
+message FlagInfo {
+  uint32 GrpMsg_Kick_Admin = 1;
+  uint32 GrpMsg_HiddenGrp = 2;
+  uint32 GrpMsg_WordingDown = 3;
+  uint32 FrdMsg_GetBusiCard = 4;
+  uint32 GrpMsg_GetOfficialAccount = 5;
+  uint32 GrpMsg_GetPayInGroup = 6;
+  uint32 FrdMsg_Discuss2ManyChat = 7;
+  uint32 GrpMsg_NotAllowJoinGrp_InviteNotFrd = 8;
+  uint32 FrdMsg_NeedWaitingMsg = 9;
+  uint32 FrdMsg_uint32_need_all_unread_msg = 10;
+  uint32 GrpMsg_NeedAutoAdminWording = 11;
+  uint32 GrpMsg_get_transfer_group_msg_flag = 12;
+  uint32 GrpMsg_get_quit_pay_group_msg_flag = 13;
+  uint32 GrpMsg_support_invite_auto_join = 14;
+  uint32 GrpMsg_mask_invite_auto_join = 15;
+  uint32 GrpMsg_GetDisbandedByAdmin = 16;
+  uint32 GrpMsg_GetC2cInviteJoinGroup = 17;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$FriendInfo.java ====
+message FriendInfo {
+  string msg_joint_friend = 1;
+  string msg_blacklist = 2;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$GroupNotifyTransInfo.java ====
+message GroupNotifyTransInfo {
+  uint64 join_group_susp_sec_code = 1;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$ReqNextSystemMsg.java ====
+message ReqNextSystemMsg {
+  uint32 msg_num = 1;
+  uint64 following_friend_seq = 2;
+  uint64 following_group_seq = 3;
+  int32 checktype = 4;
+  repeated bytes flag = 5;
+  uint32 language = 6;
+  uint32 version = 7;
+  uint64 friend_msg_type_flag = 8;
+  uint32 uint32_req_msg_type = 9;
+  uint32 uint32_need_uid = 16;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$ReqSystemMsg.java ====
+message ReqSystemMsg {
+  uint32 msg_num = 1;
+  uint64 latest_friend_seq = 2;
+  uint64 latest_group_seq = 3;
+  uint32 version = 4;
+  uint32 language = 5;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$ReqSystemMsgAction.java ====
+message ReqSystemMsgAction {
+  uint64 msg_seq = 1;
+  uint64 req_uin = 2;
+  uint32 sub_type = 3;
+  uint32 src_id = 4;
+  uint32 sub_src_id = 5;
+  uint32 group_msg_type = 6;
+  repeated uint64 action_info = 7;
+  uint32 language = 8;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$ReqSystemMsgNew.java ====
+message ReqSystemMsgNew {
+  uint32 msg_num = 1;
+  uint64 latest_friend_seq = 2;
+  uint64 latest_group_seq = 3;
+  uint32 version = 4;
+  int32 checktype = 5;
+  repeated bytes flag = 6;
+  uint32 language = 7;
+  bool is_get_frd_ribbon = 8;
+  bool is_get_grp_ribbon = 9;
+  uint64 friend_msg_type_flag = 10;
+  uint32 uint32_req_msg_type = 11;
+  uint32 uint32_need_uid = 16;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$ReqSystemMsgRead.java ====
+message ReqSystemMsgRead {
+  uint64 latest_friend_seq = 1;
+  uint64 latest_group_seq = 2;
+  uint32 type = 3;
+  int32 checktype = 4;
+  uint32 uint32_req_msg_type = 5;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspHead.java ====
+message RspHead {
+  int32 result = 1;
+  string msg_fail = 2;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspNextSystemMsg.java ====
+message RspNextSystemMsg {
+  repeated bytes head = 1;
+  repeated StructMsg msgs = 2;
+  uint64 following_friend_seq = 3;
+  uint64 following_group_seq = 4;
+  int32 checktype = 5;
+  string bytes_game_nick = 100;
+  bytes bytes_undecid_for_qim = 101;
+  uint32 uint32_un_read_count3 = 102;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspSystemMsg.java ====
+message RspSystemMsg {
+  repeated bytes head = 1;
+  repeated StructMsg msgs = 2;
+  uint32 unread_count = 3;
+  uint64 latest_friend_seq = 4;
+  uint64 latest_group_seq = 5;
+  uint64 following_friend_seq = 6;
+  uint64 following_group_seq = 7;
+  string msg_display = 8;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspSystemMsgAction.java ====
+message RspSystemMsgAction {
+  repeated bytes head = 1;
+  string msg_detail = 2;
+  uint32 type = 3;
+  string msg_invalid_decided = 5;
+  uint32 remark_result = 6;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspSystemMsgNew.java ====
+message RspSystemMsgNew {
+  repeated bytes head = 1;
+  uint32 unread_friend_count = 2;
+  uint32 unread_group_count = 3;
+  uint64 latest_friend_seq = 4;
+  uint64 latest_group_seq = 5;
+  uint64 following_friend_seq = 6;
+  uint64 following_group_seq = 7;
+  repeated StructMsg friendmsgs = 9;
+  repeated StructMsg groupmsgs = 10;
+  repeated bytes msg_ribbon_friend = 11;
+  repeated bytes msg_ribbon_group = 12;
+  string msg_display = 13;
+  string grp_msg_display = 14;
+  uint32 uint32_over = 15;
+  int32 checktype = 20;
+  string bytes_game_nick = 100;
+  bytes bytes_undecid_for_qim = 101;
+  uint32 uint32_un_read_count3 = 102;
+  uint32 uint32_has_suspicious_flag = 103;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$RspSystemMsgRead.java ====
+message RspSystemMsgRead {
+  repeated bytes head = 1;
+  uint32 type = 2;
+  int32 checktype = 3;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$StructMsg.java ====
+message StructMsg {
+  uint32 version = 1;
+  uint64 msg_seq = 2;
+  uint64 msg_time = 3;
+  uint64 req_uin = 4;
+  uint32 uint32_unread_flag = 5;
+  repeated uint64 msg = 6;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$SystemMsg.java ====
+message SystemMsg_GroupInfo {
+  uint32 group_auth_type = 1;
+  uint32 display_action = 2;
+  string msg_alert = 3;
+  string msg_detail_alert = 4;
+  string msg_other_admin_done = 5;
+  uint32 uint32_app_privilege_flag = 6;
+}
+
+message SystemMsg_MsgInviteExt {
+  uint32 uint32_src_type = 1;
+  uint64 uint64_src_code = 2;
+  uint32 uint32_wait_state = 3;
+}
+
+message SystemMsg_MsgPayGroupExt {
+  uint64 uint64_join_grp_time = 1;
+  uint64 uint64_quit_grp_time = 2;
+}
+
+message SystemMsg {
+  uint32 sub_type = 1;
+  string msg_title = 2;
+  string msg_describe = 3;
+  string msg_additional = 4;
+  string msg_source = 5;
+  string msg_decided = 6;
+  uint32 src_id = 7;
+  uint32 sub_src_id = 8;
+  repeated SystemMsgAction actions = 9;
+  uint64 group_code = 10;
+  uint64 action_uin = 11;
+  uint32 group_msg_type = 12;
+  uint32 group_inviter_role = 13;
+  repeated bytes friend_info = 14;
+  repeated bytes group_info = 15;
+  uint64 actor_uin = 16;
+  string msg_actor_describe = 17;
+  string msg_additional_list = 18;
+  uint32 relation = 19;
+  uint32 reqsubtype = 20;
+  uint64 clone_uin = 21;
+  uint64 uint64_discuss_uin = 22;
+  uint64 uint64_eim_group_id = 23;
+  repeated bytes msg_invite_extinfo = 24;
+  repeated bytes msg_pay_group_extinfo = 25;
+  uint32 uint32_source_flag = 26;
+  bytes bytes_game_nick = 27;
+  bytes bytes_game_msg = 28;
+  uint32 uint32_group_flagext3 = 29;
+  uint64 uint64_group_owner_uin = 30;
+  uint32 uint32_doubt_flag = 31;
+  bytes bytes_warning_tips = 32;
+  bytes bytes_name_more = 33;
+  bytes bytes_addtion = 34;
+  bytes bytes_transparent_group_notify = 50;
+  int32 req_uin_faceid = 51;
+  string req_uin_nick = 52;
+  string group_name = 54;
+  string action_uin_nick = 55;
+  string msg_qna = 57;
+  string msg_detail = 6306;
+  string actor_uin_nick = 59;
+  bytes pic_url = 60;
+  bytes req_uin_business_card = 63;
+  bytes eim_group_id_name = 64;
+  bytes req_uin_pre_remark = 65;
+  bytes action_uin_qq_nick = 66;
+  bytes action_uin_remark = 69;
+  uint32 req_uin_gender = 101;
+  uint32 req_uin_age = 108;
+  uint32 uint32_c2c_invite_join_group_flag = 110;
+  uint32 card_switch = 112;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$SystemMsgAction.java ====
+message SystemMsgAction {
+  string name = 1;
+  string result = 2;
+  uint32 action = 3;
+  repeated bytes action_info = 4;
+  string detail_name = 5;
+}
+
+// ==== source: tencent/mobileim/structmsg/structmsg$SystemMsgActionInfo.java ====
+message SystemMsgActionInfo {
+  int32 type = 1;
+  uint64 group_code = 2;
+  bytes sig = 3;
+  repeated bytes msg = 50;
+  uint32 group_id = 51;
+  string remark = 52;
+  bool blacklist = 53;
+  repeated bytes addFrdSNInfo = 54;
+  uint32 uint32_req_msg_type = 55;
+}
+
+// ==== source: tencent/mobileim/structmsg/youtu$NameCardOcrRsp.java ====
+message NameCardOcrRsp {
+  int32 errorcode = 1;
+  string errormsg = 2;
+  string uin = 3;
+  float uin_confidence = 4;
+  string phone = 5;
+  float phone_confidence = 6;
+  string name = 7;
+  float name_confidence = 8;
+  bytes image = 9;
+  string session_id = 10;
+}

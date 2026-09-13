@@ -1,0 +1,41 @@
+// com_hiboom 域 — 6 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.com_hiboom;
+
+// ==== source: com/hiboom/protocol/DiyEmotionPb$Filter_Req.java ====
+message Filter_Req_Filter_Req_Comm {
+  int64 platform = 1;
+  string osver = 2;
+  string mqqver = 3;
+}
+
+message Filter_Req_Filter_Text_Req {
+  repeated string text = 1;
+}
+
+message Filter_Req {
+  uint32 cmd = 1;
+  uint64 packet_seq = 2;
+  bytes comm = 3;  // was: Filter_Req_Comm
+  bytes reqcmd_0x01 = 4;  // was: Filter_Text_Req
+}
+
+// ==== source: com/hiboom/protocol/DiyEmotionPb$Filter_Rsp.java ====
+message Filter_Rsp_Filter_Rsp_Comm {
+  // (no fields resolved)
+}
+
+message Filter_Rsp_Filter_Text_Rsp {
+  repeated bool is_valid = 1;
+}
+
+message Filter_Rsp {
+  int64 ret = 1;
+  string errmsg = 2;
+  uint32 cmd = 3;
+  uint64 packet_seq = 4;
+  bytes comm = 5;  // was: Filter_Rsp_Comm
+  bytes rspcmd_0x01 = 6;  // was: Filter_Text_Rsp
+}

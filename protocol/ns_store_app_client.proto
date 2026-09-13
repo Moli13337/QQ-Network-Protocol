@@ -1,0 +1,133 @@
+// ns_store_app_client 域 — 17 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_store_app_client;
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StChangeTopAppOrderReq.java ====
+message StChangeTopAppOrderReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecAppInfo = 2;  // was: StUserAppInfo
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StChangeTopAppOrderRsp.java ====
+message StChangeTopAppOrderRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetFirstPageByTypeReq.java ====
+message StGetFirstPageByTypeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 uiPageType = 2;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetFirstPageByTypeRsp.java ====
+message StGetFirstPageByTypeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecAppInfo = 2;  // was: StUserAppInfo
+  repeated bytes vecAppRecommendCard = 3;  // was: StAppRecommendCard
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetMyAppListByTypeReq.java ====
+message StGetMyAppListByTypeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 uiAppType = 2;
+  uint32 uiListType = 3;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetMyAppListByTypeRsp.java ====
+message StGetMyAppListByTypeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecAppInfo = 2;  // was: StUserAppInfo
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetRecommendCardDetailReq.java ====
+message StGetRecommendCardDetailReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string strCardId = 2;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/MiniAppStore$StGetRecommendCardDetailRsp.java ====
+message StGetRecommendCardDetailRsp_StAppRecommendCard {
+  string strCardId = 1;
+  string strCardTitle = 2;
+  string strCardSubTitle = 3;
+  uint32 uiCardType = 4;
+  repeated bytes vecAppInfo = 5;  // was: StUserAppInfo
+  repeated bytes stSpecialAppInfo = 6;
+  uint32 uiCardStatus = 7;
+}
+
+message StGetRecommendCardDetailRsp_StSpecialAppInfo {
+  repeated bytes stAppInfo = 1;
+  repeated bytes stFirstPicInfo = 2;
+  repeated bytes vecPicInfo = 3;  // was: StPicInfo
+  repeated bytes stVideoInfo = 4;
+  string strText = 5;
+}
+
+message StGetRecommendCardDetailRsp_StPicInfo {
+  string strUrl = 1;
+  uint32 uiWidth = 2;
+  uint32 uiHeight = 3;
+}
+
+message StGetRecommendCardDetailRsp_StVideoInfo {
+  string strVideoUrl = 1;
+  string strCoverUrl = 2;
+  uint32 uiDuration = 3;
+  uint32 uiWidth = 4;
+  uint32 uiHeight = 5;
+  uint32 uiSize = 6;
+}
+
+message StGetRecommendCardDetailRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes stAppRecommendCard = 2;  // was: StAppRecommendCard
+}
+
+// ==== source: NS_STORE_APP_CLIENT/STORE_APP_CLIENT$StGetGuessYouLikeReq.java ====
+message StGetGuessYouLikeReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 count = 2;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/STORE_APP_CLIENT$StGetGuessYouLikeRsp.java ====
+message StGetGuessYouLikeRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StoreAppInfo appList = 2;
+  int32 isFinish = 3;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/STORE_APP_CLIENT$StRankingList.java ====
+message StRankingList {
+  string nick = 1;
+  string avatar = 2;
+  int32 ranks = 3;
+  int32 score = 4;
+  string unit = 5;
+  string uid = 6;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/STORE_APP_CLIENT$StUserInfo.java ====
+message StUserInfo {
+  string uin = 1;
+  string avatar = 2;
+  string nick = 3;
+}
+
+// ==== source: NS_STORE_APP_CLIENT/STORE_APP_CLIENT$StoreAppInfo.java ====
+message StoreAppInfo {
+  bytes userAppInfo = 1;  // was: StUserAppInfo
+  int32 userNum = 2;
+  string bgIcon = 3;
+  string via = 4;
+  repeated StUserInfo users = 5;
+  uint64 newestFriTime = 6;
+  string bossTrace = 7;
+  string recommendReason = 8;
+  StUserInfo closeFri = 9;
+  string rcmdTrace = 10;
+  string playingFriText = 11;
+  string serviceCategoryText = 12;
+}

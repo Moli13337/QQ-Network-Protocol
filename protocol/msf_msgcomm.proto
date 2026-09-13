@@ -1,0 +1,180 @@
+// msf_msgcomm 域 — 16 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.msf_msgcomm;
+
+// ==== source: msf/msgcomm/msg_comm$AppShareInfo.java ====
+message AppShareInfo {
+  uint32 appshare_id = 1;
+  bytes appshare_cookie = 2;
+  repeated bytes appshare_resource = 3;
+}
+
+// ==== source: msf/msgcomm/msg_comm$C2CTmpMsgHead.java ====
+message C2CTmpMsgHead {
+  uint32 c2c_type = 1;
+  uint32 service_type = 2;
+  uint64 group_uin = 3;
+  uint64 group_code = 4;
+  bytes sig = 5;
+  uint32 sig_type = 6;
+  string from_phone = 7;
+  string to_phone = 8;
+  uint32 lock_display = 9;
+  uint32 direction_flag = 10;
+  bytes reserved = 11;
+  bytes business_name = 14;
+  bytes business_sub_content = 15;
+}
+
+// ==== source: msf/msgcomm/msg_comm$ContentHead.java ====
+message ContentHead {
+  uint32 pkg_num = 1;
+  uint32 pkg_index = 2;
+  uint32 div_seq = 3;
+  uint32 auto_reply = 4;
+}
+
+// ==== source: msf/msgcomm/msg_comm$DiscussInfo.java ====
+message DiscussInfo {
+  uint64 discuss_uin = 1;
+  uint32 discuss_type = 2;
+  uint64 discuss_info_seq = 3;
+  bytes discuss_remark = 4;
+  bytes discuss_name = 5;
+}
+
+// ==== source: msf/msgcomm/msg_comm$GroupInfo.java ====
+message GroupInfo {
+  uint64 group_code = 1;
+  uint32 group_type = 2;
+  uint64 group_info_seq = 3;
+  bytes group_card = 4;
+  bytes group_rank = 5;
+  uint32 group_level = 6;
+  uint32 group_card_type = 7;
+  bytes group_name = 8;
+}
+
+// ==== source: msf/msgcomm/msg_comm$Msg.java ====
+message Msg {
+  repeated bytes msg_head = 1;
+  repeated bytes content_head = 2;
+  repeated bytes msg_body = 3;
+  repeated bytes appshare_info = 4;
+}
+
+// ==== source: msf/msgcomm/msg_comm$MsgHead.java ====
+message MsgHead_ExtGroupKeyInfo {
+  uint32 cur_max_seq = 1;
+  uint64 cur_time = 2;
+  uint32 operate_by_parents = 3;
+  bytes bytes_ext_group_info = 4;
+}
+
+message MsgHead {
+  uint64 from_uin = 1;
+  uint64 to_uin = 2;
+  uint32 c2c_cmd = 3;
+  uint32 msg_seq = 4;
+  uint32 msg_time = 5;
+  uint64 msg_uid = 6;
+  repeated uint64 c2c_tmp_msg_head = 7;
+  repeated bytes group_info = 8;
+  uint32 from_appid = 9;
+  uint32 from_instid = 10;
+  uint32 user_active = 11;
+  repeated uint64 discuss_info = 12;
+  string from_nick = 13;
+  uint64 auth_uin = 14;
+  string auth_nick = 15;
+  uint32 msg_flag = 16;
+  string auth_remark = 17;
+  string group_name = 18;
+  repeated bytes mutiltrans_head = 19;
+  repeated bytes msg_inst_ctrl = 20;
+  uint32 public_account_group_send_flag = 21;
+  uint32 wseq_in_c2c_msghead = 22;
+  uint64 cpid = 23;
+  repeated uint64 ext_group_key_info = 24;
+  string multi_compatible_text = 25;
+  uint32 auth_sex = 26;
+  bool is_src_msg = 27;
+}
+
+// ==== source: msf/msgcomm/msg_comm$MsgType0x210.java ====
+message MsgType0x210 {
+  uint32 sub_msg_type = 1;
+  bytes msg_content = 2;
+}
+
+// ==== source: msf/msgcomm/msg_comm$MutilTransHead.java ====
+message MutilTransHead {
+  uint32 status = 1;
+  uint32 msgId = 2;
+  uint32 friend_flag = 3;
+  string from_anno_id = 4;
+  string from_face_url = 5;
+}
+
+// ==== source: msf/msgcomm/msg_comm$PluginInfo.java ====
+message PluginInfo {
+  uint32 res_id = 1;
+  string pkg_name = 2;
+  uint32 new_ver = 3;
+  uint32 res_type = 4;
+  uint32 lan_type = 5;
+  uint32 priority = 6;
+  string res_name = 7;
+  string res_desc = 8;
+  string res_url_big = 9;
+  string res_url_small = 10;
+  string res_conf = 11;
+}
+
+// ==== source: msf/msgcomm/msg_comm$Uin2Nick.java ====
+message Uin2Nick {
+  uint64 uint64_uin = 1;
+  string str_nick = 2;
+}
+
+// ==== source: msf/msgcomm/msg_comm$UinPairMsg.java ====
+message UinPairMsg {
+  uint32 last_read_time = 1;
+  uint64 peer_uin = 2;
+  uint32 msg_completed = 3;
+  repeated bytes msg = 4;
+  uint32 unread_msg_num = 5;
+  uint32 c2c_type = 8;
+  uint32 service_type = 9;
+  bytes bytes_pb_reserve = 10;
+  uint64 uint64_to_tiny_id = 11;
+}
+
+// ==== source: msf/msgcomm/nt_msg_common$RoutingHead.java ====
+message RoutingHead_C2c {
+  // (no fields resolved)
+}
+
+message RoutingHead_Group {
+  uint64 group_code = 1;
+  uint32 group_type = 2;
+  uint64 group_info_seq = 3;
+  bytes group_card = 4;
+  uint32 group_card_type = 5;
+  uint32 group_level = 6;
+  bytes group_name = 7;
+  bytes ext_group_key_info = 8;
+}
+
+message RoutingHead {
+  uint64 from_uin = 1;
+  bytes from_uid = 2;
+  uint32 from_appid = 3;
+  uint32 from_instid = 4;
+  uint64 to_uin = 5;
+  bytes to_uid = 6;
+  repeated bytes c2c = 7;
+  repeated bytes group = 8;
+}

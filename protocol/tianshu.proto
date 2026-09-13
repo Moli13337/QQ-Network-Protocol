@@ -1,0 +1,71 @@
+// tianshu 域 — 8 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tianshu;
+
+// ==== source: tianshu/TianShuQuantityLimit$AdLicense.java ====
+message AdLicense {
+  bool canShow = 1;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$AdStatus.java ====
+message AdStatus {
+  uint32 iAdId = 1;
+  repeated UserAction actionList = 2;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$CommInfo.java ====
+message CommInfo_Gps {
+  int32 lat = 1;
+  int32 lon = 2;
+  int32 accuracy = 3;
+}
+
+message CommInfo {
+  uint64 lUin = 1;
+  string strDeviceInfo = 3;
+  bytes stGps = 4;  // was: Gps
+  uint32 iBid = 5;
+  string strUserIp = 6;
+  string strApp = 7;
+  string strOs = 8;
+  string strVersion = 9;
+  string strOpenId = 10;
+  string strCityCode = 11;
+  int32 iNetWorkEnv = 12;
+  string strQua = 13;
+  string strQimei = 14;
+  string strUid = 15;
+  bool bLocationAuthorization = 16;
+  string strExpSeq = 20;
+  string traceId = 21;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$GetAdLicenseReq.java ====
+message GetAdLicenseReq {
+  CommInfo stComminfo = 1;
+  repeated AdStatus adList = 2;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$GetAdLicenseRsp.java ====
+message GetAdLicenseRsp {
+  int32 code = 1;
+  string errmsg = 2;
+  repeated MapEntry ad_licenses = 3;
+  int32 minIntervalSecs = 4;
+  string extInfo = 5;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$MapEntry.java ====
+message MapEntry {
+  uint32 key = 1;
+  AdLicense license = 2;
+}
+
+// ==== source: tianshu/TianShuQuantityLimit$UserAction.java ====
+message UserAction {
+  int32 action_id = 1;
+  int64 action_time = 2;
+  int64 action_value = 3;
+}

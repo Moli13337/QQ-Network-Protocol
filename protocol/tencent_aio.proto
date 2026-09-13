@@ -1,0 +1,357 @@
+// tencent_aio 域 — 43 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_aio;
+
+// ==== source: tencent/aio/media/VideoWriteReply.java ====
+message VideoWriteReply {
+  uint32 result = 1;
+  string errmsg = 2;
+  string jumpUrl = 3;
+}
+
+// ==== source: tencent/aio/media/VideoWriteRequest.java ====
+message VideoWriteRequest {
+  uint64 gid = 1;
+  uint32 categoryId = 2;
+  string matchId = 3;
+  uint32 operType = 4;
+  uint64 targetUin = 5;
+  string roomTitle = 6;
+  string roomCover = 7;
+}
+
+// ==== source: tencent/aio/media/aio_media$AIOPush.java ====
+message AIOPush {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  int32 msg_push_type = 3;
+  uint64 seq = 4;
+  uint32 uint32_joined_num = 5;
+  int32 enum_c2c_join_state = 6;
+  repeated bytes msg_personal_setting = 7;
+  int32 enum_play_mode = 8;
+}
+
+// ==== source: tencent/aio/media/aio_media$DynamicInfo.java ====
+message DynamicInfo {
+  uint32 uint32_user_num = 2;
+  repeated uint64 rpt_uint64_uins = 3;
+  int32 int32_media_type = 4;
+}
+
+// ==== source: tencent/aio/media/aio_media$PersonalSetting.java ====
+message PersonalSetting {
+  uint32 uint32_theme_id = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqCollect.java ====
+message ReqCollect {
+  string str_song_id = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqCreateRoom.java ====
+message ReqCreateRoom {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  string str_song_id = 3;
+  int32 enum_media_type = 4;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqGetUserAuth.java ====
+message ReqGetUserAuth {
+  uint64 uint64_id = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqLatestPlayingState.java ====
+message ReqLatestPlayingState {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  uint32 uint32_version = 3;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqMediaOperation.java ====
+message ReqMediaOperation {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  int32 enum_operation = 3;
+  int32 enum_play_mode = 4;
+  int32 enum_cut_type = 5;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqReportDownloadFail.java ====
+message ReqReportDownloadFail {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  string str_song_id = 3;
+  bytes bytes_song_name = 4;
+  repeated bytes rpt_bytes_singer = 5;
+  bytes bytes_song_url = 6;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqRoomOperation.java ====
+message ReqRoomOperation {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  int32 enum_room_operation = 3;
+  int32 enum_media_type = 4;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqShareTrans.java ====
+message ReqShareTrans {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  uint32 uint32_share_appid = 3;
+  bytes bytes_song_name = 4;
+  repeated bytes rpt_bytes_singer = 5;
+  bytes bytes_song_url = 6;
+  bool bool_cut_song = 7;
+  string str_song_id = 8;
+  uint32 uint32_duration = 9;
+  uint64 uint64_sharer_uin = 10;
+  bytes bytes_cover = 11;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqShareTransCheck.java ====
+message ReqShareTransCheck {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  uint32 uint32_share_appid = 3;
+  bytes bytes_song_name = 4;
+  repeated bytes rpt_bytes_singer = 5;
+  bytes bytes_song_url = 6;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqSongExtendedInfo.java ====
+message ReqSongExtendedInfo {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  repeated SongExtendedReqParam rpt_msg_song_list = 3;
+}
+
+// ==== source: tencent/aio/media/aio_media$ReqSongPlayShowInfo.java ====
+message ReqSongPlayShowInfo {
+  uint64 uint64_id = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$ResultInfo.java ====
+message ResultInfo {
+  uint32 uint32_result = 1;
+  bytes bytes_errmsg = 2;
+  uint64 uint32_svr_time = 3;
+  uint64 uint64_svr_time = 4;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspCollect.java ====
+message RspCollect {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspCreateRoom.java ====
+message RspCreateRoom {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspGetDynamicInfo.java ====
+message RspGetDynamicInfo {
+  repeated bytes msg_result = 1;
+  repeated bytes msg_music_info = 10;
+  repeated bytes msg_video_info = 11;
+  repeated bytes msg_ksing_info = 12;
+  repeated bytes msg_play_info = 13;
+  repeated DynamicInfo rpt_dynamic_info = 14;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspGetUserAuth.java ====
+message RspGetUserAuth {
+  repeated bytes msg_result = 1;
+  bool bool_allow_member_start = 2;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspLatestPlayingState.java ====
+message RspLatestPlayingState {
+  repeated bytes msg_result = 1;
+  int32 enum_aio_state = 2;
+  int32 enum_media_type = 3;
+  repeated bytes msg_music = 4;
+  uint64 uint64_create_uin = 5;
+  int32 enum_user_state = 6;
+  uint32 uint32_joined_num = 7;
+  int32 enum_c2c_join_state = 8;
+  repeated bytes msg_personal_setting = 9;
+  uint64 uint64_aio_identification = 10;
+  int32 enum_joined_aio_type = 20;
+  uint64 uint64_joined_id = 21;
+  bool bool_joined_is_creater = 22;
+  int32 enum_joined_media_type = 23;
+  repeated bytes msg_room_info = 50;
+  repeated bytes msg_ksing_info = 51;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspMediaOperation.java ====
+message RspMediaOperation {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspReportDownloadFail.java ====
+message RspReportDownloadFail {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspRoomOperation.java ====
+message RspRoomOperation {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspShareTrans.java ====
+message RspShareTrans {
+  repeated bytes msg_result = 1;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspShareTransCheck.java ====
+message RspShareTransCheck {
+  repeated bytes msg_result = 1;
+  int32 enum_aio_state = 2;
+  int32 enum_media_type = 3;
+  bool bool_show_icon = 4;
+  string str_song_id = 5;
+  uint32 uint32_duration = 6;
+  uint64 uint64_create_uin = 7;
+  bool bool_song_existed = 8;
+  bool bool_allow_member_start = 9;
+  bool bool_allow_member_add = 10;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspSongExtendedInfo.java ====
+message RspSongExtendedInfo {
+  repeated bytes msg_result = 1;
+  repeated Song rpt_msg_song_list = 2;
+}
+
+// ==== source: tencent/aio/media/aio_media$RspSongPlayShowInfo.java ====
+message RspSongPlayShowInfo {
+  repeated bytes msg_result = 1;
+  uint32 uint32_join_num = 2;
+  repeated uint64 rpt_uint64_join_uins = 3;
+}
+
+// ==== source: tencent/aio/media/aio_media$Song.java ====
+message Song {
+  string str_song_id = 1;
+  bytes bytes_name = 2;
+  bytes bytes_sub_title = 3;
+  repeated uint64 rpt_bytes_singer = 4;
+  repeated uint64 rpt_bytes_download_url = 5;
+  bytes bytes_lyric = 6;
+  bytes bytes_cover = 7;
+  uint32 uint32_duration = 8;
+  int32 enum_song_source = 9;
+  uint64 uint64_sharer_uin = 10;
+}
+
+// ==== source: tencent/aio/media/aio_media$SongExtendedReqParam.java ====
+message SongExtendedReqParam {
+  string str_song_id = 1;
+  bool bool_need_url = 2;
+  bool bool_need_lyric = 3;
+}
+
+// ==== source: tencent/aio/media/aio_media$TypeKSing.java ====
+message TypeKSing {
+  uint32 uint32_type = 1;
+  uint64 uint64_id = 2;
+  bytes bytes_jump = 3;
+  bytes bytes_cover = 4;
+  bytes bytes_name = 5;
+  uint64 uint64_singer = 6;
+  bytes bytes_song = 7;
+}
+
+// ==== source: tencent/aio/media/aio_media$TypeMusic.java ====
+message TypeMusic {
+  repeated Song rpt_msg_song_list = 1;
+  uint32 uint32_progress_seek = 2;
+  int32 int32_progress_seek = 3;
+  int32 enum_play_mode = 4;
+  bool bool_allow_member_start = 5;
+  bool bool_allow_member_add = 6;
+}
+
+// ==== source: tencent/aio/media/aio_media$TypeVideo.java ====
+message TypeVideo {
+  uint32 uint32_type = 1;
+  uint64 uint64_id = 2;
+  bytes bytes_jump = 3;
+  bytes bytes_cover = 4;
+  uint32 uint32_polling = 5;
+  bytes bytes_name = 6;
+  int32 enum_video_type = 7;
+  int32 enum_video_jump_type = 8;
+  bytes bytes_video_jump_value = 9;
+  bytes match_id = 10;
+}
+
+// ==== source: tencent/aio/media/open/aio_media_open$ReqOpenIdentify.java ====
+message ReqOpenIdentify {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  bytes bytes_req_data = 4;
+  bytes bytes_req_sign = 5;
+}
+
+// ==== source: tencent/aio/media/open/aio_media_open$ReqOpenStart.java ====
+message ReqOpenStart {
+  int32 enum_aio_type = 1;
+  uint64 uint64_id = 2;
+  bytes bytes_req_data = 4;
+  bytes bytes_req_sign = 5;
+}
+
+// ==== source: tencent/aio/media/open/aio_media_open$RspOpenIdentify.java ====
+message RspOpenIdentify {
+  repeated bytes msg_result = 1;
+  bytes bytes_button_text = 2;
+  bytes bytes_confirm_text = 3;
+  bytes bytes_introduce_title = 4;
+  bytes bytes_introduce_text = 5;
+  uint32 uint32_business_type = 6;
+}
+
+// ==== source: tencent/aio/media/open/aio_media_open$RspOpenStart.java ====
+message RspOpenStart {
+  repeated bytes msg_result = 1;
+  int32 enum_jump_type = 2;
+  bytes bytes_jump_url = 3;
+}
+
+// ==== source: tencent/aio/video/aio_video$ErrInfo.java ====
+message ErrInfo {
+  bytes err_msg = 1;
+}
+
+// ==== source: tencent/aio/video/aio_video$ReqGetOpenIdByUin.java ====
+message ReqGetOpenIdByUin {
+  uint32 app_id = 1;
+  uint64 target_uin = 2;
+}
+
+// ==== source: tencent/aio/video/aio_video$ReqGetUinByOpenId.java ====
+message ReqGetUinByOpenId {
+  uint32 app_id = 1;
+  bytes open_id = 2;
+  bytes open_key = 3;
+  uint64 group_id = 4;
+}
+
+// ==== source: tencent/aio/video/aio_video$RspGetOpenIdByUin.java ====
+message RspGetOpenIdByUin {
+  repeated bytes err_info = 1;
+  bytes open_id = 2;
+}
+
+// ==== source: tencent/aio/video/aio_video$RspGetUinByOpenId.java ====
+message RspGetUinByOpenId {
+  repeated bytes err_info = 1;
+  uint64 uin = 2;
+}

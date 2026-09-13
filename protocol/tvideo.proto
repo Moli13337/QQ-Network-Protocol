@@ -1,0 +1,350 @@
+// tvideo 域 — 50 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tvideo;
+
+// ==== source: tvideo/TVideoBingeWatch$AlbumAtom.java ====
+message AlbumAtom {
+  string cid = 1;
+  string vid = 2;
+  int32 video_time = 3;
+  int64 timestamp = 4;
+  string material_aspect_vid = 5;
+}
+
+// ==== source: tvideo/TVideoBingeWatch$GetUserAlbumInfoData.java ====
+message GetUserAlbumInfoData {
+  repeated UserAlbumInfo user_album_list = 1;
+}
+
+// ==== source: tvideo/TVideoBingeWatch$GetUserAlbumInfoRequest.java ====
+message GetUserAlbumInfoRequest {
+  repeated string cover_ids = 1;
+}
+
+// ==== source: tvideo/TVideoBingeWatch$GetUserAlbumInfoResponse.java ====
+message GetUserAlbumInfoResponse {
+  string err_msg = 1;
+  GetUserAlbumInfoData data = 2;
+}
+
+// ==== source: tvideo/TVideoBingeWatch$UpdateAlbumRequest.java ====
+message UpdateAlbumRequest {
+  int32 option_type = 1;
+  repeated AlbumAtom album_list = 2;
+  string source = 3;
+  string uid = 4;
+}
+
+// ==== source: tvideo/TVideoBingeWatch$UserAlbumInfo.java ====
+message UserAlbumInfo {
+  bool opened = 1;
+  bool is_user_album = 2;
+  AlbumAtom album_atom = 3;
+}
+
+// ==== source: tvideo/TVideoChannelList$GetVideoChannelListResp.java ====
+message GetVideoChannelListResp {
+  string err_msg = 1;
+  VideoChannelListData data = 2;
+}
+
+// ==== source: tvideo/TVideoChannelList$ReportMap.java ====
+message ReportMap {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: tvideo/TVideoChannelList$VideoChannelData.java ====
+message VideoChannelData {
+  int32 channel_id = 1;
+  string channel_title = 2;
+  string channel_icon = 3;
+  bool is_subscribed = 4;
+  int32 channel_page_type = 5;
+  string page_url = 6;
+  string page_module_name = 7;
+  repeated ReportMap page_report_map = 8;
+  string channel_theme_co1or = 9;
+  bool show_red_dot = 10;
+  string red_dot_text = 11;
+  int32 red_dot_version = 12;
+}
+
+// ==== source: tvideo/TVideoChannelList$VideoChannelListData.java ====
+message VideoChannelListData {
+  repeated VideoChannelData channel_list = 1;
+}
+
+// ==== source: tvideo/TVideoFloatPr$FlowPoolReportInfo.java ====
+message FlowPoolReportInfo {
+  repeated FlowPoolReportMap report = 1;
+}
+
+// ==== source: tvideo/TVideoFloatPr$FlowPoolReportMap.java ====
+message FlowPoolReportMap {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: tvideo/TVideoFloatPr$GetQqPromotionData.java ====
+message GetQqPromotionData {
+  repeated QqPromotions promotions = 1;
+}
+
+// ==== source: tvideo/TVideoFloatPr$GetQqPromotionLocationData.java ====
+message GetQqPromotionLocationData {
+  int32 flag = 1;
+  repeated FlowPoolReportMap vids = 2;
+}
+
+// ==== source: tvideo/TVideoFloatPr$GetQqPromotionLocationResp.java ====
+message GetQqPromotionLocationResp {
+  int32 errCode = 1;
+  string errMsg = 2;
+  GetQqPromotionLocationData data = 3;
+}
+
+// ==== source: tvideo/TVideoFloatPr$GetQqPromotionReq.java ====
+message GetQqPromotionReq {
+  string pageType = 1;
+  string uniqueId = 2;
+  string cid = 3;
+  repeated int32 itemType = 4;
+  int32 platform = 5;
+  string itemID = 6;
+  int32 pageIdx = 7;
+  repeated FlowPoolReportMap clientCtx = 8;
+  string channelId = 9;
+}
+
+// ==== source: tvideo/TVideoFloatPr$GetQqPromotionResp.java ====
+message GetQqPromotionResp {
+  int32 errCode = 1;
+  string errMsg = 2;
+  GetQqPromotionData data = 3;
+  repeated FlowPoolReportMap clientCtx = 4;
+}
+
+// ==== source: tvideo/TVideoFloatPr$QqDisplayInfo.java ====
+message QqDisplayInfo {
+  int32 displayType = 1;
+  bytes displayBytes = 2;
+}
+
+// ==== source: tvideo/TVideoFloatPr$QqH5DisplayInfo.java ====
+message QqH5DisplayInfo {
+  string url = 1;
+  int32 showTime = 2;
+}
+
+// ==== source: tvideo/TVideoFloatPr$QqPromotions.java ====
+message QqPromotions_PromotionInfo {
+  string planID = 1;
+  string taskID = 2;
+  string itemID = 3;
+  string itemType = 4;
+  bool isCallFrom = 5;
+  string prID = 6;
+  int32 priority = 7;
+}
+
+message QqPromotions {
+  bytes promotionInfo = 1;  // was: PromotionInfo
+  QqDisplayInfo displayInfo = 2;
+  FlowPoolReportInfo reportInfo = 3;
+}
+
+// ==== source: tvideo/TVideoHistory$AddOrUpdateHistoryRequest.java ====
+message AddOrUpdateHistoryRequest {
+  int64 data_version = 1;
+  repeated bytes video_history_records = 2;  // was: VideoHistoryRecord
+}
+
+// ==== source: tvideo/TVideoHistory$AddOrUpdateHistoryResponse.java ====
+message AddOrUpdateHistoryResponse_AddOrUpdateHistoryData {
+  int64 data_version = 1;
+  repeated VideoHistoryRespData records = 2;
+}
+
+message AddOrUpdateHistoryResponse {
+  string err_msg = 1;
+  bytes data = 2;  // was: AddOrUpdateHistoryData
+}
+
+// ==== source: tvideo/TVideoHistory$DataVersionData.java ====
+message DataVersionData {
+  int64 data_version = 1;
+}
+
+// ==== source: tvideo/TVideoHistory$GetDataVersionResponse.java ====
+message GetDataVersionResponse {
+  string err_msg = 1;
+  DataVersionData data = 2;
+}
+
+// ==== source: tvideo/TVideoHistory$VideoHistoryRespData.java ====
+message VideoHistoryRespData_VideoHistoryRecord {
+  string appid = 1;
+  string record_id = 2;
+  string cid = 3;
+  string vid = 4;
+  int64 view_date = 5;
+  int32 video_time = 6;
+  int32 total_watch_time = 7;
+  int64 data_version = 10;
+  string from_context = 11;
+}
+
+message VideoHistoryRespData {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  bytes video_history_record = 3;  // was: VideoHistoryRecord
+}
+
+// ==== source: tvideo/TVideoLike$GetAttitudeInfoRequest.java ====
+message GetAttitudeInfoRequest {
+  string vid = 1;
+  int32 get_option_type = 2;
+}
+
+// ==== source: tvideo/TVideoLike$GetAttitudeInfoResponse.java ====
+message GetAttitudeInfoResponse {
+  string err_msg = 1;
+  UserAttitudeOption data = 2;
+}
+
+// ==== source: tvideo/TVideoLike$UserAttitudeInfo.java ====
+message UserAttitudeInfo {
+  int64 att_type = 1;
+}
+
+// ==== source: tvideo/TVideoLike$UserAttitudeOption.java ====
+message UserAttitudeOption {
+  UserAttitudeInfo user_attitude = 1;
+  int32 attitude_counts = 2;
+}
+
+// ==== source: tvideo/TVideoLike$UserAttitudeOptionRequest.java ====
+message UserAttitudeOptionRequest {
+  string cid = 1;
+  string vid = 2;
+  int32 attitude_option_type = 3;
+  int64 play_back_time = 4;
+  string extra_params = 10;
+}
+
+// ==== source: tvideo/TVideoLike$UserAttitudeOptionResponse.java ====
+message UserAttitudeOptionResponse {
+  string err_msg = 1;
+  UserAttitudeOption data = 2;
+}
+
+// ==== source: tvideo/TVideoQueryBubble$QueryBubbleInfoData.java ====
+message QueryBubbleInfoData {
+  string url = 1;
+}
+
+// ==== source: tvideo/TVideoQueryBubble$QueryBubbleInfoReq.java ====
+message QueryBubbleInfoReq {
+  string vid = 1;
+  string cid = 2;
+}
+
+// ==== source: tvideo/TVideoQueryBubble$QueryBubbleInfoResp.java ====
+message QueryBubbleInfoResp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  QueryBubbleInfoData data = 3;
+}
+
+// ==== source: tvideo/TVideoTemporaryAuth$AuthorizePlayRequest.java ====
+message AuthorizePlayRequest {
+  int32 authorize_source = 1;
+  int32 authorize_pgid = 2;
+  string qimei36 = 3;
+  string vid = 4;
+  int32 authorize_count = 5;
+  int64 time_stamp = 6;
+  string sign = 7;
+}
+
+// ==== source: tvideo/TVideoTemporaryAuth$AuthorizePlayResponse.java ====
+message AuthorizePlayResponse_AuthorizePlayData {
+  int32 authorize_ret = 1;
+  int64 authorize_time_stamp = 2;
+  string vid = 3;
+  int32 authorize_count = 4;
+}
+
+message AuthorizePlayResponse {
+  string err_msg = 1;
+  bytes data = 2;  // was: AuthorizePlayData
+}
+
+// ==== source: tvideo/TVideoTemporaryAuth$AuthorizeTabData.java ====
+message AuthorizeTabData {
+  bool allow_authorize = 1;
+  int32 tab_id = 2;
+}
+
+// ==== source: tvideo/TVideoTemporaryAuth$CheckAuthorizeTabRequest.java ====
+message CheckAuthorizeTabRequest {
+  int32 authorize_source = 1;
+  int32 authorize_pgid = 2;
+}
+
+// ==== source: tvideo/TVideoTemporaryAuth$CheckAuthorizeTabResponse.java ====
+message CheckAuthorizeTabResponse {
+  string err_msg = 1;
+  AuthorizeTabData data = 2;
+}
+
+// ==== source: tvideo/VideoBriefIntro$Star.java ====
+message Star {
+  string name = 1;
+  string image_url = 2;
+  int64 star_id = 3;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionActorList.java ====
+message VideoBriefIntroductionActorList {
+  string title = 1;
+  repeated Star actor_list = 2;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionPage.java ====
+message VideoBriefIntroductionPage {
+  VideoBriefIntroductionPoster poster = 1;
+  VideoBriefIntroductionActorList actor_info = 2;
+  VideoBriefIntroductionText text = 3;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionPageRequest.java ====
+message VideoBriefIntroductionPageRequest {
+  string cid = 1;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionPageResponse.java ====
+message VideoBriefIntroductionPageResponse {
+  string err_msg = 1;
+  VideoBriefIntroductionPage data = 2;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionPoster.java ====
+message VideoBriefIntroductionPoster {
+  string img_url = 1;
+  string title = 2;
+  string rating = 3;
+  string first_label_info = 4;
+  string sub_label_info = 5;
+  string third_label_info = 6;
+  string hotval = 7;
+}
+
+// ==== source: tvideo/VideoBriefIntro$VideoBriefIntroductionText.java ====
+message VideoBriefIntroductionText {
+  string title = 1;
+  string description = 2;
+}

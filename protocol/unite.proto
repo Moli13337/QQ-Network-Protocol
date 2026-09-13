@@ -1,0 +1,93 @@
+// unite 域 — 8 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.unite;
+
+// ==== source: unite/DynamicSearch$ExtensionRequestInfo.java ====
+message ExtensionRequestInfo {
+  bytes action = 1;
+  float latitude = 2;
+  float longitude = 3;
+  int32 radius = 4;
+  bytes city = 5;
+  bytes region = 6;
+  uint32 key_word_src = 7;
+  repeated uint64 rpt_pubacc_local_result = 8;
+}
+
+// ==== source: unite/DynamicSearch$Meaning.java ====
+message Meaning {
+  bytes words = 1;
+  uint32 eflag = 2;
+}
+
+// ==== source: unite/DynamicSearch$ResultItem.java ====
+message ResultItem {
+  bytes result_id = 1;
+  bytes name = 2;
+  bytes pic_url = 3;
+  bytes jmp_url = 4;
+  bytes word = 5;
+  bytes extension = 6;
+  repeated Meaning rpt_meaning = 7;
+  uint64 group_mask = 8;
+  repeated SubItem sub_item_list = 9;
+  uint32 layout_id = 10;
+  bytes layout_content = 11;
+  repeated ResultItem sub_result_items = 21;
+  uint64 result_item_type = 22;
+  uint32 seporator_type = 23;
+  bytes report_ext_data = 24;
+}
+
+// ==== source: unite/DynamicSearch$ResultItemGroup.java ====
+message ResultItemGroup {
+  uint64 group_mask = 1;
+  bytes group_name = 2;
+  repeated ResultItem result_items = 3;
+  uint64 total_result_count = 4;
+  bytes more_url = 5;
+  bytes more_name = 6;
+  uint32 hide_title = 7;
+  uint32 highlight_title_keyword = 8;
+  uint32 hide_title_blank_view = 9;
+  bytes group_footer_name = 10;
+  bytes group_footer_jump_url = 11;
+  repeated bytes rpt_highlight_words = 1000;
+}
+
+// ==== source: unite/DynamicSearch$RootSearcherRequest.java ====
+message RootSearcherRequest {
+  repeated uint64 business = 2;
+  uint32 page_size = 4;
+  repeated uint64 rpt_busi_mask = 10;
+  bytes cookie = 11;
+  bytes ocean_data = 50;
+  uint32 use_all_mask = 51;
+}
+
+// ==== source: unite/DynamicSearch$SubItem.java ====
+message SubItem {
+  uint32 layout_id = 1;
+  repeated SubItemText title = 2;
+  repeated SubItemText summary = 3;
+  uint32 media_total_count = 4;
+  repeated SubItemMedia media_list = 5;
+  bytes jump_url = 6;
+  uint32 show_arrow = 7;
+  bytes backgroud_color = 8;
+}
+
+// ==== source: unite/DynamicSearch$SubItemMedia.java ====
+message SubItemMedia {
+  uint32 type = 1;
+  bytes coverUrl = 2;
+  bytes description = 3;
+}
+
+// ==== source: unite/DynamicSearch$SubItemText.java ====
+message SubItemText {
+  bytes text = 1;
+  bytes color = 2;
+}

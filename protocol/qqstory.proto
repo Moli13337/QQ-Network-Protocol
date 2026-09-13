@@ -1,0 +1,359 @@
+// qqstory 域 — 42 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qqstory;
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StAddInteractEmojiReq.java ====
+message StAddInteractEmojiReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string feedID = 2;
+  string feedPosterUin = 3;
+  int32 emojiId = 4;
+  int32 emojiAddCount = 5;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StAddInteractEmojiRsp.java ====
+message StAddInteractEmojiRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint64 emojiTotalCount = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StBannerFriendsUnreadByUser.java ====
+message StBannerFriendsUnreadByUser {
+  repeated StStoryBanner userStoryList = 1;
+  uint32 total = 2;
+  uint32 isFinish = 3;
+  string attachInfo = 4;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StBatchGetMusicInfoReq.java ====
+message StBatchGetMusicInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated string vecSongMid = 2;
+  uint32 needLyric = 3;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StBatchGetMusicInfoRsp.java ====
+message StBatchGetMusicInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StMusic vecMusic = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StExposeStoryReq.java ====
+message StExposeStoryReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string feedPosterUin = 2;
+  string feedId = 3;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StExposeStoryRsp.java ====
+message StExposeStoryRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryCommentListReq.java ====
+message StGetStoryCommentListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  StStoryFeed storyFeed = 2;
+  uint32 listNum = 3;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryCommentListRsp.java ====
+message StGetStoryCommentListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecComment = 2;  // was: StComment
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  StStoryFeed storyFeed = 5;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryFeedListReq.java ====
+message StGetStoryFeedListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 listType = 2;
+  uint32 listNum = 3;
+  StUinTime uinTime = 4;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryFeedListRsp.java ====
+message StGetStoryFeedListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StStoryFeed vecStoryFeed = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  uint32 isShowCamera = 5;
+  repeated StUinStory vecUinStory = 6;
+  uint32 hasNewStory = 7;
+  bytes storyBannerBuff = 8;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryReplyListReq.java ====
+message StGetStoryReplyListReq_StComment {
+  repeated bytes id = 1;
+  repeated bytes postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  repeated uint64 vecAtUin = 5;
+  uint32 replyCount = 6;
+  repeated StReply vecReply = 7;
+}
+
+message StGetStoryReplyListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  StStoryFeed storyFeed = 2;
+  bytes comment = 3;  // was: StComment
+  uint32 listNum = 4;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetStoryReplyListRsp.java ====
+message StGetStoryReplyListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StReply vecReply = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetUserNewestStoryReq.java ====
+message StGetUserNewestStoryReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StUinTime vecUinTime = 2;
+  uint32 fromScene = 3;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetWatermarkDictReq.java ====
+message StGetWatermarkDictReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  double fLat = 2;
+  double fLon = 3;
+  string clientIP = 4;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StGetWatermarkDictRsp.java ====
+message StGetWatermarkDictRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StWatermarkDict vecWatermarkDict = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StPublishStoryFeedReq.java ====
+message StPublishStoryFeedReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  StStoryFeed storyFeed = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StPublishStoryFeedRsp.java ====
+message StPublishStoryFeedRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  StStoryFeed storyFeed = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StSmartMatchMusicReq.java ====
+message StSmartMatchMusicReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes videoBuff = 2;
+  uint32 videoDuration = 3;
+  repeated uint64 BLOB = 4;
+  repeated bytes vecPicBuff = 5;
+  double fLat = 6;
+  double fLon = 7;
+  uint32 videoType = 8;
+  uint32 cameraType = 9;
+  double videoLat = 10;
+  double videoLon = 11;
+  uint64 videoTime = 12;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StSmartMatchMusicRsp.java ====
+message StSmartMatchMusicRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StMusic vecMusic = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StStoryBanner.java ====
+message StStoryBanner {
+  repeated StStoryFeed vecStoryFeed = 1;
+  uint32 unreadCount = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StUinStory.java ====
+message StUinStory {
+  uint64 uin = 1;
+  bytes storyBuff = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StUinTime.java ====
+message StUinTime {
+  uint64 uin = 1;
+  uint64 newestTime = 2;
+}
+
+// ==== source: NS_QQ_STORY_CLIENT/CLIENT$StWatermarkDict.java ====
+message StWatermarkDict {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: NS_QQ_STORY_CONFIG/CONFIG$StGetStoryConfigRsp.java ====
+message StGetStoryConfigRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated StIntConf intConf = 2;
+}
+
+// ==== source: NS_QQ_STORY_CONFIG/CONFIG$StIntConf.java ====
+message StIntConf {
+  string key = 1;
+  int64 value = 2;
+}
+
+// ==== source: NS_QQ_STORY_META/META$EmojiMetaWithUser.java ====
+message EmojiMetaWithUser_EmojiMeta {
+  int32 emojiType = 1;
+  uint64 count = 2;
+  uint64 createtime = 3;
+}
+
+message EmojiMetaWithUser {
+  bytes emojiMeta = 1;  // was: EmojiMeta
+  StUser user = 2;
+}
+
+// ==== source: NS_QQ_STORY_META/META$OperationInfo.java ====
+message OperationInfo {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 opActionType = 2;
+  StUser opUser = 3;
+  uint32 opTime = 4;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StCommonCmdAndBuf.java ====
+message StCommonCmdAndBuf {
+  int32 cmd = 1;
+  bytes busiBuf = 2;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StImage.java ====
+message StImage {
+  string url = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+  repeated StImageUrl vecImageUrl = 4;
+  string fileId = 5;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StImageUrl.java ====
+message StImageUrl {
+  uint32 levelType = 1;
+  string url = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StMusic.java ====
+message StMusic {
+  uint64 uiSongId = 1;
+  string strSongMid = 2;
+  string strSongName = 3;
+  string strLanguage = 4;
+  int32 iTrySize = 5;
+  int32 iTryBegin = 6;
+  int32 iTryEnd = 7;
+  int32 iPlayTime = 8;
+  string strPlayUrl = 9;
+  int32 iSize = 10;
+  int32 copyright = 11;
+  string strFormat = 12;
+  string strLyric = 13;
+  int32 iType = 14;
+  uint64 iStartPos = 15;
+  string strLabel = 16;
+  uint64 uiAlbumId = 17;
+  string strAlbumMid = 18;
+  string strAlbumName = 19;
+  string strAlbumPic = 20;
+  uint64 uiSingerId = 21;
+  string strSingerMid = 22;
+  string strSingerName = 23;
+  string strSingerPic = 24;
+  int32 iFrom = 25;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StReply.java ====
+message StReply {
+  repeated bytes id = 1;
+  StUser postUser = 2;
+  uint64 createTime = 3;
+  string content = 4;
+  StUser targetUser = 5;
+  repeated uint64 vecAtUin = 6;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StStoryFeed.java ====
+message StStoryFeed_StVideo {
+  string fileId = 1;
+  uint32 fileSize = 2;
+  uint32 duration = 3;
+  uint32 width = 4;
+  uint32 height = 5;
+  string playUrl = 6;
+  uint32 transStatus = 7;
+  uint32 videoPrior = 8;
+  uint32 videoRate = 9;
+  repeated StVideoUrl vecVideoUrl = 10;
+  uint32 playCount = 11;
+  repeated bytes vecExtInfo = 12;  // was: Entry
+}
+
+message StStoryFeed_StLike {
+  repeated bytes id = 1;
+  uint32 count = 2;
+  uint32 status = 3;
+  repeated StUser vecUser = 4;
+}
+
+message StStoryFeed_StCellComm {
+  uint32 operateMask = 1;
+  uint32 feedsAttr = 2;
+  uint32 operateMask2 = 3;
+  uint32 feedsAttr2 = 4;
+}
+
+message StStoryFeed_StEmoji {
+  repeated bytes emojiList = 1;  // was: EmojiMeta
+  uint64 totalCount = 2;
+}
+
+message StStoryFeed {
+  repeated bytes id = 1;
+  string desc = 2;
+  StUser postUser = 3;
+  StImage coverImage = 4;
+  bytes storyVideo = 5;  // was: StVideo
+  uint64 createTime = 6;
+  repeated string vecText = 7;
+  bytes likeInfo = 8;  // was: StLike
+  uint32 commentCount = 9;
+  repeated bytes vecComment = 10;  // was: StComment
+  bytes cellComm = 11;  // was: StCellComm
+  repeated bytes vecExtInfo = 12;  // was: Entry
+  StMusic storyMusic = 13;
+  bytes emojiInfo = 14;  // was: StEmoji
+  repeated bytes vecBytesExt = 15;  // was: BytesEntry
+  uint32 secureHit = 16;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StUser.java ====
+message StUser {
+  uint64 uin = 1;
+  string nick = 2;
+  string icon = 3;
+  uint32 total = 4;
+}
+
+// ==== source: NS_QQ_STORY_META/META$StVideoUrl.java ====
+message StVideoUrl {
+  uint32 levelType = 1;
+  string playUrl = 2;
+  uint32 videoPrior = 3;
+  uint32 videoRate = 4;
+  uint32 transStatus = 5;
+}

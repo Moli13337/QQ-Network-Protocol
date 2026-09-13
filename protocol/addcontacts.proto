@@ -1,0 +1,113 @@
+// addcontacts 域 — 7 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.addcontacts;
+
+// ==== source: addcontacts/AccountSearchPb$Color.java ====
+message Color {
+  uint32 uint32_r = 1;
+  uint32 uint32_g = 2;
+  uint32 uint32_b = 3;
+}
+
+// ==== source: addcontacts/AccountSearchPb$Label.java ====
+message Label {
+  bytes bytes_name = 1;
+  Color text_color = 3;
+  Color edging_color = 4;
+  uint32 uint32_label_attr = 5;
+  uint32 uint32_label_type = 6;
+}
+
+// ==== source: addcontacts/AccountSearchPb$Location.java ====
+message Location {
+  double double_latitude = 1;
+  double double_longitude = 2;
+}
+
+// ==== source: addcontacts/AccountSearchPb$ResultItem.java ====
+message ResultItem {
+  bytes feed_id = 1;
+  bytes name = 2;
+  bytes pic_url = 3;
+  bytes jmp_url = 4;
+  bytes feed_type = 5;
+  bytes summary = 6;
+  bytes has_video = 7;
+  bytes phtot_update = 8;
+  uint64 uin = 9;
+  bytes result_id = 10;
+  uint32 ftime = 11;
+  bytes nick_name = 12;
+  repeated bytes pic_url_list = 13;
+  uint32 total_pic_num = 14;
+}
+
+// ==== source: addcontacts/AccountSearchPb$SearchRecord.java ====
+message SearchRecord {
+  uint64 uin = 1;
+  uint64 code = 2;
+  int32 source = 3;
+  string name = 4;
+  uint32 sex = 5;
+  uint32 age = 6;
+  string accout = 7;
+  string brief = 8;
+  uint32 number = 9;
+  uint64 flag = 10;
+  uint64 relation = 11;
+  string mobile = 12;
+  bytes sign = 13;
+  uint32 country = 14;
+  uint32 province = 15;
+  uint32 city = 16;
+  uint32 class_index = 17;
+  string class_name = 18;
+  string country_name = 19;
+  string province_name = 20;
+  string city_name = 21;
+  uint32 account_flag = 22;
+  string title_image = 23;
+  string article_short_url = 24;
+  string article_create_time = 25;
+  string article_author = 26;
+  uint64 account_id = 27;
+  repeated Label msg_group_labels = 30;
+  uint32 video_account = 31;
+  uint32 video_article = 32;
+  int32 uin_privilege = 33;
+  bytes bytes_join_group_auth = 34;
+  bytes bytes_token = 500;
+  uint32 uint32_richflag1_59 = 40603;
+  uint32 uint32_richflag4_409 = 42409;
+}
+
+// ==== source: addcontacts/AccountSearchPb$hotwordrecord.java ====
+message hotwordrecord {
+  string hotword = 1;
+  uint32 hotword_type = 2;
+  string hotword_cover_url = 3;
+  string hotword_title = 4;
+  string hotword_description = 5;
+}
+
+// ==== source: addcontacts/AccountSearchPb$search.java ====
+message search {
+  int32 start = 1;
+  uint32 count = 2;
+  uint32 end = 3;
+  string keyword = 4;
+  repeated SearchRecord list = 5;
+  repeated string highlight = 6;
+  Location msg_user_location = 10;
+  bool bool_location_group = 11;
+  int32 filtertype = 12;
+  repeated SearchRecord recommend_list = 13;
+  hotwordrecord hotword_record = 14;
+  string article_more_url = 15;
+  repeated ResultItem result_items = 16;
+  bool bool_keyword_suicide = 17;
+  bool bool_exact_search = 18;
+  string trace_id = 19;
+}

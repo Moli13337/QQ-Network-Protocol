@@ -1,0 +1,229 @@
+// pttcenterservice 域 — 21 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.pttcenterservice;
+
+// ==== source: pttcenterservice/PttCenter$ReqBody.java ====
+message ReqBody_PttIntrodApplyUploadReq {
+  uint64 uint64_file_size = 1;
+  string str_file_name = 2;
+  bytes bytes_md5 = 3;
+}
+
+message ReqBody {
+  uint32 uint32_cmd = 1;
+  uint32 uint32_seq = 2;
+  bytes msg_pttIntrodApplyUpload_req = 3;  // was: PttIntrodApplyUploadReq
+}
+
+// ==== source: pttcenterservice/PttCenter$RspBody.java ====
+message RspBody_PttIntrodApplyUploadResp {
+  int32 int32_ret_code = 1;
+  string str_ret_msg = 2;
+  repeated ServerListInfo rpt_msg_tryup_iplist = 3;
+  bytes bytes_up_filekey = 4;
+  bytes bytes_up_ukey = 5;
+}
+
+message RspBody {
+  uint32 uint32_cmd = 1;
+  uint32 uint32_seq = 2;
+  bytes msg_pttIntrodApplyUpload_resp = 3;  // was: PttIntrodApplyUploadResp
+}
+
+// ==== source: pttcenterservice/PttCenter$ServerListInfo.java ====
+message ServerListInfo {
+  uint32 uint32_up_ip = 1;
+  uint32 uint32_up_port = 2;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$CodecConfigReq.java ====
+message CodecConfigReq {
+  string str_platform_chipinfo = 1;
+  string str_os_version = 2;
+  string str_device_name = 3;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$DataHole.java ====
+message DataHole {
+  uint64 uint64_begin = 1;
+  uint64 uint64_end = 2;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$ExtensionReq.java ====
+message ExtensionReq {
+  uint32 uint32_sub_busi_type = 1;
+  uint32 uint32_user_cnt = 2;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoAddr.java ====
+message PttShortVideoAddr {
+  uint32 uint32_host_type = 1;
+  repeated uint64 rpt_str_host = 10;
+  string str_url_args = 11;
+  repeated uint64 rpt_str_host_ipv6 = 21;
+  repeated uint64 rpt_str_domain = 22;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoDeleteReq.java ====
+message PttShortVideoDeleteReq {
+  uint64 uint64_fromuin = 1;
+  uint64 uint64_touin = 2;
+  uint32 uint32_chat_type = 3;
+  uint32 uint32_client_type = 4;
+  string str_fileid = 5;
+  uint64 uint64_group_code = 6;
+  uint32 uint32_agent_type = 7;
+  bytes bytes_file_md5 = 8;
+  uint32 uint32_business_type = 9;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoDeleteResp.java ====
+message PttShortVideoDeleteResp {
+  int32 int32_ret_code = 1;
+  string str_ret_msg = 2;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoDownloadReq.java ====
+message PttShortVideoDownloadReq {
+  uint64 uint64_fromuin = 1;
+  uint64 uint64_touin = 2;
+  uint32 uint32_chat_type = 3;
+  uint32 uint32_client_type = 4;
+  string str_fileid = 5;
+  uint64 uint64_group_code = 6;
+  uint32 uint32_agent_type = 7;
+  bytes bytes_file_md5 = 8;
+  uint32 uint32_business_type = 9;
+  uint32 uint32_file_type = 10;
+  uint32 uint32_down_type = 11;
+  uint32 uint32_scene_type = 12;
+  uint32 uint32_need_inner_addr = 13;
+  uint32 uint32_req_transfer_type = 14;
+  uint32 uint32_req_host_type = 15;
+  uint32 uint32_flag_support_large_size = 20;
+  uint32 uint32_flag_client_quic_proto_enable = 30;
+  uint32 uint32_target_codec_format = 31;
+  CodecConfigReq msg_codec_config = 32;
+  uint32 uint32_source_codec_format = 33;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoDownloadResp.java ====
+message PttShortVideoDownloadResp {
+  int32 int32_ret_code = 1;
+  string str_ret_msg = 2;
+  repeated PttShortVideoIpList rpt_same_area_out_addr = 3;
+  repeated PttShortVideoIpList rpt_diff_area_out_addr = 4;
+  bytes bytes_downloadkey = 5;
+  bytes bytes_file_md5 = 6;
+  repeated PttShortVideoIpList rpt_same_area_inner_addr = 7;
+  repeated PttShortVideoIpList rpt_diff_area_inner_addr = 8;
+  PttShortVideoAddr msg_download_addr = 9;
+  bytes bytes_encrypt_key = 10;
+  uint32 uint32_flag_server_quic_proto_enable = 30;
+  bytes bytes_server_quic_para = 31;
+  uint32 uint32_codec_format = 32;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoFileInfo.java ====
+message PttShortVideoFileInfo {
+  string str_file_name = 1;
+  bytes bytes_file_md5 = 2;
+  bytes bytes_thumb_file_md5 = 3;
+  uint64 uint64_file_size = 4;
+  uint32 uint32_file_res_length = 5;
+  uint32 uint32_file_res_width = 6;
+  uint32 uint32_file_format = 7;
+  uint32 uint32_file_time = 8;
+  uint64 uint64_thumb_file_size = 9;
+  bytes bytes_decrypt_video_md5 = 10;
+  uint64 uint64_decrypt_file_size = 11;
+  bytes bytes_decrypt_thumb_md5 = 12;
+  uint64 uint64_decrypt_thumb_size = 13;
+  bytes bytes_extend = 14;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoFileInfoExtend.java ====
+message PttShortVideoFileInfoExtend {
+  uint32 uint32_bit_rate = 1;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoIpList.java ====
+message PttShortVideoIpList {
+  uint32 uint32_ip = 1;
+  uint32 uint32_port = 2;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoRetweetReq.java ====
+message PttShortVideoRetweetReq {
+  uint64 uint64_from_uin = 1;
+  uint64 uint64_to_uin = 2;
+  uint32 uint32_from_chat_type = 3;
+  uint32 uint32_to_chat_type = 4;
+  uint32 uint32_from_busi_type = 5;
+  uint32 uint32_to_busi_type = 6;
+  uint32 uint32_client_type = 7;
+  PttShortVideoFileInfo msg_PttShortVideoFileInfo = 8;
+  uint32 uint32_agent_type = 9;
+  string str_fileid = 10;
+  uint64 uint64_group_code = 11;
+  uint32 uint32_flag_support_large_size = 20;
+  uint32 uint32_codec_format = 21;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoRetweetResp.java ====
+message PttShortVideoRetweetResp {
+  int32 int32_ret_code = 1;
+  string str_ret_msg = 2;
+  repeated PttShortVideoIpList rpt_same_area_out_addr = 3;
+  repeated PttShortVideoIpList rpt_diff_area_out_addr = 4;
+  string str_fileid = 5;
+  bytes bytes_ukey = 6;
+  uint32 uint32_file_exist = 7;
+  repeated PttShortVideoIpList rpt_same_area_inner_addr = 8;
+  repeated PttShortVideoIpList rpt_diff_area_inner_addr = 9;
+  repeated DataHole rpt_data_hole = 10;
+  uint32 uint32_is_hot_file = 11;
+  uint32 uint32_long_video_carry_watch_point_type = 12;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoUploadReq.java ====
+message PttShortVideoUploadReq {
+  uint64 uint64_fromuin = 1;
+  uint64 uint64_touin = 2;
+  uint32 uint32_chat_type = 3;
+  uint32 uint32_client_type = 4;
+  PttShortVideoFileInfo msg_PttShortVideoFileInfo = 5;
+  uint64 uint64_group_code = 6;
+  uint32 uint32_agent_type = 7;
+  uint32 uint32_business_type = 8;
+  bytes bytes_encrypt_key = 9;
+  uint32 uint32_sub_business_type = 10;
+  uint32 uint32_flag_support_large_size = 20;
+  uint32 uint32_codec_format = 21;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$PttShortVideoUploadResp.java ====
+message PttShortVideoUploadResp {
+  int32 int32_ret_code = 1;
+  string str_ret_msg = 2;
+  repeated PttShortVideoIpList rpt_same_area_out_addr = 3;
+  repeated PttShortVideoIpList rpt_diff_area_out_addr = 4;
+  string str_fileid = 5;
+  bytes bytes_ukey = 6;
+  uint32 uint32_file_exist = 7;
+  repeated PttShortVideoIpList rpt_same_area_inner_addr = 8;
+  repeated PttShortVideoIpList rpt_diff_area_inner_addr = 9;
+  repeated DataHole rpt_data_hole = 10;
+  bytes bytes_encrypt_key = 11;
+  uint32 uint32_is_hot_file = 12;
+  uint32 uint32_long_video_carry_watch_point_type = 13;
+}
+
+// ==== source: pttcenterservice/PttShortVideo$QuicParameter.java ====
+message QuicParameter {
+  uint32 uint32_enable_quic = 1;
+  uint32 uint32_encryption_ver = 2;
+  uint32 uint32_fec_ver = 3;
+}

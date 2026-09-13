@@ -1,0 +1,50 @@
+// nearby_interact_state 域 — 4 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.nearby_interact_state;
+
+// ==== source: nearby_interact_state/interact_value$FreshThing.java ====
+message FreshThing {
+  bytes bytes_fresh_thing_id = 1;
+  string bytes_fresh_thing_comment_id = 2;
+  bytes bytes_content_2 = 3;
+  repeated bytes fresh_comment = 4;
+  bytes bytes_content_3 = 5;
+  repeated bytes fresh_thing_info = 6;
+  uint32 uint32_color_2_row = 7;
+  uint32 uint32_color_3_row = 8;
+}
+
+// ==== source: nearby_interact_state/interact_value$InteractValue.java ====
+message InteractValue {
+  repeated OneInteract rpt_one_interact = 1;
+}
+
+// ==== source: nearby_interact_state/interact_value$OneInteract.java ====
+message OneInteract {
+  uint32 uint32_state_type = 1;
+  uint64 uint64_uin = 2;
+  uint64 uint64_tinyid = 3;
+  uint64 uint64_time = 4;
+  repeated bytes msg_tribe = 5;
+  repeated bytes msg_fresh_thing = 6;
+  uint32 uint32_color2 = 7;
+  uint32 uint32_color3 = 8;
+  uint64 uint64_seq = 9;
+  uint32 uint32_is_del = 10;
+}
+
+// ==== source: nearby_interact_state/interact_value$Tribe.java ====
+message Tribe {
+  uint32 uint32_bid = 1;
+  bytes bytes_pid = 2;
+  bytes bytes_cid = 3;
+  bytes bytes_ref_cid = 4;
+  bytes bytes_content_txt2 = 5;
+  bytes bytes_content_2 = 6;
+  bytes bytes_content_txt3 = 7;
+  bytes bytes_content_3 = 8;
+  uint32 uint32_color_2_row = 9;
+  uint32 uint32_color_3_row = 10;
+}

@@ -1,0 +1,433 @@
+// appoint_define 域 — 43 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.appoint_define;
+
+// ==== source: appoint/define/appoint_define$ADFeedContent.java ====
+message ADFeedContent_UserInfo {
+  uint64 uint64_uin = 1;
+  bytes bytes_nickname = 2;
+  uint32 uint32_age = 3;
+  uint32 uint32_gender = 4;
+  bytes bytes_avatar = 5;
+}
+
+message ADFeedContent_HotTopicList {
+  repeated HotTopic rpt_topic_list = 1;
+}
+
+message ADFeedContent {
+  repeated bytes msg_user_info = 1;
+  repeated string rpt_str_pic_url = 2;
+  repeated bytes msg_text = 3;
+  string str_attend_info = 4;
+  string str_action_url = 5;
+  uint32 uint32_publish_time = 6;
+  repeated bytes msg_hot_topic_list = 7;
+  string str_more_url = 8;
+  string str_record_duration = 9;
+}
+
+// ==== source: appoint/define/appoint_define$AppointContent.java ====
+message AppointContent_AddressInfo {
+  string str_company_zone = 1;
+  string str_company_name = 2;
+  string str_company_addr = 3;
+  string str_company_pic_url = 4;
+  string str_company_url = 5;
+  repeated bytes msg_company_id = 6;
+}
+
+message AppointContent_ShopID {
+  string str_shopid = 1;
+  uint32 uint32_sp = 2;
+}
+
+message AppointContent_TravelInfo {
+  repeated bytes msg_depart_locale = 1;
+  repeated bytes msg_destination = 2;
+  uint32 uint32_vehicle = 3;
+  uint32 uint32_partner_count = 4;
+  string str_place_pic_url = 5;
+  string str_place_url = 6;
+}
+
+message AppointContent {
+  uint32 uint32_appoint_subject = 1;
+  uint32 uint32_pay_type = 2;
+  uint32 uint32_appoint_date = 3;
+  uint32 uint32_appoint_gender = 4;
+  string str_appoint_introduce = 5;
+  repeated bytes msg_appoint_address = 6;
+  repeated bytes msg_travel_info = 7;
+}
+
+// ==== source: appoint/define/appoint_define$AppointID.java ====
+message AppointID {
+  string str_request_id = 1;
+}
+
+// ==== source: appoint/define/appoint_define$AppointInfo.java ====
+message AppointInfo_AppointInfoEx {
+  string str_feeds_pic_url = 1;
+  string str_feeds_url = 2;
+  string str_detail_title = 3;
+  string str_detail_describe = 4;
+  uint32 uint32_show_publisher = 5;
+  string str_detail_pic_url = 6;
+  string str_detail_url = 7;
+  uint32 uint32_show_attend = 8;
+}
+
+message AppointInfo {
+  repeated bytes msg_appoint_id = 1;
+  repeated bytes msg_appointment = 2;
+  uint32 uint32_appoint_status = 3;
+  string str_join_wording = 4;
+  string str_view_wording = 5;
+  uint32 uint32_unread_count = 6;
+  uint32 uint32_owner = 7;
+  uint32 uint32_join = 8;
+  uint32 uint32_view = 9;
+  string str_comment_wording = 10;
+  uint32 uint32_comment_num = 11;
+  uint32 uint32_attend_status = 12;
+  repeated bytes msg_appointment_ex = 13;
+}
+
+// ==== source: appoint/define/appoint_define$Cell.java ====
+message Cell {
+  int32 int32_mcc = 1;
+  int32 int32_mnc = 2;
+  int32 int32_lac = 3;
+  int32 int32_cellid = 4;
+  int32 int32_rssi = 5;
+}
+
+// ==== source: appoint/define/appoint_define$CommonLabel.java ====
+message CommonLabel {
+  uint32 uint32_lable_id = 1;
+  bytes bytes_lable_msg_pre = 2;
+  bytes bytes_lable_msg_last = 3;
+  repeated bytes rpt_interst_name = 4;
+  repeated uint32 rpt_interst_type = 5;
+}
+
+// ==== source: appoint/define/appoint_define$DateComment.java ====
+message DateComment {
+  string str_comment_id = 1;
+  repeated bytes msg_appoint_id = 2;
+  repeated bytes msg_publisher_info = 3;
+  uint32 uint32_time = 4;
+  repeated bytes msg_reply_info = 6;
+  uint32 uint32_flag = 7;
+  repeated bytes msg_content = 8;
+}
+
+// ==== source: appoint/define/appoint_define$DateEvent.java ====
+message DateEvent {
+  uint64 uint64_event_id = 1;
+  uint32 uint32_time = 2;
+  uint32 uint32_type = 3;
+  repeated bytes msg_user_info = 4;
+  repeated bytes msg_date_info = 5;
+  uint32 uint32_attend_idx = 6;
+  string str_event_tips = 7;
+  repeated bytes msg_comment = 8;
+  uint64 uint64_cancel_event_id = 9;
+}
+
+// ==== source: appoint/define/appoint_define$Elem.java ====
+message Elem {
+  string str_content = 1;
+  repeated bytes msg_face_info = 2;
+}
+
+// ==== source: appoint/define/appoint_define$Face.java ====
+message Face {
+  uint32 uint32_index = 1;
+}
+
+// ==== source: appoint/define/appoint_define$Feed.java ====
+message Feed {
+  repeated bytes msg_user_info = 1;
+  repeated bytes msg_feed_info = 2;
+  uint32 uint32_owner_flag = 3;
+}
+
+// ==== source: appoint/define/appoint_define$FeedComment.java ====
+message FeedComment {
+  string str_comment_id = 1;
+  string str_feed_id = 2;
+  repeated bytes msg_publisher_info = 3;
+  uint32 uint32_time = 4;
+  repeated bytes msg_reply_info = 6;
+  uint32 uint32_flag = 7;
+  repeated bytes msg_content = 8;
+  uint32 uint32_hot = 9;
+}
+
+// ==== source: appoint/define/appoint_define$FeedEvent.java ====
+message FeedEvent {
+  uint64 uint64_event_id = 1;
+  uint32 uint32_time = 2;
+  uint32 uint32_eventtype = 3;
+  repeated bytes msg_user_info = 4;
+  repeated bytes msg_feed_info = 5;
+  string str_event_tips = 6;
+  repeated bytes msg_comment = 7;
+  uint64 uint64_cancel_event_id = 8;
+}
+
+// ==== source: appoint/define/appoint_define$FeedInfo.java ====
+message FeedInfo_FeedContent {
+  repeated string rpt_str_pic_url = 1;
+  repeated bytes msg_text = 2;
+  string str_href_url = 3;
+  string str_group_name = 5;
+  string str_group_bulletin = 6;
+  uint32 uint32_feed_type = 7;
+  string str_poi_id = 8;
+  string str_poi_title = 9;
+  uint32 uint32_effective_time = 20;
+  uint32 uint32_expiation_time = 21;
+  repeated bytes msg_locale = 22;
+  uint32 uint32_feeds_index = 23;
+  repeated bytes msg_ad = 24;
+  bytes bytes_private_data = 25;
+}
+
+message FeedInfo_ADFeed {
+  uint32 uint32_task_id = 1;
+  uint32 uint32_style = 2;
+  bytes bytes_content = 3;
+}
+
+message FeedInfo_NearbyTopic {
+  uint64 uint64_topic_id = 1;
+  string str_topic = 2;
+  string str_foreword = 3;
+  uint32 uint32_create_time = 4;
+  uint32 uint32_update_time = 5;
+  uint32 uint32_hot_flag = 6;
+  uint32 uint32_button_style = 7;
+  string str_button_src = 8;
+  string str_background_src = 9;
+  string str_attendee_info = 10;
+  uint32 uint32_index = 11;
+  uint32 uint32_publish_scope = 12;
+  uint32 uint32_effective_time = 13;
+  uint32 uint32_expiation_time = 14;
+  uint32 uint32_pushed_usr_count = 15;
+  uint32 uint32_timerange_left = 16;
+  uint32 uint32_timerange_right = 17;
+  string str_area = 18;
+}
+
+message FeedInfo_HotEntry {
+  uint32 uint32_open_flag = 1;
+  uint32 uint32_rest_time = 2;
+  string str_foreword = 3;
+  string str_background_src = 4;
+}
+
+message FeedInfo {
+  uint64 uint64_feed_type = 1;
+  string str_feed_id = 2;
+  repeated bytes msg_feed_content = 3;
+  repeated bytes msg_topic_info = 4;
+  uint64 uint32_publish_time = 5;
+  uint32 uint32_praise_count = 6;
+  uint32 uint32_praise_flag = 7;
+  repeated StrangerInfo rpt_msg_praise_user = 8;
+  uint32 uint32_comment_count = 9;
+  repeated FeedComment rpt_msg_comment_list = 10;
+  uint32 uint32_comment_ret_all = 11;
+  uint32 uint32_hot_flag = 12;
+  uint64 uint64_svr_reserved = 13;
+  repeated bytes msg_hot_entry = 14;
+}
+
+// ==== source: appoint/define/appoint_define$FeedsCookie.java ====
+message FeedsCookie {
+  repeated string rpt_str_list = 1;
+  uint32 uint32_pose = 2;
+  bytes bytes_cookie = 3;
+  repeated uint64 rpt_uint64_topics = 4;
+}
+
+// ==== source: appoint/define/appoint_define$FreshFeedInfo.java ====
+message FreshFeedInfo {
+  uint64 uint64_uin = 1;
+  uint32 uint32_time = 2;
+  string str_feed_id = 3;
+  uint64 uint64_feed_type = 4;
+}
+
+// ==== source: appoint/define/appoint_define$GPS.java ====
+message GPS {
+  int32 int32_lat = 1;
+  int32 int32_lon = 2;
+  int32 int32_alt = 3;
+  int32 int32_type = 4;
+}
+
+// ==== source: appoint/define/appoint_define$HotFreshFeedList.java ====
+message HotFreshFeedList {
+  repeated HotUserFeed rpt_msg_feeds = 1;
+  uint32 uint32_update_time = 2;
+}
+
+// ==== source: appoint/define/appoint_define$HotTopic.java ====
+message HotTopic {
+  uint64 uint64_id = 1;
+  string str_title = 2;
+  uint64 uint64_topic_type = 3;
+  uint64 uint64_total = 4;
+  uint64 uint64_times = 5;
+  uint64 uint64_history_times = 6;
+  string str_bg_url = 7;
+  string str_url = 8;
+  string str_extra_info = 9;
+}
+
+// ==== source: appoint/define/appoint_define$HotUserFeed.java ====
+message HotUserFeed {
+  string str_feed_id = 1;
+  uint32 uint32_praise_count = 2;
+  uint64 uint64_publish_uid = 3;
+  uint32 uint32_publish_time = 4;
+}
+
+// ==== source: appoint/define/appoint_define$InterestItem.java ====
+message InterestItem {
+  uint64 uint64_tag_id = 1;
+  string str_tag_name = 2;
+  string str_tag_icon_url = 3;
+  string str_tag_href = 4;
+  string str_tag_back_color = 5;
+  string str_tag_font_color = 6;
+  string str_tag_vid = 7;
+  uint32 uint32_tag_type = 8;
+  uint32 uint32_add_time = 9;
+  string str_tag_category = 10;
+  string str_tag_other_url = 11;
+  uint32 uint32_bid = 12;
+}
+
+// ==== source: appoint/define/appoint_define$InterestTag.java ====
+message InterestTag {
+  uint32 uint32_tag_type = 1;
+  repeated InterestItem rpt_msg_tag_list = 2;
+}
+
+// ==== source: appoint/define/appoint_define$LBSInfo.java ====
+message LBSInfo {
+  repeated bytes msg_gps = 1;
+  repeated Wifi rpt_msg_wifis = 2;
+  repeated Cell rpt_msg_cells = 3;
+}
+
+// ==== source: appoint/define/appoint_define$LocaleInfo.java ====
+message LocaleInfo {
+  string str_name = 1;
+  string str_country = 2;
+  string str_province = 3;
+  string str_city = 4;
+  string str_region = 5;
+  string str_poi = 6;
+  repeated bytes msg_gps = 7;
+  string str_address = 8;
+}
+
+// ==== source: appoint/define/appoint_define$NearbyEvent.java ====
+message NearbyEvent_RankEvent {
+  uint32 uint32_listtype = 1;
+  uint32 uint32_notifytype = 2;
+  uint32 uint32_eventtime = 3;
+  uint32 uint32_seq = 4;
+  string str_notify_tips = 5;
+}
+
+message NearbyEvent {
+  uint32 uint32_eventtype = 1;
+  repeated bytes msg_rankevent = 2;
+  uint64 uint64_event_uin = 3;
+  uint64 uint64_event_tinyid = 4;
+}
+
+// ==== source: appoint/define/appoint_define$PublisherInfo.java ====
+message PublisherInfo {
+  uint64 uint64_tinyid = 1;
+  bytes bytes_nickname = 2;
+  uint32 uint32_age = 3;
+  uint32 uint32_gender = 4;
+  string str_constellation = 5;
+  uint32 uint32_profession = 6;
+  string str_distance = 7;
+  uint32 uint32_marriage = 8;
+  string str_vipinfo = 9;
+  uint32 uint32_recommend = 10;
+  uint32 uint32_godflag = 11;
+  uint32 uint32_chatflag = 12;
+  uint32 uint32_chatup_count = 13;
+  uint32 uint32_charm = 14;
+  uint32 uint32_charm_level = 15;
+  uint32 uint32_pub_number = 16;
+  repeated bytes msg_common_label = 17;
+  uint32 uint32_recent_vistor_time = 18;
+  bytes bytes_stranger_declare = 19;
+  uint64 uint64_friend_uin = 20;
+  uint32 uint32_history_flag = 21;
+  uint64 uint64_followflag = 22;
+}
+
+// ==== source: appoint/define/appoint_define$RecentFreshFeed.java ====
+message RecentFreshFeed {
+  repeated FreshFeedInfo rpt_fresh_feed_info = 1;
+  uint64 uint64_uid = 2;
+}
+
+// ==== source: appoint/define/appoint_define$RecentVistorEvent.java ====
+message RecentVistorEvent {
+  uint32 uint32_eventtype = 1;
+  uint64 uint64_event_tinyid = 2;
+  uint32 uint64_unread_count = 3;
+}
+
+// ==== source: appoint/define/appoint_define$ReplyInfo.java ====
+message ReplyInfo {
+  string str_comment_id = 1;
+  repeated bytes msg_stranger_info = 2;
+}
+
+// ==== source: appoint/define/appoint_define$RichText.java ====
+message RichText {
+  repeated Elem rpt_msg_elems = 1;
+}
+
+// ==== source: appoint/define/appoint_define$StrangerInfo.java ====
+message StrangerInfo {
+  uint64 uint64_tinyid = 1;
+  bytes bytes_nickname = 2;
+  uint32 uint32_age = 3;
+  uint32 uint32_gender = 4;
+  uint32 uint32_dating = 5;
+  uint32 uint32_list_idx = 6;
+  string str_constellation = 7;
+  uint32 uint32_profession = 8;
+  uint32 uint32_marriage = 9;
+  string str_vipinfo = 10;
+  uint32 uint32_recommend = 11;
+  uint32 uint32_godflag = 12;
+  uint32 uint32_charm = 13;
+  uint32 uint32_charm_level = 14;
+  uint64 uint64_uin = 15;
+}
+
+// ==== source: appoint/define/appoint_define$Wifi.java ====
+message Wifi {
+  uint64 uint64_mac = 1;
+  int32 int32_rssi = 2;
+}

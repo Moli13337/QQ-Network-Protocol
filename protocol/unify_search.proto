@@ -1,0 +1,161 @@
+// unify_search 域 — 14 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.unify_search;
+
+// ==== source: unify/search/UnifySearchCommon$ExtensionRequestInfo.java ====
+message ExtensionRequestInfo {
+  bytes action = 1;
+  float latitude = 2;
+  float longitude = 3;
+  int32 radius = 4;
+  bytes city = 5;
+  bytes region = 6;
+  uint32 key_word_src = 7;
+  repeated uint64 rpt_pubacc_local_result = 8;
+  uint32 adcode = 9;
+  bytes trace_id = 10;
+  string lbs = 11;
+}
+
+// ==== source: unify/search/UnifySearchCommon$ItemRequestUserData.java ====
+message ItemRequestUserData {
+  uint64 rpt_busi_mask = 1;
+  bytes user_data = 2;
+}
+
+// ==== source: unify/search/UnifySearchCommon$Meaning.java ====
+message Meaning {
+  bytes words = 1;
+  uint32 eflag = 2;
+}
+
+// ==== source: unify/search/UnifySearchCommon$ResultItem.java ====
+message ResultItem {
+  bytes result_id = 1;
+  bytes name = 2;
+  bytes pic_url = 3;
+  bytes jmp_url = 4;
+  bytes word = 5;
+  bytes extension = 6;
+  repeated Meaning rpt_meaning = 7;
+  uint64 group_mask = 8;
+  repeated SubItem sub_item_list = 9;
+  uint32 layout_id = 10;
+  bytes layout_content = 11;
+  uint32 is_top = 12;
+  uint32 is_bottom = 13;
+  bytes dbg_msg = 14;
+  float final_score = 15;
+  bytes ml_formula = 16;
+  repeated ResultItem sub_result_items = 21;
+  uint64 result_item_type = 22;
+  uint32 seporator_type = 23;
+  bytes report_ext_data = 24;
+  uint32 is_multi_pic = 100;
+  bytes layout_name = 101;
+}
+
+// ==== source: unify/search/UnifySearchCommon$ResultItemGroup.java ====
+message ResultItemGroup {
+  uint64 group_mask = 1;
+  bytes group_name = 2;
+  repeated ResultItem result_items = 3;
+  uint64 total_result_count = 4;
+  bytes more_url = 5;
+  bytes more_name = 6;
+  uint32 hide_title = 7;
+  uint32 highlight_title_keyword = 8;
+  uint32 hide_title_blank_view = 9;
+  bytes group_footer_name = 10;
+  bytes group_footer_jump_url = 11;
+  uint32 group_extra_flag = 12;
+  uint32 is_end = 13;
+  bytes session_info = 14;
+  bytes layout_name = 101;
+  repeated bytes rpt_highlight_words = 1000;
+  uint32 is_big_pic = 1010;
+}
+
+// ==== source: unify/search/UnifySearchCommon$RootSearcherRequest.java ====
+message RootSearcherRequest_ItemRequestBusiMask {
+  uint64 group_mask = 1;
+  bytes session_info = 2;
+}
+
+message RootSearcherRequest {
+  // (no fields resolved)
+}
+
+// ==== source: unify/search/UnifySearchCommon$SubItem.java ====
+message SubItem {
+  uint32 layout_id = 1;
+  repeated SubItemText title = 2;
+  repeated SubItemText summary = 3;
+  uint32 media_total_count = 4;
+  repeated SubItemMedia media_list = 5;
+  bytes jump_url = 6;
+  uint32 show_arrow = 7;
+  bytes backgroud_color = 8;
+}
+
+// ==== source: unify/search/UnifySearchCommon$SubItemMedia.java ====
+message SubItemMedia {
+  uint32 type = 1;
+  bytes coverUrl = 2;
+  bytes description = 3;
+}
+
+// ==== source: unify/search/UnifySearchCommon$SubItemText.java ====
+message SubItemText {
+  bytes text = 1;
+  bytes color = 2;
+}
+
+// ==== source: unify/search/UnifySearchUniteMore$Color.java ====
+message Color {
+  repeated uint64 b = 1;
+  repeated uint64 g = 2;
+  repeated uint64 r = 3;
+}
+
+// ==== source: unify/search/UnifySearchUniteMore$Label.java ====
+message Label {
+  int32 attr = 1;
+  Color edging_color = 2;
+  int32 enum_type = 3;
+  string name = 4;
+  Color text_color = 5;
+  int32 type = 6;
+}
+
+// ==== source: unify/search/UnifySearchUniteMore$SearchMainGuildChannelItem.java ====
+message SearchMainGuildChannelItem {
+  uint32 status = 1;
+  string cover_url = 2;
+  string title = 3;
+  string sub_title = 4;
+  repeated string icons = 5;
+  repeated Label top_label_list = 6;
+  repeated Label bottom_label_list = 7;
+  int64 guild_id = 8;
+  int64 guild_owner_uin = 9;
+  string join_guild_sig = 10;
+  string query = 11;
+  uint32 join_status = 12;
+  repeated Label mixed_label_list = 13;
+}
+
+// ==== source: unify/search/UnifySearchUniteMore$SearchMiniAppItem.java ====
+message SearchMiniAppItem {
+  string cover = 1;
+  string name = 2;
+  string desc = 3;
+  repeated Label labels = 4;
+  string jump_url = 5;
+  string classification = 6;
+  string appid = 7;
+  int32 show_mask = 8;
+  int32 miniapp_type = 9;
+}

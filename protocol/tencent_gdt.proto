@@ -1,0 +1,1619 @@
+// tencent_gdt 域 — 191 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_gdt;
+
+// ==== source: tencent/gdt/access.java ====
+message AdGetReq {
+  int32 busi_type = 1;
+  QQAdGet qq_ad_get = 2;
+  string client_mod = 3;
+  string device_info = 4;
+  string schema_source = 5;
+  VideoFeedInfo video_feed_info = 6;
+  string last_req_cookie = 8;
+  repeated uint64 push_ad_passthrough = 9;
+  repeated uint64 exp_ids = 10;
+  QzoneInfo qzone_info = 11;
+  repeated bytes displayed_feed_types = 13;  // was: enum
+}
+
+message AdGetRsp {
+  QQAdGetRsp qq_ad_get_rsp = 1;
+  RetMsg ret_msg = 2;
+  repeated UserActionReportInfo action_report_infos = 3;
+  repeated ExpInfo ext = 4;
+  int64 next_req_gap_in_seconds = 5;
+  bytes trans_info = 6;
+  int32 adv_type = 7;
+  bool in_interact_group = 8;
+  int32 display_scene_type = 9;
+  InteractionPermissions interaction_permissions = 10;
+  FeedInfo feed_info = 11;
+}
+
+message AdvFeedPos {
+  int32 index = 1;
+  bytes feed_model = 2;
+  bool support_interaction = 3;
+  FeedInfo feed_info = 4;
+  ReddotInfo reddot_info = 5;
+  AdvInfo adv_info = 6;
+  bool is_updated = 7;
+}
+
+message AdvID {
+  string src_uin = 1;
+}
+
+message AdvInfo {
+  uint64 aid = 1;
+  uint32 product_type = 2;
+  float ecpm = 3;
+  string advertiser_group_name = 4;
+  uint64 ad_first_category = 5;
+  uint64 ad_second_category = 6;
+  string trace_id = 7;
+  double pctr = 8;
+  float etr = 9;
+  float duration_score = 10;
+  bool is_preview_ad = 11;
+  repeated bytes ad_extension_type = 12;  // was: enum
+  uint64 advertiser_id = 13;
+  uint32 creative_template_id = 14;
+  uint64 fingerprint_product = 15;
+  uint64 fingerprint_tid = 16;
+  FeatureDataGroup feature_data_group = 17;
+  bytes trans_info = 18;
+  bool is_contract_ad = 19;
+  int32 adv_type = 20;
+}
+
+message ChannelInfo {
+  uint64 channel_id = 1;
+  uint64 channel_owner_uin = 2;
+  uint32 tags = 3;
+}
+
+message CommentItem {
+  int32 reply_count = 1;
+}
+
+message CustomizedLike {
+  int32 like_type = 1;
+  uint64 count = 2;
+  bool has_liked = 3;
+}
+
+message ExpInfo {
+  string key = 1;
+  string value = 2;
+  string exp_id = 3;
+  bytes bytes_value = 4;
+}
+
+message FeedAdGetReq {
+  string ad_get_req = 1;
+  int32 feeds_count = 2;
+  string adv_session = 3;
+  repeated uint64 exp_ids = 4;
+  UserInfo user_info = 5;
+  int32 total_feeds_count = 6;
+  int32 ad_count = 7;
+  bytes new_ad_get_req = 12;
+  string sug_query = 14;
+  string request_id = 15;
+  AdGetReq deserialized_ad_get_req = 16;
+  ChannelInfo channel_info = 17;
+  repeated uint64 unused_feedids = 18;
+  uint32 page_num = 19;
+}
+
+message FeedAdGetRsp {
+  repeated AdvFeedPos adv_feed_pos = 1;
+  string adv_session = 2;
+  int32 fiter_type = 3;
+  string open_id = 4;
+}
+
+message FeedInfo {
+  uint64 uin = 1;
+  string feed_id = 2;
+  uint64 feed_create_time = 3;
+  string ugc_id = 4;
+  int64 display_time = 5;
+  string material_id = 6;
+  bool user_liked = 7;
+  uint32 like_count = 8;
+  uint32 share_count = 9;
+  UnionID union_id = 10;
+  uint32 feed_biz_type = 11;
+  repeated CustomizedLike customized_likes = 12;
+}
+
+message FeedsEnv {
+  int32 nth_refresh = 1;
+  int32 expected_ad_slot = 2;
+  int32 enter_motivation = 3;
+}
+
+message InteractionPermissions {
+  bool like_not_allowed = 1;
+  bool comment_not_allowed = 2;
+  bool share_not_allowed = 3;
+}
+
+message QzoneInfo {
+  int32 last_adv_position = 1;
+  UnionID union_id = 2;
+  int32 feed_right_flag = 3;
+  int32 visible_comment_and_reply_count = 4;
+  int32 total_feeds_count = 5;
+  int32 friend_feeds_mod = 6;
+  int32 split_fetch_mod = 7;
+  repeated FeedInfo feed_infos = 8;
+  bool is_split_mode_preload = 9;
+  bool is_split_mode_jumpout = 10;
+  int32 entry_photo_position = 11;
+  int32 photo_count = 12;
+  bool is_center_page_preload = 13;
+  string photo_owner_uin = 14;
+  string album_id = 15;
+  int32 photo_entry_scene_type = 16;
+  repeated FeedInfo total_feed_infos = 17;
+  bool is_split_line_jumped = 18;
+  bool is_split_line_preload = 19;
+  bool is_upward_request = 20;
+  bool is_first_upward_request = 21;
+  string public_page_refer = 22;
+  bool public_page_is_tab = 23;
+  repeated CommentItem comment_items = 24;
+  bool photo_detail_page_has_adv_space = 25;
+  int32 current_photo_position = 26;
+  int32 album_count = 27;
+  int32 split_mode_friend_feeds_count = 28;
+  int32 split_mode_public_feeds_count = 29;
+  bool photo_entry_is_public = 30;
+}
+
+message ReddotInfo {
+  string txt = 1;
+  string logo = 2;
+}
+
+message RetMsg {
+  int32 ret_code = 1;
+  string err_msg = 2;
+}
+
+message UnionExtID {
+  int32 ext_id_type = 1;
+  int64 numeric = 2;
+  string str = 3;
+  uint64 unsigned_numeric = 4;
+}
+
+message UnionID {
+  string uf_key = 1;
+  string ugc_id = 2;
+  string feed_id = 3;
+  repeated UnionExtID ext_ids = 4;
+  string serialized_data = 5;
+  AdvID adv_id = 6;
+}
+
+message UserActionReportInfo {
+  string adv_id = 1;
+  string trace_id = 2;
+  string exposure_url = 3;
+  string click_url = 4;
+}
+
+message UserInfo {
+  uint64 first_login_time = 1;
+  uint64 uin = 2;
+}
+
+message VideoFeedInfo {
+  string creator_id = 1;
+  string feed_id = 2;
+}
+
+// ==== source: tencent/gdt/adSchedule$App.java ====
+message App {
+  repeated bytes id = 1;
+  string pkg_name = 2;
+  string name = 3;
+  string download_link = 4;
+}
+
+// ==== source: tencent/gdt/adSchedule$QueryAllRsp.java ====
+message QueryAllRsp {
+  repeated App apps = 1;
+  int64 next_req_gap = 2;
+}
+
+// ==== source: tencent/gdt/adSchedule$QueryReq.java ====
+message QueryReq {
+  string app_id = 1;
+}
+
+// ==== source: tencent/gdt/adSchedule$QueryRsp.java ====
+message QueryRsp {
+  bool preordered = 1;
+  bool downloaded = 2;
+}
+
+// ==== source: tencent/gdt/adSchedule$ReportReq.java ====
+message ReportReq {
+  int32 action_type = 1;
+  string app_id = 2;
+  string download_link = 3;
+  string qq_ver = 4;
+  int32 os_type = 5;
+  string phone_model = 6;
+  string os_version = 7;
+}
+
+// ==== source: tencent/gdt/adSchedule$ReportRsp.java ====
+message ReportRsp {
+  // (no fields resolved)
+}
+
+// ==== source: tencent/gdt/ark_form_data.java ====
+message ArkFormData {
+  AdInfo ad_info = 1;
+  FormInfo form_info = 2;
+}
+
+message AdInfo {
+  uint32 product_type = 1;
+  DisplayInfo display_info = 2;
+  ReportInfo report_info = 3;
+  DestInfo dest_info = 4;
+}
+
+message DestInfo {
+  string canvas_json = 3;
+  uint32 dest_type = 4;
+}
+
+message DisplayInfo {
+  AdvertiserInfo advertiser_info = 7;
+}
+
+message AdvertiserInfo {
+  uint64 advertiser_id = 4;
+}
+
+message ReportInfo {
+  string landing_page_report_url = 4;
+  TraceInfo trace_info = 6;
+}
+
+message TraceInfo {
+  string traceid = 2;
+}
+
+message FormInfo {
+  string form_module_id = 1;
+  uint32 index = 2;
+}
+
+// ==== source: tencent/gdt/conv_link$LinkExtraInfo.java ====
+message LinkExtraInfo {
+  uint64 link_id = 1;
+  repeated bytes skip_link_targeting = 3;  // was: enum
+  repeated LinkUnitIdInfo link_unit_id_info = 4;
+}
+
+message LinkUnitIdInfo {
+  uint32 index = 1;
+  int32 link_unit_id = 2;
+}
+
+// ==== source: tencent/gdt/conv_link$LinkPriority.java ====
+message LinkPriority {
+  repeated LinkNode link_nodes = 1;
+  uint32 priority_id = 2;
+}
+
+message LinkNode {
+  repeated uint64 id = 1;
+  int32 next = 2;
+}
+
+// ==== source: tencent/gdt/cps_info.java ====
+message CpsCacheInfo {
+  string trace_id = 1;
+  uint64 kol_id = 2;
+  MediaInfo media_info = 3;
+  repeated PcgMediaTraceInfo pcg_media_trace_infos = 4;
+  repeated ProductShareInfo product_share_info = 5;
+}
+
+message MediaInfo {
+  string trace_id = 1;
+  string user_id = 2;
+}
+
+message CpsChanTagInfo {
+  uint64 product_id = 1;
+  string trace_id = 2;
+  bool is_distribution = 3;
+}
+
+message PcgMediaTraceInfo {
+  uint64 timestamp = 1;
+  int32 media_type = 2;
+  uint64 product_id = 3;
+  int32 scene = 4;
+  string content_id = 5;
+  string trace_id = 6;
+  string buyer_id = 7;
+  string seller_id = 8;
+  string ext_info = 9;
+  string seller_grade = 10;
+}
+
+message ProductShareInfo {
+  uint64 product_id = 1;
+  uint32 share_rate = 2;
+}
+
+// ==== source: tencent/gdt/creatorReader.java ====
+message CreatorAD {
+  string creative_id = 1;
+  int64 job_id = 2;
+  QQAdGetRsp qq_ad_get_rsp = 3;
+  UserActionReportInfo action_report_infos = 4;
+  int32 card_show_second = 5;
+  int32 highlight_second = 6;
+  int32 highlight_slide_second = 7;
+}
+
+// ==== source: tencent/gdt/device.java ====
+message Device {
+  string device_id = 1;
+  uint32 bitmap = 2;
+}
+
+message IdInfo {
+  string device_id = 1;
+  uint32 bitmap = 2;
+}
+
+// ==== source: tencent/gdt/display_common$JumpAction.java ====
+message JumpAction_ShareLandingPage {
+  bool is_custom = 1;
+  string logo = 2;
+  string title = 3;
+  string url = 5;
+}
+
+message JumpAction {
+  int32 jump_ability_id = 1;
+  uint32 next = 2;
+  int32 action_type = 3;
+  WebData web_data = 4;
+  DeepLinkData deep_link_data = 5;
+  WxLinkData wx_link_data = 6;
+  DownloadData download_data = 7;
+  QrcodeData qrcode_data = 8;
+  uint32 data_index = 9;
+}
+
+message DeepLinkData {
+  int32 type = 1;
+  string url = 2;
+  repeated string package_name = 3;
+  string app_name = 4;
+  ExtInfo ext_info = 5;
+}
+
+message ExtInfo {
+  string vertical_native_link = 1;
+  string horizontal_native_link = 2;
+}
+
+message DownloadData {
+  string url = 1;
+  ExtInfo ext_info = 2;
+  int32 type = 3;
+}
+
+message QrcodeData {
+  string url = 1;
+  ExtInfo ext_info = 2;
+  int32 type = 3;
+}
+
+message WebData_ShareLandingPage {
+  bool is_custom = 1;
+  string logo = 2;
+  string title = 3;
+  string url = 5;
+}
+
+message WebData {
+  string url = 1;
+  string ext_info = 2;
+  int32 type = 3;
+}
+
+message ExtInfo_ShareLandingPage {
+  bool is_custom = 1;
+  string logo = 2;
+  string title = 3;
+  string url = 5;
+}
+
+message DynamicTemplateInfo {
+  string template_id = 1;
+  string ext_info = 2;
+}
+
+message WxLinkData {
+  string url = 1;
+  ExtInfo ext_info = 2;
+  int32 type = 3;
+}
+
+// ==== source: tencent/gdt/display_common$JumpAndroidMarket.java ====
+message JumpAndroidMarket {
+  string market_deep_link = 1;
+  repeated string market_package_name = 2;
+  int32 market_jump_type = 3;
+  string customized_deep_link = 4;
+  string customized_atd_deep_link = 5;
+  uint64 customized_expired_timestamp_ms = 6;
+  bool is_atd_not_report_charge = 7;
+}
+
+// ==== source: tencent/gdt/display_common$JumpLinkInfo.java ====
+message JumpLinkInfo {
+  repeated JumpAction jump_actions = 1;
+  int32 report_and_jump_type = 2;
+  repeated JumpAction jump_data_list = 3;
+  repeated bytes link_info_map = 4;
+}
+
+// ==== source: tencent/gdt/display_common$JumpLinkInfoGraph.java ====
+message JumpLinkInfoGraph {
+  repeated bytes trigger_condition = 1;
+  repeated JumpAction jump_graph = 2;
+}
+
+// ==== source: tencent/gdt/display_common$JumpLinkInfoMap.java ====
+message JumpLinkInfoMap {
+  repeated JumpLinkInfoGraph jump_link_info_graph = 1;
+}
+
+// ==== source: tencent/gdt/display_common$JumpTriggerCondition.java ====
+message JumpTriggerCondition {
+  int32 trigger_type = 1;
+  int32 click_area = 2;
+}
+
+// ==== source: tencent/gdt/experiment_v2.java ====
+message ExternalExpInfo {
+  int32 type = 1;
+  repeated string exp_id = 2;
+}
+
+// ==== source: tencent/gdt/indicator.java ====
+message AdCount {
+  uint32 index = 1;
+  uint32 scoring = 2;
+  uint32 fillad = 3;
+  uint32 reranking_docwash = 4;
+  uint32 reranking_input = 5;
+  uint32 reranking_output = 6;
+  uint32 mixer_filter = 7;
+  uint32 adinfo = 8;
+  uint32 mixer = 9;
+  uint32 display = 10;
+}
+
+message NoAdIndicator {
+  uint32 partition_timestamp = 1;
+  uint64 placement_id = 2;
+  int32 no_ad_reason = 3;
+  AdCount ad_count = 4;
+}
+
+// ==== source: tencent/gdt/landing_page_collect_data.java ====
+message LandingPageCollectData {
+  uint32 landing_page_action_type = 1;
+  uint64 latency_ms = 2;
+  uint32 landing_error_code = 3;
+  uint32 browsing_time = 4;
+  string schemeid = 5;
+  uint32 browsing_percent = 6;
+  string screen_height = 7;
+  string screen_width = 8;
+  uint32 avail_height = 9;
+  uint32 client_height = 10;
+  uint32 scroll_top = 11;
+  uint32 click_offset_x = 12;
+  uint32 click_offset_y = 13;
+  uint32 browsing_percent_start = 14;
+  uint32 browsing_percent_end = 15;
+  uint32 browsing_time_on_area = 16;
+  uint32 xj_page_id = 17;
+  SubordinateProductInfo subordinate_product_info = 18;
+}
+
+message SubordinateProductInfo {
+  repeated bytes id = 1;
+  string real_id = 2;
+  string pkg_url = 3;
+  string pkg_md5 = 4;
+}
+
+// ==== source: tencent/gdt/native_ad.java ====
+message GetNativeAdReq {
+  string feedid = 1;
+  QQAdGet ad_get_req = 2;
+  string client_mod = 3;
+}
+
+message GetNativeAdRsp {
+  bool hit = 1;
+  NativeAd native_ad = 2;
+}
+
+message NativeAd {
+  QQAdGetRsp ad_get_rsp = 1;
+}
+
+// ==== source: tencent/gdt/qq_ad_get.java ====
+message FeatureDataBuffer {
+  string compress_algorithm = 1;
+  uint64 decompressed_size = 2;
+  bytes data = 3;
+}
+
+message FeatureDataGroup {
+  FeatureDataBuffer ad_feature_data = 1;
+  FeatureDataBuffer creative_feature_data = 2;
+  repeated FeatureDataBuffer material_feature_data = 3;
+}
+
+message QQAdGet {
+  UserInfo user_info = 1;
+  repeated PositionInfo position_info = 2;
+  DeviceInfo device_info = 3;
+  ContextInfo context_info = 4;
+  DebugInfo debug_info = 5;
+  string gdt_cookie = 6;
+  bool support_https = 7;
+  ExternalExpInfo external_exp_info = 8;
+  VersionInfo version_info = 9;
+  uint32 dynamic_timeout_in_ms = 10;
+  WeatherInfo weather_info = 11;
+  string request_id = 12;
+  string busi_cookie = 2001;
+}
+
+message ContextInfo {
+  uint64 public_id = 1;
+  uint64 article_id = 2;
+  uint32 tribe_tag = 3;
+  uint32 tribe_id_tag = 4;
+  uint32 source_from = 5;
+  bytes page_url = 6;
+  repeated uint64 existed_mini_program_ids = 7;
+  string str_source_from = 8;
+  repeated QQPublicCategoryInfo qq_public_category = 9;
+  int32 load_type = 10;
+  uint32 mini_program_status = 11;
+  string call_from = 12;
+  int32 launch_channel = 13;
+  SessionInfo session_info = 14;
+  UserStatusInfo user_status_info = 16;
+  VideoSessionInfo video_session = 17;
+  PlatformSessionInfo platform_session = 18;
+  uint32 channel_enum = 19;
+  string external_host = 20;
+  InvalidLastAds invalid_last_ads = 21;
+  RequestInfo req_info = 22;
+  uint32 qq_group_category = 23;
+  PushAdInfo push_ad_info = 24;
+  int32 req_scene_type = 25;
+}
+
+message InvalidLastAds {
+  repeated C196400Ad ads = 1;
+}
+
+message C196400Ad {
+  uint64 adgroup_id = 1;
+}
+
+message PlatformSessionInfo {
+  uint32 video_auto_play = 1;
+  uint32 sound_auto_play = 2;
+  uint32 os_voice_volume = 3;
+  uint32 click_area = 4;
+}
+
+message PushAdInfo {
+  repeated Point points = 1;
+}
+
+message Point {
+  repeated bytes id = 1;
+  string passthrough = 2;
+}
+
+message RequestInfo {
+  uint32 tl_time_interval = 1;
+}
+
+message UserStatusInfo {
+  uint32 scene = 1;
+  uint32 red_dot_status = 2;
+  uint32 fresh_type = 3;
+  uint32 today_enter_times = 4;
+  uint32 card_depth = 5;
+  uint32 fresh_times = 6;
+  uint32 enter_motivation = 11;
+  uint32 feeds_slot = 13;
+  repeated uint64 uin_embedding = 14;
+  repeated uint64 video_playtime_embedding = 15;
+  uint32 browsing_speed_1 = 17;
+  float ad_fast_slide_ratio = 18;
+  uint32 feed_entry_type = 25;
+  uint32 feed_browse_ad_cnt_session = 26;
+  uint32 feed_quick_swipe_ad_cnt_session = 27;
+}
+
+message VideoSessionInfo {
+  uint32 latest_play_first_cid = 1;
+  uint32 latest_play_second_cid = 2;
+  uint32 latest_play_watch_duration = 3;
+  uint32 top_play_first_cid = 4;
+  uint32 top_play_second_cid = 5;
+  uint32 top_play_watch_duration = 6;
+  uint32 interval_top_play_first_cid = 7;
+  uint32 interval_top_play_second_cid = 8;
+  uint32 interval_top_skip_first_cid = 9;
+  uint32 interval_top_skip_second_cid = 10;
+  uint32 click_cnt = 11;
+  uint32 exposure_cnt = 12;
+}
+
+message DebugInfo {
+  uint32 debug_adindexid = 1;
+  bool nomatch = 2;
+  bool debug = 3;
+  bool qq_broswer_debug = 4;
+  repeated string force_style_rule_list = 5;
+}
+
+message DeviceInfo {
+  int32 latitude = 1;
+  int32 longitude = 2;
+  uint32 coordinates_type = 3;
+}
+
+message Location {
+  int32 latitude = 1;
+  int32 longitude = 2;
+  uint32 coordinates_type = 3;
+}
+
+message PositionInfo {
+  string pos_id = 1;
+  uint32 ad_count = 2;
+  PositionExt pos_ext = 3;
+}
+
+message PositionExt {
+  ShareInfo share_info = 1;
+  uint32 deep_link_version = 2;
+  int32 get_ad_type = 3;
+  repeated SpecifiedAdsItem specified_ads = 4;
+  string sub_position_id = 5;
+  repeated uint64 black_category_list = 6;
+  repeated uint64 debug_adindexid_list = 7;
+  repeated CpsReqInfo cps_req_info = 8;
+  VideoReqInfo video_req_info = 9;
+  PositionContextInfo context_info = 10;
+  SearchContentInfo search_content_info = 11;
+  repeated uint64 soft_ad_aid = 12;
+  repeated uint64 related_keys = 13;
+  repeated ForceCallInfo force_call_infos = 14;
+  bool disable_recall_mengceng_ad = 15;
+  int32 expect_wechat_mini_program_open_type = 16;
+}
+
+message CpsReqInfo {
+  uint64 product_id = 1;
+  uint64 catelog_id = 2;
+  repeated ProductLinkInfo product_link_info = 3;
+  repeated PcgMediaTraceInfo pcg_media_trace_info = 4;
+  repeated ProductShareInfo product_share_info = 5;
+}
+
+message ProductLinkInfo {
+  uint64 product_id = 1;
+  string h5_page = 2;
+  MiniProgramLink wx_miniprogram_link = 3;
+  MiniProgramLink qq_miniprogram_link = 4;
+}
+
+message MiniProgramLink {
+  string app_id = 1;
+  string page_path = 2;
+  string schema_link = 3;
+  string user_name = 4;
+}
+
+message PositionContextInfo {
+  uint32 seq = 1;
+  uint32 abs_seq = 2;
+  string wesee_feeds_id = 3;
+  string wesee_first_category = 4;
+  string wesee_second_category = 5;
+  uint32 screen_num = 6;
+  repeated uint32 allowed_category = 7;
+}
+
+message SearchContentInfo {
+  repeated Tag query_tag = 1;
+  repeated QueryInfo query_info = 2;
+}
+
+message QueryInfo {
+  string word = 1;
+  uint32 type = 2;
+  repeated Term terms = 3;
+}
+
+message Synonym {
+  string word = 1;
+  float weight = 2;
+}
+
+message Term {
+  string word = 1;
+  float weight = 2;
+  bool is_core_term = 3;
+  repeated Synonym synonyms = 4;
+}
+
+message Tag {
+  string text = 1;
+  uint32 type = 2;
+}
+
+message ShareInfo {
+  uint32 share_rate = 1;
+  string share_check = 2;
+}
+
+message SpecifiedAdsItem {
+  uint64 aid = 1;
+  uint64 creative_id = 2;
+  uint32 prefetch_timestamp = 3;
+  uint64 version = 4;
+}
+
+message VideoReqInfo {
+  uint32 video_min_duration = 1;
+  uint32 video_max_duration = 2;
+}
+
+message QQPublicCategoryInfo {
+  string qq_public_category_id = 1;
+  uint32 qq_public_category_level = 2;
+}
+
+message SessionInfo {
+  uint32 session_num = 1;
+  uint32 session_time = 2;
+}
+
+message VersionInfo {
+  bool support_c2s = 1;
+  bool support_dpa = 2;
+  bool support_mixed_sort = 3;
+  bool support_mixed_feature = 4;
+}
+
+message WeatherInfo {
+  int32 temperature = 1;
+  int32 humidity = 2;
+  int32 quality = 3;
+  int32 weather_type = 4;
+  int32 warning_type = 5;
+}
+
+message QQAdGetRsp {
+  int32 ret = 1;
+  repeated bytes msg = 2;
+  repeated PosAdInfo pos_ads_info = 3;
+  string gdt_cookie = 4;
+  string busi_cookie = 5;
+  string debug_info = 6;
+  string ip_ping_url = 7;
+  string net_log_req_id = 8;
+  bytes passthrough_req_info = 10;
+  string trace_id = 11;
+  FeatureDataBuffer user_feature_data = 12;
+}
+
+message AppChannelInfo {
+  string author_name = 1;
+  int64 package_size_bytes = 2;
+  string version_name = 3;
+  string permissions_url = 4;
+  string privacy_agreement_url = 5;
+  string app_name = 6;
+  string description_url = 7;
+  string permissions_web_url = 8;
+  string icp_number = 9;
+  string developer = 10;
+  string suitable_age = 11;
+  string icp_info_url = 12;
+}
+
+message AppInfo {
+  string app_name = 1;
+  string app_score = 2;
+  string app_package_name = 3;
+  uint64 app_package_size = 4;
+  string app_package_version = 5;
+  string app_logo_url = 6;
+  string pkg_url = 7;
+  string ios_app_id = 8;
+  string android_app_id = 9;
+  string pkg_download_schema = 10;
+  string customized_invoke_url = 11;
+  string channel_id = 12;
+  uint32 app_score_num = 13;
+  uint64 download_num = 14;
+  string app_standard_info_url = 15;
+  string editor_intro = 16;
+  string category_name = 17;
+  repeated SnapshotInfo snapshot_info_list = 18;
+  string download_rank_txt = 19;
+}
+
+message SnapshotInfo {
+  string big_url = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+}
+
+message ChosenButton {
+  repeated ButtonInfo button_infos = 3;
+}
+
+message ButtonInfo {
+  string button_txt = 1;
+  string langing_page = 2;
+  string click_url = 3;
+  int32 mini_program_type = 4;
+  WeChatAppInfo wechat_app_info = 5;
+  WeChatCanvasInfo wechat_canvas_info = 6;
+}
+
+message WeChatCanvasInfo {
+  string wechat_app_id = 1;
+  uint64 wechat_appid_in_ios = 2;
+  string wechat_canvas_ext_info = 3;
+}
+
+message CpsRspInfo {
+  uint64 product_id = 1;
+  repeated string img_list = 2;
+  string product_name = 3;
+  uint32 product_price = 4;
+  string sales_tips = 5;
+  string h5_page = 6;
+  string deep_link = 7;
+  string apurl = 8;
+  repeated bytes rl = 9;
+  uint64 catelog_id = 10;
+  uint32 source = 11;
+  WeChatAppInfo wechat_app_info = 12;
+  QQAppInfo qq_app_info = 13;
+  uint32 product_original_price = 14;
+  string chantag = 15;
+}
+
+message HalfScreenCardConfig {
+  int32 half_screen_card_type = 1;
+  string additional_txt = 2;
+  repeated uint64 consulting_question = 3;
+  string consulting_txt = 4;
+  repeated uint64 consulting_question_urls = 5;
+  bool support_auto_send_question = 6;
+}
+
+message ActionAreaItem {
+  int32 area_type = 1;
+  AreaBoundary area_boundary = 2;
+}
+
+message AreaBoundary {
+  int32 margin_left = 1;
+  int32 margin_right = 2;
+  int32 margin_top = 3;
+  int32 margin_bottom = 4;
+  string margin_bottom_rate = 5;
+  string margin_left_rate = 6;
+  string margin_right_rate = 7;
+  string height_rate = 8;
+}
+
+message AdSpaceInfo {
+  uint32 frequency_time = 1;
+  string background_img_url = 2;
+  uint32 slide_threshold = 3;
+}
+
+message BannerInfo {
+  string icon_url = 1;
+  string icon_title = 2;
+  string adv_tips_url = 3;
+  int32 type = 4;
+  string button_txt = 5;
+  uint32 begin_showtime = 6;
+  uint32 showtime = 7;
+}
+
+message BasicInfo {
+  repeated Label label = 1;
+}
+
+message CreativeElementStructureContent {
+  repeated Label label = 1;
+}
+
+message Label {
+  uint32 coordinate_x = 1;
+  uint32 coordinate_y = 2;
+  string content = 3;
+  int32 direction = 4;
+  string landing_page_url = 5;
+  uint32 angle = 6;
+  uint32 percent = 7;
+  uint32 order = 8;
+  uint32 type = 9;
+  WechatGameInfo wechat_game_info = 10;
+}
+
+message WechatGameInfo {
+  uint32 type = 1;
+  uint32 group_type = 2;
+  uint32 rarity = 3;
+}
+
+message MaterialInfo {
+  string search_txt = 1;
+  string search_desc = 2;
+  string image_url = 3;
+  string click_url = 4;
+  string price = 5;
+  string title = 6;
+  string template_image_url = 7;
+  string original_price = 8;
+  string schema_url = 9;
+  string universal_link = 10;
+  string wx_mini_program_path = 11;
+  string landingpage_url = 12;
+  uint64 purchase = 13;
+  bool is_new_product = 14;
+  repeated string attributes = 15;
+}
+
+message MiniCardLink {
+  string description = 1;
+  string image_url = 2;
+  string button_text = 3;
+}
+
+message QQBrowserExternalInfo {
+  uint64 ad_timeout = 1;
+  string qq_browser_ext = 2;
+  string domain = 3;
+  string trl = 4;
+  uint32 pos_pic_h = 5;
+  uint32 pos_pic_w = 6;
+  string floating_red_string = 7;
+}
+
+message BidInfo {
+  uint32 cost_type = 1;
+  uint32 expect_cost = 2;
+  uint32 ad_cost = 3;
+  string fixed_pctr = 4;
+  double raw_fixed_pctr = 5;
+  float pctr_petr_weight = 6;
+}
+
+message CardInfo {
+  string title = 1;
+  string description = 2;
+  string button_txt = 3;
+  repeated string labels = 4;
+  string image = 5;
+}
+
+message ContainerAdItem {
+  repeated string img_url_list = 1;
+  string desc = 2;
+  string dest_url = 3;
+  repeated bytes rl = 4;
+  string button_txt = 5;
+}
+
+message ConversionData {
+  string conversion_desc = 1;
+  int32 conversion_target_type = 2;
+}
+
+message EasterEgg {
+  string broken_video_url = 1;
+  string image_url = 2;
+  SizeInfo broken_video_size_info = 3;
+}
+
+message FloatingZone {
+  string image_url = 1;
+  string name = 2;
+  repeated string tag = 3;
+  string price = 4;
+  string discount = 5;
+  string button_text = 6;
+  string floating_desc = 7;
+  int32 type = 8;
+  repeated MultiButton multi_buttons = 9;
+}
+
+message Interactive {
+  uint32 sensitivity = 1;
+  uint32 shake_times = 2;
+  uint32 x_axis_acceleration_rate = 3;
+  uint32 y_axis_acceleration_rate = 4;
+  uint32 z_axis_acceleration_rate = 5;
+  repeated string display_code_list = 6;
+  uint32 icon_transparency = 7;
+  string icon_url = 8;
+  string icon_title = 9;
+  string title = 10;
+  string description = 11;
+  string shake_lottie_animation_url = 12;
+  uint32 shake_animation_time = 13;
+  string transition_animation_url = 14;
+  uint32 component_position = 15;
+  uint32 mask_appear_time = 16;
+  TimelineWidget timeline_widget = 17;
+  uint32 twist_forward_angle = 18;
+  uint32 twist_back_angle = 19;
+  uint32 mask_show_duration = 20;
+  uint32 mask_appear_viewed_percent = 21;
+  string track_data = 22;
+  uint32 track_matching_radius = 23;
+  uint32 begin_time_second = 24;
+  uint32 end_time_second = 25;
+  uint32 vertical_slide_trigger_angle = 26;
+}
+
+message TimelineWidget {
+  repeated Component component_list = 1;
+}
+
+message Component {
+  string text = 1;
+  string theme_color = 2;
+  string image_url = 3;
+  string brand_image_url = 4;
+  string button_image_url = 5;
+  string button_txt = 6;
+  uint32 count_down_anchor = 7;
+  uint32 is_show_count_down = 8;
+  DisplayDuration duration = 9;
+  int32 component_type = 10;
+  int32 theme_template = 11;
+  string night_image_url = 12;
+  repeated string theme_color_list = 13;
+}
+
+message DisplayDuration {
+  uint32 begin = 1;
+  uint32 end = 2;
+}
+
+message LikeInfo {
+  string like_before_icon_url = 1;
+  string like_after_icon_url = 2;
+}
+
+message LocalInfo {
+  string distance_description = 1;
+  string store_name = 2;
+  string store_url = 3;
+  string store_address = 4;
+  double store_longitude = 5;
+  double store_latitude = 6;
+}
+
+message MultiButton {
+  string button_text = 1;
+  int32 link_type = 2;
+  string link = 3;
+}
+
+message MultiClickAreaInfo {
+  uint32 begin_play_percent = 1;
+  uint32 end_play_percent = 2;
+  uint32 click_area_from_bottom = 3;
+  string tips = 4;
+}
+
+message MutiPicTextInfo {
+  repeated uint64 txt = 1;
+  repeated uint64 image = 2;
+  repeated uint64 url = 3;
+}
+
+message PopupPosterInfo {
+  string img = 1;
+  uint32 appear_time = 2;
+  uint32 disappear_time = 3;
+  string background_color = 4;
+  string font_color = 5;
+  string text = 6;
+}
+
+message SizeInfo {
+  uint32 width = 1;
+  uint32 height = 2;
+}
+
+message VideoInfo {
+  string video_url = 1;
+  uint32 media_duration = 2;
+  string tencent_video_id = 3;
+  uint32 video_file_size = 4;
+  bool no_auto_play = 5;
+  string endcard = 6;
+  uint32 endcard_load_time = 7;
+  uint32 endcard_direction = 8;
+  string bottom_card_url = 9;
+  uint32 height = 10;
+  uint32 width = 11;
+  int32 codec = 12;
+}
+
+message WechatChannelLiveVideoInfo {
+  int32 live_video_type = 1;
+  string live_query_url = 2;
+}
+
+message WxgamePlayableInfo {
+  string playable_page_id = 1;
+  string playable_page_passthrough_info = 2;
+}
+
+message DynamicInfo {
+  int32 hippy_type = 1;
+  string module_id = 2;
+  string template_id = 3;
+}
+
+message ExpParam {
+  uint32 key = 1;
+  string value = 2;
+}
+
+message Ext {
+  string image_url = 1;
+  string video_url = 2;
+  string click_url = 3;
+  string wechat_app_path = 4;
+  string universal_link = 5;
+  string deep_link = 6;
+  string view_id = 7;
+  string interactive_url = 8;
+  uint64 creative_element_id = 9;
+  uint32 video_duration = 10;
+  string desc = 11;
+  string landingpage_url = 12;
+}
+
+message CarouselAdItem {
+  string image_url = 1;
+  string video_url = 2;
+  string click_url = 3;
+  string wechat_app_path = 4;
+  string universal_link = 5;
+  string deep_link = 6;
+  string view_id = 7;
+  string interactive_url = 8;
+  uint64 creative_element_id = 9;
+  uint32 video_duration = 10;
+  string desc = 11;
+  string landingpage_url = 12;
+}
+
+message ExtraButtonTxt {
+  string app_not_download = 1;
+  string app_download_paused = 2;
+  string app_downloaded = 3;
+  string app_installed = 4;
+  string customized_txt = 5;
+  string app_downloading = 6;
+}
+
+message FloatingTip {
+  int32 type = 1;
+  string text = 2;
+  string icon_url = 3;
+}
+
+message RedDotControl {
+  uint32 pop_mask_type = 1;
+  uint32 auto_jump_countdown = 2;
+}
+
+message LocalStoreInfo {
+  string store_name = 1;
+}
+
+message OfflinePageInfo {
+  string offline_landing_page = 1;
+  string offline_json_url = 2;
+  string offline_json_key = 3;
+  int32 offline_id = 4;
+}
+
+message QQAppInfo {
+  bytes app_id = 1;
+  bytes app_path = 2;
+  bytes app_schema = 3;
+}
+
+message NegativeFeedbackItem {
+  string icon_url = 1;
+  string text = 2;
+  uint32 report_type = 3;
+  string jump_url = 4;
+  string jump_title = 5;
+  uint32 action_type = 6;
+  uint32 feedback_type = 7;
+}
+
+message ThirdPartyMonitorUrls {
+  repeated uint64 api_exposure_monitor_url = 1;
+  repeated uint64 sdk_exposure_monitor_url = 2;
+  repeated uint64 api_click_monitor_url = 3;
+  repeated uint64 sdk_click_monitor_url = 4;
+  repeated uint64 video_play_monitor_url = 5;
+  uint32 video_play_duration = 6;
+  repeated uint64 active_view_tracking_url = 7;
+  repeated VideoPlayMonitorUrl multi_video_play_monitor_urls = 8;
+}
+
+message VideoPlayMonitorUrl {
+  uint32 play_time = 1;
+  repeated string report_url = 2;
+}
+
+message RewardInfo {
+  uint32 reward_time = 1;
+  string sdk_report_url = 2;
+  uint32 sdk_report_interval = 3;
+  string pass_through_data = 4;
+  repeated uint64 rewardPlayType = 5;
+  string customized_reward_txt = 6;
+}
+
+message PassThroughData {
+  int32 reward_type = 1;
+  uint32 bottomcard_hot_size = 2;
+  uint32 bottomcard_hot_direction = 3;
+  uint32 endcard_hot_direction = 4;
+  uint32 endcard_hot_size = 5;
+  repeated string bullet_screen = 6;
+  DynamicTemplateInfo dynamic_template_info = 7;
+}
+
+message SkAdNetwork {
+  uint32 campaign_id = 1;
+  uint64 timestamp_ms = 2;
+  string ad_network_id = 3;
+  string nonce = 4;
+  uint64 source_app_id = 5;
+  string version = 6;
+  string signature = 7;
+}
+
+message WeChatAppInfo {
+  string app_username = 1;
+  string app_path = 2;
+  string app_token = 3;
+  string app_id = 4;
+  string ad_trace_data = 5;
+  uint64 pos_id = 6;
+  string wx_plugin_middle_page = 7;
+  string wechat_appid = 8;
+}
+
+message ContractEmptyAdResponse {
+  string trace_id = 1;
+  uint32 type = 2;
+  uint32 slot_index = 3;
+  string report_url = 4;
+}
+
+message PosAdInfo {
+  int32 ret = 1;
+  repeated bytes msg = 2;
+  string pos_id = 3;
+  repeated AdInfo ads_info = 4;
+  NoAdIndicator no_ad_indicator = 5;
+  int32 report_type = 6;
+  FrequencyInfo frequency_info = 7;
+  bytes passthrough_pos_info = 8;
+  repeated ContractEmptyAdResponse contract_empty_ad_response = 100;
+}
+
+message FrequencyInfo {
+  uint32 exposure_frequency_time = 1;
+  uint32 request_frequency_time = 2;
+  uint32 request_frequency_time_adlimit = 3;
+}
+
+// ==== source: tencent/gdt/qq_common.java ====
+message ArticleSessionInfo {
+  uint32 latest_click_first_cid = 1;
+  uint32 latest_click_second_cid = 2;
+  uint32 top_click_first_cid = 3;
+  uint32 top_click_second_cid = 4;
+  uint32 interval_top_click_first_cid = 5;
+  uint32 interval_top_click_second_cid = 6;
+  uint32 click_cnt = 7;
+  uint32 exposure_cnt = 8;
+  uint32 duration_sec = 9;
+  uint32 read_chapter = 10;
+  uint32 read_page = 11;
+  uint32 latest_turn_speed_ms = 12;
+  uint32 top_turn_speed_ms = 13;
+}
+
+message DeviceEncryptedData {
+  uint32 disable_interactive = 1;
+}
+
+message DeviceExt {
+  bool installed = 1;
+  repeated uint64 uninstalled = 2;
+}
+
+message AppStatus {
+  repeated uint64 installed = 1;
+  repeated uint64 uninstalled = 2;
+}
+
+message AttriDeviceInfo {
+  repeated IdInfo id_info = 1;
+  string sid_h = 2;
+  repeated bytes uuid = 3;
+  string wm_h = 4;
+  repeated bytes ua = 5;
+  repeated bytes iv = 6;
+  string app_bundle_id = 7;
+  string wifi_name = 8;
+  string w_u = 9;
+  UserAgentInfo ua_i = 10;
+}
+
+message UserAgentInfo {
+  SystemInfo s_i = 1;
+  string c_i = 2;
+  string m_t_i = 3;
+}
+
+message SystemInfo {
+  string b_v_r = 1;
+  string b_m = 2;
+  string b_v_c = 3;
+  string b_i = 4;
+  string sw_s = 5;
+  string b_mf = 6;
+  string b_r_o_c = 7;
+  string jvm_v = 8;
+  string b_v_i = 9;
+}
+
+message ConfigureAbility {
+  bool support_cdn_xj_native = 1;
+  bool support_ios_sk_adnetwork = 2;
+  bool support_sharp_picture = 3;
+  bool support_velen = 4;
+  bool support_landingpage_hippy = 5;
+  bool is_jump_inside_authorized = 6;
+  bool support_multi_product_render = 7;
+  repeated bytes support_hippy_type = 8;  // was: enum
+  uint32 reward_max_level = 9;
+  bool support_mdpa = 10;
+}
+
+message HevcCompatibilityInfo {
+  int32 video_player_type = 1;
+  uint64 max_luma_samples = 2;
+  uint32 max_fps = 3;
+}
+
+message HippyConfigParam {
+  uint32 rd_wall_ad_cnt = 1;
+}
+
+message IosQaidInfo {
+  repeated bytes st = 1;
+  repeated bytes cy = 2;
+  repeated bytes la = 3;
+  string dn_h = 4;
+  repeated bytes ma = 5;
+  repeated bytes pm = 6;
+  repeated bytes hd = 7;
+  string sut = 8;
+  repeated bytes dm = 9;
+  repeated bytes tz = 10;
+  string mnt = 11;
+  string dit = 14;
+}
+
+message SdkIdDiffMap {
+  repeated uint64 di = 1;
+  repeated uint64 di0 = 2;
+  repeated uint64 di1 = 3;
+  repeated uint64 im = 4;
+  repeated uint64 im0 = 5;
+  repeated uint64 im1 = 6;
+  repeated uint64 me = 7;
+  repeated uint64 me0 = 8;
+  repeated uint64 me1 = 9;
+  repeated uint64 ai = 10;
+  repeated uint64 si = 11;
+  int32 ads = 12;
+  repeated uint64 cs = 13;
+}
+
+message TargetingAbility {
+  bool support_c2s = 1;
+  bool support_wechat_canvas = 2;
+  repeated uint32 support_mini_program_type = 3;
+  bool support_app_preorder = 4;
+  bool support_deep_link = 5;
+  bool support_quick_app_link = 6;
+  bool web_wx_mgame = 7;
+  bool web_wx_canvas = 8;
+  bool support_download = 9;
+}
+
+message WechatInstalledInfo {
+  uint64 api_ver = 1;
+  bool installed = 2;
+  bool has_universal_link = 3;
+  string ios_opensdk_ver = 4;
+  uint64 adr_opensdk_ver = 5;
+  string wmpf_sdk_version = 6;
+  bool is_pc_support_wx_mini_game = 7;
+}
+
+message ForceCallInfo {
+  uint32 force_ad_index_id = 1;
+  uint32 force_call_crt_size = 2;
+  uint64 force_call_tid_list = 3;
+  uint64 force_aid = 4;
+  uint64 force_style_id = 5;
+}
+
+message GestureStageInfo {
+  int32 type = 1;
+  string icon_url = 2;
+  string tips_1 = 3;
+  string tips_2 = 4;
+  uint32 begin_time = 5;
+  uint32 end_time = 6;
+}
+
+message LandingpageDynamicInfo {
+  string template_id = 1;
+  string ext_info = 2;
+}
+
+message RecommendTag {
+  repeated uint64 neg = 1;
+}
+
+message SdkPassthroughPosInfo {
+  bool enable_multi_ads_reward = 1;
+  int32 next_ad_show_time = 2;
+}
+
+message VelenPreload {
+  repeated string preload_page = 1;
+  string preload_landing_page = 2;
+  string preload_json_url = 3;
+  string preload_json_key = 4;
+}
+
+// ==== source: tencent/gdt/qzap_common.java ====
+message HarmonySysInfo {
+  int32 harmony_pure_mode = 1;
+  string os_version = 2;
+  bool is_harmony_os = 3;
+}
+
+// ==== source: tencent/gdt/report.java ====
+message SsoPushReportReq {
+  int32 account_type = 1;
+  string platform = 2;
+  string qimei36 = 3;
+  string province = 4;
+  string operator = 5;
+  string app_version = 6;
+  string model = 7;
+  string os_version = 8;
+  string event_code = 9;
+  string oper_name = 10;
+  repeated bytes module = 11;
+  string action = 12;
+  string ext1 = 13;
+  string ext2 = 14;
+  string ext3 = 15;
+  string ext4 = 16;
+  string ext5 = 17;
+  int64 ext6 = 18;
+  int64 ext7 = 19;
+  int64 ext8 = 20;
+  int64 ext9 = 21;
+  int64 ext10 = 22;
+}
+
+message SsoPushReportRsp {
+  RetMsg ret_msg = 1;
+}
+
+message UserActionReportReq {
+  int32 busi_type = 1;
+  string adid = 3;
+  int32 adpos_type = 4;
+  int32 action_type = 5;
+  int64 action_time = 6;
+  uint32 feeds_index = 7;
+  repeated string experiment_id = 8;
+  string attachment = 9;
+  string adpos_id = 10;
+  string trace_id = 11;
+  string qq_ver = 12;
+  uint32 os_type = 13;
+  string app_id = 14;
+  int32 adv_type = 15;
+  string adv_feed_id = 16;
+  uint32 click_type = 17;
+  string req_trace_id = 18;
+  uint32 photo_entry_scene_type = 19;
+  string album_id = 20;
+  string photo_owner_uin = 21;
+  string refresh_id = 22;
+  uint32 viewed_feeds_count = 23;
+}
+
+message UserActionReportRsp {
+  RetMsg ret_msg = 1;
+}
+
+message UserData {
+  repeated UserActionReportReq user_action_data = 1;
+  int64 write_time = 100;
+}

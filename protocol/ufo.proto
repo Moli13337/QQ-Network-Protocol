@@ -1,0 +1,106 @@
+// ufo 域 — 17 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ufo;
+
+// ==== source: ufo/UgcRight$AuthResult.java ====
+message AuthResult {
+  int32 auth_result = 1;
+  int32 auth_finstep = 2;
+  uint64 rightFlag = 3;
+}
+
+// ==== source: ufo/UgcRight$BatchVerifyResult.java ====
+message BatchVerifyResult {
+  string vuin = 1;
+  AuthResult authResult = 2;
+}
+
+// ==== source: ufo/UgcRight$BatchVerifyUgcRightReq.java ====
+message BatchVerifyUgcRightReq {
+  repeated string vuins = 1;
+  UgcDataKey ugc_key = 2;
+}
+
+// ==== source: ufo/UgcRight$BatchVerifyUgcRightRsp.java ====
+message BatchVerifyUgcRightRsp {
+  // (no fields resolved)
+}
+
+// ==== source: ufo/UgcRight$GetTagListReq.java ====
+message GetTagListReq {
+  string uin = 1;
+}
+
+// ==== source: ufo/UgcRight$GetTagListRsp.java ====
+message GetTagListRsp {
+  repeated bytes taglist = 1;  // was: TagInfo
+}
+
+// ==== source: ufo/UgcRight$SetTagListReq.java ====
+message SetTagListReq_TagInfo {
+  string tagID = 1;
+  string tagName = 2;
+  repeated string uinList = 3;
+  uint32 updateTime = 4;
+}
+
+message SetTagListReq {
+  string uin = 1;
+  int32 cmd = 2;
+  bytes taginfo = 3;  // was: TagInfo
+}
+
+// ==== source: ufo/UgcRight$SetTagListRsp.java ====
+message SetTagListRsp {
+  string tagID = 1;
+}
+
+// ==== source: ufo/UgcRight$SetUgcRightReq.java ====
+message SetUgcRightReq_RightInfo {
+  uint64 rightFlag = 1;
+  repeated bytes tagList = 2;  // was: TagInfo
+  repeated string uinList = 3;
+}
+
+message SetUgcRightReq {
+  UgcDataKey ugcKey = 1;
+  bytes rightInfo = 2;  // was: RightInfo
+}
+
+// ==== source: ufo/UgcRight$SetUgcRightRsp.java ====
+message SetUgcRightRsp {
+  // (no fields resolved)
+}
+
+// ==== source: ufo/UgcRight$TagList.java ====
+message TagList {
+  repeated bytes taglist = 1;  // was: TagInfo
+}
+
+// ==== source: ufo/UgcRight$UgcDataKey.java ====
+message UgcDataKey {
+  string uin = 1;
+  int32 platform = 2;
+  string dataID = 3;
+  uint64 check_rightflag = 4;
+}
+
+// ==== source: ufo/UgcRight$VerifyResult.java ====
+message VerifyResult {
+  UgcDataKey ugcKey = 1;
+  AuthResult authResult = 2;
+}
+
+// ==== source: ufo/UgcRight$VerifyUgcRightReq.java ====
+message VerifyUgcRightReq {
+  string vuin = 1;
+  repeated UgcDataKey ugcKeys = 2;
+}
+
+// ==== source: ufo/UgcRight$VerifyUgcRightRsp.java ====
+message VerifyUgcRightRsp {
+  string vuin = 1;
+  repeated VerifyResult result = 2;
+}

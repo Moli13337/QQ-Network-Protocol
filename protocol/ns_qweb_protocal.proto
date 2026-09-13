@@ -1,0 +1,44 @@
+// ns_qweb_protocal 域 — 4 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_qweb_protocal;
+
+// ==== source: NS_QWEB_PROTOCAL/PROTOCAL.java ====
+message StAuthInfo {
+  string uin = 1;
+  bytes sig = 2;
+  string platform = 3;
+  uint32 type = 4;
+  string appid = 5;
+  string openid = 6;
+  bytes sessionkey = 7;
+  repeated bytes Extinfo = 8;  // was: Entry
+}
+
+message StEncryption {
+  uint32 method = 1;
+  repeated bytes iv = 2;
+}
+
+message StQWebReq {
+  uint64 Seq = 1;
+  string qua = 2;
+  string deviceInfo = 3;
+  bytes busiBuff = 4;
+  string traceid = 5;
+  repeated bytes Module = 6;
+  string Cmdname = 7;
+  StAuthInfo loginSig = 8;
+  StEncryption Crypto = 9;
+  repeated bytes Extinfo = 10;  // was: Entry
+  uint32 contentType = 11;
+}
+
+message StQWebRsp {
+  uint64 Seq = 1;
+  int64 retCode = 2;
+  bytes errMsg = 3;
+  bytes busiBuff = 4;
+  repeated bytes Extinfo = 5;  // was: Entry
+}

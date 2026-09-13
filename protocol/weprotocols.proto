@@ -1,0 +1,109 @@
+// weprotocols 域 — 14 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.weprotocols;
+
+// ==== source: weprotocols/WEProtocolsVaslive$BatchGetQLiveInfoReq.java ====
+message BatchGetQLiveInfoReq {
+  repeated uint64 roomId = 1;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$BatchGetQLiveInfoRsp.java ====
+message BatchGetQLiveInfoRsp {
+  repeated StFeed feeds = 1;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$DatingRoomInfo.java ====
+message DatingRoomInfo {
+  uint32 gameID = 1;
+  repeated SeatUserList seatUsers = 2;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$Entry.java ====
+message Entry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$InteractivePlayInfo.java ====
+message InteractivePlayInfo {
+  string liveIcon = 1;
+  string playIcon = 2;
+  string title = 3;
+  string awardName = 4;
+  uint32 liveIconWidth = 5;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$SeatUserList.java ====
+message SeatUserList_UserBasic {
+  uint64 uid = 1;
+  string nick = 2;
+  repeated bytes logo = 3;
+  uint32 gender = 4;
+}
+
+message SeatUserList_PictureURL {
+  string url = 1;
+  uint32 width = 2;
+  uint32 height = 3;
+}
+
+message SeatUserList {
+  int32 seatNo = 2;
+  uint64 uid = 3;
+  int32 sourceType = 5;
+  bytes userBasic = 6;  // was: UserBasic
+  string extInfo = 7;
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$StFeed.java ====
+message StFeed_StUser {
+  repeated bytes id = 1;
+  string nick = 2;
+  string thirdId = 20;
+}
+
+message StFeed_StImage {
+  uint32 width = 1;
+  uint32 height = 2;
+  string picUrl = 3;
+  string picId = 5;
+  bytes busiData = 6;
+}
+
+message StFeed_StLive {
+  string schema = 1;
+  repeated bytes room = 2;
+  repeated Entry liveExtInfo = 3;
+}
+
+message StFeed_RoomInfoData {
+  uint64 roomId = 1;
+  string roomTitle = 2;
+  string rtmpUrl = 3;
+  string topic = 4;
+  uint32 roomState = 5;
+  uint32 roomType = 6;
+  string coverUrl = 7;
+  uint64 source = 8;
+  string flvUrl = 9;
+  bool isUseFlvUrl = 10;
+}
+
+message StFeed {
+  repeated bytes id = 1;
+  bytes poster = 4;  // was: StUser
+  bytes cover = 5;  // was: StImage
+  uint32 type = 8;
+  uint32 feedType = 26;
+  bytes live = 50;  // was: StLive
+}
+
+// ==== source: weprotocols/WEProtocolsVaslive$TrtcInfo.java ====
+message TrtcInfo {
+  string sig = 1;
+  int64 timeout = 2;
+  string businessInfo = 4;
+  string secStr = 5;
+}

@@ -1,0 +1,812 @@
+// ktv 域 — 107 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ktv;
+
+// ==== source: ktvchannel/KtvAudienceSvr$CallbackReq.java ====
+message CallbackReq {
+  string room_id = 1;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$EnterRoomBill.java ====
+message EnterRoomBill_AudienceInfo {
+  uint64 uin = 1;
+  string room_id = 2;
+  uint64 timestamps = 3;
+  uint64 last_heartbeats_time = 4;
+  uint64 tinyid = 5;
+  string nick = 6;
+  bytes nickname = 7;
+}
+
+message EnterRoomBill {
+  bytes user_info = 1;  // was: AudienceInfo
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$FindAudienceReq.java ====
+message FindAudienceReq {
+  repeated uint64 users = 1;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$FindAudienceRsp.java ====
+message FindAudienceRsp {
+  repeated bytes msg = 1;
+  repeated bytes users_info = 2;  // was: AudienceInfo
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$GetAudienceListReq.java ====
+message GetAudienceListReq {
+  string room_id = 1;
+  uint32 num = 2;
+  string passback = 3;
+  uint32 need_all_users = 4;
+  string convert_param = 5;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$GetAudienceListRsp.java ====
+message GetAudienceListRsp {
+  uint64 total_num = 1;
+  uint32 has_more = 2;
+  string passback = 3;
+  repeated bytes user_list = 4;  // was: AudienceInfo
+  repeated bytes msg = 5;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$GetAudienceNumReq.java ====
+message GetAudienceNumReq {
+  string room_id = 1;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$GetAudienceNumRsp.java ====
+message GetAudienceNumRsp {
+  uint64 num = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: ktvchannel/KtvAudienceSvr$QuitRoomBill.java ====
+message QuitRoomBill {
+  string room_id = 1;
+  uint64 uin = 2;
+  uint64 timestamps = 3;
+}
+
+// ==== source: ktvchannel/KtvCommon$Channel.java ====
+message Channel {
+  uint64 guild_id = 1;
+  uint64 channel_id = 2;
+}
+
+// ==== source: ktvchannel/KtvCommon$ErrMsg.java ====
+message ErrMsg {
+  int32 code = 1;
+  string err_msg = 2;
+}
+
+// ==== source: ktvchannel/KtvCommon$KVItem.java ====
+message KVItem {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$AddSongListReq.java ====
+message AddSongListReq {
+  uint64 uin = 1;
+  string room_id = 2;
+  string song_mid = 3;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$AddSongListRsp.java ====
+message AddSongListRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$BatchGetSongInfoReq.java ====
+message BatchGetSongInfoReq {
+  repeated string song_mid_list = 1;
+  int32 info_mask = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$BatchGetSongInfoRsp.java ====
+message BatchGetSongInfoRsp {
+  repeated SongItem song_list = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$GetSongListReq.java ====
+message GetSongListReq {
+  uint64 uin = 1;
+  string room_id = 2;
+  uint64 tab_id = 3;
+  string pass_back = 4;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$GetSongListRsp.java ====
+message GetSongListRsp {
+  repeated SongItem acc_list = 1;
+  string pass_back = 2;
+  repeated bytes msg = 3;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$GetTabListReq.java ====
+message GetTabListReq {
+  string room_id = 1;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$GetTabListRsp.java ====
+message GetTabListRsp {
+  repeated TabItem tab_list = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$KSongList.java ====
+message KSongList {
+  repeated KVItem item_list = 1;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$OpenAPITokenCache.java ====
+message OpenAPITokenCache {
+  string access_token = 1;
+  string refresh_token = 2;
+  uint32 expires_in = 3;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$OpenAPITokenRefreshLock.java ====
+message OpenAPITokenRefreshLock {
+  uint32 refresh_stamp = 1;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$SearchSongReq.java ====
+message SearchSongReq {
+  string keywords = 1;
+  string pass_back = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$SearchSongRsp.java ====
+message SearchSongRsp {
+  repeated SongItem acc_list = 1;
+  string pass_back = 2;
+  repeated bytes msg = 3;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$SongItem.java ====
+message SongItem_LyricInfo {
+  bytes content = 1;
+  int32 timestamp = 2;
+  int32 compress_type = 3;
+  int32 code = 4;
+  string version = 5;
+  int32 lyric_type = 6;
+}
+
+message SongItem {
+  string ksong_mid = 1;
+  string song_name = 2;
+  string singer_mid = 3;
+  string singer_name = 4;
+  string song_cover_url = 5;
+  string accompany_url = 6;
+  string origin_audio_url = 7;
+  string mv_url = 8;
+  int32 play_interval = 9;
+  bytes lyric_info = 10;  // was: LyricInfo
+  int32 music_file_size = 11;
+  string album_mid = 12;
+  bytes note_info = 13;  // was: LyricInfo
+  bytes section_info = 14;  // was: LyricInfo
+  int32 song_type = 15;
+  bool has_mv = 16;
+  bool has_hq = 17;
+  bool has_ori_song = 18;
+  bool has_midi = 19;
+  bool mv_has_lyric = 20;
+  int32 language = 21;
+  int32 cp_status = 22;
+  bool need_vip = 23;
+  uint32 qqmusic_id = 24;
+  int32 block_mask = 25;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$TabItem.java ====
+message TabItem {
+  uint64 tab_id = 1;
+  string tab_name = 2;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$TabList.java ====
+message TabList {
+  repeated TabItem tab_list = 1;
+}
+
+// ==== source: ktvchannel/KtvDataSvr$TimerCallbackReq.java ====
+message TimerCallbackReq {
+  // (no fields resolved)
+}
+
+// ==== source: ktvchannel/KtvDataSvr$TimerCallbackRsp.java ====
+message TimerCallbackRsp {
+  // (no fields resolved)
+}
+
+// ==== source: ktvchannel/KtvFlowSvr$ProduceReq.java ====
+message ProduceReq_PulsarConf {
+  string url = 1;
+  string listener_name = 2;
+  string token = 3;
+  string topic = 4;
+  string sub = 5;
+  bool enable_retry = 6;
+}
+
+message ProduceReq {
+  bytes pulsar_conf = 1;  // was: PulsarConf
+  bytes msg_data = 2;
+  int32 message_type = 3;
+}
+
+// ==== source: ktvchannel/KtvFlowSvr$ProduceRsp.java ====
+message ProduceRsp {
+  repeated bytes msg = 2;
+}
+
+// ==== source: ktvchannel/KtvHeartbeatsSvr$RoomHeartBeatsReq.java ====
+message RoomHeartBeatsReq {
+  uint64 uin = 1;
+  string room_id = 2;
+  repeated KVItem map_ext = 3;
+}
+
+// ==== source: ktvchannel/KtvHeartbeatsSvr$RoomHeartBeatsRsp.java ====
+message RoomHeartBeatsRsp {
+  repeated bytes msg = 1;
+  uint64 heartbeats_interval = 2;
+}
+
+// ==== source: ktvchannel/KtvImSvr$KTVChannelMsg.java ====
+message KTVChannelMsg {
+  uint64 event_sub_type = 1;
+  bytes Content = 2;
+}
+
+// ==== source: ktvchannel/KtvImSvr$SendKTVEventReq.java ====
+message SendKTVEventReq_KTVEvent {
+  string room_id = 1;
+  uint64 from_uin = 2;
+  repeated uint64 to_uin_list = 3;
+  int32 main_type = 4;
+  int32 sub_type = 5;
+  bytes Content = 6;
+}
+
+message SendKTVEventReq {
+  bytes event = 1;  // was: KTVEvent
+}
+
+// ==== source: ktvchannel/KtvImSvr$SendKTVEventRsp.java ====
+message SendKTVEventRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMemberSvr$BatchGetMemberInfoReq.java ====
+message BatchGetMemberInfoReq {
+  repeated uint64 uin_list = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMemberSvr$BatchGetMemberInfoRsp.java ====
+message BatchGetMemberInfoRsp {
+  repeated MemberInfo member_list = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMemberSvr$MemberInfo.java ====
+message MemberInfo {
+  uint64 uin = 1;
+  uint64 tiny_id = 2;
+  string room_id = 3;
+  uint32 status = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMemberSvr$SetMemberInfoReq.java ====
+message SetMemberInfoReq {
+  uint64 uin = 1;
+  string room_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMemberSvr$SetMemberInfoRsp.java ====
+message SetMemberInfoRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ApplyJoinHcReq.java ====
+message ApplyJoinHcReq {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 action_type = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ApplyJoinHcRsp.java ====
+message ApplyJoinHcRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ApplyMikeReq.java ====
+message ApplyMikeReq {
+  string room_id = 1;
+  string song_mid = 2;
+  int32 sing_type = 3;
+  int32 sing_part = 4;
+  repeated KVItem ext_info = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ApplyMikeRsp.java ====
+message ApplyMikeRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  string room_id = 3;
+  string song_mid = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetCurMikeReq.java ====
+message GetCurMikeReq {
+  string room_id = 1;
+  int32 from_type = 2;
+  int32 user_scene = 3;
+  int32 app_ktv_status = 4;
+  uint32 mask = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetCurMikeRsp.java ====
+message GetCurMikeRsp {
+  ErrMsg err_info = 1;
+  KTVMikeInfo mike_info = 2;
+  uint64 sequence_id = 3;
+  int32 is_wait_mike = 4;
+  int32 get_curmike_interval = 5;
+  uint32 cur_timestamp = 6;
+  repeated KVItem ext_info = 7;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetHcReqListReq.java ====
+message GetHcReqListReq {
+  string room_id = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetHcReqListRsp.java ====
+message GetHcReqListRsp {
+  ErrMsg err_info = 1;
+  repeated UserInfo vct_req_info = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetMikeListReq.java ====
+message GetMikeListReq {
+  string room_id = 1;
+  uint64 mikelist_mask = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$GetMikeListRsp.java ====
+message GetMikeListRsp {
+  ErrMsg err_info = 1;
+  repeated KTVMikeInfo vct_mike_info = 2;
+  uint64 sequence_id = 3;
+  uint32 mike_total_num = 4;
+  uint32 apply_total_num = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$HcTransSoloReq.java ====
+message HcTransSoloReq {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 device_type = 3;
+  string song_mid = 4;
+  string file_mid = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$HcTransSoloRsp.java ====
+message HcTransSoloRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  uint64 sequence_id = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$KTVMikeInfo.java ====
+message KTVMikeInfo_MikeDetail {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 mike_duration = 3;
+  int32 sing_type = 4;
+  string song_mid = 5;
+  repeated bytes lc_user_info = 6;
+  repeated bytes hc_user_info = 7;
+  uint32 mike_start_time = 8;
+  uint32 mike_end_time = 9;
+  int32 mike_status = 10;
+  uint64 sequence_id = 11;
+  uint32 lc_video_ts = 12;
+  uint32 lc_accompany_ts = 13;
+  uint32 hc_video_ts = 14;
+  uint32 hc_accompany_ts = 15;
+  int32 lc_sing_part = 16;
+  int32 play_state = 17;
+  int32 lc_user_status = 18;
+  int32 hc_user_status = 19;
+  uint32 notice_time = 20;
+  uint32 song_duration = 21;
+  int32 lc_device_type = 22;
+  int32 hc_device_type = 23;
+  uint32 wait_time = 24;
+  int32 mike_type = 25;
+  repeated KVItem ext_info = 26;
+}
+
+message KTVMikeInfo_SongInfo {
+  string song_name = 1;
+  string song_mid = 2;
+  string singer_name = 3;
+  int32 song_duration = 4;
+  string song_cover_url = 5;
+}
+
+message KTVMikeInfo {
+  bytes mike_detail = 2;  // was: MikeDetail
+  bytes song_info = 3;  // was: SongInfo
+  int32 play_time = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeDisConnReq.java ====
+message MikeDisConnReq {
+  string mike_id = 1;
+  string room_id = 2;
+  int32 role_type = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeDisConnRsp.java ====
+message MikeDisConnRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeHasOnReq.java ====
+message MikeHasOnReq {
+  string mike_id = 1;
+  string room_id = 2;
+  int32 role_type = 3;
+  int32 device_type = 4;
+  string song_mid = 5;
+  string file_mid = 6;
+  repeated KVItem ext_info = 7;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeHasOnRsp.java ====
+message MikeHasOnRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  uint64 sequence_id = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeMsg.java ====
+message MikeMsg {
+  string msg_text = 1;
+  repeated KVItem ext_info = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeReqOnReq.java ====
+message MikeReqOnReq {
+  string mike_id = 1;
+  string room_id = 2;
+  int32 action_type = 3;
+  int32 role_type = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$MikeReqOnRsp.java ====
+message MikeReqOnRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  uint64 sequence_id = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$NoticeToSvrReq.java ====
+message NoticeToSvrReq {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 notice_type = 3;
+  uint32 notice_time = 4;
+  uint32 notice_wait = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$NoticeToSvrRsp.java ====
+message NoticeToSvrRsp {
+  int32 ret_code = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$OprKtvSongReq.java ====
+message OprKtvSongReq {
+  string room_id = 1;
+  string mike_id = 2;
+  string song_id = 3;
+  int32 opr_type = 4;
+  uint32 req_timestamp = 5;
+  uint32 video_timestamp = 6;
+  uint32 acc_timestamp = 7;
+  int32 role_type = 8;
+  int32 sing_type = 9;
+  int32 sing_part = 10;
+  uint32 acc_time_length = 11;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$OprKtvSongRsp.java ====
+message OprKtvSongRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  uint32 req_timestamp = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ProcJoinHcReq.java ====
+message ProcJoinHcReq {
+  string room_id = 1;
+  uint64 hc_tiny_id = 2;
+  bytes hc_nick_name = 3;
+  string mike_id = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ProcJoinHcRsp.java ====
+message ProcJoinHcRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ScoreInfo.java ====
+message ScoreInfo {
+  int32 total_score = 1;
+  uint32 sentence_count = 2;
+  int32 sing_type = 3;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ScoreQueryReq.java ====
+message ScoreQueryReq {
+  string room_id = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ScoreQueryRsp.java ====
+message ScoreQueryRsp_MemMikeScoreInfo {
+  int32 lc_score_result = 1;
+  repeated bytes lc_score_detail = 2;
+  int32 hc_score_result = 3;
+  repeated bytes hc_score_detail = 4;
+  int32 score_record = 5;
+  int32 total_score = 6;
+  uint32 sentence_count = 7;
+  int32 sing_type = 8;
+}
+
+message ScoreQueryRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+  bytes info = 3;  // was: MemMikeScoreInfo
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ScoreReportReq.java ====
+message ScoreReportReq {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 role_type = 3;
+  int32 sing_type = 4;
+  uint32 total_score = 5;
+  uint32 sentence_count = 6;
+  int32 score_result = 7;
+  ScoreDetail score_detail = 8;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$ScoreReportRsp.java ====
+message ScoreReportRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$SetMikeStatReq.java ====
+message SetMikeStatReq {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 action_type = 3;
+  repeated bytes msg = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeMikeSvr$SetMikeStatRsp.java ====
+message SetMikeStatRsp {
+  ErrMsg err_info = 1;
+  string mike_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$BatchGetRoomInfoReq.java ====
+message BatchGetRoomInfoReq {
+  repeated string room_id_list = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$BatchGetRoomInfoRsp.java ====
+message BatchGetRoomInfoRsp {
+  repeated RoomInfo info_list = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$BatchLeaveRoomReq.java ====
+message BatchLeaveRoomReq {
+  repeated uint64 uin_list = 1;
+  string room_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$BatchLeaveRoomRsp.java ====
+message BatchLeaveRoomRsp {
+  // (no fields resolved)
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$DestroyRoomReq.java ====
+message DestroyRoomReq {
+  uint64 uin = 1;
+  string room_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$DestroyRoomRsp.java ====
+message DestroyRoomRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$GetRoomInfoReq.java ====
+message GetRoomInfoReq {
+  uint64 uin = 1;
+  Channel channel = 2;
+  int32 act_type = 3;
+  RoomInfo info = 4;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$GetRoomInfoRsp.java ====
+message GetRoomInfoRsp_SecurityResult {
+  int64 int64_action = 1;
+  string str_prompt = 2;
+  string str_detail = 3;
+}
+
+message GetRoomInfoRsp_TRTCInfo {
+  string user_sig = 1;
+  string private_map_key = 2;
+  uint32 sdk_app_id = 3;
+}
+
+message GetRoomInfoRsp {
+  repeated bytes msg = 1;
+  bytes sec_ret = 2;  // was: SecurityResult
+  bytes trtc_info = 3;  // was: TRTCInfo
+  RoomInfo info = 4;
+  int64 member_count = 5;
+  KTVMikeInfo mike_info = 6;
+  int32 member_limit = 7;
+  int32 role_type = 8;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$LeaveRoomReq.java ====
+message LeaveRoomReq {
+  uint64 uin = 1;
+  string room_id = 2;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$LeaveRoomRsp.java ====
+message LeaveRoomRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$RoomInfo.java ====
+message RoomInfo {
+  uint64 admin_uin = 1;
+  string room_id = 2;
+  Channel channel = 3;
+  repeated KVItem kv_list = 4;
+  uint64 admin_tiny_id = 5;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$UpdateRoomReq.java ====
+message UpdateRoomReq {
+  RoomInfo info = 1;
+}
+
+// ==== source: ktvchannel/KtvKaraokeRoomSvr$UpdateRoomRsp.java ====
+message UpdateRoomRsp {
+  repeated bytes msg = 1;
+  RoomInfo info = 2;
+}
+
+// ==== source: ktvchannel/KtvReportSvr$ReportReq.java ====
+message ReportReq {
+  uint64 uid = 1;
+  uint64 account_source = 2;
+  string device_info = 3;
+  string imei = 4;
+  string app_version = 5;
+  uint32 platform = 6;
+  string qua = 7;
+  string key = 8;
+  string act_id = 9;
+  string opertime = 10;
+  repeated KVItem vec_info = 11;
+}
+
+// ==== source: ktvchannel/KtvReportSvr$ReportRsp.java ====
+message ReportRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: ktvchannel/Mem$MemMikeHcInfo.java ====
+message MemMikeHcInfo {
+  repeated uint64 vct_wait_uid = 1;
+}
+
+// ==== source: ktvchannel/Mem$MemMikeInfo.java ====
+message MemMikeInfo {
+  string room_id = 1;
+  string mike_id = 2;
+  int32 mike_duration = 3;
+  int32 sing_type = 4;
+  string song_mid = 5;
+  uint64 lc_uid = 6;
+  uint64 hc_uid = 7;
+  uint32 mike_start_time = 8;
+  uint32 mike_end_time = 9;
+  int32 mike_status = 10;
+  uint64 sequence_id = 11;
+  uint32 lc_video_ts = 12;
+  uint32 lc_accompany_ts = 13;
+  uint32 hc_video_ts = 14;
+  uint32 hc_accompany_ts = 15;
+  int32 lc_sing_part = 16;
+  int32 play_state = 17;
+  int32 lc_user_status = 18;
+  int32 hc_user_status = 19;
+  uint32 notice_time = 20;
+  uint32 song_duration = 21;
+  int32 lc_device_type = 22;
+  int32 hc_device_type = 23;
+  uint32 wait_time = 24;
+  int32 mike_type = 25;
+  UserInfo lc_user_info = 26;
+  UserInfo hc_user_info = 27;
+  repeated KVItem ext_info = 28;
+}
+
+// ==== source: ktvchannel/Mem$MemMikeList.java ====
+message MemMikeList {
+  string room_id = 1;
+  repeated MikeIndex vct_mike_index = 2;
+  uint64 sequence_id = 3;
+  uint32 apply_total = 4;
+  uint32 onmike_total = 5;
+}
+
+// ==== source: ktvchannel/Mem$MemSequenceID.java ====
+message MemSequenceID {
+  string room_id = 1;
+  uint64 sequence_id = 2;
+}
+
+// ==== source: ktvchannel/Mem$MemUpdateMikeList.java ====
+message MemUpdateMikeList {
+  string room_id = 1;
+  uint32 last_update_time = 2;
+}
+
+// ==== source: ktvchannel/Mem$MikeIndex.java ====
+message MikeIndex {
+  uint64 uid = 1;
+  string mike_id = 2;
+  int32 mike_settop_stat = 3;
+  int32 mike_type = 4;
+  uint64 tiny_id = 5;
+}
+
+// ==== source: ktvchannel/Mem$ScoreDetail.java ====
+message ScoreDetail {
+  repeated int32 vct_score = 1;
+}
+
+// ==== source: ktvchannel/Mem$UserInfo.java ====
+message UserInfo {
+  uint64 tiny_id = 1;
+  bytes nick_name = 2;
+}

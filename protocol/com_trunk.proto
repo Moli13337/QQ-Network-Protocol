@@ -1,0 +1,371 @@
+// com_trunk 域 — 44 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.com_trunk;
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$AppID.java ====
+message AppID {
+  uint32 uint32_type = 1;
+  uint64 uint64_appid = 2;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Approver.java ====
+message Approver {
+  uint64 uint64_uin = 1;
+  UserSource msg_approver_source = 2;
+  ApproverState msg_approver_state = 3;
+  bytes bytes_userdef = 4;
+  uint64 uint64_recv_time = 5;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$ApproverState.java ====
+message ApproverState {
+  uint32 uint32_state = 1;
+  uint32 uint32_bepushed_times = 2;
+  bytes bytes_comment = 3;
+  uint32 uint32_last_bepushed_time = 4;
+  uint64 uint64_approve_time = 5;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$BusinessInfo.java ====
+message BusinessInfo {
+  int32 enum_busi_type = 1;
+  bytes bytes_userdef = 2;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$ContentElement.java ====
+message ContentElement {
+  repeated Text rpt_text_list = 1;
+  repeated OrdinaryFile rpt_file_list = 2;
+  repeated Picture rpt_picture_list = 3;
+  bytes bytes_userdef = 4;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$NoticedUser.java ====
+message NoticedUser {
+  uint64 uint64_uin = 1;
+  UserSource msg_user_source = 2;
+  int32 enum_handle_state = 3;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Notification.java ====
+message Notification_ScheduleChangeNotification {
+  bytes bytes_workflow_id = 2;
+  uint32 uint32_main_type = 3;
+  uint32 uint32_sub_type = 4;
+  uint64 uint64_author_uin = 5;
+  bytes bytes_title = 6;
+  repeated bytes msg_summary = 7;
+  int32 enum_change_type = 8;
+  uint32 uint32_remind_bell_switch = 9;
+  int32 enum_repeated_type = 10;
+  repeated bytes msg_changed_timespan = 11;
+  repeated Timespan rpt_msg_repeated_effective_timespan = 12;
+  uint64 uint64_start_time = 13;
+  uint64 uint64_end_time = 14;
+  repeated bytes msg_busi_info = 15;
+}
+
+message Notification_TodoChangeNotification {
+  int32 enum_change_type = 1;
+  repeated TodoChangeItem rpt_change_item_list = 2;
+}
+
+message Notification_TimTodoNotification {
+  int32 enum_notice_type = 1;
+  bytes bytes_todo_id = 2;
+  uint64 uint64_author_uin = 3;
+  bytes bytes_title = 4;
+  uint64 uint64_remind_start = 5;
+  uint64 uint64_remind_end = 6;
+}
+
+message Notification {
+  AppID msg_appid = 1;
+  WorkflowChangeNotification msg_workflow_change = 2;
+  bytes msg_schedule_change = 3;  // was: ScheduleChangeNotification
+  bytes msg_todoitem_change = 4;  // was: TodoChangeNotification
+  bytes msg_timtodo_notice = 5;  // was: TimTodoNotification
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Observer.java ====
+message Observer {
+  uint64 uint64_uin = 1;
+  UserSource msg_observer_source = 2;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$OrdinaryFile.java ====
+message OrdinaryFile {
+  bytes bytes_file_name = 1;
+  bytes bytes_file_url = 2;
+  uint32 uint32_file_size = 3;
+  bytes bytes_file_sha = 4;
+  bytes bytes_file_md5 = 5;
+  bytes bytes_file_uuid = 6;
+  bytes bytes_userdef = 7;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Picture.java ====
+message Picture {
+  uint32 uint32_pic_size = 1;
+  bytes bytes_pic_url = 2;
+  bytes bytes_pic_md5 = 3;
+  bytes bytes_userdef = 4;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Text.java ====
+message Text {
+  int32 enum_type = 1;
+  bytes bytes_content = 2;
+  bytes bytes_userdef = 3;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Timespan.java ====
+message Timespan {
+  uint64 uint64_start_time = 1;
+  uint64 uint64_end_time = 2;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$TodoChangeItem.java ====
+message TodoChangeItem {
+  AppID msg_source_appid = 1;
+  bytes bytes_workflow_id = 2;
+  uint32 uint32_main_type = 3;
+  uint32 uint32_sub_type = 4;
+  uint64 uint64_author_uin = 5;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$UserSource.java ====
+message UserSource {
+  int32 enum_source_type = 1;
+  uint64 uint64_source_code = 2;
+  uint64 uint64_root_id = 3;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$Workflow.java ====
+message Workflow_WorkflowContent {
+  bytes bytes_title = 1;
+  repeated ContentElement rpt_content_list = 2;
+  bytes bytes_userdef = 3;
+}
+
+message Workflow_RemindTimer {
+  uint64 uint64_start_time = 1;
+  uint64 uint64_end_time = 2;
+  int32 enum_remind_offset_type = 3;
+  uint32 uint32_remind_offset = 4;
+  repeated Observer rpt_msg_observers = 5;
+  int32 enum_repeat_type = 6;
+  uint32 uint32_remind_flag = 7;
+  repeated Timespan rpt_msg_repeated_effective_timespan = 8;
+}
+
+message Workflow_TodoInfo {
+  repeated bytes msg_todo_title = 1;
+  repeated bytes msg_todo_content = 2;
+  uint32 uint32_template_type = 3;
+  repeated bytes msg_default_button = 4;
+  repeated bytes rpt_button_list = 5;  // was: Button
+}
+
+message Workflow_Button {
+  uint32 uint32_id = 1;
+  bytes bytes_title = 2;
+  repeated bytes msg_on_click_operation = 3;
+}
+
+message Workflow_Operation {
+  int32 enum_operation_act = 2;
+  bytes bytes_command = 3;
+}
+
+message Workflow {
+  bytes bytes_workflow_id = 1;
+  uint64 uint64_author_uin = 2;
+  uint32 uint32_main_type = 3;
+  uint32 uint32_sub_type = 4;
+  uint64 uint64_create_time = 5;
+  uint64 uint64_last_modify_time = 6;
+  WorkflowState msg_current_state = 7;
+  bytes msg_workflow_content = 8;  // was: WorkflowContent
+  repeated WorkflowStateWithApprover rpt_msg_workflow_state_with_approver = 9;
+  repeated Observer rpt_msg_observers = 10;
+  WorkflowExtendState msg_workflow_extend_state = 11;
+  uint32 uint32_data_version = 12;
+  bytes msg_remind_timer = 13;  // was: RemindTimer
+  uint64 uint64_recv_time = 14;
+  Text msg_online_push_content = 15;
+  bytes msg_todo_info = 16;  // was: TodoInfo
+  AppID related_source_id = 17;
+  uint32 uint32_remind_bell_switch = 18;
+  BusinessInfo msg_busi_info = 19;
+  repeated NoticedUser rpt_noticed_users = 20;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$WorkflowBrief.java ====
+message WorkflowBrief {
+  bytes bytes_workflow_id = 1;
+  uint64 uint64_author_uin = 2;
+  uint64 uint64_last_modify_time = 3;
+  uint64 uint64_create_time = 4;
+  WorkflowExtendState msg_extend_state = 5;
+  uint32 uint32_data_version = 6;
+  uint64 uint64_recv_time = 7;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$WorkflowChangeNotification.java ====
+message WorkflowChangeNotification {
+  bytes bytes_workflow_id = 2;
+  uint32 uint32_main_type = 3;
+  uint32 uint32_sub_type = 4;
+  uint64 uint64_author_uin = 5;
+  bytes bytes_title = 6;
+  Text msg_summary = 7;
+  int32 enum_change_type = 8;
+  WorkflowState msg_current_state = 9;
+  uint32 uint32_data_version = 10;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$WorkflowExtendState.java ====
+message WorkflowExtendState {
+  uint32 uint32_read_state = 1;
+  uint32 uint32_delete_state = 2;
+  repeated Timespan rpt_msg_delete_timespan = 3;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$WorkflowState.java ====
+message WorkflowState {
+  uint32 uint32_state_num = 1;
+  bytes bytes_state_userdef = 2;
+}
+
+// ==== source: com/trunk/Qworkflow/Qworkflow$WorkflowStateWithApprover.java ====
+message WorkflowStateWithApprover {
+  WorkflowState msg_workflow_state = 1;
+  repeated Approver rpt_msg_approver_list = 2;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$ConcernUinRecord.java ====
+message ConcernUinRecord {
+  uint64 uint64_concern_uin = 1;
+  uint32 uint32_confirm_time = 2;
+  uint32 uint32_read_time = 3;
+  uint32 uint32_concern_type = 4;
+  uint32 uint32_ignore_time = 5;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$FaceRecordSet.java ====
+message FaceRecordSet {
+  repeated FaceRecord rpt_face_records = 1;
+}
+
+message FaceRecord {
+  uint64 uint64_author_uin = 1;
+  int32 int32_face_type = 2;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$GroupFeedsExtendData.java ====
+message GroupFeedsExtendData_ConcernUinRecordSet {
+  repeated ConcernUinRecord rpt_concern_uin_record = 1;
+}
+
+message GroupFeedsExtendData {
+  bytes bytes_reverse = 1;
+  repeated bytes msg_concern_uin_record_set = 2;
+  uint32 uint32_author_ignore_time = 3;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$MergedThemeMsg.java ====
+message MergedThemeMsg {
+  repeated ThemeMsgInfo rpt_theme_msg = 7;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$ThemeExtInfo.java ====
+message ThemeExtInfo {
+  repeated uint64 rpt_talker_uins = 1;
+  uint64 uint64_open_uin = 2;
+  uint32 uint32_msg_count = 3;
+}
+
+// ==== source: com/trunk/feeds_inner_define/feeds_inner_define$ThemeMsgInfo.java ====
+message ThemeMsgInfo {
+  uint64 opt_uint64_fromuin = 1;
+  uint64 opt_uint64_time = 2;
+  uint64 opt_uint64_modtime = 3;
+  uint32 opt_uint32_cmmntid = 4;
+  bytes opt_bytes_feedsid = 5;
+  bytes opt_bytes_reserve = 6;
+  bytes opt_bytes_msg = 7;
+}
+
+// ==== source: com/trunk/group_feeds/group_feeds$GroupFeedsMessage.java ====
+message GroupFeedsMessage {
+  repeated MessageContent rpt_cont_elements = 1;
+}
+
+message ContentList {
+  repeated MessageContent rpt_cont_elements = 1;
+}
+
+message MemoCtrlInfo {
+  uint32 uint32_need_confirmation = 1;
+}
+
+message MessageContent {
+  int32 enum_content_type = 1;
+  bytes bytes_content_value = 2;
+  bytes bytes_pic_size = 3;
+  bytes bytes_pic_path = 4;
+  bytes bytes_pic_id = 5;
+  bytes bytes_pic_url = 6;
+  bytes bytes_music_user_rank = 7;
+  bytes uint32_music_id = 8;  // was: PBFixed32Field
+  bytes bytes_music_name = 9;
+  bytes bytes_music_url_for_accept = 10;
+  bytes bytes_music_url_for_refuse = 11;
+  bytes bytes_file_name = 12;
+  bytes bytes_file_url = 13;
+  bytes bytes_file_ori = 14;
+  bytes bytes_pic_md5 = 15;
+  bytes bytes_video_swf_url = 16;
+  bytes bytes_video_original_url = 17;
+  bytes bytes_video_id = 18;
+  bytes bytes_video_introduction = 19;
+  int32 int32_face_idx = 25;
+  bytes bytes_video_source = 26;
+  uint64 uint64_file_size = 27;
+  bytes bytes_file_content_sha = 28;
+  bytes bytes_file_triple_sha = 29;
+  bytes bytes_file_md5 = 30;
+  uint32 uint32_file_attr = 31;
+  bytes bytes_object_message_brief = 39;
+  uint32 uint32_group_msg_seq = 40;
+}
+
+message ThemeBrief {
+  uint32 uint32_state = 1;
+  repeated uint64 rpt_uint64_msguin = 2;
+  uint32 uint32_speaker_num = 3;
+  uint64 uint64_open_uin = 4;
+}
+
+message Vote {
+  ContentList msg_title = 1;
+  int32 int32_max_vote_per_uin = 2;
+  repeated ContentList rpt_msg_options = 3;
+  ContentList msg_vote_des = 4;
+  ContentList msg_vote_res = 5;
+  bytes uint32_vote_deadline = 6;  // was: PBFixed32Field
+}
+
+message VoteRecord {
+  repeated int32 rpt_option_id = 1;
+  bytes fixed32_vote_uin = 2;  // was: PBFixed32Field
+  bytes fixed32_vote_time = 3;  // was: PBFixed32Field
+}
+
+message VoteStatistic {
+  int32 int32_option_id = 1;
+  int32 int32_vote_count = 2;
+}

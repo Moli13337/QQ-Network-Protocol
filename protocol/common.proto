@@ -1,0 +1,340 @@
+// common 域 — 37 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.common;
+
+// ==== source: common/QqAdGetProtos$PcgMediaTraceInfo.java ====
+message PcgMediaTraceInfo {
+  uint64 timestamp = 1;
+  int32 media_type = 2;
+  uint64 product_id = 3;
+  int32 scene = 4;
+  string content_id = 5;
+  string trace_id = 6;
+  string buyer_id = 7;
+  string seller_id = 8;
+  string ext_info = 9;
+  string seller_grade = 10;
+}
+
+// ==== source: common/QqAdGetProtos$QQAdGet.java ====
+message QQAdGet {
+  UserInfo user_info = 1;
+  repeated PositionInfo position_info = 2;
+  DeviceInfo device_info = 3;
+  ContextInfo context_info = 4;
+  DebugInfo debug_info = 5;
+  string gdt_cookie = 6;
+  bool support_https = 7;
+  ExternalExpInfo external_exp_info = 8;
+  string busi_cookie = 2001;
+}
+
+message ContextInfo {
+  uint64 public_id = 1;
+  uint64 article_id = 2;
+  uint32 tribe_tag = 3;
+  uint32 tribe_id_tag = 4;
+  uint32 source_from = 5;
+  bytes page_url = 6;
+  repeated uint64 existed_mini_program_ids = 7;
+  string str_source_from = 8;
+}
+
+message DebugInfo {
+  uint32 debug_adindexid = 1;
+  bool nomatch = 2;
+  bool debug = 3;
+}
+
+message DeviceInfo {
+  int32 latitude = 1;
+  int32 longitude = 2;
+  uint32 coordinates_type = 3;
+}
+
+message Location {
+  int32 latitude = 1;
+  int32 longitude = 2;
+  uint32 coordinates_type = 3;
+}
+
+message ExternalExpInfo {
+  int32 traffic_type = 1;
+  repeated string exp_id = 2;
+}
+
+message PositionInfo {
+  string pos_id = 1;
+  uint32 ad_count = 2;
+  PositionExt pos_ext = 3;
+}
+
+message PositionExt {
+  ShareInfo share_info = 1;
+  uint32 deep_link_version = 2;
+  int32 get_ad_type = 3;
+  repeated SpecifiedAdsItem specified_ads = 4;
+  string sub_position_id = 5;
+  repeated uint64 black_category_list = 6;
+  repeated uint64 debug_adindexid_list = 7;
+  repeated CpsReqInfo cps_req_info = 8;
+  VideoReqInfo video_req_info = 9;
+}
+
+message CpsReqInfo {
+  repeated uint64 product_id = 1;
+  uint64 catelog_id = 2;
+  repeated ProductLinkInfo product_link_info = 3;
+  repeated PcgMediaTraceInfo pcg_media_trace_info = 4;
+  repeated ProductShareInfo product_share_info = 5;
+}
+
+message MiniProgramLink {
+  string app_id = 1;
+  string page_path = 2;
+  string schema_link = 3;
+  string user_name = 4;
+}
+
+message ProductLinkInfo {
+  uint64 product_id = 1;
+  string h5_page = 2;
+  MiniProgramLink wx_miniprogram_link = 3;
+  MiniProgramLink qq_miniprogram_link = 4;
+}
+
+message ProductShareInfo {
+  uint64 product_id = 1;
+  ShareInfo share_info = 2;
+}
+
+message ShareInfo {
+  uint32 share_rate = 1;
+  string share_check = 2;
+}
+
+message SpecifiedAdsItem {
+  uint64 aid = 1;
+  uint64 creative_id = 2;
+  uint32 prefetch_timestamp = 3;
+}
+
+message VideoReqInfo {
+  uint32 video_min_duration = 1;
+  uint32 video_max_duration = 2;
+}
+
+message UserInfo {
+  repeated uint64 qq = 1;
+  string wx_appid = 2;
+  string wx_openid = 3;
+  string media_specified_id = 4;
+  uint64 qq_appid = 5;
+  string qq_openid = 6;
+  string wuid = 7;
+}
+
+// ==== source: common/QqAdGetProtos$QQAdGetRsp.java ====
+message QQAdGetRsp {
+  int32 ret = 1;
+  repeated bytes msg = 2;
+  repeated PosAdInfo pos_ads_info = 3;
+  string gdt_cookie = 4;
+  string busi_cookie = 5;
+  string debug_info = 6;
+}
+
+message AdInfo {
+  uint32 product_type = 1;
+  DisplayInfo display_info = 2;
+  ReportInfo report_info = 3;
+  DestInfo dest_info = 4;
+  AppInfo app_info = 5;
+  ExpInfo exp_info = 6;
+  Ext ext = 7;
+  string ext_json = 8;
+  repeated CpsRspInfo cps_rsp_info = 9;
+  WeChatAppInfo wechat_app_info = 10;
+}
+
+message AppInfo {
+  string app_name = 1;
+  string app_score = 2;
+  string app_package_name = 3;
+  uint64 app_package_size = 4;
+  string app_package_version = 5;
+  string app_logo_url = 6;
+  string pkg_url = 7;
+  string ios_app_id = 8;
+  string android_app_id = 9;
+  string pkg_download_schema = 10;
+  string customized_invoke_url = 11;
+  string channel_id = 12;
+  uint32 app_score_num = 13;
+  uint64 download_num = 14;
+}
+
+message CpsRspInfo {
+  uint64 product_id = 1;
+  repeated string img_list = 2;
+  string product_name = 3;
+  uint32 product_price = 4;
+  string sales_tips = 5;
+  string h5_page = 6;
+  string deep_link = 7;
+  string apurl = 8;
+  repeated bytes rl = 9;
+  uint64 catelog_id = 10;
+  uint32 source = 11;
+  WeChatAppInfo wechat_app_info = 12;
+  QQAppInfo qq_app_info = 13;
+  uint32 product_original_price = 14;
+  string chantag = 15;
+}
+
+message DestInfo {
+  uint32 dest_url_display_type = 1;
+  string landing_page = 2;
+  string canvas_json = 3;
+  uint32 dest_type = 4;
+  string pop_sheet = 5;
+  string universal_link = 6;
+}
+
+message DisplayInfo {
+  uint32 pattern_type = 1;
+  uint32 creative_size = 2;
+  uint32 animation_effect = 3;
+  BasicInfo basic_info = 4;
+  repeated ButtonInfo button_info = 5;
+  MutiPicTextInfo muti_pic_text_info = 6;
+  AdvertiserInfo advertiser_info = 7;
+  VideoInfo video_info = 8;
+  LocalInfo local_info = 9;
+  uint32 mini_program_type = 10;
+  float ecpm = 11;
+  uint32 inner_adshowtype = 12;
+  VideoInfo video_info2 = 13;
+  string mini_program_name = 14;
+  string mini_program_id = 15;
+}
+
+message AdvertiserInfo {
+  string corporation_name = 1;
+  string corporate_image_name = 2;
+  string corporate_logo = 3;
+  uint64 advertiser_id = 4;
+  uint64 ad_first_category = 5;
+  uint64 ad_second_category = 6;
+}
+
+message BasicInfo {
+  string img = 1;
+  string img_s = 2;
+  string txt = 3;
+  string desc = 4;
+  uint32 pic_width = 5;
+  uint32 pic_height = 6;
+}
+
+message ButtonInfo {
+  string txt = 1;
+  string url = 2;
+}
+
+message LocalInfo {
+  string distance_description = 1;
+  string store_name = 2;
+  string store_url = 3;
+  string store_address = 4;
+  double store_longitude = 5;
+  double store_latitude = 6;
+}
+
+message MutiPicTextInfo {
+  repeated uint64 txt = 1;
+  repeated uint64 image = 2;
+  repeated uint64 url = 3;
+}
+
+message VideoInfo {
+  string video_url = 1;
+  uint32 media_duration = 2;
+  string tencent_video_id = 3;
+  uint32 video_file_size = 4;
+  bool no_auto_play = 5;
+}
+
+message ExpInfo {
+  int32 qq_game_video_ad_style = 1;
+  int32 reward_video_download_type = 2;
+  int32 video_countdown = 3;
+  int32 video_volume = 4;
+  int32 video_countdown_style = 5;
+  int32 interstitial_ad_style = 6;
+}
+
+message Ext {
+  uint32 mini_program_preload = 1;
+  bool no_clkcgi_jump = 2;
+  int32 landing_page_style = 3;
+  string market_deep_link = 4;
+  bool disable_auto_download = 5;
+  string market_package_name = 6;
+}
+
+message QQAppInfo {
+  bytes app_id = 1;
+  bytes app_path = 2;
+  bytes app_schema = 3;
+}
+
+message ReportInfo {
+  string exposure_url = 1;
+  string click_url = 2;
+  string effect_url = 3;
+  string landing_page_report_url = 4;
+  string negative_feedback_url = 5;
+  TraceInfo trace_info = 6;
+  string video_report_url = 7;
+  ThirdPartyMonitorUrls thirdparty_monitor_urls = 8;
+}
+
+message ThirdPartyMonitorUrls {
+  repeated uint64 api_exposure_monitor_url = 1;
+  repeated uint64 sdk_exposure_monitor_url = 2;
+  repeated uint64 api_click_monitor_url = 3;
+  repeated uint64 sdk_click_monitor_url = 4;
+  repeated uint64 video_play_monitor_url = 5;
+  uint32 video_play_duration = 6;
+  repeated uint64 active_view_tracking_url = 7;
+}
+
+message TraceInfo {
+  uint64 aid = 1;
+  string traceid = 2;
+  string via = 3;
+  string view_id = 4;
+  string product_id = 5;
+  int64 noco_id = 6;
+  string net_log_req_id = 7;
+  uint64 creative_id = 8;
+}
+
+message WeChatAppInfo {
+  string app_username = 1;
+  string app_path = 2;
+  string app_token = 3;
+  string app_id = 4;
+  string ad_trace_data = 5;
+  uint64 pos_id = 6;
+}
+
+message PosAdInfo {
+  int32 ret = 1;
+  repeated bytes msg = 2;
+  string pos_id = 3;
+  repeated AdInfo ads_info = 4;
+}

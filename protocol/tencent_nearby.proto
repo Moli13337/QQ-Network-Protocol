@@ -1,0 +1,57 @@
+// tencent_nearby 域 — 8 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tencent_nearby;
+
+// ==== source: tencent/nearby/common/nearby_common$ErrorInfo.java ====
+message ErrorInfo {
+  uint32 error_code = 1;
+  bytes error_desc = 2;
+}
+
+// ==== source: tencent/nearby/nearby_ice_break$IceReq.java ====
+message IceReq {
+  uint64 uin = 1;
+  string tinyid = 2;
+}
+
+// ==== source: tencent/nearby/nearby_ice_break$IceRsp.java ====
+message IceRsp {
+  uint32 result = 1;
+  string err_msg = 2;
+}
+
+// ==== source: tencent/nearby/user/relation/UserFollowStatus$UserFollowStatusInfo.java ====
+message UserFollowStatusInfo {
+  uint64 dst_uin = 1;
+  int32 follow_status = 2;
+}
+
+// ==== source: tencent/nearby/user/relation/UserFollowStatus$UserFollowStatusReq.java ====
+message UserFollowStatusReq {
+  uint64 uin = 1;
+  repeated uint64 dst_uin_list = 2;
+}
+
+// ==== source: tencent/nearby/user/relation/UserFollowStatus$UserFollowStatusRsp.java ====
+message UserFollowStatusRsp {
+  uint64 uin = 1;
+  repeated UserFollowStatusInfo follow_status_info_list = 2;
+  repeated bytes result = 3;
+}
+
+// ==== source: tencent/nearby/user/relation/follow_user$FollowUserReq.java ====
+message FollowUserReq {
+  uint64 uin = 1;
+  uint64 dst_uin = 2;
+  int32 follow_type = 3;
+  int32 source = 4;
+}
+
+// ==== source: tencent/nearby/user/relation/follow_user$FollowUserRsp.java ====
+message FollowUserRsp {
+  uint64 uin = 1;
+  uint64 dst_uin = 2;
+  repeated bytes result = 3;
+}

@@ -1,0 +1,886 @@
+// qshadow 域 — 115 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qshadow;
+
+// ==== source: qshadow/AIFacePtaData$CoinInfo.java ====
+message CoinInfo {
+  int32 coin_type = 1;
+  int32 coin_price = 2;
+}
+
+// ==== source: qshadow/AIFacePtaData$MaterialInfoTimiV2.java ====
+message MaterialInfoTimiV2_MaterialInfoTimi {
+  uint32 item_id = 1;
+  string item_icon = 2;
+  bool is_have = 3;
+  bool is_discount = 4;
+  repeated CoinInfo coin_info = 5;
+}
+
+message MaterialInfoTimiV2 {
+  uint32 item_id = 1;
+  bytes material_info = 2;  // was: MaterialInfoTimi
+}
+
+// ==== source: qshadow/AIFacePtaData$ZPlanV2Reply.java ====
+message ZPlanV2Reply {
+  ZPlanV2Result zplan = 1;
+}
+
+// ==== source: qshadow/AIFacePtaData$ZPlanV2Request.java ====
+message ZPlanV2Request {
+  bytes input_image = 1;
+  string gender = 2;
+  string model_ver = 3;
+  int32 sequence_index = 4;
+  int32 render_engine = 5;
+}
+
+// ==== source: qshadow/AIFacePtaData$ZPlanV2Result.java ====
+message ZPlanV2Result {
+  repeated ZplanFaceStyle face_styles = 1;
+  repeated MaterialInfoTimiV2 material_infos = 2;
+}
+
+// ==== source: qshadow/AIFacePtaData$ZplanFaceStyle.java ====
+message ZplanFaceStyle_TotalPriceInfo {
+  repeated CoinInfo price = 1;
+  bool needShow = 2;
+  int32 price_show_type = 3;
+}
+
+message ZplanFaceStyle {
+  string thumbnail_url = 1;
+  string description = 2;
+  string pta_data = 3;
+  string style_id = 4;
+  string style_name = 5;
+  repeated CoinInfo total_price = 6;
+  bytes total_price_info = 7;  // was: TotalPriceInfo
+}
+
+// ==== source: qshadow/AIGCAvatarCount$Request.java ====
+message Request {
+  int32 cmd = 1;
+  SelectQuotaReq select_quota_req = 2;
+  ReduceQuotaReq reduce_quota_req = 3;
+  PrivilegeReq privilege_req = 4;
+}
+
+message PrivilegeReq {
+  string scenes = 1;
+}
+
+message ReduceQuotaReq {
+  int32 busi_type = 1;
+  int32 quota_type = 2;
+  uint32 reduce_num = 3;
+  uint32 random_seq = 4;
+}
+
+message SelectQuotaReq {
+  int32 busi_type = 1;
+}
+
+// ==== source: qshadow/AIGCAvatarCount$Response.java ====
+message Response {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  SelectQuotaRsp select_quota_rsp = 3;
+  ReduceQuotaRsp reduce_quota_rsp = 4;
+  PrivilegeRsp privilege_rsp = 5;
+}
+
+message PrivilegeRsp {
+  uint32 svip_quota_total = 1;
+}
+
+message ReduceQuotaRsp {
+  repeated QuotaInfo quota_infos = 1;
+  ExtraInfo extra_info = 2;
+}
+
+message ExtraInfo {
+  uint32 svip_level = 1;
+}
+
+message QuotaDetail {
+  uint32 total_quota = 1;
+  uint32 used_quota = 2;
+  uint32 remain_quota = 3;
+}
+
+message QuotaInfo {
+  int32 quota_type = 1;
+  QuotaDetail quota_detail = 2;
+}
+
+message SelectQuotaRsp {
+  repeated QuotaInfo quota_infos = 1;
+  ExtraInfo extra_info = 2;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$CategoryMaterialsMapping.java ====
+message CategoryMaterialsMapping {
+  repeated bytes id = 1;
+  string name = 2;
+  string thumbUrl = 3;
+  repeated AdditionalEntry dynamicFields = 4;
+  repeated string materialIDs = 5;
+  repeated CategoryMaterialsMapping subCategoryMaterialsMapping = 6;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$FilterableInfo.java ====
+message FilterableInfo {
+  string filterableField = 1;
+  repeated string filterableEnumValue = 2;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetCircleCatMatTreeLiteReq.java ====
+message GetCircleCatMatTreeLiteReq {
+  string groupID = 1;
+  string serviceID = 2;
+  string sdkVersion = 3;
+  string etag = 4;
+  bool enableCDN = 5;
+  int32 sortType = 6;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetCircleCatMatTreeLiteRsp.java ====
+message GetCircleCatMatTreeLiteRsp {
+  string materialListURL = 1;
+  repeated CategoryMaterialsMapping categoryMaterialsMappings = 2;
+  repeated MaterialInfo materialInfos = 3;
+  string cdnPrefixURL = 4;
+  repeated FilterableInfo filterableInfos = 5;
+  string etag = 6;
+  string pkey = 7;
+  string md5hash = 8;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetCircleCatMatTreeReq.java ====
+message GetCircleCatMatTreeReq {
+  string groupID = 1;
+  string serviceID = 2;
+  string sdkVersion = 3;
+  string etag = 4;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetCircleCatMatTreeRsp.java ====
+message GetCircleCatMatTreeRsp {
+  repeated CategoryInfo categories = 1;
+  string etag = 2;
+  repeated FilterableInfo filterableInfos = 3;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetMaterialInfoByIdsReq.java ====
+message GetMaterialInfoByIdsReq {
+  string groupID = 1;
+  string serviceID = 2;
+  string sdkVersion = 3;
+  repeated string materialIDs = 4;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetMaterialInfoByIdsRsp.java ====
+message GetMaterialInfoByIdsRsp {
+  repeated MaterialInfo materials = 1;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetRecommendCatMatTreeReq.java ====
+message GetRecommendCatMatTreeReq {
+  string groupID = 1;
+  string serviceID = 2;
+  string sdkVersion = 3;
+  string etag = 6;
+  string materialID = 7;
+  string cateID = 8;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetRecommendCatMatTreeRsp.java ====
+message GetRecommendCatMatTreeRsp {
+  repeated CategoryInfo categories = 1;
+  string etag = 2;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetRetainPageMatReq.java ====
+message GetRetainPageMatReq {
+  string groupID = 1;
+  string serviceID = 2;
+  string sdkVersion = 3;
+}
+
+// ==== source: qshadow/QShadowMaterialDistribution$GetRetainPageMatRsp.java ====
+message GetRetainPageMatRsp {
+  MaterialInfo materialInfo = 1;
+}
+
+// ==== source: qshadow/QShadowMaterialGeneralService$MaterialGeneralSrvReq.java ====
+message MaterialGeneralSrvReq {
+  string srv_func_name = 1;
+  repeated bytes params = 2;  // was: ParamEntry
+}
+
+// ==== source: qshadow/QShadowMaterialGeneralService$MaterialGeneralSrvRsp.java ====
+message MaterialGeneralSrvRsp {
+  string result = 1;
+}
+
+// ==== source: qshadow/QShadowMetaMaterial$AdditionalEntry.java ====
+message AdditionalEntry {
+  string dynamic_key = 1;
+  string dynamic_value = 2;
+}
+
+// ==== source: qshadow/QShadowMetaMaterial$CategoryInfo.java ====
+message CategoryInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  string thumbUrl = 3;
+  repeated CategoryInfo subCategories = 4;
+  repeated MaterialInfo materials = 5;
+  repeated AdditionalEntry dynamicFields = 6;
+}
+
+// ==== source: qshadow/QShadowMetaMaterial$MaterialInfo.java ====
+message MaterialInfo {
+  repeated bytes id = 1;
+  MetaSdkInfo metaSdkInfo = 2;
+  string thumbURL = 3;
+  uint32 thumbWidth = 4;
+  uint32 thumbHeight = 5;
+  string packageURL = 6;
+  string checksumMd5 = 7;
+  MetaAdditionalPackage additionalPackage = 8;
+  repeated AdditionalEntry additionalFields = 9;
+  string displayName = 10;
+  uint32 usageCnt = 11;
+}
+
+// ==== source: qshadow/QShadowMetaMaterial$MetaAdditionalPackage.java ====
+message MetaAdditionalPackage {
+  string lowPackageUrl = 1;
+  string lowPackageMd5 = 2;
+  string superLowPackageUrl = 3;
+  string superLowPackageMd5 = 4;
+  string midPackageUrl = 5;
+  string midPackageMd5 = 6;
+  string highPackageUrl = 7;
+  string highPackageMd5 = 8;
+}
+
+// ==== source: qshadow/QShadowMetaMaterial$MetaSdkInfo.java ====
+message MetaSdkInfo {
+  string SdkVersion = 1;
+  int32 Sdk = 2;
+}
+
+// ==== source: qshadow/QShadowMetaMaterialRecommendation$GetMaterialRecommendationReq.java ====
+message GetMaterialRecommendationReq {
+  int32 BusiID = 1;
+  repeated bytes Images = 2;
+  int32 MediaType = 3;
+  string SdkVersion = 4;
+  string SessionID = 5;
+  string XsjSessionID = 6;
+  repeated MediaInfo MediaInfos = 7;
+  repeated string ImageUrls = 8;
+  string Extra = 9;
+}
+
+// ==== source: qshadow/QShadowMetaMaterialRecommendation$GetMaterialRecommendationRsp.java ====
+message GetMaterialRecommendationRsp {
+  repeated RecommendationEntry Materials = 1;
+  string SessionID = 2;
+  int64 ExpireTime = 3;
+  string Extra = 4;
+}
+
+// ==== source: qshadow/QShadowMetaMaterialRecommendation$MediaInfo.java ====
+message MediaInfo {
+  int32 media_type = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+// ==== source: qshadow/QShadowMetaMaterialRecommendation$RecommendationEntry.java ====
+message RecommendationEntry {
+  MaterialInfo MaterialInfo = 1;
+  string Reason = 2;
+  int32 Confidence = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCAvatar$GetStylePicturesReply.java ====
+message GetStylePicturesReply {
+  repeated StylePictureInfo style_pictures = 1;
+  string extra = 2;
+  bool with_glasses = 3;
+  string gender = 4;
+}
+
+// ==== source: qshadow/ShadowAIGCAvatar$GetStylePicturesRequest.java ====
+message GetStylePicturesRequest {
+  string user_pic_url = 1;
+  bool with_glasses = 2;
+  string gender = 3;
+  string style = 4;
+  string extra = 5;
+}
+
+// ==== source: qshadow/ShadowAIGCAvatar$StylePictureInfo.java ====
+message StylePictureInfo {
+  string material_id = 1;
+  string style_name = 2;
+  string material_url = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$DeleteTasksRequest.java ====
+message DeleteTasksRequest {
+  string busi_id = 1;
+  string func_id = 2;
+  repeated string task_ids = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$FetchTaskListReply.java ====
+message FetchTaskListReply {
+  repeated TaskInfo task_infos = 1;
+  bool finished = 2;
+  string attach_info = 3;
+  int32 task_expire_day = 4;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$FetchTaskListRequest.java ====
+message FetchTaskListRequest_FetchFilter {
+  bool only_processing = 1;
+  int32 media_type = 2;
+}
+
+message FetchTaskListRequest {
+  string busi_id = 1;
+  string func_id = 2;
+  int32 page_size = 3;
+  bytes fetch_filter = 5;  // was: FetchFilter
+  string attach_info = 6;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$GenerateReply.java ====
+message GenerateReply {
+  string extra = 1;
+  repeated Media medias = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$GenerateRequest.java ====
+message GenerateRequest {
+  string busi_id = 1;
+  string extra = 2;
+  repeated Media medias = 3;
+  string func_id = 4;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$GetUserExposeStatusReply.java ====
+message GetUserExposeStatusReply {
+  bool has_unexposed = 1;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$GetUserExposeStatusRequest.java ====
+message GetUserExposeStatusRequest {
+  string busi_id = 1;
+  string func_id = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$Media.java ====
+message Media {
+  int32 type = 1;
+  bytes byte_data = 2;
+  string string_data = 3;
+  int32 scene = 4;
+  string extra = 5;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$QueryTasksReply.java ====
+message QueryTasksReply {
+  repeated TaskInfo task_infos = 1;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$QueryTasksRequest.java ====
+message QueryTasksRequest {
+  string busi_id = 1;
+  string func_id = 2;
+  repeated string task_ids = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$SetTasksExposedRequest.java ====
+message SetTasksExposedRequest {
+  string busi_id = 1;
+  string func_id = 2;
+  repeated string task_ids = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$SubmitTaskReply.java ====
+message SubmitTaskReply {
+  string task_id = 1;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$SubmitTaskRequest.java ====
+message SubmitTaskRequest {
+  string busi_id = 1;
+  string extra = 2;
+  repeated Media medias = 3;
+  string func_id = 4;
+  string preassigned_task_id = 5;
+}
+
+// ==== source: qshadow/ShadowAIGCGenerate$TaskInfo.java ====
+message TaskInfo {
+  string task_id = 1;
+  int32 task_status = 2;
+  string busi_id = 4;
+  string style_id = 5;
+  int32 media_type = 7;
+  repeated Media input_medias = 8;
+  repeated Media output_medias = 9;
+  string input_extra = 10;
+  string output_extra = 11;
+  int64 create_time = 12;
+  int64 update_time = 13;
+  int32 error_code = 15;
+  string error_msg = 16;
+  int32 expose_status = 17;
+  string busi_id_desc = 101;
+  int32 video_duration = 102;
+  int32 finish_countdown = 103;
+  string style_desc = 6239;
+  float est_progress = 106;
+}
+
+// ==== source: qshadow/ShadowAIGCList$FeedInfo.java ====
+message FeedInfo_ContestInfo {
+  string name = 1;
+  int32 rank = 2;
+  repeated bytes id = 3;
+  string icon_url = 4;
+}
+
+message FeedInfo {
+  string img_trace_id = 1;
+  string feed_id = 2;
+  string prompt = 3;
+  string aigc_img_url = 4;
+  string aigc_img_share_url = 5;
+  int32 feed_status = 6;
+  string busi_id = 7;
+  string style = 8;
+  string feed_jump_schema = 9;
+  bytes contest_info = 10;  // was: ContestInfo
+  string uid = 11;
+  string publish_time = 12;
+  int32 source_type = 13;
+  int32 img_size_type = 14;
+  string aigc_img_croped_url = 15;
+}
+
+// ==== source: qshadow/ShadowAIGCList$GetFeedReply.java ====
+message GetFeedReply {
+  repeated FeedInfo feed_infos = 1;
+  bool finished = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCList$GetFeedRequest.java ====
+message GetFeedRequest {
+  string busi_id = 1;
+  int32 page_size = 2;
+  string feed_id = 3;
+  int32 direction = 4;
+  bool include_self = 5;
+  string img_trace_id = 6;
+}
+
+// ==== source: qshadow/ShadowAIGCReport$ReportItem.java ====
+message ReportItem {
+  string local_md5 = 1;
+  int32 priority = 2;
+  string compress_url = 3;
+  string face_crop_url = 4;
+  string material_id = 5;
+}
+
+// ==== source: qshadow/ShadowAIGCReport$ReportRequest.java ====
+message ReportRequest {
+  string busi_id = 1;
+  int32 type = 2;
+  repeated ReportItem items = 3;
+}
+
+// ==== source: qshadow/ShadowAIGCSafe$SafeCheckReply.java ====
+message SafeCheckReply {
+  string msg_id = 1;
+}
+
+// ==== source: qshadow/ShadowAIGCSafe$SafeCheckRequest.java ====
+message SafeCheckRequest {
+  string busi_id = 1;
+  repeated Media medias = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCServerStatus$GetServerStatusReply.java ====
+message GetServerStatusReply {
+  int32 capacity = 1;
+  int32 collection_capacity = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCServerStatus$GetServerStatusRequest.java ====
+message GetServerStatusRequest {
+  string busi_id = 1;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$ActionStatus.java ====
+message ActionStatus {
+  int32 type = 1;
+  int32 available = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$ButtonInfo.java ====
+message ButtonInfo {
+  int32 type = 1;
+  string detail = 2;
+  string text = 3;
+  string description = 4;
+  string popup_text = 5;
+  string retention_popup_text = 6;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$DoActionReply.java ====
+message DoActionReply {
+  // (no fields resolved)
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$DoActionRequest.java ====
+message DoActionRequest {
+  string busi_id = 1;
+  int32 action = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$ExtraButtonInfo.java ====
+message ExtraButtonInfo {
+  ButtonInfo button_info = 1;
+  string identifier = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$GetStatusReply.java ====
+message GetStatusReply {
+  repeated ActionStatus actions = 1;
+  ButtonInfo button_info = 2;
+  repeated UsageInfo usages = 3;
+  PayInfo pay_info = 4;
+  repeated ExtraButtonInfo extra_button_infos = 5;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$GetStatusRequest.java ====
+message GetStatusRequest {
+  string busi_id = 1;
+  int32 scene = 2;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$PayInfo.java ====
+message PayInfo {
+  int32 type = 1;
+  string text = 2;
+  string desc = 3;
+  int32 vip_type = 4;
+  string vip_name = 5;
+  int32 quota = 6;
+  bool is_vip = 7;
+}
+
+// ==== source: qshadow/ShadowAIGCStatus$UsageInfo.java ====
+message UsageInfo {
+  int32 type = 1;
+  int32 available = 2;
+  int32 total = 3;
+}
+
+// ==== source: qshadow/ShadowChangeVoice$ChangeVoiceReply.java ====
+message ChangeVoiceReply {
+  repeated Media medias = 1;
+  SeqInfo seq_info = 2;
+  string extra = 3;
+}
+
+// ==== source: qshadow/ShadowChangeVoice$ChangeVoiceRequest.java ====
+message ChangeVoiceRequest {
+  repeated Media medias = 1;
+  string style = 2;
+  SeqInfo seq_info = 3;
+  string extra = 4;
+}
+
+// ==== source: qshadow/ShadowChangeVoice$SeqInfo.java ====
+message SeqInfo {
+  int32 seq_no = 1;
+  bool is_end = 2;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApDeleteTaskReq.java ====
+message ApDeleteTaskReq {
+  repeated string task_ids = 1;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApEncryptedSubmitTaskReq.java ====
+message ApEncryptedSubmitTaskReq {
+  bytes submit_task_req = 1;
+  bytes key = 2;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApGetRemainingQuotaReq.java ====
+message ApGetRemainingQuotaReq {
+  bool do_clear = 1;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApGetRemainingQuotaRsp.java ====
+message ApGetRemainingQuotaRsp {
+  uint32 remaining_quota = 1;
+  bool is_svip = 2;
+  uint32 normal_daily_quota = 3;
+  uint32 svip_daily_quota = 4;
+  string svip_payment_schema = 5;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApHasRedDotRsp.java ====
+message ApHasRedDotRsp {
+  bool has_red_dot = 1;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApListTasksRsp.java ====
+message ApListTasksRsp {
+  repeated ApTaskInfo tasks = 1;
+  string title = 2;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApMarkRedDotSeenReq.java ====
+message ApMarkRedDotSeenReq {
+  string task_id = 1;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApMessage.java ====
+message ApMessage {
+  string name = 1;
+  string content = 2;
+  int32 message_type = 3;
+  int32 ctime = 4;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApQueryTaskReq.java ====
+message ApQueryTaskReq {
+  string task_id = 1;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApQueryTaskRsp.java ====
+message ApQueryTaskRsp {
+  int32 task_status = 1;
+  string result_img_url = 2;
+  int32 error_code = 3;
+  string error_msg = 4;
+  bool allowed_retry = 5;
+  uint32 progress_percent = 7;
+  string peak_hours_text = 8;
+  uint32 create_time = 9;
+  string title = 10;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApRoleInfo.java ====
+message ApRoleInfo {
+  string name = 1;
+  string uin = 2;
+  string nickname = 3;
+  int32 gender = 4;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApSubmitTaskReq.java ====
+message ApSubmitTaskReq {
+  repeated ApRoleInfo role_list = 1;
+  repeated ApMessage message_list = 2;
+  bool retry = 3;
+  int32 entry_source = 4;
+  bool is_new_user = 5;
+  string task_id = 6;
+  int32 queue_level = 7;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApSubmitTaskRsp.java ====
+message ApSubmitTaskRsp {
+  string task_id = 1;
+  int32 error_code = 3;
+  string error_msg = 4;
+  bool allowed_retry = 5;
+}
+
+// ==== source: qshadow/ShadowChatToComic$ApTaskInfo.java ====
+message ApTaskInfo {
+  string task_id = 1;
+  int32 task_status = 2;
+  string result_img_url = 3;
+  int32 error_code = 4;
+  string error_msg = 5;
+  bool allowed_retry = 6;
+  uint32 progress_percent = 7;
+  string peak_hours_text = 8;
+  uint32 create_time = 9;
+  string title = 10;
+}
+
+// ==== source: qshadow/ShadowInspirationAI$InspirationAIReq.java ====
+message InspirationAIReq {
+  string BusiID = 1;
+  repeated InspirationMediaInfo MediaInfos = 2;
+  string Extra = 3;
+  string ReqID = 4;
+}
+
+// ==== source: qshadow/ShadowInspirationAI$InspirationAIRsp.java ====
+message InspirationAIRsp {
+  repeated InspirationMediaInfo MediaInfos = 1;
+  string Extra = 2;
+  string ReqID = 3;
+}
+
+// ==== source: qshadow/ShadowInspirationAI$InspirationMediaInfo.java ====
+message InspirationMediaInfo {
+  repeated bytes URL = 1;
+  bytes RawData = 2;
+  int32 MediaType = 3;
+  string StringData = 4;
+  uint32 Index = 5;
+}
+
+// ==== source: qshadow/ShadowMemoryAlbum$PushNotificationMemoryAlbumReq.java ====
+message PushNotificationMemoryAlbumReq {
+  string jump_url = 1;
+  string content = 2;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$DisplayInfo.java ====
+message DisplayInfo {
+  string title = 1;
+  string desc = 2;
+  repeated bytes image_url = 3;
+  string iconName = 4;
+  string iconUrl = 5;
+  string prompt = 6;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$GetMessageSignatureReply.java ====
+message GetMessageSignatureReply {
+  string arKMsg = 1;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$GetMessageSignatureRequest.java ====
+message GetMessageSignatureRequest {
+  string rawArKMsg = 1;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$JumpInfo.java ====
+message JumpInfo {
+  int32 jumpType = 1;
+  string jumpUrl = 2;
+  string schemaPrefix = 3;
+  string schemaExtra = 4;
+  string pcSchemaPrefix = 5;
+  string pcSchemaExtra = 6;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$MetaInfo.java ====
+message MetaInfo {
+  string ark_reserved1 = 1;
+  string ark_reserved2 = 2;
+  string ark_reserved3 = 3;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$PushArkMessageRequest.java ====
+message PushArkMessageRequest {
+  string businessId = 1;
+  int32 receiverType = 2;
+  string receiverId = 3;
+  JumpInfo jumpInfo = 4;
+  DisplayInfo displayInfo = 5;
+  bool returnSignedArk = 6;
+  string groupId = 7;
+  MetaInfo metaInfo = 8;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$PushMessageReply.java ====
+message PushMessageReply {
+  // (no fields resolved)
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$PushMessageRequest.java ====
+message PushMessageRequest {
+  uint32 serviceType = 1;
+  string receiverID = 2;
+  string prompt = 3;
+  string groupID = 4;
+  int32 serviceId = 5;
+  string sdkVersion = 6;
+  string materialId = 7;
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$SendYouthMessageReply.java ====
+message SendYouthMessageReply {
+  // (no fields resolved)
+}
+
+// ==== source: qshadow/ShadowShareArkMessage$SendYouthMessageRequest.java ====
+message SendYouthMessageRequest {
+  int32 share_type = 1;
+  int32 share_receiver_type = 2;
+  uint64 receiveId = 3;
+  string materialId = 4;
+  int32 coverId = 5;
+}
+
+// ==== source: qshadow/ShadowStickerSearch$CircleEditFirstSearchReq.java ====
+message CircleEditFirstSearchReq {
+  string search_text = 1;
+  string uin = 2;
+  string lightsdk_version = 3;
+  uint32 first_sticker_page_size = 4;
+  uint32 first_expression_page_size = 5;
+}
+
+// ==== source: qshadow/ShadowStickerSearch$CircleEditFirstSearchRsp.java ====
+message CircleEditFirstSearchRsp {
+  repeated MaterialInfo sticker_materials = 1;
+  bool has_next_sticker = 2;
+  repeated QQExpressionInfo express_infos = 3;
+  bool has_next_express = 4;
+  int32 ret_code = 5;
+  string ret_msg = 6;
+}
+
+// ==== source: qshadow/ShadowStickerSearch$QQExpressionInfo.java ====
+message QQExpressionInfo {
+  string img_md5 = 1;
+  uint32 img_width = 2;
+  uint32 img_height = 3;
+  string img_down_url = 4;
+  uint64 img_size = 5;
+  string thumb_img_md5 = 6;
+  uint32 thumb_img_width = 7;
+  uint32 thumb_img_height = 8;
+  string thumb_down_url = 9;
+  uint64 thumb_size = 10;
+}
+
+// ==== source: qshadow/ShadowWangZheReportTabData$HokTabInfoReq.java ====
+message HokTabInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: qshadow/ShadowWangZheReportTabData$HokTabInfoRsp.java ====
+message HokTabInfoRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  bool show_hok_tab = 3;
+  bool show_red_point = 4;
+  string hok_report_url = 5;
+}

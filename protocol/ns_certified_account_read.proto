@@ -1,0 +1,347 @@
+// ns_certified_account_read 域 — 43 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_certified_account_read;
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$GetPortalRsp.java ====
+message GetPortalRsp {
+  repeated TabItem tab_lst = 1;
+  repeated RoomItem room_lst = 2;
+  string trace_info = 10;
+}
+
+message BannerItem {
+  string pic_url = 1;
+  string jump_url = 2;
+}
+
+message C0053KV {
+  string key = 1;
+  string value = 2;
+}
+
+message RoomGoodInfo {
+  int32 has_good = 1;
+  string pic_url = 2;
+  string name = 3;
+  string price = 4;
+  string jump_url = 5;
+  string recomm_url = 6;
+  string recom_pic = 7;
+  uint64 goods_num = 8;
+}
+
+message RoomIconInfo {
+  string icon_url = 1;
+  string icon_title = 2;
+  uint64 audience_num = 3;
+}
+
+message RoomItem {
+  string room_id = 1;
+  string pgc_openid = 2;
+  uint64 pgc_uid = 3;
+  string nick = 4;
+  string title = 5;
+  string portrait = 6;
+  string pic_url = 7;
+  string program_id = 8;
+  string report_trace_info = 9;
+  RoomGoodInfo good_info = 10;
+  RoomIconInfo icon_info = 11;
+  repeated C0053KV ext_info = 12;
+  string recom_info = 13;
+  uint32 room_type = 14;
+  uint64 video_source = 15;
+  uint32 game_id = 16;
+  uint32 game_tag_id = 17;
+}
+
+message RoomLstItem {
+  TabItem tab_info = 1;
+  repeated SubTabItem sub_tab_lst = 2;
+  repeated BannerItem banner_lst = 3;
+  repeated RoomItem room_lst = 4;
+}
+
+message SubTabItem {
+  repeated uint64 id = 1;
+  string name = 2;
+}
+
+message TabItem {
+  repeated uint64 id = 1;
+  string name = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$GetSubscriptionReq.java ====
+message GetSubscriptionReq {
+  uint64 uin = 1;
+  int32 page_id = 2;
+  string page_info = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$GetSubscriptionRsp.java ====
+message GetSubscriptionRsp {
+  repeated RoomLstItem room_lst = 1;
+  Bottom bottom = 2;
+  string page_info = 3;
+}
+
+message Bottom {
+  string desc = 1;
+  string jump_url = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAccountInfoReq.java ====
+message StGetAccountInfoReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAccountInfoRsp.java ====
+message StGetAccountInfoRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes user = 2;  // was: StUser
+  uint32 verifyState = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAioMsgListReq.java ====
+message StGetAioMsgListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listNum = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAioMsgListRsp.java ====
+message StGetAioMsgListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecAioMsg = 2;  // was: StAioMsg
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAutoAioReplyReq.java ====
+message StGetAutoAioReplyReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 sceneType = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetAutoAioReplyRsp.java ====
+message StGetAutoAioReplyRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes autoAioReply = 2;  // was: StAutoAioReply
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetCommentListReq.java ====
+message StGetCommentListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  string feedId = 3;
+  uint32 listNum = 4;
+  int32 from = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetCommentListRsp.java ====
+message StGetCommentListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecComment = 2;  // was: StComment
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFansGroupListReq.java ====
+message StGetFansGroupListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFansGroupListRsp.java ====
+message StGetFansGroupListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecGroup = 2;  // was: StQQGroup
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFeedDetailReq.java ====
+message StGetFeedDetailReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  int32 from = 2;
+  string userId = 3;
+  string feedId = 4;
+  uint64 createTime = 5;
+  bytes adres = 6;
+  string adAttchInfo = 7;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFeedDetailRsp.java ====
+message StGetFeedDetailRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  string detailUrl = 2;
+  bytes feed = 3;  // was: StFeed
+  repeated bytes vecRcmdFeed = 4;  // was: StFeed
+  bytes share = 5;  // was: StShare
+  uint32 isFinish = 6;
+  string adAttchInfo = 7;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFeedListReq.java ====
+message StGetFeedListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listNum = 2;
+  int32 from = 3;
+  bytes feed = 4;  // was: StFeed
+  bytes adres = 5;
+  string adAttchInfo = 6;
+  int32 source = 10;
+  string livePageInfo = 11;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFeedListRsp.java ====
+message StGetFeedListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecFeed = 2;  // was: StFeed
+  uint32 isFinish = 3;
+  bytes user = 4;  // was: StUser
+  string adAttchInfo = 5;
+  repeated bytes hotLive = 6;  // was: StFeed
+  string livePageInfo = 7;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowFeedsReq.java ====
+message StGetFollowFeedsReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string livePageInfo = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowFeedsRsp.java ====
+message StGetFollowFeedsRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes feeds = 2;  // was: StFeed
+  uint32 isFinish = 3;
+  uint32 noticeCount = 4;
+  bytes messStatus = 5;  // was: StMessageStatus
+  repeated bytes careLive = 6;  // was: StFeed
+  string livePageInfo = 8;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowListReq.java ====
+message StGetFollowListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 seq = 2;
+  string attach_info = 3;
+  uint32 count = 4;
+  int32 source = 5;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowListRsp.java ====
+message StGetFollowListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 seq = 2;
+  string attach_info = 3;
+  uint32 refresh = 4;
+  uint32 has_next = 5;
+  repeated bytes account_list = 6;  // was: PublicAccountInfo
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowRcmdReq.java ====
+message StGetFollowRcmdReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetFollowRcmdRsp.java ====
+message StGetFollowRcmdRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes rcmdList = 2;  // was: StFollowRcmd
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetMainPageReq.java ====
+message StGetMainPageReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  int32 from = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetMainPageRsp.java ====
+message StGetMainPageRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  bytes user = 2;  // was: StUser
+  uint32 feedCount = 3;
+  uint32 fansCount = 4;
+  uint32 followCount = 5;
+  repeated bytes vecFeed = 6;  // was: StFeed
+  uint32 isFinish = 7;
+  bytes share = 8;  // was: StShare
+  repeated bytes vecGroup = 9;  // was: StQQGroup
+  uint64 ytdFansCount = 10;
+  uint64 viewTotalCount = 11;
+  bytes pushFeed = 12;  // was: StPushSet
+  bytes messStatus = 13;  // was: StMessageStatus
+  StMainPageJumpH5URL jumpURLs = 14;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetMsgPageTopReq.java ====
+message StGetMsgPageTopReq {
+  bytes extInfo = 1;  // was: StCommonExt
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetMsgPageTopRsp.java ====
+message StGetMsgPageTopRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 noticeCount = 2;
+  repeated bytes vecUser = 3;  // was: StUser
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetNoticeListReq.java ====
+message StGetNoticeListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listNum = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetNoticeListRsp.java ====
+message StGetNoticeListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecNotice = 2;  // was: StNotice
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetPushListReq.java ====
+message StGetPushListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  string userId = 2;
+  uint32 listNum = 3;
+  int32 from = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetPushListRsp.java ====
+message StGetPushListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecPushFeed = 2;  // was: StPushSet
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetRecommendUserListReq.java ====
+message StGetRecommendUserListReq {
+  bytes extInfo = 1;  // was: StCommonExt
+  uint32 listNum = 2;
+  uint32 from = 3;
+  string userId = 4;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetRecommendUserListRsp.java ====
+message StGetRecommendUserListRsp {
+  bytes extInfo = 1;  // was: StCommonExt
+  repeated bytes vecUser = 2;  // was: StUser
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  bytes entry = 5;  // was: StEntry
+  uint32 noticeCount = 6;
+  uint32 expType = 7;
+  repeated bytes vecUserWithFeed = 8;  // was: StFeed
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StMainPageJumpH5URL.java ====
+message StMainPageJumpH5URL {
+  string pushSetURL = 1;
+  string pushListURL = 2;
+  string editPageURL = 3;
+}

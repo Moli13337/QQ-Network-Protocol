@@ -1,0 +1,48 @@
+// report 域 — 6 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.report;
+
+// ==== source: cooperation/vip/p1670pb/mobile_monitor_report.java ====
+message ExceptionReport {
+  int32 busi_id = 1;
+  int32 errcode = 2;
+  repeated bytes msg = 3;
+}
+
+message PkgExceptionReq {
+  UserCommReport user_comm_report = 1;
+  repeated ExceptionReport exception_report = 2;
+}
+
+message PkgRsp {
+  uint32 ret = 1;
+  string err_msg = 2;
+  int32 mult_cnt = 3;
+  int32 mult_delay = 4;
+}
+
+message PkgTraceReq {
+  int32 user_busi_type = 1;
+  UserCommReport user_comm_report = 2;
+  repeated TraceReport trace_report = 3;
+}
+
+message TraceReport {
+  repeated bytes msg = 1;
+  string trace_id = 2;
+  uint32 trace_num = 3;
+  string page_id = 4;
+}
+
+message UserCommReport {
+  string imei = 1;
+  double longitude = 2;
+  double latitude = 3;
+  string city_code = 4;
+  int32 net_type = 5;
+  uint32 from_id = 6;
+  string mobile_type = 7;
+  string qua = 8;
+}

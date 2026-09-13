@@ -1,0 +1,67 @@
+// tnn 域 — 8 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.tnn;
+
+// ==== source: tnn/SearchRank$Item.java ====
+message Item {
+  string uin = 1;
+  uint64 degree = 2;
+  string match_field = 3;
+  repeated uint64 sub_type = 4;
+  repeated MapFieldEntry fileds = 5;
+  int32 recent_index = 6;
+  repeated uint64 attributes = 7;
+}
+
+// ==== source: tnn/SearchRank$ItemResult.java ====
+message ItemResult {
+  string uin = 1;
+  float score = 2;
+  string matched_field = 3;
+}
+
+// ==== source: tnn/SearchRank$MapFieldEntry.java ====
+message MapFieldEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: tnn/SearchRank$NodeResult.java ====
+message NodeResult {
+  int32 node_id = 1;
+  float score = 2;
+}
+
+// ==== source: tnn/SearchRank$NodesRankResult.java ====
+message NodesRankResult {
+  int32 error = 1;
+  string error_message = 2;
+  repeated NodeResult node_results = 3;
+}
+
+// ==== source: tnn/SearchRank$RankItems.java ====
+message RankItems {
+  int32 version = 1;
+  string platform = 2;
+  string type = 3;
+  string query = 4;
+  repeated Item items = 5;
+}
+
+// ==== source: tnn/SearchRank$RankNodes.java ====
+message RankNodes {
+  int32 version = 1;
+  string platform = 2;
+  string type = 3;
+  string query = 4;
+  repeated MapFieldEntry attributes = 5;
+}
+
+// ==== source: tnn/SearchRank$RankResult.java ====
+message RankResult {
+  int32 error = 1;
+  string error_message = 2;
+  repeated ItemResult item_results = 3;
+}

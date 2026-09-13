@@ -1,0 +1,4554 @@
+// qzone 域 — 617 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.qzone;
+
+// ==== source: NS_CERTIFIED_ACCOUNT/CertifiedAccountMeta$StShareQzoneInfo.java ====
+message StShareQzoneInfo {
+  repeated Entry entrys = 1;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetSyncDataFromQzoneReq.java ====
+message StGetSyncDataFromQzoneReq {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_READ/CertifiedAccountRead$StGetSyncDataFromQzoneRsp.java ====
+message StGetSyncDataFromQzoneRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeed feeds = 2;
+  uint32 isFinish = 3;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StSetSyncDataFromQzoneReq.java ====
+message StSetSyncDataFromQzoneReq {
+  StCommonExt extInfo = 1;
+  repeated StFeed feeds = 2;
+}
+
+// ==== source: NS_CERTIFIED_ACCOUNT_WRITE/CertifiedAccountWrite$StSetSyncDataFromQzoneRsp.java ====
+message StSetSyncDataFromQzoneRsp {
+  StCommonExt extInfo = 1;
+}
+
+// ==== source: com/qzone/personalize/flashnickname/handler/p128pb/SsoGetActDynamicNickReq.java ====
+message SsoGetActDynamicNickReq {
+  // (no fields resolved)
+}
+
+// ==== source: com/qzone/personalize/flashnickname/handler/p128pb/SsoGetActDynamicNickRsp.java ====
+message SsoGetActDynamicNickRsp {
+  bool is_show = 1;
+  uint64 last_time = 2;
+  string url = 3;
+  repeated bytes module = 4;
+}
+
+// ==== source: com/qzone/proto/SocialTree$CollectWaterReq.java ====
+message CollectWaterReq {
+  uint64 uin = 1;
+  repeated uint32 id_list = 2;
+}
+
+// ==== source: com/qzone/proto/SocialTree$CollectWaterRsp.java ====
+message CollectWaterRsp {
+  // (no fields resolved)
+}
+
+// ==== source: com/qzone/proto/SocialTree$GettWaterTaskListReq.java ====
+message GettWaterTaskListReq {
+  uint64 uin = 1;
+  repeated uint32 id_list = 2;
+}
+
+// ==== source: com/qzone/proto/SocialTree$GettWaterTaskListRsp.java ====
+message GettWaterTaskListRsp {
+  repeated WaterTask task_list = 2;
+}
+
+// ==== source: com/qzone/proto/SocialTree$WateringReq.java ====
+message WateringReq {
+  uint64 uin = 1;
+  repeated uint32 id_list = 2;
+}
+
+// ==== source: com/qzone/proto/SocialTree$WateringRsp.java ====
+message WateringRsp {
+  bool is_complete = 1;
+}
+
+// ==== source: com/qzone/proto/SocialTreeCommon$WaterTask.java ====
+message WaterTask {
+  repeated uint64 id = 1;
+  uint32 type = 2;
+  string name = 3;
+  uint64 weight = 4;
+  uint64 incr_weight = 5;
+  string icon_url = 6;
+  bool is_complete = 7;
+  string remaining_time_text = 8;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$BusiErr.java ====
+message BusiErr {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$CreateShareReq.java ====
+message CreateShareReq {
+  ShareInfo info = 1;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$CreateShareRsp.java ====
+message CreateShareRsp {
+  ShareInfo info = 1;
+  string template_data = 2;
+  string plat_data = 3;
+  BusiErr err = 4;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$GetShareInfoReq.java ====
+message GetShareInfoReq {
+  string encrypted_data = 1;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$GetShareInfoRsp.java ====
+message GetShareInfoRsp {
+  ShareInfo info = 1;
+  string template_data = 2;
+  string plat_data = 3;
+  BusiErr err = 4;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$OperateShareDataReq.java ====
+message OperateShareDataReq {
+  ShareInfo info = 1;
+  repeated Operation operations = 2;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$OperateShareDataRsp.java ====
+message OperateShareDataRsp {
+  BusiErr err = 1;
+  string plat_data = 2;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$Operation.java ====
+message Operation {
+  uint64 op_type = 1;
+  string op_data = 2;
+}
+
+// ==== source: com/qzone/proto/share/ServicePB$ShareInfo.java ====
+message ShareInfo {
+  string busi_id = 1;
+  string resource_id = 2;
+  string template = 3;
+  bytes busi_data = 4;
+  int32 plat = 5;
+}
+
+// ==== source: com/tencent/mobileqq/aio/msglist/holder/component/tofu/p1139pb/oidb_0xe9b$QZoneInfo.java ====
+message QZoneInfo {
+  bytes bytes_space_name = 1;
+  bytes bytes_update_content = 2;
+  repeated string str_newly_img_url = 3;
+}
+
+// ==== source: com/tencent/mobileqq/now/livehomepage/NowQQLiveHomepageProto$RecommendQzoneItem.java ====
+message RecommendQzoneItem {
+  uint64 uid = 1;
+  uint64 tiny_id = 2;
+  string enter_room_id = 3;
+  uint64 start_time = 4;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneBase$BytesEntry.java ====
+message BytesEntry {
+  string key = 1;
+  bytes value = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneBase$CommonExt.java ====
+message CommonExt {
+  repeated Entry map_info = 1;
+  string attach_info = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneBase$Entry.java ====
+message Entry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccount$GetMessageListReq.java ====
+message GetMessageListReq {
+  CommonExt ext_info = 1;
+  string attach_info = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccount$GetMessageListRsp.java ====
+message GetMessageListRsp {
+  CommonExt ext_info = 1;
+  repeated Message message_list = 2;
+  string attach_info = 3;
+  bool is_finish = 4;
+  BottomMenu bottom_menu = 5;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccount$PushMessageReq.java ====
+message PushMessageReq {
+  CommonExt ext_info = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccount$PushMessageRsp.java ====
+message PushMessageRsp {
+  CommonExt ext_info = 1;
+  int64 next_push_time_sec = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$AnyCell.java ====
+message AnyCell {
+  uint32 cell_type = 1;
+  bytes cell_data = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$BottomMenu.java ====
+message BottomMenu {
+  repeated MenuItem menu_list = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$Botton.java ====
+message Botton {
+  repeated bytes id = 1;
+  int32 botton_type = 2;
+  string caption = 3;
+  string background_img = 4;
+  string jump_url = 5;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellAction.java ====
+message CellAction {
+  string jump_url = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellBottom.java ====
+message CellBottom {
+  int32 bottom_type = 1;
+  string text = 2;
+  InteractionInfo interaction = 3;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellBotton.java ====
+message CellBotton {
+  repeated Botton botton_list = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellHeader.java ====
+message CellHeader {
+  string header_title = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellPic.java ====
+message CellPic {
+  repeated PicInfo pic_list = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellPlainText.java ====
+message CellPlainText {
+  string text = 1;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellTitle.java ====
+message CellTitle {
+  int32 title_type = 1;
+  string title = 2;
+  repeated UserInfo user_list = 3;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$CellVisitor.java ====
+message CellVisitor {
+  int32 visitor_type = 1;
+  repeated UserInfo user_list = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$InnerMessage.java ====
+message InnerMessage {
+  int32 inner_msg_type = 1;
+  int32 template_type = 2;
+  repeated AnyCell cell_list = 3;
+  repeated MapExtraInfo ext_info = 4;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$InteractionInfo.java ====
+message InteractionInfo {
+  uint32 view_count = 1;
+  uint32 comment_count = 2;
+  uint32 like_count = 3;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$MapExtraInfo.java ====
+message MapExtraInfo {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$MenuItem.java ====
+message MenuItem {
+  int32 menu_type = 1;
+  string caption = 2;
+  string jump_url = 3;
+  string pic_url = 4;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$Message.java ====
+message Message {
+  repeated bytes id = 1;
+  uint64 create_time = 2;
+  repeated InnerMessage inner_msg_list = 3;
+  int32 message_type = 4;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$PicInfo.java ====
+message PicInfo {
+  int32 pic_type = 1;
+  string pic_url = 2;
+}
+
+// ==== source: com/tencent/qzone/p1537pb/QZoneOfficialAccountBase$UserInfo.java ====
+message UserInfo {
+  uint64 uin = 1;
+  string nick = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/sweet/verification/judge/GetQzoneDynamicNickReq.java ====
+message GetQzoneDynamicNickReq {
+  uint64 uin = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/sweet/verification/judge/GetQzoneDynamicNickRsp.java ====
+message GetQzoneDynamicNickRsp {
+  repeated bytes module = 1;
+  bool is_gray = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/sweet/verification/judge/SetQzoneDynamicNickReq.java ====
+message SetQzoneDynamicNickReq {
+  uint64 uin = 1;
+  repeated bytes module = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/sweet/verification/judge/SetQzoneDynamicNickRsp.java ====
+message SetQzoneDynamicNickRsp {
+  int32 result = 1;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$BuyItemReq.java ====
+message BuyItemReq {
+  int32 businessType = 1;
+  PageInfo pageInfo = 3;
+  int32 clientPlat = 4;
+  repeated ItemInfo itemList = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$BuyItemRsp.java ====
+message BuyItemRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  string info = 3;
+  int32 payMode = 4;
+  int32 useClientPlatform = 5;
+  PicPayInfo picInfo = 6;
+  MonthPayInfo monthInfo = 7;
+  string reportData = 8;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$DeliverItemReq.java ====
+message DeliverItemReq_PayInfo {
+  int32 totalPrice = 1;
+  int32 amt = 2;
+  string aid = 3;
+  string orderId = 4;
+  string portalBillNo = 5;
+  int32 monthNum = 6;
+}
+
+message DeliverItemReq {
+  int32 businessType = 1;
+  int32 useClientPlatform = 3;
+  repeated ItemInfo itemList = 4;
+  string verifiedInfo = 5;
+  PayInfo payInfo = 6;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$DeliverItemRsp.java ====
+message DeliverItemRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$ItemInfo.java ====
+message ItemInfo {
+  int32 businessType = 1;
+  string itemId = 2;
+  string itemSubId = 3;
+  int32 buyNum = 4;
+  string itemExtendInfo = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$MonthPayInfo.java ====
+message MonthPayInfo {
+  int32 monthVipType = 1;
+  string midasAppid = 2;
+  int32 discountType = 3;
+  int32 monthMode = 4;
+  int32 monthNum = 5;
+  string orderId = 6;
+  string patternInfo = 7;
+  string productId = 8;
+  string payItem = 9;
+  string serviceType = 10;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$PageInfo.java ====
+message PageInfo {
+  string aid = 1;
+  string qua = 2;
+  string enteranceId = 3;
+  string reportExtraInfo = 4;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$PicPayInfo.java ====
+message PicPayInfo {
+  string midasAppid = 1;
+  string midasToken = 2;
+  string midasUrlParams = 3;
+  int32 zoneId = 4;
+  string productId = 5;
+  string payItem = 6;
+  string patternInfo = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$UserAccount.java ====
+message UserAccount {
+  string uid = 1;
+  string appid = 2;
+  string sessionKey = 3;
+  string skey = 4;
+  repeated bytes ip = 5;
+  string pUid = 6;
+  string pUserType = 7;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$VerifyItemReq.java ====
+message VerifyItemReq {
+  int32 businessType = 1;
+  int32 clientPlatform = 3;
+  repeated ItemInfo itemList = 4;
+  string orderId = 5;
+}
+
+// ==== source: com/tencent/trpcprotocol/tianxuan/commpay/service/QZoneVipPayInfo$VerifyItemRsp.java ====
+message VerifyItemRsp_PicInfo {
+  int32 totalPrice = 1;
+  string itemName = 2;
+  string itemDesc = 3;
+  string itemUrl = 4;
+  string patternInfo = 5;
+  string midasCouponInfo = 6;
+  int32 settlementType = 7;
+  string reportExtraInfo = 8;
+  string reportBusiness = 9;
+}
+
+message VerifyItemRsp_MonthInfo {
+  int32 monthVipType = 1;
+  int32 discountType = 2;
+  int32 monthMode = 3;
+  int32 monthNum = 4;
+  string patternInfo = 5;
+  string reportExtraInfo = 6;
+}
+
+message VerifyItemRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  string info = 3;
+  int32 payMode = 4;
+  PicInfo picInfo = 5;
+  bytes monthInfo = 6;  // was: MonthInfo
+  string verifiedInfo = 7;
+}
+
+// ==== source: qshadow/QZoneAutoTexting$ImageTextingReq.java ====
+message ImageTextingReq {
+  repeated string imageUrls = 1;
+  string text = 2;
+  bool isStream = 3;
+}
+
+// ==== source: qshadow/QZoneAutoTexting$ImageTextingRsp.java ====
+message ImageTextingRsp {
+  repeated TextInfo textInfos = 1;
+}
+
+// ==== source: qshadow/QZoneAutoTexting$QueryTextingResultReq.java ====
+message QueryTextingResultReq {
+  repeated string textIds = 1;
+}
+
+// ==== source: qshadow/QZoneAutoTexting$QueryTextingResultRsp.java ====
+message QueryTextingResultRsp {
+  repeated TextInfo textInfos = 1;
+}
+
+// ==== source: qshadow/QZoneAutoTexting$TextInfo.java ====
+message TextInfo {
+  repeated bytes id = 1;
+  string style = 2;
+  int32 status = 3;
+  string statusMsg = 4;
+  string content = 5;
+  int64 timestamp = 6;
+  bool isSecurity = 7;
+  int64 delay_time = 8;
+}
+
+// ==== source: qshadow/QzoneAIGC$O3TextCheckReq.java ====
+message O3TextCheckReq {
+  string text = 1;
+}
+
+// ==== source: qshadow/QzoneAIGC$O3TextCheckRsp.java ====
+message O3TextCheckRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+}
+
+// ==== source: qshadow/QzoneAIGC$TextToImageReq.java ====
+message TextToImageReq {
+  string text = 1;
+}
+
+// ==== source: qshadow/QzoneAIGC$TextToImageRsp.java ====
+message TextToImageRsp {
+  int32 code = 1;
+  repeated bytes msg = 2;
+  repeated string pic_url = 3;
+  int32 remaining_times = 4;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$CheckinSpaceInfo.java ====
+message CheckinSpaceInfo {
+  string space_id = 1;
+  repeated string uid = 2;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$MainPageCheckinDetail.java ====
+message MainPageCheckinDetail {
+  int64 days = 1;
+  bool done_today = 2;
+  string content = 3;
+  string animation_url = 4;
+  string detail_page_url = 5;
+  StButton checkin_in_btn = 6;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$SpaceCheckinEntry.java ====
+message SpaceCheckinEntry {
+  string space_id = 1;
+  repeated SpaceCheckinUserEntry users = 2;
+  uint32 comm_checkin_days = 3;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$SpaceCheckinUserEntry.java ====
+message SpaceCheckinUserEntry {
+  string uid = 1;
+  bool is_today_checked = 2;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinAdminReq.java ====
+message StCheckinAdminReq {
+  string space_id = 1;
+  string uid = 2;
+  string begin_date = 3;
+  string checkin_data = 4;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinAdminRsp.java ====
+message StCheckinAdminRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinForMainPageReq.java ====
+message StCheckinForMainPageReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinForMainPageRsp.java ====
+message StCheckinForMainPageRsp {
+  MainPageCheckinDetail checkin_detail = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinListReq.java ====
+message StCheckinListReq {
+  string space_id = 1;
+  string date_begin = 2;
+  string date_end = 3;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinListRsp.java ====
+message StCheckinListRsp {
+  repeated UserCheckinInfo users = 1;
+  uint64 space_create_time = 2;
+  uint64 save_limit_time = 3;
+  int32 space_type = 4;
+  uint32 comm_checkin_days = 5;
+  StCommonExt ext = 6;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinReq.java ====
+message StCheckinReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StCheckinRsp.java ====
+message StCheckinRsp_CheckinCalendar {
+  string space_name = 1;
+  string calendar_content = 2;
+  string calendar_content_source = 3;
+  string calendar_tips = 4;
+  string background_url = 5;
+  repeated bytes remind_button = 6;
+  repeated bytes share_button = 7;
+  uint32 comm_checkin_days = 8;
+  bool support_resign = 9;
+}
+
+message StCheckinRsp_CalendarButton {
+  string title = 1;
+  string after_click_title = 2;
+}
+
+message StCheckinRsp {
+  uint32 days = 1;
+  StButton checkin_in_btn = 2;
+  bytes calendar = 3;  // was: CheckinCalendar
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetMaxCommCheckinReq.java ====
+message StGetMaxCommCheckinReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetMaxCommCheckinRsp.java ====
+message StGetMaxCommCheckinRsp {
+  uint32 days = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetSpacesCheckinStatusReq.java ====
+message StGetSpacesCheckinStatusReq {
+  repeated CheckinSpaceInfo spaces = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetSpacesCheckinStatusRsp.java ====
+message StGetSpacesCheckinStatusRsp {
+  repeated SpaceCheckinEntry spaces = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetTodayCheckStatusReq.java ====
+message StGetTodayCheckStatusReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StGetTodayCheckStatusRsp.java ====
+message StGetTodayCheckStatusRsp {
+  bool is_checked = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StReSignFeatureReq.java ====
+message StReSignFeatureReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$StReSignFeatureRsp.java ====
+message StReSignFeatureRsp {
+  bool feature_toggle = 1;
+  int64 space_create_time = 2;
+}
+
+// ==== source: qzone/QZIntimateCheckIn$UserCheckinInfo.java ====
+message UserCheckinInfo {
+  StUser user = 1;
+  uint32 days = 2;
+  string checkin_data = 3;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientAcceptRelationInviteReq.java ====
+message ClientAcceptRelationInviteReq {
+  string accepted_uin = 1;
+  int32 src = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientAcceptRelationInviteRsp.java ====
+message ClientAcceptRelationInviteRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientCreateISpacesReq.java ====
+message ClientCreateISpacesReq {
+  repeated StUser users = 1;
+  int32 type = 2;
+  uint64 anniversary = 3;
+  StCommonExt ext_info = 4;
+  repeated uint64 user_with_uin = 5;
+  int64 anniversary_v2 = 6;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientCreateISpacesRsp.java ====
+message ClientCreateISpacesRsp {
+  string space_id = 1;
+  StCommonExt ext = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientDelISpacesReq.java ====
+message ClientDelISpacesReq {
+  string space_id = 1;
+  StCommonExt ext = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientDelISpacesRsp.java ====
+message ClientDelISpacesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientModISpaceInfoReq.java ====
+message ClientModISpaceInfoReq {
+  string space_id = 1;
+  repeated Entry fields = 2;
+  StCommonExt ext_info = 3;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientModISpaceInfoRsp.java ====
+message ClientModISpaceInfoRsp {
+  uint32 relation_days = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientModUserInfoReq.java ====
+message ClientModUserInfoReq {
+  string space_id = 1;
+  repeated Entry fields = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientModUserInfoRsp.java ====
+message ClientModUserInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientRelationInviteReq.java ====
+message ClientRelationInviteReq {
+  string invited_uin = 1;
+  int32 src = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ClientRelationInviteRsp.java ====
+message ClientRelationInviteRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$CreateMoreSpaceGuide.java ====
+message CreateMoreSpaceGuide {
+  string icontoken = 1;
+  string guide_text = 2;
+  StButton button = 3;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$DeleteLoverRelationReq.java ====
+message DeleteLoverRelationReq {
+  string target_uid = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$DeleteLoverRelationRsp.java ====
+message DeleteLoverRelationRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetCommonISpaceReq.java ====
+message GetCommonISpaceReq {
+  repeated StUser user = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetISpaceListOfMultipleUserReq.java ====
+message GetISpaceListOfMultipleUserReq {
+  repeated StUser user = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetISpaceListReq.java ====
+message GetISpaceListReq {
+  StUser user = 1;
+  StCommonExt ext = 2;
+  bool need_space_id_only = 3;
+  bool skip_relation_verification = 4;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetISpaceListRsp.java ====
+message GetISpaceListRsp {
+  repeated IntimateSpaceAbs spaces = 1;
+  bool hasMore = 2;
+  string AttchInfo = 3;
+  StCommonExt ext = 4;
+  bool hasResumableSpace = 5;
+  CreateMoreSpaceGuide create_more_space_guide = 6;
+  bool show_manual = 7;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetISpaceListWithUinReq.java ====
+message GetISpaceListWithUinReq {
+  repeated uint64 user = 1;
+  bool skip_relation_verification = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetIntimateRelationChangeReq.java ====
+message GetIntimateRelationChangeReq {
+  string initiator = 1;
+  string member = 2;
+  int32 type = 3;
+  int32 action = 4;
+  int64 anniversary = 5;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetIntimateRelationChangeRsp.java ====
+message GetIntimateRelationChangeRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetQQBasicRelationChange.java ====
+message GetQQBasicRelationChange {
+  string initiator = 1;
+  string member = 2;
+  bool is_remove_type = 4;
+  string spaceid = 5;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetUserIntimateSpaceByTypeReq.java ====
+message GetUserIntimateSpaceByTypeReq {
+  int32 space_type = 1;
+  int32 targetpage = 2;
+  string origin_schema = 3;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$GetUserIntimateSpaceByTypeRsp.java ====
+message GetUserIntimateSpaceByTypeRsp {
+  repeated SpaceTypeWithJumpUrl spaceinfo = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$IntimateSpaceAbs.java ====
+message IntimateSpaceAbs {
+  int32 space_type = 1;
+  int32 space_status = 2;
+  string space_id = 3;
+  repeated StUser user = 4;
+  string recom_reason = 5;
+  string title = 6;
+  string subtitle = 7;
+  StButton button = 8;
+  bool has_checkin_today = 9;
+  int32 display_right = 10;
+  bool has_recent_pub = 11;
+  uint32 resumable_days = 12;
+  uint32 relation_last = 13;
+  uint32 resumable_seconds = 14;
+  RelationIcon relation_icon = 15;
+  repeated PartnerInfo partners = 16;
+  SpaceThemeInfo space_theme_info = 17;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$NeedShowEntranceReq.java ====
+message NeedShowEntranceReq {
+  uint64 sweet_bitmap = 1;
+  uint64 check_uin = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$NeedShowEntranceRsp.java ====
+message NeedShowEntranceRsp {
+  bool show_sweet_entrance = 1;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$PartnerInfo.java ====
+message PartnerInfo {
+  int32 partner_type = 1;
+  RelationIcon partner_icon = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$RelationIcon.java ====
+message RelationIcon {
+  string relation_icon = 1;
+  string icon_description = 2;
+  string memberUid = 3;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ResumeISpacesReq.java ====
+message ResumeISpacesReq {
+  string space_id = 1;
+  int64 anniversary = 2;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$ResumeISpacesRsp.java ====
+message ResumeISpacesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateProfileReader$SpaceThemeInfo.java ====
+message SpaceThemeInfo {
+  string update_lable_color = 1;
+  string card_daytime_color = 2;
+  string card_night_color = 3;
+  string customer_daytime_color = 4;
+  string customer_night_color = 5;
+}
+
+// ==== source: qzone/QZIntimateProfileReader$SpaceTypeWithJumpUrl.java ====
+message SpaceTypeWithJumpUrl {
+  int32 space_type = 1;
+  int32 space_status = 2;
+  string space_id = 3;
+  string schema = 4;
+  repeated string uids = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$AddAlbumReq.java ====
+message AddAlbumReq {
+  AlbumInfo album_info = 1;
+  uint32 clock_time = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$AddAlbumRsp.java ====
+message AddAlbumRsp {
+  AlbumInfo album_info = 1;
+  StCommonExt ext = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$AlbumCommData.java ====
+message AlbumCommData {
+  bool is_member = 1;
+  string empty_message = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$AlbumSpaceInfo.java ====
+message AlbumSpaceInfo {
+  GetAlbumListRsp album_list = 1;
+  string space_id = 2;
+  string desc = 3;
+  repeated StUser users = 4;
+  int32 space_type = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$CreateSpaceReq.java ====
+message CreateSpaceReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$CreateSpaceRsp.java ====
+message CreateSpaceRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$DeleteAlbumReq.java ====
+message DeleteAlbumReq {
+  string space_id = 1;
+  string album_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$DeleteMediasByBatchReq.java ====
+message DeleteMediasByBatchReq {
+  string space_id = 1;
+  string album_id = 2;
+  uint64 batch_id = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$DeleteMediasReq.java ====
+message DeleteMediasReq {
+  string space_id = 1;
+  string album_id = 2;
+  repeated StMedia media_list = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$DeleteSpaceReq.java ====
+message DeleteSpaceReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$DeleteSpaceRsp.java ====
+message DeleteSpaceRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAlbumInfoReq.java ====
+message GetAlbumInfoReq {
+  string space_id = 1;
+  string album_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAlbumInfoRsp.java ====
+message GetAlbumInfoRsp {
+  AlbumInfo album_info = 1;
+  StCommonExt ext = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAlbumListReq.java ====
+message GetAlbumListReq {
+  string space_id = 1;
+  string attach_info = 2;
+  int32 scene = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAlbumListRsp.java ====
+message GetAlbumListRsp {
+  repeated AlbumInfo album_list = 1;
+  string attach_info = 2;
+  bool has_more = 3;
+  bool enable_sync_from_qzone = 4;
+  uint32 album_num = 5;
+  AlbumCommData comm_data = 6;
+  StCommonExt ext = 7;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAllAlbumListByUserReq.java ====
+message GetAllAlbumListByUserReq {
+  uint64 uin = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetAllAlbumListByUserRsp.java ====
+message GetAllAlbumListByUserRsp {
+  repeated AlbumSpaceInfo space_list = 1;
+  StCommonExt ext = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetMediasListByOneReq.java ====
+message GetMediasListByOneReq {
+  string space_id = 1;
+  string album_id = 2;
+  string lloc = 3;
+  string attach_info = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetMediasListReq.java ====
+message GetMediasListReq {
+  int32 search_type = 1;
+  string space_id = 2;
+  string album_id = 3;
+  uint64 batch_id = 4;
+  string attach_info = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetMediasListRsp.java ====
+message GetMediasListRsp {
+  repeated BatchInfo batch_list = 1;
+  repeated StMedia medias = 2;
+  AlbumInfo album_info = 3;
+  AlbumCommData comm_data = 4;
+  string prev_attach_info = 5;
+  string next_attach_info = 6;
+  bool prev_has_more = 7;
+  bool next_has_more = 8;
+  uint32 medias_index = 9;
+  StCommonExt ext = 10;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetQzoneAlbumListReq.java ====
+message GetQzoneAlbumListReq {
+  string attach_info = 1;
+  string space_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetQzoneAlbumListRsp.java ====
+message GetQzoneAlbumListRsp {
+  repeated AlbumInfo album_list = 1;
+  string attach_info = 2;
+  bool has_more = 3;
+  uint32 album_num = 4;
+  AlbumCommData comm_data = 5;
+  StCommonExt ext = 6;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetSpaceCountReq.java ====
+message GetSpaceCountReq {
+  repeated string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$GetSpaceCountRsp.java ====
+message GetSpaceCountRsp {
+  repeated SpaceCountInfo count_info = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$ModifyAlbumReq.java ====
+message ModifyAlbumReq {
+  AlbumInfo album_info = 1;
+  repeated bytes mask = 2;  // was: enum
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$SpaceCountInfo.java ====
+message SpaceCountInfo {
+  string space_id = 1;
+  uint64 album_count = 2;
+  uint64 medias_count = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceAlbum$SyncQzoneAlbumReq.java ====
+message SyncQzoneAlbumReq {
+  string space_id = 1;
+  repeated string album_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$MainPageMedalDetail.java ====
+message MainPageMedalDetail {
+  uint32 total = 1;
+  uint32 got_num = 2;
+  repeated MedalInfo medals = 3;
+  repeated MedalInfo new_medals = 4;
+  MedalInfo alert_medal = 5;
+  string num_content = 6;
+  string list_content = 7;
+  bool has_new_medal = 8;
+  string detail_page_url = 9;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$MedalInfo.java ====
+message MedalInfo_MedalProgressInfo {
+  uint32 total = 1;
+  uint32 current = 2;
+}
+
+message MedalInfo {
+  repeated bytes id = 1;
+  string name = 2;
+  string icon = 3;
+  string rule_desc = 4;
+  int32 type = 5;
+  bytes progress = 6;  // was: MedalProgressInfo
+  bool is_new = 7;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StActionReceiveReq.java ====
+message StActionReceiveReq {
+  bytes message = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StActionReceiveRsp.java ====
+message StActionReceiveRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StGetMedalListByMainPageReq.java ====
+message StGetMedalListByMainPageReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StGetMedalListByMainPageRsp.java ====
+message StGetMedalListByMainPageRsp {
+  MainPageMedalDetail medal_detail = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StGetMedalListReq.java ====
+message StGetMedalListReq {
+  string space_id = 1;
+  string attach_info = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceMedal$StGetMedalListRsp.java ====
+message StGetMedalListRsp {
+  uint32 total = 1;
+  uint32 got_num = 2;
+  repeated MedalInfo medals = 3;
+  string attach_info = 4;
+  bool has_more = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CheckInGrayIntimateSpaceReq.java ====
+message CheckInGrayIntimateSpaceReq {
+  repeated StUser users = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CheckInGrayIntimateSpaceRsp.java ====
+message CheckInGrayIntimateSpaceRsp {
+  repeated StUser users = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CheckUsersInSpaceReq.java ====
+message CheckUsersInSpaceReq {
+  string spaces_id = 1;
+  repeated StUser users = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CheckUsersInSpaceRsp.java ====
+message CheckUsersInSpaceRsp {
+  repeated StUser users = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CreateISpacesReq.java ====
+message CreateISpacesReq {
+  repeated StUser users = 1;
+  int32 type = 2;
+  int64 relation_create_time = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$CreateISpacesRsp.java ====
+message CreateISpacesRsp {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$DelISpacesReq.java ====
+message DelISpacesReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$DelISpacesRsp.java ====
+message DelISpacesRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetISpaceInfoReq.java ====
+message GetISpaceInfoReq {
+  repeated StIntimateSpace spaces = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetISpaceInfoRsp.java ====
+message GetISpaceInfoRsp {
+  repeated StIntimateSpace spaces = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUserISpacesReq.java ====
+message GetUserISpacesReq {
+  repeated string uid = 1;
+  repeated Entry fields = 2;
+  bool verify_intimate_relation = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUserISpacesRsp.java ====
+message GetUserISpacesRsp {
+  repeated UserSpaceEntry userspaces = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUserInfoReq.java ====
+message GetUserInfoReq {
+  string uid = 1;
+  repeated Entry fields = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUserInfoRsp.java ====
+message GetUserInfoRsp {
+  repeated Entry fields = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUsersSpaceReadRightReq.java ====
+message GetUsersSpaceReadRightReq {
+  string spaces_id = 1;
+  repeated StUser users = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$GetUsersSpaceReadRightRsp.java ====
+message GetUsersSpaceReadRightRsp {
+  repeated StUser users = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$ModISpaceInfoReq.java ====
+message ModISpaceInfoReq {
+  repeated StIntimateSpace space = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$ModISpaceInfoRsp.java ====
+message ModISpaceInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$ModUserInfoReq.java ====
+message ModUserInfoReq {
+  repeated Entry fields = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$ModUserInfoRsp.java ====
+message ModUserInfoRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$SetUserInfoReq.java ====
+message SetUserInfoReq {
+  string uid = 1;
+  repeated Entry fields = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$SetUserInfoRsp.java ====
+message SetUserInfoRsp {
+  repeated Entry fields = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$StIntimateSpace.java ====
+message StIntimateSpace {
+  string space_id = 1;
+  repeated Entry fields = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceProfile$UserSpaceEntry.java ====
+message UserSpaceEntry {
+  string uid = 1;
+  repeated StIntimateSpace spaces = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$ActiveGuideInfo.java ====
+message ActiveGuideInfo {
+  string guide_title = 1;
+  string theme_color = 2;
+  repeated uint64 tags = 3;
+  string left_btn_title = 4;
+  string right_btn_btn_title = 5;
+  repeated uint64 relation_icons = 6;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$ClearReddotReq.java ====
+message ClearReddotReq {
+  int32 page_type = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$CommreaderSpaceAbs.java ====
+message CommreaderSpaceAbs {
+  int32 space_type = 1;
+  string space_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetDisbandSpacePageReq.java ====
+message GetDisbandSpacePageReq {
+  StCommonExt ext = 1;
+  string space_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetDisbandSpacePageRsp.java ====
+message GetDisbandSpacePageRsp {
+  StCommonExt ext = 1;
+  repeated StUser members = 2;
+  uint64 seconds_remain = 3;
+  uint32 relation_time = 4;
+  uint32 medal_count = 5;
+  uint32 shuoshuo_count = 6;
+  uint32 album_count = 7;
+  string cover = 8;
+  int32 space_type = 9;
+  int32 disband_status = 10;
+  repeated RelationIcon relation_icon = 11;
+  uint64 resumable_time_setting = 12;
+  bool display_properties = 13;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetFeedDetailReq.java ====
+message GetFeedDetailReq {
+  StCommonExt ext = 1;
+  string feed_id = 2;
+  int32 count = 3;
+  string attach_info = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetFeedDetailRsp.java ====
+message GetFeedDetailRsp {
+  StCommonExt ext = 1;
+  StClientFeed feed = 2;
+  bool hasmore = 3;
+  string attach_info = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetFeedLikesReq.java ====
+message GetFeedLikesReq {
+  StCommonExt ext = 1;
+  string feed_id = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetFeedLikesRsp.java ====
+message GetFeedLikesRsp {
+  StCommonExt ext = 1;
+  bool has_more = 2;
+  repeated StLikeMan list = 3;
+  uint32 total_num = 4;
+  uint32 friend_num = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetIntimateRelationFromQQBasicRsp.java ====
+message GetIntimateRelationFromQQBasicRsp {
+  StCommonExt ext = 1;
+  repeated RelatationInfo infos = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetNoticeListReq.java ====
+message GetNoticeListReq {
+  StCommonExt ext = 1;
+  string attach_info = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetNoticeListRsp.java ====
+message GetNoticeListRsp {
+  StCommonExt ext = 1;
+  repeated StNotice notices = 2;
+  string attach_info = 3;
+  bool has_more = 4;
+  bool has_notice_before = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceMainPageFeedsReq.java ====
+message GetSpaceMainPageFeedsReq {
+  StCommonExt ext = 1;
+  string space_id = 2;
+  string attach_info = 3;
+  bool is_draft_space = 4;
+  int32 space_type = 5;
+  repeated string uids = 6;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceMainPageFeedsRsp.java ====
+message GetSpaceMainPageFeedsRsp {
+  StCommonExt ext = 1;
+  repeated StClientFeed feeds = 2;
+  string attach_info = 3;
+  bool has_more = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceMainPageHeadReq.java ====
+message GetSpaceMainPageHeadReq {
+  string space_id = 1;
+  bool is_draft_space = 2;
+  int32 space_type = 3;
+  repeated string uids = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceMainPageHeadRsp.java ====
+message GetSpaceMainPageHeadRsp {
+  string title = 1;
+  repeated StUser members = 2;
+  string relation_msg = 3;
+  StButton check_in_btn = 4;
+  MainPageMedalDetail medalInfo = 5;
+  string bg_image_light = 7;
+  string bg_image_dark = 8;
+  StCommonExt ext = 9;
+  uint32 relation_days = 10;
+  string relation_days_color = 11;
+  int32 space_type = 12;
+  MainPageCheckinDetail checkin_info = 13;
+  int32 display_right = 14;
+  uint64 anniversary_timestamp = 15;
+  bool show_sweet_old_user_guide_pop = 16;
+  int64 anniversary_timestamp_v2 = 17;
+  repeated PartnerInfo partners = 18;
+  ActiveGuideInfo guide_info = 19;
+  repeated MainPageMedalDetail animationInfo = 20;
+  string intimay_relation_icon = 21;
+  repeated MenuItem menu = 22;
+  PHShareStatus phs_status = 23;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceRightPageReq.java ====
+message GetSpaceRightPageReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetSpaceRightPageRsp.java ====
+message GetSpaceRightPageRsp {
+  string title = 1;
+  repeated StUser members = 2;
+  int32 space_type = 3;
+  int32 display_right = 4;
+  int32 approval_type = 5;
+  StCommonExt ext = 6;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetUserIntimateSpaceInfoReq.java ====
+message GetUserIntimateSpaceInfoReq {
+  repeated bytes opmask_to_check = 1;  // was: enum
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$GetUserIntimateSpaceInfoRsp.java ====
+message GetUserIntimateSpaceInfoRsp {
+  repeated bytes opmask = 1;  // was: enum
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$PHShareStatus.java ====
+message PHShareStatus {
+  int32 share_type = 1;
+  PHStatusPattern status_pattern = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$PHStatusPattern.java ====
+message PHStatusPattern {
+  int32 pattern_type = 1;
+  string icon_url = 2;
+  string schemal_url = 3;
+  string text = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$RelatationInfo.java ====
+message RelatationInfo {
+  int32 type = 1;
+  repeated RelatedUser users = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$RelatedUser.java ====
+message RelatedUser {
+  string user_uid = 1;
+  int64 relation_start_time = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StClientFeed.java ====
+message StClientFeed {
+  StFeed feed = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StLeftTxtRightPicInfo.java ====
+message StLeftTxtRightPicInfo {
+  repeated StRichMsg txt_info = 1;
+  StImage pic_info = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StNotice.java ====
+message StNotice {
+  string notice_id = 1;
+  uint32 notice_type = 2;
+  uint64 create_time = 3;
+  StNoticePattonInfo notice_patton = 4;
+  StFeed feed = 5;
+  repeated StRichMsg notice_message = 6;
+  repeated bytes op_mask = 7;  // was: enum
+  bytes busi_data = 8;
+  StUser op_user = 9;
+  StPattonAction action = 10;
+  StButton space_button = 11;
+  string notice_message_icon = 12;
+  StCommonExt ext = 13;
+  StComment feed_comment = 14;
+  StReply feed_reply = 15;
+  CommreaderSpaceAbs spaceinfo = 16;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StNoticePattonInfo.java ====
+message StNoticePattonInfo {
+  uint32 patton_type = 1;
+  StPlainTxtInfo plain_txt = 2;
+  StLeftTxtRightPicInfo lefttxt_right_pic = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StPattonAction.java ====
+message StPattonAction {
+  int32 action_type = 4;
+  string schema_url = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceReader$StPlainTxtInfo.java ====
+message StPlainTxtInfo {
+  repeated StRichMsg txt_info = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceRedDotReader$EntranceInfo.java ====
+message EntranceInfo {
+  string name = 1;
+  string icon = 2;
+  string url = 3;
+  int32 status = 4;
+  string guide = 5;
+  string background = 6;
+  int64 lst_publish_time = 7;
+  bool is_show_entrance = 8;
+  string space_id = 9;
+  repeated Entry entry = 10;
+  int32 relation_type = 11;
+}
+
+// ==== source: qzone/QZIntimateSpaceRedDotReader$GetRedPointsReq.java ====
+message GetRedPointsReq {
+  int64 last_enter_time = 1;
+  int32 scene = 2;
+  bool need_entrance_info = 3;
+  string frd_uin = 4;
+  repeated string frd_uins = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceRedDotReader$GetRedPointsRsp.java ====
+message GetRedPointsRsp {
+  repeated RedPoint red_points = 1;
+  EntranceInfo entrance_info = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceRedDotReader$Head.java ====
+message Head {
+  string uin = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceRedDotReader$RedPoint.java ====
+message RedPoint {
+  int32 red_type = 1;
+  int64 num = 2;
+  repeated Head heads = 3;
+  string red_word = 4;
+  int64 last_visit_time = 5;
+  repeated Entry entry = 6;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$DoCustomPassiveReq.java ====
+message DoCustomPassiveReq {
+  string op_uid = 1;
+  string target_dataid = 2;
+  uint64 ctime = 3;
+  int32 action_type = 4;
+  int32 mtypeid = 5;
+  string msg_content = 6;
+  repeated string pointed_uid_list = 7;
+  StCommonExt ext_info = 8;
+  string space_id = 9;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$DoCustomPassiveRsp.java ====
+message DoCustomPassiveRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDelNoticeReq.java ====
+message StDelNoticeReq {
+  StCommonExt ext_info = 1;
+  int32 from = 2;
+  string notice_id = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDeleteFeedReq.java ====
+message StDeleteFeedReq {
+  StCommonExt ext_info = 1;
+  StFeed feed = 2;
+  int32 from = 3;
+  bool is_delete_photo = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoCommentReq.java ====
+message StDoCommentReq {
+  StCommonExt ext_info = 1;
+  uint32 comment_type = 2;
+  StComment comment = 3;
+  StFeed feed = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoCommentRsp.java ====
+message StDoCommentRsp {
+  StCommonExt ext_info = 1;
+  StComment comment = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoLikeReq.java ====
+message StDoLikeReq {
+  StCommonExt ext_info = 1;
+  uint32 like_type = 2;
+  StLike like = 3;
+  StFeed feed = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoLikeRsp.java ====
+message StDoLikeRsp {
+  StCommonExt ext_info = 1;
+  StLike like = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoReplyReq.java ====
+message StDoReplyReq {
+  StCommonExt ext_info = 1;
+  uint32 reply_type = 2;
+  StReply reply = 3;
+  StComment comment = 4;
+  StFeed feed = 5;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoReplyRsp.java ====
+message StDoReplyRsp {
+  StCommonExt ext_info = 1;
+  StReply reply = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoWhiteListReq.java ====
+message StDoWhiteListReq {
+  repeated string uids = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StDoWhiteListRsp.java ====
+message StDoWhiteListRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StIsQzoneSyncIntimateReq.java ====
+message StIsQzoneSyncIntimateReq {
+  string content = 1;
+  repeated string uin = 2;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StIsQzoneSyncIntimateRsp.java ====
+message StIsQzoneSyncIntimateRsp {
+  repeated uint64 msg = 1;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StPublishFeedReq.java ====
+message StPublishFeedReq {
+  StCommonExt ext_info = 1;
+  StFeed feed = 2;
+  int32 from = 3;
+  bool sync_qzone = 4;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$StPublishFeedRsp.java ====
+message StPublishFeedRsp {
+  StCommonExt ext_info = 1;
+  StFeed feed = 2;
+  uint64 next_publish_time = 3;
+}
+
+// ==== source: qzone/QZIntimateSpaceWriter$WhiteListResult.java ====
+message WhiteListResult {
+  string uid = 1;
+  bool status = 2;
+}
+
+// ==== source: qzone/QZQQVideoSwitch$QueryReq.java ====
+message QueryReq {
+  int32 local_pop_window_status = 1;
+  int32 scence = 2;
+}
+
+// ==== source: qzone/QZQQVideoSwitch$QueryRsp.java ====
+message QueryRsp {
+  bool is_target_user = 1;
+  int32 pop_window_status = 2;
+  string pop_window_text = 3;
+}
+
+// ==== source: qzone/QZQQVideoSwitch$SetReq.java ====
+message SetReq {
+  int32 pop_window_status = 1;
+}
+
+// ==== source: qzone/QZQQVideoSwitch$SetRsp.java ====
+message SetRsp {
+  int32 ret = 1;
+}
+
+// ==== source: qzone/QZoneBaseAlbumMeta$AlbumInfo.java ====
+message AlbumInfo {
+  string album_id = 1;
+  string owner = 2;
+  string name = 3;
+  string desc = 4;
+  uint64 create_time = 5;
+  uint64 modify_time = 6;
+  uint64 last_upload_time = 7;
+  uint64 upload_number = 8;
+  StMedia cover = 9;
+  StUser creator = 10;
+  uint64 top_flag = 11;
+  int32 busi_type = 12;
+  int32 status = 13;
+}
+
+// ==== source: qzone/QZoneBaseAlbumMeta$BatchInfo.java ====
+message BatchInfo {
+  uint64 batch_id = 1;
+  string desc = 2;
+  string show_time = 3;
+  StUser user = 4;
+  StLBS lbs = 5;
+  repeated StMedia medias = 6;
+  uint64 upload_number = 7;
+}
+
+// ==== source: qzone/QZoneBaseCommon$StCommonExt.java ====
+message StCommonExt {
+  repeated Entry map_info = 1;
+  string attach_info = 2;
+  repeated BytesEntry map_bytes_info = 3;
+  repeated StUserAccountEntry map_user_account = 4;
+}
+
+// ==== source: qzone/QZoneBaseCommon$StUserAccountBaseMate.java ====
+message StUserAccountBaseMate {
+  string uid = 1;
+  uint64 uin = 2;
+}
+
+// ==== source: qzone/QZoneBaseCommon$StUserAccountEntry.java ====
+message StUserAccountEntry {
+  string uid = 1;
+  StUserAccountBaseMate account = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$FeedExtInfo.java ====
+message FeedExtInfo {
+  int32 app_id = 1;
+  int32 type_id = 2;
+  string unused1 = 3;
+  string unused2 = 4;
+  uint64 owner_uin = 5;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StBanner.java ====
+message StBanner {
+  repeated bytes id = 1;
+  string img = 2;
+  string color = 3;
+  string text = 4;
+  string action_url = 5;
+  uint64 interval_time = 6;
+  int32 action_type = 7;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StButton.java ====
+message StButton {
+  string text = 1;
+  string actionurl = 2;
+  string button_img = 3;
+  string button_color = 4;
+  string button_color_after_click = 5;
+  string button_color2 = 6;
+  string button_color_after_click2 = 7;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StCellBottomRecomm.java ====
+message StCellBottomRecomm {
+  string title = 1;
+  string icon_token = 2;
+  string action_url = 3;
+  int32 recomm_type = 4;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StCommCountStore.java ====
+message StCommCountStore {
+  repeated StPolyInfoData poly_infos = 1;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StComment.java ====
+message StComment {
+  repeated bytes id = 1;
+  StUser user = 2;
+  repeated StRichMsg content = 3;
+  int64 time = 4;
+  repeated StReply replys = 5;
+  int64 reply_num = 6;
+  string client_key = 7;
+  repeated StMedia media_items = 8;
+  StLike like = 9;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeed.java ====
+message StFeed_StFeedCellVisitor {
+  int32 view_num = 1;
+  int32 visitor_num = 2;
+  repeated StUser visitors = 3;
+}
+
+message StFeed_StFeedCellQunInfo {
+  string qun_id = 1;
+}
+
+message StFeed_StCellRemark {
+  int32 type = 1;
+  string title = 2;
+  string icon_token = 3;
+  string action_url = 4;
+}
+
+message StFeed_StCellOrigin {
+  repeated bytes cell_common = 1;
+  repeated bytes cell_user_info = 2;
+  repeated bytes cell_title = 3;
+  repeated bytes cell_summary = 4;
+  repeated bytes cell_media = 5;
+}
+
+message StFeed {
+  StFeedCellCommon cell_common = 1;
+  StFeedCellUserInfo cell_user_info = 2;
+  StFeedCellTitle cell_title = 3;
+  StFeedCellSummary cell_summary = 4;
+  StFeedCellMedia cell_media = 5;
+  StFeedCellLBS cell_lbs = 6;
+  StFeedCellComment cell_comment = 7;
+  StFeedCellLike cell_like = 8;
+  StCellBottomRecomm cell_bottom_recomm = 9;
+  StFeedCellSpaceInfo cell_space_info = 10;
+  bytes cell_visitor = 11;  // was: StFeedCellVisitor
+  bytes cell_qun_info = 12;  // was: StFeedCellQunInfo
+  repeated StCellBottomRecomm rpt_bottom_recomm = 13;
+  bytes cell_remark = 14;  // was: StCellRemark
+  bytes cell_origin = 15;  // was: StCellOrigin
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellComment.java ====
+message StFeedCellComment {
+  int32 num = 1;
+  repeated StComment comments = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellCommon.java ====
+message StFeedCellCommon_AccessPermission {
+  int32 permission_type = 1;
+}
+
+message StFeedCellCommon_UnionID {
+  string uf_key = 1;
+  string ugc_id = 2;
+  string feed_id = 3;
+  repeated UnionExtID ext_ids = 4;
+}
+
+message StFeedCellCommon {
+  int32 app_id = 1;
+  int32 sub_id = 2;
+  int64 time = 3;
+  string feed_id = 4;
+  string cur_like_key = 5;
+  int32 biz_id = 6;
+  string client_key = 7;
+  repeated BytesEntry extend_info = 8;
+  string ugckey = 9;
+  string unused_str = 10;
+  bytes permission = 11;  // was: AccessPermission
+  int32 feed_type = 12;
+  int32 feed_sub_type = 13;
+  bytes ext_info = 14;
+  bytes union_id = 15;  // was: UnionID
+  uint32 feed_biz_type = 16;
+  int32 feature_flag = 17;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellLBS.java ====
+message StFeedCellLBS {
+  StLBS lbs = 1;
+  string icon_token = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellLike.java ====
+message StFeedCellLike {
+  int32 num = 1;
+  bool liked = 2;
+  repeated StLikeMan like_mans = 3;
+  string text = 4;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellMedia.java ====
+message StFeedCellMedia {
+  repeated StMedia media_items = 1;
+  string album_name = 2;
+  string album_id = 3;
+  int32 upload_num = 4;
+  uint64 batch_id = 5;
+  StImage album_cover = 6;
+  int32 album_upload_num = 7;
+  bool long_pics_browsing_mode = 8;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellSpaceInfo.java ====
+message StFeedCellSpaceInfo {
+  string space_id = 1;
+  int32 space_type = 2;
+  repeated StUser space_members = 3;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellSummary.java ====
+message StFeedCellSummary {
+  repeated StRichMsg summary = 1;
+  bool has_more = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellTitle.java ====
+message StFeedCellTitle {
+  repeated StRichMsg title = 1;
+  string title_url = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StFeedCellUserInfo.java ====
+message StFeedCellUserInfo {
+  StUser user = 1;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StGPS.java ====
+message StGPS {
+  int64 lat = 1;
+  int64 lon = 2;
+  int64 e_type = 3;
+  int64 alt = 4;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StImage.java ====
+message StImage {
+  string name = 1;
+  string lloc = 2;
+  repeated StPicSpecUrlEntry photo_url = 3;
+  StPicUrl default_url = 4;
+  bool is_gif = 5;
+  int32 type = 6;
+  bool has_raw = 7;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StLBS.java ====
+message StLBS {
+  StGPS gps = 1;
+  string location = 2;
+  repeated bytes id = 3;
+  string address = 4;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StLike.java ====
+message StLike {
+  repeated bytes id = 1;
+  uint32 count = 2;
+  uint32 status = 3;
+  StUser post_user = 4;
+  uint32 owner_status = 5;
+  repeated StLikeMan like_mans = 6;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StLikeMan.java ====
+message StLikeMan {
+  StUser user = 1;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StMedia.java ====
+message StMedia_StMediaLike {
+  string key = 1;
+  int32 num = 2;
+  bool liked = 3;
+}
+
+message StMedia_StMediaComment {
+  int32 num = 1;
+}
+
+message StMedia {
+  int32 type = 1;
+  StImage image = 2;
+  StVideo video = 3;
+  string desc = 4;
+  StLBS lbs = 5;
+  string uploader = 6;
+  uint64 batch_id = 7;
+  uint64 upload_time = 8;
+  uint32 upload_order = 9;
+  bytes like = 10;  // was: StMediaLike
+  bytes comment = 11;  // was: StMediaComment
+  StUser upload_user = 12;
+  repeated Entry ext = 13;
+  uint64 shoot_time = 14;
+  uint64 link_id = 15;
+  repeated bytes op_mask = 16;  // was: enum
+  int32 lbs_source = 17;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StPicSpecUrlEntry.java ====
+message StPicSpecUrlEntry {
+  int32 spec = 1;
+  StPicUrl url = 2;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StPicUrl.java ====
+message StPicUrl {
+  string url = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StPolyInfoData.java ====
+message StPolyInfoData_StPolyLike {
+  string poly_like_id = 1;
+  int32 article_type = 2;
+  string poly_name = 3;
+  string poly_source = 4;
+  string poly_icon_url = 5;
+  string poly_under_pic_url = 6;
+  uint32 price = 7;
+  bytes busi_data = 8;
+  string full_screen_url = 9;
+  string full_screen_url_and = 10;
+  string poly_txt_color = 11;
+  string poly_under_color = 12;
+  string dynamic_pic_url = 13;
+}
+
+message StPolyInfoData {
+  bytes info = 1;  // was: StPolyLike
+}
+
+// ==== source: qzone/QZoneBaseMeta$StRelationInfo.java ====
+message StRelationInfo {
+  repeated bytes id = 1;
+  bool is_friend = 2;
+  bool is_uncare = 3;
+  bool has_right = 4;
+  uint64 part_flag = 5;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StReply.java ====
+message StReply {
+  repeated bytes id = 1;
+  StUser user = 2;
+  repeated StRichMsg content = 3;
+  int64 time = 4;
+  string client_key = 5;
+  StUser target_user = 6;
+  StLike like = 7;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StRichMsg.java ====
+message StRichMsg {
+  int32 type = 1;
+  string content = 2;
+  string uid = 3;
+  string name = 4;
+  int32 who = 5;
+  string url = 6;
+  string uin = 7;
+  repeated StMedia media_items = 8;
+  uint64 ditto_uin = 9;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StShare.java ====
+message StShare_ShareToQzone {
+  repeated bytes ext = 1;
+}
+
+message StShare_ShareToArk {
+  string json_ark = 1;
+  string ark_id = 2;
+  string view_id = 3;
+}
+
+message StShare_ShareOutside {
+  string jump_url = 1;
+  repeated bytes wx_miniapp = 2;
+}
+
+message StShare_ShareWXMiniApp {
+  string app_name = 1;
+  string path = 2;
+}
+
+message StShare {
+  repeated bytes qzone = 1;
+  bytes ark = 2;  // was: ShareToArk
+  bytes outside = 3;  // was: ShareOutside
+  string title = 4;
+  string summary = 5;
+  string share_key = 6;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StTimeLine.java ====
+message StTimeLine {
+  repeated bytes events = 1;  // was: StTimeLineEvent
+}
+
+// ==== source: qzone/QZoneBaseMeta$StUser.java ====
+message StUser_StarInfo {
+  int32 star_status = 1;
+  int32 star_level = 2;
+  bool is_annual_vip = 3;
+  bool is_high_star_vip = 4;
+}
+
+message StUser {
+  string uid = 1;
+  string nick = 2;
+  YellowInfo yellow_info = 3;
+  bytes star_info = 4;  // was: StarInfo
+  bool is_sweet = 5;
+  bool is_special = 6;
+  bool is_super_like = 7;
+  string custom_id = 8;
+  string poly_id = 9;
+  string portrait = 10;
+  int32 can_follow = 11;
+  int32 isfollowed = 12;
+  string uin = 13;
+  uint64 ditto_uin = 14;
+}
+
+// ==== source: qzone/QZoneBaseMeta$StVideo.java ====
+message StVideo {
+  repeated bytes id = 1;
+  string url = 2;
+  StImage cover = 3;
+  int32 width = 4;
+  int32 height = 5;
+  uint64 video_time = 6;
+  repeated StPicSpecUrlEntry video_url = 7;
+  uint64 size = 8;
+  bool has_raw = 9;
+}
+
+// ==== source: qzone/QZoneBaseMeta$TimeLineReqParam.java ====
+message TimeLineReqParam_StTimeLineEvent {
+  int32 type = 1;
+  string title = 2;
+  string content = 3;
+  string attach_info = 4;
+  int64 begin_time = 6;
+  int64 end_time = 7;
+  int32 binding_type = 9;
+  bool disable = 10;
+  uint32 item_count = 12;
+  bool is_special_day_node = 13;
+}
+
+message TimeLineReqParam {
+  int32 type = 1;
+  bytes event = 2;  // was: StTimeLineEvent
+}
+
+// ==== source: qzone/QZoneBaseMeta$UgcID.java ====
+message UgcID {
+  uint32 app_id = 1;
+  uint64 uin = 2;
+  uint64 ctime = 3;
+  string album_id = 4;
+  string lloc = 5;
+  string batch_id = 6;
+  uint64 utime = 7;
+}
+
+// ==== source: qzone/QZoneBaseMeta$UnionExtID.java ====
+message UnionExtID {
+  int32 ext_id_type = 1;
+  int64 numeric = 2;
+  string str = 3;
+}
+
+// ==== source: qzone/QZoneBaseMeta$YellowInfo.java ====
+message YellowInfo {
+  int32 yellow_type = 1;
+  int32 yellow_level = 2;
+  bool is_annual_vip = 3;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$Button.java ====
+message Button {
+  repeated bytes msg = 1;
+  string url = 2;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$IsGrayUinReq.java ====
+message IsGrayUinReq {
+  uint64 uin = 1;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$IsGrayUinRsp.java ====
+message IsGrayUinRsp {
+  bool is_gray_uin = 1;
+  uint64 begin_time = 2;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$ModifyPhotoStatusRsp.java ====
+message ModifyPhotoStatusRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QZonePhotoDegrade$NegativeNotifyReq.java ====
+message NegativeNotifyReq {
+  int32 scene = 1;
+  int32 plat = 2;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$NotifyMsg.java ====
+message NotifyMsg {
+  string title = 1;
+  repeated Text texts = 2;
+  repeated Button buttons = 3;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$PhotoInfo.java ====
+message PhotoInfo {
+  bytes photo_id = 1;
+  bytes ablum_id = 2;
+  repeated PicInfo pics = 3;
+  int32 status = 4;
+  int64 create_time = 5;
+  int64 recover_time = 6;
+  uint64 original_pic_size = 7;
+  uint64 hd_pic_size = 8;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryNotifyMsgReq.java ====
+message QueryNotifyMsgReq {
+  int32 scene = 1;
+  int32 plat = 2;
+  bytes cookie = 3;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryNotifyMsgRsp.java ====
+message QueryNotifyMsgRsp {
+  repeated bytes msg = 1;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryPhotoListReq.java ====
+message QueryPhotoListReq {
+  int32 status = 1;
+  TimePeriod time_period = 2;
+  uint32 count = 3;
+  string cookie = 4;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryPhotoListRsp.java ====
+message QueryPhotoListRsp {
+  repeated PhotoInfo photos = 1;
+  uint32 total = 2;
+  string cookie = 3;
+  bool is_end = 4;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryPhotoStatusReq.java ====
+message QueryPhotoStatusReq {
+  int32 status = 1;
+  TimePeriod time_period = 2;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$QueryPhotoStatusRsp.java ====
+message QueryPhotoStatusRsp {
+  uint64 total = 1;
+  uint64 earliest_time = 2;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$TaskConsumerReq.java ====
+message TaskConsumerReq_ModifyPhotoStatusReq {
+  int32 status = 1;
+  repeated bytes time_period = 2;
+}
+
+message TaskConsumerReq_ExtInfo {
+  bytes key = 1;
+  bytes value = 2;
+}
+
+message TaskConsumerReq {
+  int32 task_type = 1;
+  string uin = 2;
+  bytes modify_photo_status_req = 3;  // was: ModifyPhotoStatusReq
+  bytes exts = 4;  // was: ExtInfo
+}
+
+// ==== source: qzone/QZonePhotoDegrade$Text.java ====
+message Text {
+  repeated bytes msg = 1;
+  string url = 2;
+  int32 type = 3;
+}
+
+// ==== source: qzone/QZonePhotoDegrade$TimePeriod.java ====
+message TimePeriod {
+  uint64 begin = 1;
+  uint64 end = 2;
+}
+
+// ==== source: qzone/QZoneRightAccess$GetUgcRightReq.java ====
+message GetUgcRightReq {
+  uint32 appid = 1;
+  string ugcid = 2;
+  uint64 feed_time = 3;
+}
+
+// ==== source: qzone/QZoneRightAccess$GetUgcRightRsp.java ====
+message GetUgcRightRsp {
+  int32 right_flag = 1;
+  repeated uint64 uin_list = 2;
+}
+
+// ==== source: qzone/QZoneTagFeedList$BatchGetTagFeedListHeadReq.java ====
+message BatchGetTagFeedListHeadReq {
+  repeated string tag_ids = 1;
+  int32 req_scene = 2;
+}
+
+// ==== source: qzone/QZoneTagFeedList$BatchGetTagFeedListHeadRsp.java ====
+message BatchGetTagFeedListHeadRsp {
+  repeated GetTagFeedListHeadRsp infos = 1;
+}
+
+// ==== source: qzone/QZoneTagFeedList$GetTagFeedListHeadReq.java ====
+message GetTagFeedListHeadReq {
+  string tag_id = 1;
+  int32 req_scene = 2;
+  int64 last_clear_timestamp = 3;
+  int32 req_source = 4;
+}
+
+// ==== source: qzone/QZoneTagFeedList$GetTagFeedListHeadRsp.java ====
+message GetTagFeedListHeadRsp {
+  string tag_id = 1;
+  string tag_name = 2;
+  string corner_tag_type = 3;
+  PopularityInfo popularity = 4;
+  string tag_image = 5;
+  string tag_cover = 6;
+  StButton publish_button = 7;
+  ShareTagInfo shareinfo = 8;
+  repeated bytes opmasks = 9;  // was: enum
+  string tag_intro = 10;
+  string tag_uin = 11;
+  string tag_cover_dark_mode = 12;
+  string corner_tag_text_color = 13;
+  string corner_tag_background_color = 14;
+  bool is_operation_tag = 15;
+  bool is_beat = 16;
+  string err_msg = 17;
+  bool cover_need_hd = 18;
+  string cover_jump_url = 19;
+  bool show_red_dot = 20;
+  int64 red_dot_timestamp = 21;
+}
+
+// ==== source: qzone/QZoneTagFeedList$GetTagFeedListReq.java ====
+message GetTagFeedListReq {
+  StCommonExt ext = 1;
+  string attach_info = 2;
+  string tag_id = 3;
+}
+
+// ==== source: qzone/QZoneTagFeedList$GetTagFeedListRsp.java ====
+message GetTagFeedListRsp {
+  StCommonExt ext = 1;
+  string attach_info = 2;
+  repeated StFeed feed = 3;
+  bool has_finish = 4;
+}
+
+// ==== source: qzone/QZoneTagFeedList$PopularityInfo.java ====
+message PopularityInfo {
+  repeated StUser users = 1;
+  repeated string disciption = 2;
+  uint64 friend_pub_count = 3;
+  uint64 publish_count = 4;
+  uint64 view_count = 5;
+}
+
+// ==== source: qzone/QZoneTagFeedList$ShareTagInfo.java ====
+message ShareTagInfo {
+  string share_url = 1;
+  string share_pic = 2;
+  string sign_ark = 3;
+  string share_intro = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$ActivityInfo.java ====
+message ActivityInfo {
+  repeated bytes _wx_mini_program_key_activity_id = 1;
+  string env = 2;
+  uint64 start_time = 3;
+  uint64 end_time = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$BatchReadShuoShuoInfoReq.java ====
+message BatchReadShuoShuoInfoReq_BatchReadFilter {
+  uint32 bytes_res = 1;
+  uint32 need_userinfo = 2;
+}
+
+message BatchReadShuoShuoInfoReq {
+  bytes filter = 1;  // was: BatchReadFilter
+  repeated ShuoShuoInfoReq shuoshuo_infos = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$BatchReadShuoShuoInfoRsp.java ====
+message BatchReadShuoShuoInfoRsp {
+  repeated ShuoShuoInfo shuoshuo_infos = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$BindFarmRoleEvent.java ====
+message BindFarmRoleEvent {
+  string uin = 1;
+  repeated bytes _wx_mini_program_key_activity_id = 2;
+  uint64 role_uid = 3;
+}
+
+// ==== source: qzone/QzoneActivityPB$BindGameRoleReq.java ====
+message BindGameRoleReq {
+  ServerRole role = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$BindGameRoleRsp.java ====
+message BindGameRoleRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$CheckGiftDrawStatusReq.java ====
+message CheckGiftDrawStatusReq {
+  int64 actid = 1;
+  int64 uin = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$CheckGiftDrawStatusRsp.java ====
+message CheckGiftDrawStatusRsp {
+  bool can_draw = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$CleanUserDataReq.java ====
+message CleanUserDataReq {
+  bool clearPKOnly = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$CleanUserDataRsp.java ====
+message CleanUserDataRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$CommentInfo.java ====
+message CommentInfo {
+  string comment_id = 1;
+  ResourceInfo res_info = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$DatongReportData.java ====
+message DatongReportData {
+  string event_code = 1;
+  string event_code_type1 = 2;
+  string event_code_type2 = 3;
+  string event_code_type3 = 4;
+  string event_time = 5;
+  string uin = 6;
+  string touin = 7;
+  string uid = 8;
+  string touid = 9;
+  string event_value = 10;
+  string qua = 11;
+}
+
+// ==== source: qzone/QzoneActivityPB$DisplayCfg.java ====
+message DisplayCfg {
+  string dump_key = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$DrawGameGiftReq.java ====
+message DrawGameGiftReq {
+  int64 gift_activity_id = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$DrawGameGiftRsp.java ====
+message DrawGameGiftRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$EventItem.java ====
+message EventItem {
+  string tid = 1;
+  string interact_id = 2;
+  string op_uid = 3;
+  repeated uint64 ts = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$EventNoticReq.java ====
+message EventNoticReq {
+  int32 event_type = 1;
+  string tid = 2;
+  string tid_owner_uid = 3;
+  int64 tid_create_time = 4;
+  string comment_id = 5;
+  bytes shuoshuo_text = 7;
+  repeated KVInfo ext_infos = 8;
+  string event_uid = 9;
+  int64 event_time = 10;
+}
+
+// ==== source: qzone/QzoneActivityPB$EventNoticRsp.java ====
+message EventNoticRsp_EventRes {
+  string play_rid = 3;
+  repeated bytes nickname_res_info = 4;
+  repeated bytes tips_info = 5;
+}
+
+message EventNoticRsp {
+  bytes event_res = 1;  // was: EventRes
+  string bytes_event_res = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$GameGiftInfo.java ====
+message GameGiftInfo {
+  uint32 score = 1;
+  bool is_draw = 2;
+  string gift_res_name = 3;
+  int64 gift_activity_id = 4;
+  string icon = 5;
+  uint32 num = 6;
+}
+
+// ==== source: qzone/QzoneActivityPB$GetAllGameRoleReq.java ====
+message GetAllGameRoleReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$GetAllGameRoleRsp.java ====
+message GetAllGameRoleRsp {
+  repeated ServerRole roles = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$GetUserDragonInfoReq.java ====
+message GetUserDragonInfoReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$GetUserDragonInfoRsp.java ====
+message GetUserDragonInfoRsp_DragonInfo {
+  int32 show_status = 1;
+  string dragon_id = 2;
+  uint32 score = 3;
+  bool is_Raise = 4;
+}
+
+message GetUserDragonInfoRsp {
+  bytes dragon_info = 1;  // was: DragonInfo
+}
+
+// ==== source: qzone/QzoneActivityPB$GetUserTaskDetailReq.java ====
+message GetUserTaskDetailReq {
+  string uid = 1;
+  repeated bytes event_type = 2;  // was: enum
+}
+
+// ==== source: qzone/QzoneActivityPB$GetUserTaskDetailRsp.java ====
+message GetUserTaskDetailRsp {
+  repeated ScoreInfo list = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$GuidePageReq.java ====
+message GuidePageReq {
+  int32 source_type = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$GuidePageRsp.java ====
+message GuidePageRsp {
+  UserPageInfo info = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$JoinActivityReq.java ====
+message JoinActivityReq {
+  string join_scene = 1;
+  string tid = 2;
+  repeated KVInfo kf_infos = 3;
+  string cookie = 20;
+}
+
+// ==== source: qzone/QzoneActivityPB$JoinActivityRsp.java ====
+message JoinActivityRsp {
+  string show_mode = 1;
+  string jump_url = 2;
+  float float_height = 3;
+  bool is_refresh_feed = 4;
+  string cookie = 20;
+}
+
+// ==== source: qzone/QzoneActivityPB$KVInfo.java ====
+message KVInfo {
+  string key = 1;
+  string val = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$ModifyReq.java ====
+message ModifyReq_ModifyFlag {
+  bool show_status = 1;
+  bool dragon_id = 2;
+}
+
+message ModifyReq_ModifyInfo {
+  int32 show_status = 1;
+  string dragon_id = 2;
+}
+
+message ModifyReq {
+  bytes modify_flag = 1;  // was: ModifyFlag
+  bytes modify_info = 2;  // was: ModifyInfo
+}
+
+// ==== source: qzone/QzoneActivityPB$ModifyRsp.java ====
+message ModifyRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$PKActivityReq.java ====
+message PKActivityReq {
+  StUser target_user = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$PKActivityRsp.java ====
+message PKActivityRsp {
+  bool target_user_is_winner = 1;
+  repeated bytes display_data = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$PKInfo.java ====
+message PKInfo {
+  string uin = 1;
+  string frd_uin = 2;
+  string win_uin = 3;
+  int32 win_score = 4;
+  string text = 5;
+}
+
+// ==== source: qzone/QzoneActivityPB$QueryUserTaskReq.java ====
+message QueryUserTaskReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$QueryUserTaskRsp.java ====
+message QueryUserTaskRsp {
+  repeated TaskInfo tasks = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$RankListCacheData.java ====
+message RankListCacheData {
+  repeated UserPageInfo ranks = 1;
+  repeated uint64 ts = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$RankingPageReq.java ====
+message RankingPageReq {
+  int32 count = 1;
+  string cookie = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$RankingPageRsp.java ====
+message RankingPageRsp_PopWindowInfo {
+  string text = 1;
+  string sub_text = 2;
+  string pic = 3;
+  string jump_url = 4;
+  string backgroud = 5;
+  repeated bytes display_cfg = 6;
+}
+
+message RankingPageRsp {
+  UserPageInfo self = 1;
+  UserPageInfo first = 2;
+  bytes pop_window_info = 3;  // was: PopWindowInfo
+  repeated PKInfo pk_infos = 4;
+  repeated UserPageInfo ranks = 5;
+  string cookie = 6;
+  bool is_end = 7;
+  bool task_flexible = 8;
+  bool ranking_flexible = 9;
+  bool is_dragon_activity_end = 10;
+}
+
+// ==== source: qzone/QzoneActivityPB$ReadActivityConfReq.java ====
+message ReadActivityConfReq {
+  bool is_vip = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$ReadActivityConfRsp.java ====
+message ReadActivityConfRsp {
+  repeated KVInfo ext_infos = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$ReadUserActivityInfoRsp.java ====
+message ReadUserActivityInfoRsp {
+  UserActivityInfo user_info = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$ResourceInfo.java ====
+message ResourceInfo {
+  string mode = 1;
+  string text = 2;
+  string bg_light = 3;
+  string bg_dark = 4;
+  string text_color_light = 5;
+  string text_color_dark = 6;
+  string jump_url = 7;
+  DisplayCfg display_cfg = 10;
+  string resource_name = 11;
+}
+
+// ==== source: qzone/QzoneActivityPB$ScoreInfo.java ====
+message ScoreInfo {
+  int32 event_type = 1;
+  repeated EventItem items = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$ServerRole.java ====
+message ServerRole {
+  int32 area = 1;
+  int32 platid = 2;
+  int32 partition = 3;
+  string partition_name = 4;
+  string uid = 5;
+  string user_name = 6;
+}
+
+// ==== source: qzone/QzoneActivityPB$SetUserScoreReq.java ====
+message SetUserScoreReq {
+  uint32 score = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$SetUserScoreRsp.java ====
+message SetUserScoreRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$ShareReq.java ====
+message ShareReq {
+  int32 from = 1;
+  string frd_uin = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$ShareRsp.java ====
+message ShareRsp_ShareDisplayData {
+  string activity_name = 1;
+  string desc1 = 2;
+  string pic = 3;
+  string addtional_msg = 4;
+  string dragon_id = 5;
+  repeated bytes target_user = 6;
+  uint32 rank = 8;
+  uint32 score = 9;
+}
+
+message ShareRsp {
+  string schema = 1;
+  bytes display_data = 2;  // was: ShareDisplayData
+  bytes sign_ark = 3;
+  string addtional_msg = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$ShimmerAnimation.java ====
+message ShimmerAnimation {
+  uint32 owner_anim_level = 1;
+  bool guest_anim_enable = 2;
+}
+
+// ==== source: qzone/QzoneActivityPB$ShuoShuoInfo.java ====
+message ShuoShuoInfo_CommentRes {
+  repeated CommentInfo comment_info = 1;
+  repeated bytes not_friend = 2;
+  repeated bytes input_hit = 3;
+}
+
+message ShuoShuoInfo_FeedRes {
+  repeated bytes summary_res = 1;
+}
+
+message ShuoShuoInfo {
+  string uid = 1;
+  string tid = 2;
+  int64 tid_create_time = 3;
+  UserActivityInfo user_info = 4;
+  bytes comment_res = 5;  // was: CommentRes
+  bytes feed_res = 6;  // was: FeedRes
+  repeated KVInfo kf_infos = 20;
+}
+
+// ==== source: qzone/QzoneActivityPB$ShuoShuoInfoReq.java ====
+message ShuoShuoInfoReq {
+  string uid = 1;
+  string tid = 2;
+  int64 tid_create_time = 3;
+  bytes shuoshuo_text = 4;
+  repeated KVInfo ext_infos = 5;
+  bool is_vip = 6;
+}
+
+// ==== source: qzone/QzoneActivityPB$TaskInfo.java ====
+message TaskInfo {
+  int32 event_type = 1;
+  string name = 2;
+  uint32 status = 3;
+  string desc = 4;
+}
+
+// ==== source: qzone/QzoneActivityPB$UnBindGameRoleReq.java ====
+message UnBindGameRoleReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$UnBindGameRoleRsp.java ====
+message UnBindGameRoleRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/QzoneActivityPB$UserAchievementReq.java ====
+message UserAchievementReq {
+  string uin = 1;
+}
+
+// ==== source: qzone/QzoneActivityPB$UserAchievementRsp.java ====
+message UserAchievementRsp {
+  string uin = 1;
+  string nick = 2;
+  string friend_assist = 3;
+  string catch_first = 4;
+  string share_url = 5;
+}
+
+// ==== source: qzone/QzoneActivityPB$UserActivityInfo.java ====
+message UserActivityInfo_ListBadgeResInfo {
+  repeated ResourceInfo list = 1;
+  string jump_url = 2;
+}
+
+message UserActivityInfo_ThreeLayerBadgeResInfo {
+  repeated bytes bottom = 1;
+  repeated ResourceInfo middle = 2;
+  repeated bytes top = 3;
+  string jump_url = 4;
+}
+
+message UserActivityInfo {
+  uint32 activity_state = 1;
+  repeated ResourceInfo res_infos = 4;
+  ResourceInfo nickname_res_info = 5;
+  ResourceInfo cover_res_info = 6;
+  ResourceInfo text_res_info = 7;
+  ResourceInfo dragon_res_info = 8;
+  ResourceInfo fire_res_info = 9;
+  uint32 grade = 10;
+  uint32 badge_type = 11;
+  bytes list_badge = 12;  // was: ListBadgeResInfo
+  bytes three_layer_badge = 13;  // was: ThreeLayerBadgeResInfo
+  ResourceInfo fusion_badge = 14;
+}
+
+// ==== source: qzone/QzoneActivityPB$UserPageInfo.java ====
+message UserPageInfo_FarmGameInfo {
+  repeated GameGiftInfo gifts = 1;
+  repeated uint64 base_dragon_ids = 2;
+  repeated uint64 reach_level_dragon_ids = 3;
+  repeated bytes role = 4;
+}
+
+message UserPageInfo {
+  uint32 show_state = 1;
+  uint32 grade = 2;
+  repeated ResourceInfo res_infos = 3;
+  string head_uin = 4;
+  string nickname = 5;
+  bool vip = 6;
+  string vip_icon = 7;
+  uint32 rank = 8;
+  ResourceInfo my_dragon_info = 9;
+  uint32 score = 10;
+  string dragon_id = 11;
+  string dragon_source_id = 12;
+  uint32 activity_state = 13;
+  bytes farm_game_info = 14;  // was: FarmGameInfo
+  double intimacy_score = 15;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$AsyncCallbackInfo.java ====
+message AsyncCallbackInfo {
+  PhotoDataUploadRspExtInfo photo_rsp_ext = 1;
+  StoragePhotoInfo photo_info = 2;
+  bytes echo_msg = 100;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$CommonExtensionInfo.java ====
+message CommonExtensionInfo {
+  string mobile_fakefeeds_clientkey = 1;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$ExifInfo.java ====
+message ExifInfo {
+  string camera_maker = 1;
+  string camera_model = 2;
+  string time = 3;
+  string latitude_ref = 4;
+  string latitude = 5;
+  string longitude_ref = 6;
+  string longitude = 7;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$PhotoApplyUploadReqExtInfo.java ====
+message PhotoApplyUploadReqExtInfo_Poi {
+  string poi_x = 1;
+  string poi_y = 2;
+  string poi_name = 3;
+}
+
+message PhotoApplyUploadReqExtInfo_ExternalExtensionInfo {
+  // (no fields resolved)
+}
+
+message PhotoApplyUploadReqExtInfo {
+  string album_id = 1;
+  int64 batch_id = 2;
+  string space_id = 3;
+  string vid = 4;
+  bytes poi = 5;  // was: Poi
+  string photo_desc = 6;
+  int64 batch_upload_time = 7;
+  uint32 batch_upload_num = 8;
+  uint32 batch_cur_num = 9;
+  uint32 album_type_id = 10;
+  bool need_watermark = 11;
+  EnvInfo env = 12;
+  uint32 distinct_use = 13;
+  ExifInfo exif_info = 14;
+  CommonExtensionInfo common_ext_info = 15;
+  bytes external_ext_info = 16;  // was: ExternalExtensionInfo
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$PhotoDataUploadReqExtInfo.java ====
+message PhotoDataUploadReqExtInfo_CompressStrategyInfo {
+  uint32 is_vip_user = 1;
+  uint32 watermark_pic = 2;
+  bytes watermark_word = 3;
+}
+
+message PhotoDataUploadReqExtInfo {
+  bytes albumid = 1;
+  StoragePhotoInfo photo_info = 2;
+  uint32 user_diskquota = 3;
+  uint32 album_maxphoto = 4;
+  uint32 is_keep_origin = 5;
+  bytes compress_strategy_info = 6;  // was: CompressStrategyInfo
+  string sha1 = 7;
+  uint32 terminal_type = 8;
+  string terminal_ver = 9;
+  string user_id = 10;
+  bytes echo_msg = 100;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$PhotoDataUploadRspExtInfo.java ====
+message PhotoDataUploadRspExtInfo_UserInfo {
+  bytes userid = 1;
+  uint32 disk_quota = 2;
+  uint32 disk_used = 3;
+  uint32 create_time = 4;
+  uint32 last_login_time = 5;
+  bytes cover_albumid = 6;
+  bytes cover_photoid = 7;
+  bytes email = 8;
+  uint32 bitmap = 9;
+  uint32 order_type = 10;
+  uint32 reserv1 = 11;
+  uint32 reserv2 = 12;
+  uint32 reserv3 = 13;
+  bytes reserv4 = 14;
+}
+
+message PhotoDataUploadRspExtInfo_StorageAlbumInfo {
+  repeated bytes primary_info = 1;
+  repeated bytes secondary_info = 2;
+}
+
+message PhotoDataUploadRspExtInfo_AlbumPrimaryInfo {
+  bytes albumid = 1;
+  uint32 total = 2;
+  uint32 disk_used = 3;
+  uint32 invisible = 4;
+  uint32 create_time = 5;
+  uint32 modify_time = 6;
+  uint32 album_class = 7;
+  uint32 last_upload = 8;
+  uint32 order = 9;
+  uint64 filter = 10;
+  uint32 album_type = 11;
+}
+
+message PhotoDataUploadRspExtInfo_AlbumSecondaryInfo {
+  bytes albumid = 1;
+  bytes title = 2;
+  bytes owner = 3;
+  uint32 bitmap = 4;
+  uint32 anonymity = 5;
+  uint32 style = 6;
+  uint32 browser = 7;
+  uint32 comment = 8;
+  repeated bytes qa = 9;
+  bytes album_desc = 10;
+  bytes cover = 11;
+  bytes bgmusic = 12;
+  bytes bgpic = 13;
+  bytes class_name = 14;
+  bytes friend_list = 15;
+  uint32 reserv1 = 16;
+  uint32 reserv3 = 17;
+  bytes reserv4 = 18;
+}
+
+message PhotoDataUploadRspExtInfo {
+  UserInfo user_info = 1;
+  repeated ImgInfo img_infos = 2;
+  bytes upload_retcode = 3;  // was: PBSInt32Field
+  bytes album_info = 4;  // was: StorageAlbumInfo
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$PhotoEchoMsgInfo.java ====
+message PhotoEchoMsgInfo {
+  PhotoApplyUploadReqExtInfo client_req_info = 1;
+  bytes oidb_head = 2;
+  uint32 privacy = 3;
+  uint32 handset = 4;
+  uint32 origin_modify_time = 5;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$VideoApplyUploadReqExtInfo.java ====
+message VideoApplyUploadReqExtInfo {
+  bool is_format_f20 = 1;
+  int32 bitrate = 2;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$VideoDataUploadReqExtInfo.java ====
+message VideoDataUploadReqExtInfo {
+  string fileid_prefix = 1;
+  VideoTransInfo trans_info = 2;
+  uint32 skip_audit = 3;
+  bytes echo_msg = 4;
+  bytes class_name = 5;
+  string sha1 = 6;
+  uint32 terminal_type = 7;
+  string terminal_ver = 8;
+}
+
+// ==== source: qzone/StorageNTSdkExtInfo$VideoDataUploadRspExtInfo.java ====
+message VideoDataUploadRspExtInfo {
+  string videoid = 1;
+  string file_name = 2;
+  bytes upload_retcode = 3;  // was: PBSInt32Field
+  string url = 4;
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$CategoryInfo.java ====
+message CategoryInfo {
+  uint32 album_class = 1;
+  uint32 total_album = 2;
+  repeated bytes album_infos = 3;  // was: StorageAlbumInfo
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$EnvInfo.java ====
+message EnvInfo {
+  repeated uint64 net = 1;
+  string operators = 2;
+  string refer = 3;
+  int32 entrance = 4;
+  uint32 source = 5;
+  string device_info = 6;
+  string qua = 7;
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$ImgInfo.java ====
+message ImgInfo {
+  bytes lloccode = 1;
+  uint32 img_class = 2;
+  uint32 img_size = 3;
+  uint32 img_width = 4;
+  uint32 img_height = 5;
+  uint32 img_type = 6;
+  bytes img_md5 = 7;
+  string img_url = 8;
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$PhotoPath.java ====
+message PhotoPath {
+  bytes albumid = 1;
+  repeated bytes lloccodes = 2;
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$StoragePhotoInfo.java ====
+message StoragePhotoInfo_PhotoPrimaryInfo {
+  bytes albumid = 1;
+  bytes lloccode = 2;
+  uint32 chid = 3;
+  repeated uint64 qqcir_business_id = 4;
+  bytes sloccode = 5;
+  uint32 s_chid = 6;
+  uint32 s_fid = 7;
+  bytes origin_uuid = 8;
+  uint32 r_chid = 9;
+  uint32 r_fid = 10;
+  uint32 invisible = 11;
+  uint64 batchid = 12;
+  uint64 filter = 13;
+  uint32 shoot_time = 14;
+  uint32 upload_time = 15;
+  uint32 modify_time = 16;
+  uint32 order = 17;
+  bytes bucket = 18;
+  bytes source_albumid = 19;
+}
+
+message StoragePhotoInfo_PhotoSecondaryInfo {
+  bytes lloccode = 1;
+  uint32 camer = 2;
+  bytes title = 3;
+  uint32 photo_type = 4;
+  bytes owner = 5;
+  bytes owner_name = 6;
+  uint32 owner_type = 7;
+  uint32 user_ip = 8;
+  uint32 gradetimes = 9;
+  uint32 photo_size = 10;
+  uint32 photo_width = 12;
+  uint32 photo_height = 13;
+  uint32 is_censored = 14;
+  uint32 browser = 15;
+  uint32 forumindex = 16;
+  uint32 origin = 17;
+  uint32 origin_size = 18;
+  uint32 origin_width = 19;
+  uint32 origin_height = 20;
+  uint32 origin_type = 21;
+  uint32 handset = 22;
+  bytes camera_type = 23;
+  bytes photo_desc = 24;
+  bytes shoot_para = 25;
+  bytes append_info = 26;
+  uint32 grade = 27;
+  uint32 refer = 28;
+  uint32 frame = 29;
+  uint32 reserv2 = 30;
+  uint32 reserv3 = 31;
+  bytes reserv4 = 32;
+}
+
+message StoragePhotoInfo {
+  bytes primary_info = 1;  // was: PhotoPrimaryInfo
+  bytes secondary_info = 2;  // was: PhotoSecondaryInfo
+}
+
+// ==== source: qzone/StoragePhotoSdkCommon$TimeRangeInfo.java ====
+message TimeRangeInfo_TimeRange {
+  uint32 time_begin = 1;
+  uint32 time_end = 2;
+}
+
+message TimeRangeInfo {
+  bytes time_range = 1;  // was: TimeRange
+  uint32 total_photo = 2;
+  repeated StoragePhotoInfo photo_infos = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$TimeLineInfo.java ====
+message TimeLineInfo {
+  float start = 1;
+  float duration = 2;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$TransItemInfo.java ====
+message TransItemInfo {
+  uint32 formatid = 1;
+  string params = 2;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$TransWaterImageInfo.java ====
+message TransWaterImageInfo {
+  string url = 1;
+  repeated uint64 w = 2;
+  repeated uint64 h = 3;
+  uint32 modid = 4;
+  uint32 cmdid = 5;
+  string refpos = 6;
+  TimeLineInfo time_line = 7;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$TransWaterInfo.java ====
+message TransWaterInfo {
+  uint32 trans_codes = 1;
+  repeated TransWaterImageInfo water_image = 2;
+  repeated TransWaterTextInfo water_text = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$TransWaterTextInfo.java ====
+message TransWaterTextInfo {
+  bytes text = 1;
+  string refpos = 2;
+  string font_color = 3;
+  string font_file = 4;
+  uint32 font_size = 5;
+  string shadow_color = 6;
+  uint32 shadow_x = 7;
+  uint32 shadow_y = 8;
+  TimeLineInfo time_line = 9;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoDeleteReq.java ====
+message VideoDeleteReq {
+  bytes videoid = 1;
+  bytes file_name = 2;
+  bytes sign = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoDeleteRsp.java ====
+message VideoDeleteRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoFinishUploadReq.java ====
+message VideoFinishUploadReq {
+  bytes ukey = 1;
+  bytes file_name = 2;
+  repeated VideoPartInfo part_infos = 3;
+  VideoTransInfo trans_info = 4;
+  uint32 skip_audit = 5;
+  bytes echo_msg = 6;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoFinishUploadRsp.java ====
+message VideoFinishUploadRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoForbidReq.java ====
+message VideoForbidReq {
+  bytes videoid = 1;
+  bytes file_name = 2;
+  uint32 flag = 3;
+  bytes sign = 4;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoForbidRsp.java ====
+message VideoForbidRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoGetUploadReq.java ====
+message VideoGetUploadReq {
+  bytes fileid = 1;
+  bytes file_type = 2;
+  uint64 file_size = 3;
+  bytes file_sha = 4;
+  uint32 cateid = 5;
+  uint32 fileid_as_prefix = 6;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoGetUploadRsp.java ====
+message VideoGetUploadRsp {
+  bytes ukey = 1;
+  bytes videoid = 2;
+  bytes file_name = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoPartInfo.java ====
+message VideoPartInfo {
+  uint32 part_num = 1;
+  bytes part_sha = 2;
+  uint32 part_size = 3;
+  bytes part_mtime = 4;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoPlayInfo.java ====
+message VideoPlayInfo {
+  bytes formatid = 1;
+  bytes file_name = 2;
+  uint32 access_perm = 3;
+  uint64 file_size = 4;
+  uint32 duration = 5;
+  bytes file_type = 6;
+  bytes url = 7;
+  uint32 width = 8;
+  uint32 height = 9;
+  uint32 bitrate = 10;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryPiecesReq.java ====
+message VideoQueryPiecesReq {
+  bytes ukey = 1;
+  bytes file_name = 2;
+  bytes part_num_maker = 3;
+  uint32 list_num = 4;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryPiecesRsp.java ====
+message VideoQueryPiecesRsp {
+  bytes ukey = 1;
+  repeated VideoPartInfo part_infos = 2;
+  bytes next_maker = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryPlayInfoReq.java ====
+message VideoQueryPlayInfoReq {
+  bytes videoid = 1;
+  bytes file_name = 2;
+  uint32 auth_timeout = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryPlayInfoRsp.java ====
+message VideoQueryPlayInfoRsp {
+  repeated VideoPlayInfo play_infos = 1;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryStatusInfoReq.java ====
+message VideoQueryStatusInfoReq {
+  bytes videoid = 1;
+  bytes file_name = 2;
+  uint32 auth_timeout = 3;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoQueryStatusInfoRsp.java ====
+message VideoQueryStatusInfoRsp {
+  repeated VideoStatusInfo status_infos = 1;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoStatusInfo.java ====
+message VideoStatusInfo {
+  int32 ret_code = 1;
+  bytes ret_msg = 2;
+  bytes bizid = 3;
+  bytes cateid = 4;
+  bytes formatid = 5;
+  bytes file_name = 6;
+  bytes file_type = 7;
+  uint32 req_time = 8;
+  uint32 status = 9;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoTransInfo.java ====
+message VideoTransInfo {
+  repeated uint64 trans_codes = 1;
+  repeated uint64 snapshot_codes = 2;
+  bytes echo_msg = 3;
+  repeated TransWaterInfo trans_water = 4;
+  repeated TransItemInfo trans_items = 5;
+  repeated TransItemInfo snapshot_items = 6;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoTransReq.java ====
+message VideoTransReq {
+  bytes videoid = 1;
+  VideoTransInfo trans_info = 2;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoTransRsp.java ====
+message VideoTransRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoUploadPieceReq.java ====
+message VideoUploadPieceReq {
+  bytes ukey = 1;
+  bytes file_name = 2;
+  uint32 part_num = 3;
+  bytes part_data = 4;
+  bytes part_sha = 5;
+}
+
+// ==== source: qzone/StoragePhotoSdkVideo$VideoUploadPieceRsp.java ====
+message VideoUploadPieceRsp {
+  bytes part_sha = 1;
+}
+
+// ==== source: qzone/SuperResolution$CheckSafetyReq.java ====
+message CheckSafetyReq {
+  string album_id = 1;
+  string lloc = 2;
+  string url = 3;
+}
+
+// ==== source: qzone/SuperResolution$CheckSafetyRsp.java ====
+message CheckSafetyRsp {
+  bool is_harmful = 1;
+}
+
+// ==== source: qzone/SuperResolution$DoSRReq.java ====
+message DoSRReq {
+  string album_id = 1;
+  string lloc = 2;
+  string url = 3;
+  string task_id = 4;
+}
+
+// ==== source: qzone/SuperResolution$DoSRRsp.java ====
+message DoSRRsp {
+  int64 expected_time = 1;
+  string task_id = 2;
+}
+
+// ==== source: qzone/SuperResolution$EchoData.java ====
+message EchoData_AuthInfo {
+  uint32 auth_type = 1;
+  string auth_key = 2;
+  uint32 ptlogin_id = 3;
+}
+
+message EchoData {
+  string uin = 1;
+  string task_id = 2;
+  string bill_no = 3;
+  bytes auth = 4;  // was: AuthInfo
+}
+
+// ==== source: qzone/SuperResolution$EnhanceFaceReq.java ====
+message EnhanceFaceReq {
+  string album_id = 1;
+  string lloc = 2;
+  string url = 3;
+  uint32 scale = 4;
+  int32 enhance_type = 5;
+  uint32 face_enhance_max_face = 6;
+  string task_id = 7;
+}
+
+// ==== source: qzone/SuperResolution$EnhanceFaceRsp.java ====
+message EnhanceFaceRsp {
+  bool is_support_end_cloud = 1;
+  string task_id = 2;
+  repeated FaceOutput face_outputs = 3;
+}
+
+// ==== source: qzone/SuperResolution$FaceOutput.java ====
+message FaceOutput {
+  uint32 face_id = 1;
+  bytes face_url = 2;
+  bytes mask_url = 3;
+  bytes inverse_matrix = 4;
+  bytes face_bbox = 5;
+}
+
+// ==== source: qzone/SuperResolution$GetShareArkRsp.java ====
+message GetShareArkRsp {
+  string ark = 1;
+}
+
+// ==== source: qzone/SuperResolution$LeavePageReq.java ====
+message LeavePageReq {
+  string task_id = 1;
+}
+
+// ==== source: qzone/SuperResolution$QueryPermissionsRsp.java ====
+message QueryPermissionsRsp {
+  bool enable_sr = 1;
+  string rp_middle_hint = 2;
+  string rp_pay_guide_hint1 = 3;
+  string rp_pay_guide_hint2 = 4;
+  string pp_button_hint = 5;
+  string pp_bottom_hint1 = 6;
+  string pp_bottom_hint2 = 7;
+  int32 rp_pay_type = 8;
+  int32 pp_pay_type = 9;
+}
+
+// ==== source: qzone/SuperResolution$QueryStatusReq.java ====
+message QueryStatusReq {
+  string task_id = 1;
+}
+
+// ==== source: qzone/SuperResolution$QueryStatusRsp.java ====
+message QueryStatusRsp {
+  int32 status = 1;
+  int64 next_retry = 2;
+  string sr_url = 3;
+  int64 sr_size = 4;
+  int32 sr_width = 5;
+  int32 sr_height = 6;
+}
+
+// ==== source: qzone/SuperResolution$QueryTasksReq.java ====
+message QueryTasksReq {
+  string attach_info = 1;
+}
+
+// ==== source: qzone/SuperResolution$QueryTasksRsp.java ====
+message QueryTasksRsp {
+  repeated SRTask tasks = 1;
+  string attach_info = 2;
+  bool has_more = 3;
+}
+
+// ==== source: qzone/SuperResolution$SRTask.java ====
+message SRTask {
+  string task_id = 1;
+  int32 status = 2;
+  string album_id = 3;
+  string lloc = 4;
+  string sr_url = 5;
+  int64 sr_size = 6;
+  int32 sr_width = 7;
+  int32 sr_height = 8;
+  string src_url = 9;
+}
+
+// ==== source: qzone/SuperResolution$TerminateTaskReq.java ====
+message TerminateTaskReq {
+  string task_id = 1;
+}
+
+// ==== source: qzone/SuperResolution$TerminateTaskRsp.java ====
+message TerminateTaskRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/SuperResolution$UpdateResultReq.java ====
+message UpdateResultReq {
+  string task_id = 1;
+  int32 status = 2;
+  int64 sr_size = 3;
+}
+
+// ==== source: qzone/SuperResolution$UploadReq.java ====
+message UploadReq {
+  string task_id = 1;
+  string album_id = 2;
+  string sr_url = 3;
+  uint64 batch_id = 4;
+  string content = 5;
+}
+
+// ==== source: qzone/Watermark$DownloadUrlInfo.java ====
+message DownloadUrlInfo {
+  string url = 1;
+}
+
+// ==== source: qzone/Watermark$GetDownloadUrlReq.java ====
+message GetDownloadUrlReq {
+  repeated string urls = 1;
+  int32 source = 2;
+}
+
+// ==== source: qzone/Watermark$GetDownloadUrlRsp.java ====
+message GetDownloadUrlRsp {
+  repeated DownloadUrlInfo download_urls = 1;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$AuthExtInfo.java ====
+message AuthExtInfo {
+  string jump_url = 1;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$GetCmtBubblePanelReq.java ====
+message GetCmtBubblePanelReq {
+  string qua = 1;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$GetCmtBubblePanelRsp.java ====
+message GetCmtBubblePanelRsp {
+  repeated PanelItem items = 1;
+  string get_more_url = 2;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$GetSparklePanelReq.java ====
+message GetSparklePanelReq {
+  string qua = 1;
+  int32 source = 2;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$GetSparklePanelRsp.java ====
+message GetSparklePanelRsp {
+  repeated PanelItem items = 1;
+  string get_more_url = 2;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$PanelItem.java ====
+message PanelItem {
+  int32 app_id = 1;
+  int32 item_id = 2;
+  string name = 3;
+  int32 fee_type = 4;
+  PayInfo pay_info = 5;
+  string image_url = 7;
+  int32 auth_ret = 8;
+  int32 is_setup = 9;
+  int32 is_own = 10;
+  AuthExtInfo auth_ext_info = 11;
+  string sec_id = 12;
+}
+
+// ==== source: qzone/qqva/qc_mall_svr_qc_mall/QcMallPB$PayInfo.java ====
+message PayInfo {
+  int32 price = 1;
+  string price_label = 2;
+  int32 price_label_color = 3;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$GetMusicIDListReq.java ====
+message GetMusicIDListReq {
+  string host_uid = 1;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$GetMusicIDListRsp.java ====
+message GetMusicIDListRsp {
+  repeated string mid_list = 1;
+  int64 total_cnt = 2;
+  bool wifi_auto_play = 3;
+  string click_url = 4;
+  MusicInfo music_info = 5;
+  bool not_registered = 6;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$GetMusicInfoReq.java ====
+message GetMusicInfoReq {
+  string mid = 1;
+  int32 query_source = 2;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$GetMusicInfoRsp.java ====
+message GetMusicInfoRsp {
+  MusicInfo music_info = 1;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$MusicInfo.java ====
+message MusicInfo {
+  string mid = 2;
+  string name = 3;
+  string play_url = 4;
+  repeated SingerInfo singer_infos = 5;
+}
+
+// ==== source: qzone/qzmall/bgmusic/OnlinePB$SingerInfo.java ====
+message SingerInfo {
+  string singer_name = 1;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$AlbumSkin.java ====
+message AlbumSkin {
+  int64 item_id = 1;
+  Img banner = 2;
+  Img tmp_bg_image_large = 3;
+  repeated CustomAlbumItem items = 4;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$CmsPanelItem.java ====
+message CmsPanelItem {
+  int64 item_id = 1;
+  int32 item_type = 2;
+  string item_name = 3;
+  repeated FileItem files = 4;
+  string description = 5;
+  FileItem thumb = 6;
+  PayInfo pay_info = 7;
+  bool is_using = 8;
+  int32 font_type = 9;
+  string custom_json = 10;
+  int32 qual_type = 11;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$CustomAlbumItem.java ====
+message CustomAlbumItem {
+  int32 item_type = 1;
+  int32 alignment = 2;
+  int32 large_font_size = 3;
+  int32 middle_font_size = 4;
+  int32 small_font_size = 5;
+  int64 text_color = 6;
+  int64 text_color_click = 7;
+  Img bg_image = 8;
+  Img bg_image_click = 9;
+  int32 margin_top = 10;
+  Img left_image = 11;
+  Img right_image = 12;
+  int32 diameter = 13;
+  int32 content_width = 14;
+  Img h5_bg_image = 15;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$FileItem.java ====
+message FileItem {
+  int32 file_id = 1;
+  string name = 2;
+  string url = 3;
+  string md5 = 4;
+  int32 size = 5;
+  int32 file_type = 6;
+  int32 width = 7;
+  int32 height = 8;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$GetAlbumSkinBytesReq.java ====
+message GetAlbumSkinBytesReq {
+  int64 item_id = 1;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$GetAlbumSkinBytesRsp.java ====
+message GetAlbumSkinBytesRsp {
+  bytes item_material = 1;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$GetFontPanelCmsReq.java ====
+message GetFontPanelCmsReq {
+  string qua = 1;
+  int32 source = 2;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$GetFontPanelCmsRsp.java ====
+message GetFontPanelCmsRsp {
+  repeated CmsPanelItem items = 1;
+  int32 vip_flag = 2;
+  string get_more_url = 3;
+}
+
+// ==== source: qzone/qzmall/read_material/MaterialPB$Img.java ====
+message Img {
+  string url = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$AuthQualifyReq.java ====
+message AuthQualifyReq {
+  int32 type = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$AuthQualifyRsp.java ====
+message AuthQualifyRsp {
+  uint32 nums = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$AuthResult.java ====
+message AuthResult {
+  int32 ret = 1;
+  repeated bytes msg = 2;
+  string url = 3;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$AuthResultEntry.java ====
+message AuthResultEntry {
+  string key = 1;
+  AuthResult value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$BaseInfo.java ====
+message BaseInfo {
+  int32 tq_app_id = 1;
+  int32 item_id = 2;
+  string sec_id = 3;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$BatchUniSetReq.java ====
+message BatchUniSetReq {
+  repeated BaseInfo base_infos = 1;
+  int32 source = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$BatchUniSetRsp.java ====
+message BatchUniSetRsp {
+  repeated RetEntry rets = 1;
+  repeated AuthResultEntry auth_results = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$FullScreenCoverAttr.java ====
+message FullScreenCoverAttr {
+  int32 transparency = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$GetUgcDecoQualReq.java ====
+message GetUgcDecoQualReq {
+  bytes new_vec_buf = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$GetUgcDecoQualRsp.java ====
+message GetUgcDecoQualRsp {
+  bytes new_vec_buf = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$ItemIdEntry.java ====
+message ItemIdEntry {
+  int32 key = 1;
+  int32 value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$ItemSecIdEntry.java ====
+message ItemSecIdEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$MapExtInfoEntry.java ====
+message MapExtInfoEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$RetEntry.java ====
+message RetEntry {
+  string key = 1;
+  int32 value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$SaveMaterialItemReq.java ====
+message SaveMaterialItemReq {
+  int64 l_uin = 1;
+  int32 i_appid = 2;
+  string str_item_id = 3;
+  string str_qua = 4;
+  int32 i_send_feed = 5;
+  string str_skey = 6;
+  repeated MapExtInfoEntry map_ext_info = 7;
+  int32 source = 8;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$SaveMaterialItemRsp.java ====
+message SaveMaterialItemRsp {
+  int32 i_code = 1;
+  string str_err_msg = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$SetDiyCoverReq.java ====
+message SetDiyCoverReq {
+  string cover_uuid = 1;
+  int32 type = 2;
+  string cover_key = 3;
+  uint32 sync_flag = 4;
+  uint32 cover_scene = 5;
+  int32 trace = 6;
+  string qua = 7;
+  string album_id = 8;
+  string photo_id = 9;
+  string cover_url = 10;
+  FullScreenCoverAttr full_screen_attr = 21;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$SetDiyCoverRsp.java ====
+message SetDiyCoverRsp_SetDiyCoverRspCoverUrl {
+  string high_resolution_cover = 1;
+  string low_resolution_cover = 2;
+}
+
+message SetDiyCoverRsp {
+  bytes cover_url = 1;  // was: SetDiyCoverRspCoverUrl
+  uint32 sync_flag = 2;
+  uint32 cover_scene = 3;
+  string share_token = 4;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$ShareDiyCoverReq.java ====
+message ShareDiyCoverReq {
+  string share_token = 1;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$ShareDiyCoverRsp.java ====
+message ShareDiyCoverRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$TransExtInfoEntry.java ====
+message TransExtInfoEntry {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$UgcDecoQualReq.java ====
+message UgcDecoQualReq {
+  repeated ItemIdEntry item_ids = 1;
+  repeated TransExtInfoEntry trans_ext_info = 2;
+  repeated ItemSecIdEntry item_sec_ids = 3;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$UgcDecoQualRsp.java ====
+message UgcDecoQualRsp {
+  repeated ItemIdEntry item_ids = 1;
+  repeated TransExtInfoEntry trans_ext_info = 2;
+  repeated uint32 feedskin_serial_number = 3;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$UniSetReq.java ====
+message UniSetReq {
+  BaseInfo base_info = 1;
+  int32 source = 2;
+}
+
+// ==== source: qzone/qzmall/write_user/UserPB$UniSetRsp.java ====
+message UniSetRsp {
+  int32 ret = 1;
+  AuthResult auth_result = 2;
+}
+
+// ==== source: qzone/qzoneHolidayshare$DisplayData.java ====
+message DisplayData {
+  string activity_name = 1;
+  repeated StUser members = 2;
+  string desc1 = 3;
+  string desc2 = 4;
+  repeated string pic = 5;
+  string addtional_msg = 6;
+  string activity_item_id = 7;
+}
+
+// ==== source: qzone/qzoneHolidayshare$GetShareCardReq.java ====
+message GetShareCardReq {
+  int32 scene = 1;
+}
+
+// ==== source: qzone/qzoneHolidayshare$GetShareCardRsp.java ====
+message GetShareCardRsp {
+  bytes sign_ark = 1;
+}
+
+// ==== source: qzone/qzoneHolidayshare$GetShareDataRsp.java ====
+message GetShareDataRsp {
+  string url = 1;
+  repeated bytes display_data = 2;
+}
+
+// ==== source: qzone/qzoneIntimateSpaceBaseMeta$StIntimateSpaceFeedCellCommon.java ====
+message StIntimateSpaceFeedCellCommon {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneMigration$AuthJobReq.java ====
+message AuthJobReq {
+  string space_id = 1;
+  int32 auth_action = 2;
+}
+
+// ==== source: qzone/qzoneMigration$AuthJobRsp.java ====
+message AuthJobRsp {
+  int32 auth_status = 1;
+}
+
+// ==== source: qzone/qzoneMigration$GetSettingReq.java ====
+message GetSettingReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneMigration$GetSettingRsp.java ====
+message GetSettingRsp {
+  bool show_setting = 1;
+}
+
+// ==== source: qzone/qzoneMigration$GetSweetPairMemberReq.java ====
+message GetSweetPairMemberReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneMigration$GetSweetPairMemberRsp.java ====
+message GetSweetPairMemberRsp {
+  int32 sweet_isyz = 1;
+  int32 sweet_yzdays = 2;
+  string sweet_closetime = 3;
+  int64 sweet_close_timestp = 4;
+}
+
+// ==== source: qzone/qzoneMigration$QueryJobReq.java ====
+message QueryJobReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneMigration$QueryJobRsp.java ====
+message QueryJobRsp {
+  string job_id = 1;
+  int32 job_status = 2;
+  int32 auth_status = 3;
+  bool show_tool_tips = 4;
+  bool owner_agree = 5;
+}
+
+// ==== source: qzone/qzoneMigration$ResetJobReq.java ====
+message ResetJobReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneMigration$ResetJobRsp.java ====
+message ResetJobRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneMigration$TriggerJobReq.java ====
+message TriggerJobReq {
+  repeated string space_ids = 1;
+}
+
+// ==== source: qzone/qzoneMigration$TriggerJobRsp.java ====
+message TriggerJobRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneReddotMeta$CacheInfo.java ====
+message CacheInfo {
+  repeated ReddotCache cache_list = 1;
+}
+
+// ==== source: qzone/qzoneReddotMeta$ReddotCache.java ====
+message ReddotCache_ReddotInfo {
+  int32 reddot_id = 1;
+  uint32 count = 2;
+  repeated StUser user_list = 3;
+  repeated bytes yellow_info = 4;
+  repeated BytesEntry map_bytes_info = 5;
+  string bubble_msg = 6;
+}
+
+message ReddotCache_StCount {
+  uint32 count = 1;
+  int64 create_time = 2;
+}
+
+message ReddotCache {
+  int64 last_get_time = 1;
+  repeated bytes reddot = 2;
+}
+
+// ==== source: qzone/qzoneReddotMeta$ReddotList.java ====
+message ReddotList {
+  repeated bytes reddot_infos = 1;  // was: ReddotInfo
+}
+
+// ==== source: qzone/qzoneReddotWriter$ClearInfo.java ====
+message ClearInfo {
+  int32 reddot_id = 1;
+}
+
+// ==== source: qzone/qzoneReddotWriter$ClearReddotsReq.java ====
+message ClearReddotsReq {
+  repeated ClearInfo clear_info = 1;
+}
+
+// ==== source: qzone/qzoneReddotWriter$ClearReddotsRsp.java ====
+message ClearReddotsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneReddotWriter$WriteReddotsReq.java ====
+message WriteReddotsReq {
+  int32 reddot_id = 1;
+}
+
+// ==== source: qzone/qzoneReddotWriter$WriteReddotsRsp.java ====
+message WriteReddotsRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneUnifiedStore$BatchGetMemberShipReq.java ====
+message BatchGetMemberShipReq {
+  repeated string space_ids = 1;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$BatchGetMemberShipRsp.java ====
+message BatchGetMemberShipRsp {
+  repeated MemberShip member_ships = 1;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$GetMemberShipReq.java ====
+message GetMemberShipReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$GetMemberShipRsp.java ====
+message GetMemberShipRsp {
+  repeated bytes member_ship = 1;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$GetPayProfileReq.java ====
+message GetPayProfileReq {
+  string space_id = 1;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$GetPayProfileRsp.java ====
+message GetPayProfileRsp {
+  int32 coin_num = 1;
+  int32 cost_coin_per_signing = 2;
+  int32 member_signing = 3;
+  repeated MemberPrice member_prices = 4;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$MemberPrice.java ====
+message MemberPrice {
+  string product_id = 1;
+  int32 months = 2;
+  int64 cost_cent = 3;
+  int64 original_cost_cent = 4;
+  string price_tag = 5;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$MemberShip.java ====
+message MemberShip {
+  string space_id = 1;
+  int32 member_status = 2;
+  string member_code = 3;
+  int64 expiration_time = 4;
+  int32 remain_signing = 5;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$PayOrderReq.java ====
+message PayOrderReq {
+  string space_id = 1;
+  repeated string day_indexs = 2;
+  int32 pay_channel = 3;
+}
+
+// ==== source: qzone/qzoneUnifiedStore$PayOrderRsp.java ====
+message PayOrderRsp {
+  int32 pay_result = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$GetMultiWnsSwitchReq.java ====
+message GetMultiWnsSwitchReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneWnsSwitch$GetMultiWnsSwitchRsp.java ====
+message GetMultiWnsSwitchRsp {
+  repeated StSwitch sws = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$GetWnsSwitchReq.java ====
+message GetWnsSwitchReq {
+  string switch_key = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$GetWnsSwitchRsp.java ====
+message GetWnsSwitchRsp {
+  repeated bytes sw = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$SetMultiWnsSwitchReq.java ====
+message SetMultiWnsSwitchReq {
+  repeated StSwitch sws = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$SetMultiWnsSwitchRsp.java ====
+message SetMultiWnsSwitchRsp {
+  // (no fields resolved)
+}
+
+// ==== source: qzone/qzoneWnsSwitch$SetWnsSwitchReq.java ====
+message SetWnsSwitchReq {
+  repeated bytes sw = 1;
+}
+
+// ==== source: qzone/qzoneWnsSwitch$StSwitch.java ====
+message StSwitch {
+  string key = 1;
+  string value = 2;
+}
+
+// ==== source: qzonemoment/QZMomentFCMata$FcComment.java ====
+message FcComment {
+  string userId = 1;
+  uint64 ctime = 2;
+  repeated bytes id = 3;
+  uint32 modifyFlag = 4;
+  string content = 5;
+  uint32 respNum = 6;
+  repeated FcReply reply = 7;
+  repeated uint64 atuinList = 8;
+  StCommonExt extendInfo = 9;
+  string likeKey = 10;
+  repeated uint64 atuinListAct = 11;
+}
+
+// ==== source: qzonemoment/QZMomentFCMata$FcLbsInfo.java ====
+message FcLbsInfo {
+  string name = 1;
+  repeated bytes id = 2;
+  string idname = 3;
+  string posX = 4;
+  string posY = 5;
+}
+
+// ==== source: qzonemoment/QZMomentFCMata$FcRecomInfo.java ====
+message FcRecomInfo {
+  string recomReason = 1;
+  string orgUid = 2;
+  string orgFeedKey = 3;
+  uint32 orgFeedTime = 4;
+  string currentRecomFeedUid = 5;
+}
+
+// ==== source: qzonemoment/QZMomentFCMata$FcReply.java ====
+message FcReply {
+  string userId = 1;
+  uint64 ctime = 2;
+  uint32 modifyFlag = 3;
+  repeated bytes id = 4;
+  string targetUid = 5;
+  string content = 6;
+  repeated uint64 atuinList = 7;
+  StCommonExt extendInfo = 8;
+  string likeKey = 9;
+  repeated uint64 atuinListAct = 10;
+}
+
+// ==== source: qzonemoment/QZMomentFCMata$FcSingleFeed.java ====
+message FcSingleFeed_FcFeedSummary {
+  repeated bytes ugcData = 1;
+  repeated bytes opInfo = 2;
+}
+
+message FcSingleFeed_FcUgcData {
+  string userId = 1;
+  uint64 ctime = 2;
+  uint32 mtypeid = 3;
+  string ugcId = 4;
+  bytes content = 5;
+  uint32 ugcRight = 6;
+  repeated bytes lbs = 7;
+  repeated string atuinList = 8;
+  uint32 commentCount = 9;
+  repeated FcComment comment = 10;
+  uint32 mask = 11;
+  repeated bytes extendInfo = 12;
+  string likeKey = 13;
+  uint32 modifyFlag = 14;
+  string publishUid = 15;
+  repeated bytes recom = 16;
+}
+
+message FcSingleFeed_FcOpratorInfo {
+  uint32 action = 1;
+  string userId = 2;
+  uint64 ctime = 3;
+  repeated bytes comment = 4;
+  repeated bytes lbs = 5;
+  bytes likeJoinInfo = 6;
+  repeated bytes likeOpInfo = 7;
+  repeated bytes topOpInfo = 8;
+  uint64 ctimeNs = 9;
+}
+
+message FcSingleFeed_FcLikeOpInformation {
+  string curPolyLikeID = 1;
+  string newPolyLikeID = 2;
+  uint32 isNotNeedPsv = 3;
+}
+
+message FcSingleFeed_FcTopOpratorInformation {
+  repeated bytes cancledTopComment = 1;
+}
+
+message FcSingleFeed_FcLikeInfo {
+  uint32 likeSum = 1;
+  repeated string likedUinlist = 2;
+  string likeKey = 3;
+}
+
+message FcSingleFeed {
+  uint32 subType = 1;
+  string feedKey = 2;
+  string feedUserId = 3;
+  uint32 feedType = 4;
+  uint64 feedTime = 5;
+  uint32 feedMask = 6;
+  bytes summary = 7;  // was: FcFeedSummary
+  bytes likeInfo = 8;  // was: FcLikeInfo
+  string feedPublishUid = 9;
+  uint64 feedTimeUsec = 10;
+  FcRecomInfo recom = 11;
+  string orgRecomSingleFeed = 12;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$NoticeLeftTextRightImageData.java ====
+message NoticeLeftTextRightImageData {
+  string message = 1;
+  repeated StImage images = 2;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StGPSV2.java ====
+message StGPSV2 {
+  int64 lat = 1;
+  int64 lon = 2;
+  int64 eType = 3;
+  int64 alt = 4;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StImageUrl.java ====
+message StImageUrl {
+  uint32 levelType = 1;
+  string url = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StLightInteractInfo.java ====
+message StLightInteractInfo {
+  StUser user = 1;
+  StRelationInfo relation = 2;
+  uint32 count = 3;
+  bytes busiData = 4;
+  uint32 opTime = 5;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StNoticeContent.java ====
+message StNoticeContent {
+  int32 style = 1;
+  string message = 2;
+  repeated StImage images = 3;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StOperation.java ====
+message StOperation {
+  StUser opUser = 1;
+  uint64 opTime = 2;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StPoiInfo.java ====
+message StPoiInfo {
+  string poiId = 1;
+  string name = 2;
+  int32 poiType = 3;
+  string typeName = 4;
+  string address = 5;
+  int32 districtCode = 6;
+  StGPSV2 gps = 7;
+  int32 distance = 8;
+  int32 hotValue = 9;
+  string phone = 10;
+  string country = 11;
+  string province = 12;
+  string city = 13;
+  int32 poiNum = 14;
+  int32 poiOrderType = 15;
+  string defaultName = 16;
+  string district = 17;
+  string dianPingId = 18;
+  string distanceText = 19;
+  string displayName = 20;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StProxyInfo.java ====
+message StProxyInfo {
+  int32 cmdId = 1;
+  int32 subCmdId = 2;
+  string appProtocol = 3;
+  bytes reqBody = 4;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StTagInfo.java ====
+message StTagInfo {
+  string tagId = 1;
+  string tagName = 2;
+  string tagDec = 3;
+}
+
+// ==== source: qzonemoment/QZMomentMeta$StUser.java ====
+message StUser_StIconInfo {
+  string iconUrl40 = 1;
+  string iconUrl100 = 2;
+  string iconUrl140 = 3;
+  string iconUrl640 = 4;
+  string iconUrl = 5;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetCommentListReq.java ====
+message StGetCommentListReq {
+  StCommonExt extInfo = 1;
+  string feedUserID = 2;
+  string feedID = 3;
+  uint32 listNum = 4;
+  int32 from = 5;
+  string feedAttchInfo = 6;
+  string likeKey = 7;
+  int64 commentCount = 8;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetCommentListRsp.java ====
+message StGetCommentListRsp {
+  StCommonExt extInfo = 1;
+  repeated StComment vecComment = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  string feedAttchInfo = 5;
+  string permissionText = 6;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedDetailReq.java ====
+message StGetFeedDetailReq {
+  StCommonExt extInfo = 1;
+  int32 from = 2;
+  StFeed entryFeed = 3;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedDetailRsp.java ====
+message StGetFeedDetailRsp {
+  StCommonExt extInfo = 1;
+  StFeed feed = 2;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedListReq.java ====
+message StGetFeedListReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  int32 from = 3;
+  StFeed feed = 4;
+  string feedAttchInfo = 5;
+  string userId = 6;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedListRsp.java ====
+message StGetFeedListRsp {
+  StCommonExt extInfo = 1;
+  repeated StFeed vecFeed = 2;
+  uint32 isFinish = 3;
+  StUser user = 4;
+  string feedAttchInfo = 5;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedSharePanelReq.java ====
+message StGetFeedSharePanelReq {
+  StFeed feed = 1;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetFeedSharePanelRsp.java ====
+message StGetFeedSharePanelRsp {
+  StShare share_info = 1;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetLightInteractListReq.java ====
+message StGetLightInteractListReq {
+  StCommonExt extInfo = 1;
+  uint32 type = 2;
+  string attachInfo = 3;
+  repeated bytes id = 4;
+  string hostID = 5;
+  string feedID = 6;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetLightInteractListRsp.java ====
+message StGetLightInteractListRsp {
+  StCommonExt extInfo = 1;
+  string attachInfo = 2;
+  repeated StLightInteractInfo listInfo = 3;
+  uint32 isFinish = 4;
+  uint32 totalCount = 5;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetNoticeListReq.java ====
+message StGetNoticeListReq {
+  StCommonExt extInfo = 1;
+  uint32 listNum = 2;
+  string feedAttchInfo = 3;
+}
+
+// ==== source: qzonemoment/QZMomentReader$StGetNoticeListRsp.java ====
+message StGetNoticeListRsp {
+  StCommonExt extInfo = 1;
+  repeated StNotice vecNotice = 2;
+  uint32 totalNum = 3;
+  uint32 isFinish = 4;
+  string feedAttchInfo = 5;
+}
+
+// ==== source: qzonemoment/QZMomentWriter$StDeleteFeedRsp.java ====
+message StDeleteFeedRsp {
+  StCommonExt extInfo = 1;
+  uint64 nextPublishTime = 3;
+}
+
+// ==== source: qzonemoment/QZMomentWriter$StGetNextPublishLeftReq.java ====
+message StGetNextPublishLeftReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzonemoment/QZMomentWriter$StGetNextPublishLeftRsp.java ====
+message StGetNextPublishLeftRsp {
+  uint64 nextPublishLeft = 1;
+}
+
+// ==== source: qzonemoment/QZMomentWriter$StGetNextPublishTimeReq.java ====
+message StGetNextPublishTimeReq {
+  // (no fields resolved)
+}
+
+// ==== source: qzonemoment/QZMomentWriter$StGetNextPublishTimeRsp.java ====
+message StGetNextPublishTimeRsp {
+  uint64 nextPublishTime = 1;
+}
+
+// ==== source: tencent/p2156im/oidb/oidb_0xc26$QzoneInfo.java ====
+message QzoneInfo {
+  string icon_url = 1;
+  string text = 2;
+  int32 hit_exp_group = 3;
+}
+
+// ==== source: tencent/p2156im/oidb/oidb_0xc26$QzoneMediaInfo.java ====
+message QzoneMediaInfo {
+  int32 type = 1;
+  string pic_url = 2;
+  string text = 3;
+  bool has_pic = 4;
+  string report_data = 5;
+}
+
+// ==== source: tencent/p2156im/qzone/album/UploadParam.java ====
+message UploadParam {
+  uint32 uint32_full_image = 1;
+  uint64 uint64_batchid = 2;
+  uint64 uint64_image_number = 3;
+  uint64 uint64_image_number_index = 4;
+  bytes bytes_qzone_albumid = 5;
+}

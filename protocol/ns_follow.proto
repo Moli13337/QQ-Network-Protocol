@@ -1,0 +1,163 @@
+// ns_follow 域 — 26 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.ns_follow;
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowReq.java ====
+message StBatchCheckFollowReq {
+  repeated bytes business = 1;
+  repeated string followers = 2;
+  string star = 3;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowRsp.java ====
+message StBatchCheckFollowRsp {
+  repeated bytes stars = 1;  // was: StStar
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowingNewReq.java ====
+message StBatchCheckFollowingNewReq {
+  repeated bytes business = 1;
+  string followers = 2;
+  repeated string stars = 3;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowingNewRsp.java ====
+message StBatchCheckFollowingNewRsp {
+  // (no fields resolved)
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowingReq.java ====
+message StBatchCheckFollowingReq {
+  repeated bytes business = 1;
+  string followers = 2;
+  repeated string stars = 3;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchCheckFollowingRsp.java ====
+message StBatchCheckFollowingRsp {
+  repeated bytes stars = 1;  // was: StStar
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowByWeightReq.java ====
+message StBatchGetFollowByWeightReq {
+  repeated bytes business = 1;
+  repeated string followers = 2;
+  double startWeight = 3;
+  double endWeight = 4;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowByWeightRsp.java ====
+message StBatchGetFollowByWeightRsp {
+  repeated StStarList startList = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowerCountReq.java ====
+message StBatchGetFollowerCountReq {
+  repeated bytes business = 1;
+  repeated string stars = 2;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowerCountRsp.java ====
+message StBatchGetFollowerCountRsp {
+  repeated uint32 followersCount = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowingCountReq.java ====
+message StBatchGetFollowingCountReq {
+  repeated bytes business = 1;
+  repeated string followers = 2;
+}
+
+// ==== source: NS_FOLLOW/Follow$StBatchGetFollowingCountRsp.java ====
+message StBatchGetFollowingCountRsp {
+  repeated StCountResult followingCounts = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StCheckFollowReq.java ====
+message StCheckFollowReq {
+  repeated bytes business = 1;
+  string follower = 2;
+  string star = 3;
+}
+
+// ==== source: NS_FOLLOW/Follow$StCheckFollowRsp.java ====
+message StCheckFollowRsp_StStar {
+  string star = 1;
+  double weight = 2;
+}
+
+message StCheckFollowRsp {
+  bytes star = 1;  // was: StStar
+}
+
+// ==== source: NS_FOLLOW/Follow$StCheckResult.java ====
+message StCheckResult {
+  string stars = 1;
+  int32 result = 2;
+}
+
+// ==== source: NS_FOLLOW/Follow$StCountResult.java ====
+message StCountResult {
+  string follower = 1;
+  int32 retCode = 2;
+  uint32 count = 3;
+}
+
+// ==== source: NS_FOLLOW/Follow$StFollowReq.java ====
+message StFollowReq {
+  repeated bytes business = 1;
+  string follower = 2;
+  string star = 3;
+  double weight = 4;
+}
+
+// ==== source: NS_FOLLOW/Follow$StFollowRsp.java ====
+message StFollowRsp {
+  int32 retCode = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowerCountReq.java ====
+message StGetFollowerCountReq {
+  repeated bytes business = 1;
+  string star = 2;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowerCountRsp.java ====
+message StGetFollowerCountRsp {
+  uint32 followerCount = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowingCountReq.java ====
+message StGetFollowingCountReq {
+  repeated bytes business = 1;
+  string follower = 2;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowingCountRsp.java ====
+message StGetFollowingCountRsp {
+  uint32 followingCount = 1;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowingReq.java ====
+message StGetFollowingReq {
+  repeated bytes business = 1;
+  string follower = 2;
+  uint32 start = 3;
+  int32 order = 4;
+  uint32 listSize = 5;
+}
+
+// ==== source: NS_FOLLOW/Follow$StGetFollowingRsp.java ====
+message StGetFollowingRsp {
+  repeated bytes stars = 1;  // was: StStar
+  uint32 nextStart = 2;
+  uint32 finished = 3;
+  uint32 totalNum = 4;
+}
+
+// ==== source: NS_FOLLOW/Follow$StStarList.java ====
+message StStarList {
+  repeated bytes stars = 1;  // was: StStar
+}

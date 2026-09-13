@@ -1,0 +1,41 @@
+// p2035pb_unite 域 — 4 消息（自动还原自 QQ 9.3.55 jadx 反编译源码）
+// tag = (field_number << 3) | wire_type；0=varint 1=fixed64 2=len 5=fixed32
+// 注：跨域/歧义的嵌套消息引用降级为 bytes，原始类型名保留在行尾注释中
+syntax = "proto3";
+package qq.p2035pb_unite;
+
+// ==== source: p2035pb/unite/search/DynamicTabSearch$ReqBody.java ====
+message ReqBody {
+  bytes key_word = 1;
+  bytes version = 2;
+  bytes search_request = 3;  // was: RootSearcherRequest
+  bytes extension_request_info = 100;  // was: ExtensionRequestInfo
+  uint32 from_sub_hot_word_id = 101;
+}
+
+// ==== source: p2035pb/unite/search/DynamicTabSearch$RspBody.java ====
+message RspBody {
+  uint32 result_code = 1;
+  string error_msg = 2;
+  repeated bytes item_groups = 3;  // was: ResultItemGroup
+  uint32 is_end = 4;
+  bytes cookie = 5;
+  bytes search_ver = 6;
+  repeated SubHotWord hot_words = 7;
+  bytes sub_hot_top_wording = 8;
+  uint32 dont_need_merge = 9;
+  bytes extension = 101;
+}
+
+// ==== source: p2035pb/unite/search/DynamicTabSearch$SubHotWord.java ====
+message SubHotWord {
+  uint32 word_id = 1;
+  bytes show_word = 2;
+  bytes search_word = 3;
+}
+
+// ==== source: p2035pb/unite/search/UniteSearch$TabItemGroup.java ====
+message TabItemGroup {
+  bytes tab_name = 2;
+  repeated uint64 rpt_group_mask = 3;
+}
